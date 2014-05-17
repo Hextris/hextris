@@ -14,14 +14,23 @@ var clock = new Clock(6);
 
 var blocks = [];
 
-for (var i = 0; i < 1; i++) {
-	blocks.push(new Block(i, 'green'));
-}
-
 var MainClock = new Clock(65);
-var iter = 1;
+var iter = 1/100;
+var lastGen = Date.now();
+var nextGen = 1000;
+
+var colors = ["green", "red"];
 
 function Render() {
+	var now = Date.now();
+	if(now - lastGen > nextGen) {
+		console.log("YES coachh");
+		blocks.push(new Block(randInt(0, 5), colors[randInt(0, colors.length-1)]));
+		lastGen = Date.now();
+		nextGen = randInt(100, 500);
+		console.log(nextGen);
+	}
+
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	var objectsToRemove = [];
 	MainClock.blocks.forEach(function(hexBlocks){
@@ -72,4 +81,55 @@ function drawPolygon(x, y, sides, radius, theta) {
 	ctx.closePath();
 	ctx.fill();
 	ctx.stroke();
+}
+
+function Block(lane, color, distFromHex, settled) {
+	this.settled = (settled == undefined) ? 0 : 1;
+	this.height = 20;
+	this.width = 65;
+	this.lane = lane;
+	this.angle = 90 - (30 + 60 * lane);
+	if (this.angle < 0) {
+		this.angle += 360;
+	}
+
+	this.color = color;
+	
+	if (distFromHex) {
+		this.distFromHex = distFromHex;
+	}
+	else {
+		this.distFromHex = 300;
+	}
+	this.draw = function() {
+		this.angle = 90 - (30 + 60 * this.lane);
+
+		this.width = 2 * this.distFromHex / Math.sqrt(3);
+		this.widthswag = this.width + this.height + 5;
+		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
+		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
+		var p3 = rotatePoint(this.widthswag/2, -this.height/2, this.angle);
+		var p4 = rotatePoint(-this.widthswag/2, -this.height/2, this.angle);
+		
+		ctx.fillStyle=this.color;
+		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
+		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
+
+		ctx.beginPath();
+		ctx.moveTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
+		ctx.lineTo(Math.round(baseX + p2.x), Math.round(baseY + p2.y));
+		ctx.lineTo(Math.round(baseX + p3.x), Math.round(baseY + p3.y));
+		ctx.lineTo(Math.round(baseX + p4.x), Math.round(baseY + p4.y));
+		ctx.lineTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
+		ctx.closePath();
+		ctx.fill();
+
+		// ctx.strokeStyle = '#322'
+		// ctx.beginPath();
+		// ctx.moveTo(canvas.width/2, canvas.height/2);
+		// ctx.lineTo(canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height), canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height));
+		// ctx.closePath();
+		// ctx.stroke();
+	};
+
 }
