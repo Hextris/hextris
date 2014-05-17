@@ -1,8 +1,13 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-var gameState = 1; // 0 - start, 1 - playing, 2 - end
+var gameState = 0; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
+
+var score = 0;
+var scoreScalar = 1;
+
+ct = 0;
 
 window.requestAnimFrame = (function(){
 	return window.requestAnimationFrame	||
@@ -13,24 +18,43 @@ window.requestAnimFrame = (function(){
 	};
 })();
 
-var clock = new Clock(6);
 
 var blocks = [];
-var MainClock = new Clock(65);
-var iter = 1;
-var lastGen = Date.now();
-var nextGen = 1000;
+var MainClock;
+var iter;
+var lastGen;
+var prevScore;
+var nextGen;
 
+function init() {
+	score = 0;
+	scoreScalar = 1;
+	gameState = 1;
+	ct = 0;
+	blocks = [];
+	MainClock = new Clock(65);
+	iter = 1;
+	lastGen = Date.now();
+	prevScore = Date.now();
+	nextGen = 1000;
+
+}
 var colors = ["#e74c3c", "#f1c40f","#3498db"];
 var hexagonBackgroundColor = '#ecf0f1';
 var swegBlue = '#2c3e50'; //tumblr?
 
 function render() {
+	document.getElementById("score").innerHTML = score + " (x"+scoreScalar+")";
 	var now = Date.now();
 	if(now - lastGen > nextGen) {
 		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
 		lastGen = Date.now();
-		nextGen = randInt(500, 1500);
+		nextGen = randInt(500/iter, 1500/iter);
+	}
+	if(now - prevScore > 1000) {
+		score += 5 * scoreScalar;
+		prevScore = now;
+		iter += 0.1;
 	}
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
@@ -65,13 +89,18 @@ function render() {
 }
 
 (function animloop(){
-	if (gameState == 1) {
-		requestAnimFrame(animloop);
+	requestAnimFrame(animloop);
+
+	if (gameState == 0) {
+		showModal('Start!', 'Press enter to start!');
+	}
+	else if (gameState == 1) {
 		render();
 		checkGameOver();
 	}
 	else if (gameState == 2) {
-		showModal('Game Over');
+		showModal('Game over!', score + ' pts!');
+
 	}
 })();
 
@@ -95,17 +124,24 @@ function drawPolygon(x, y, sides, radius, theta, color) { // can make more elega
 
 function checkGameOver() { // fix font, fix size of hex
 	for(var i=0; i<MainClock.sides;i++) {
-		if(MainClock.blocks[i].length>5)
+		if(MainClock.blocks[i].length>8)
 		{
 			gameState = 2;	
 		}
 	}
 }
 
-function showModal(text) {
+function showModal(text, secondaryText) {
+	var buttonSize = 150;
+	var fontSizeLarge = 50;
+	var fontSizeSmall = 25;
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
 	ctx.fillStyle = swegBlue;
-	ctx.font = '40pt "Helvetica Neue"';
+	// drawPolygon(canvas.width / 2, canvas.height / 2, 6, buttonSize, 30, swegBlue);
+	ctx.font =  fontSizeLarge+'px "Roboto"';
 	ctx.textAlign = 'center';
-	ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+	// ctx.fillStyle = hexagonBackgroundColor;
+	ctx.fillText(text, canvas.width / 2, canvas.height / 2  + (fontSizeLarge / 4));
+	ctx.font =  fontSizeSmall+'px "Roboto"';
+	ctx.fillText(secondaryText, canvas.width/2, canvas.height/2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30); 
 }

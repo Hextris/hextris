@@ -52,12 +52,14 @@ function consolidateBlocks(clock,side,index) {
 	vertical = scoreCheckVertical(clock,side,index);
 	deleted = [];
 	if(horizontal != "false") {
+		scoreScalar *= 2;
 		deleted.push([side,index,horizontal]);
 	}
 	else {
 		deleted.push([]);
 	}
 	if(vertical != "false") {
+		scoreScalar *= 2;
 		deleted.push([side,index,vertical]);
 	}
 	else {
