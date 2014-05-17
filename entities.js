@@ -68,7 +68,7 @@ var Clock = function(sideLength) {
 		lane = lane % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
-		// consolidateBlocks(this,lane,this.blocks.length-1);
+		consolidateBlocks(this,lane,this.blocks[lane].length-1);
 	};
 
 	this.doesBlockCollide = function(block, iter) {
