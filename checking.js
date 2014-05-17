@@ -1,5 +1,4 @@
 function getIndex(list,index) {
-	console.log(" getIndex");
 	if(index>-1) {
 		return index%list.length;
 	}
@@ -8,23 +7,18 @@ function getIndex(list,index) {
 	}
 }
 function scoreCheckHorizontal(clock,side,index) {
-	console.log(" scoreCheckHorizontal");
 	clockSides = clock.blocks;
 	if(clockSides[getIndex(clockSides,side)][index] && clockSides[getIndex(clockSides,side-1)][index] && clockSides[getIndex(clockSides,side-2)][index]) {
-		console.log(1);
 		if(clockSides[getIndex(clockSides,side)][index].color ==  clockSides[getIndex(clockSides,side-1)][index].color &&  clockSides[getIndex(clockSides,side-1)][index].color  ==  clockSides[getIndex(clockSides,side-2)][index].color) {
 			return -2;
 		}
 	}
-	console.log(clockSides[getIndex(clockSides,side)][index],clockSides[getIndex(clockSides,side)][index-1],clockSides[getIndex(clockSides,side)][index+1])
 	if(clockSides[getIndex(clockSides,side)][index] && clockSides[getIndex(clockSides,side+1)][index] && clockSides[getIndex(clockSides,side-1)][index]) {
-		console.log(2);
 		if(clockSides[getIndex(clockSides,side)][index].color ==  clockSides[getIndex(clockSides,side+1)][index].color &&  clockSides[getIndex(clockSides,side+1)][index].color  ==  clockSides[getIndex(clockSides,side-1)][index].color) {
 			return -1;
 		}
 	}
 	if(clockSides[getIndex(clockSides,side)][index] && clockSides[getIndex(clockSides,side+1)][index] && clockSides[getIndex(clockSides,side+2)][index]) {
-		console.log(3);
 		if(clockSides[getIndex(clockSides,side)][index].color ==  clockSides[getIndex(clockSides,side+1)][index].color &&  clockSides[getIndex(clockSides,side+1)][index].color  ==  clockSides[getIndex(clockSides,side+2)][index].color) {
 			return	0;
 		}
@@ -33,7 +27,6 @@ function scoreCheckHorizontal(clock,side,index) {
 }
 	
 function scoreCheckVertical(clock,side,index) {
-	console.log(" scoreCheckVertical");
 	curSide = clock.blocks[side];
 	if(curSide[index] && curSide[index-2] && curSide[index-1]) {
 		if(curSide[index].color == curSide[index-2].color && curSide[index-2].color ==curSide[index-1].color) {
@@ -55,7 +48,6 @@ function scoreCheckVertical(clock,side,index) {
 	return "false";
 }
 function consolidateBlocks(clock,side,index) {
-	console.log(" consolidateBlocks");
 	horizontal = scoreCheckHorizontal(clock,side,index);
 	vertical = scoreCheckVertical(clock,side,index);
 	deleted = [];
@@ -74,13 +66,11 @@ function consolidateBlocks(clock,side,index) {
 	eraseBlocks(clock,deleted);
 }
 function eraseBlocks(clock,deleted) {
-	console.log(" eraseBlocks");
 	if(deleted[0].length>0){
 		side = deleted[0][0];
 		index = deleted[0][1];
 		horizontal = deleted[0][2];
 		for(var i=0;i<3;i++) {
-			console.log(side+horizontal+i);
 			clock.blocks[getIndex(clock.blocks,side+horizontal+i)].splice(index,1);
 		}
 		for(var i=0;i<3;i++) {

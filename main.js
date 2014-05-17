@@ -15,7 +15,7 @@ var clock = new Clock(6);
 var blocks = [];
 
 var MainClock = new Clock(65);
-var iter = 1/100;
+var iter = 1;
 var lastGen = Date.now();
 var nextGen = 1000;
 
@@ -24,11 +24,9 @@ var colors = ["green", "red"];
 function Render() {
 	var now = Date.now();
 	if(now - lastGen > nextGen) {
-		console.log("YES coachh");
 		blocks.push(new Block(randInt(0, 5), colors[randInt(0, colors.length-1)]));
 		lastGen = Date.now();
-		nextGen = randInt(100, 500);
-		console.log(nextGen);
+		nextGen = randInt(500, 1500);
 	}
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
