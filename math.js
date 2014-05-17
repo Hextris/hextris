@@ -8,3 +8,4 @@ function rotatePoint(x, y, theta) {
 		y: rotY,
 	};
 }
+

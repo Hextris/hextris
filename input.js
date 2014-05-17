@@ -1,2 +1,9 @@
-keypress.simple_combo("left", clock.rotate(-1));
-keypress.simple_combo("right", clock.rotate(1));
+keypress.register_combo({
+	keys: "right", 
+	on_keyup: function(){clock.rotate(1)},
+});
+
+keypress.register_combo({
+	keys: "left", 
+	on_keyup: function(){clock.rotate(-1)},
+});
