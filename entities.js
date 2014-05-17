@@ -16,13 +16,12 @@ function Block(lane, color, distFromHex, settled) {
 		this.distFromHex = distFromHex;
 	}
 	else {
-		this.distFromHex = 300;
+		this.distFromHex = 470;
 	}
 	this.draw = function() {
-		this.angle = 90 - (30 + 60 * this.lane);
-
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
 		this.widthswag = this.width + this.height + 3;
+
 		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
 		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
 		var p3 = rotatePoint(this.widthswag/2, -this.height/2, this.angle);
@@ -61,23 +60,32 @@ var Clock = function(sideLength) {
 
 	this.addBlock = function(block) {
 		block.settled = 1;
-		var lane = 0;
-		lane += this.position + block.lane;
-		lane = lane % this.sides;
-		while(lane < 0) {
-			lane = lane + this.sides;
+		var lane = this.sides - block.lane;//  -this.position;
+		lane += this.position;
+		while (lane < 0) {
+			lane += this.sides;
 		}
+		lane = lane % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		// consolidateBlocks(this,lane,this.blocks.length-1);
 	};
 
-	this.doesBlockCollide = function(block, iter, index) {
+	this.doesBlockCollide = function(block, iter) {
 		if (block.settled) return;
-		var arr = this.blocks[(block.lane + this.position % this.sides) % this.sides];
-		var thisIn = index === undefined ? arr.length - 1 : index - 1;
+
+		var lane = this.sides - block.lane;//  -this.position;
+		lane += this.position;
+
+		while (lane < 0) {
+			lane += this.sides;
+		}
+		lane = lane % this.sides;
+
+		var arr = this.blocks[lane];
+
 		if (arr.length > 0) {
-			if (block.distFromHex + iter - arr[thisIn].distFromHex - arr[thisIn].height <= 0) {
+			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 				this.addBlock(block);
 			}
 		}
@@ -91,23 +99,19 @@ var Clock = function(sideLength) {
 	};
 
 	this.rotate = function(steps) {
-		var oldPosition = this.position;
 		this.position += steps;
+		while (this.position < 0) {
+			this.position += 6;
+		}
+
 		this.position = this.position % this.sides;
-		while(this.position < 0) {
-			this.position = this.position + this.sides;
-		}
-		for(var i=0; i<this.blocks.length; i++) {
-			for(var j=0; j<this.blocks[i].length; j++) {
-				this.blocks[i][j].lane += (this.position - oldPosition);
-				this.blocks[i][j].lane = this.blocks[i][j].lane % this.sides;
-				while(this.blocks[i][j].lane < 0) {
-					this.blocks[i][j].lane += this.sides;
-				}
-			}
-		}
+		this.blocks.forEach(function(blocks){
+			blocks.forEach(function(block){
+				block.angle = block.angle - steps * 60;
+			});
+		});
 		
-		this.angle = 30 + this.position * 60;
+		this.angle = this.angle + steps * 60;
 	};
 
 	this.draw = function() {

@@ -1,10 +1,12 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+
 var gameState = 1; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
 
 
 ct = 0;
+
 window.requestAnimFrame = (function(){
 	return window.requestAnimationFrame	||
 	window.webkitRequestAnimationFrame	||
@@ -17,7 +19,6 @@ window.requestAnimFrame = (function(){
 var clock = new Clock(6);
 
 var blocks = [];
-
 var MainClock = new Clock(65);
 var iter = 1;
 var lastGen = Date.now();
@@ -25,7 +26,7 @@ var nextGen = 1000;
 
 var colors = ["#e74c3c", "#f1c40f","#3498db"];
 var hexagonBackgroundColor = '#ecf0f1';
-var swegBlue = '#2c3e50';
+var swegBlue = '#2c3e50'; //tumblr?
 
 function render() {
 	var now = Date.now();
@@ -37,31 +38,29 @@ function render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
 	var objectsToRemove = [];
-	MainClock.blocks.forEach(function(hexBlocks){
-		for (var i = 0; i < hexBlocks.length; i++) {
-			MainClock.doesBlockCollide(hexBlocks[i], iter, i);
-			if (!hexBlocks[i].settled) {
-				hexBlocks[i].distFromHex -= iter;
-			}
-			
-			hexBlocks[i].draw();
+	var i;
+	for (i in MainClock.blocks) {
+		for (var j = 0; j < MainClock.blocks[i].length; j++) {
+			var block = MainClock.blocks[i][j];
+			MainClock.doesBlockCollide(block, iter);
+			block.draw();
 		}
-	});
+	}
 
-	for (var i in blocks) {
+	for (i in blocks) {
 		MainClock.doesBlockCollide(blocks[i], iter);
 		if (!blocks[i].settled) {
 			blocks[i].distFromHex -= iter;
-		} else {
-			objectsToRemove.push(blocks[i]);
+		}
+		else {
+			objectsToRemove.push(i);
 		}
 		blocks[i].draw();
 	}
 
 	objectsToRemove.forEach(function(o){
-		blocks.splice(o,1);
+		blocks.splice(o, 1);
 	});
-	ct++;
 	MainClock.draw();
 }
 
@@ -92,10 +91,8 @@ function drawPolygon(x, y, sides, radius, theta, color) { // can make more elega
 	}
 	ctx.closePath();
 	ctx.fill();
-	// console.log(ctx.fillStyle);
-	// ctx.strokeStyle = this.strokeColor;
-	// ctx.stroke();
 };
+
 function checkGameOver() { // fix font, fix size of hex
 	for(var i=0; i<MainClock.sides;i++) {
 		if(MainClock.blocks[i].length>5)
