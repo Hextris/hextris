@@ -10,9 +10,8 @@ window.requestAnimFrame = (function(){
 		};
 })();
 
-// var blocks = [];
+var blocks = [];
 
-<<<<<<< HEAD
 for (var i = 0; i < 12; i++) {
 	blocks.push(new Block(i, 'green'));
 }
@@ -22,6 +21,7 @@ function Render() {
 	blocks.forEach(function(o){
 		o.draw();
 		o.distFromHex -= 1/100;
+		o.angle += 1/100;
 	});
 
 	requestAnimFrame(Render);
@@ -31,6 +31,25 @@ function Render() {
 	requestAnimFrame(animloop);
 	Render();
 })();
+
+function drawPolygon(x, y, sides, radius, theta) {
+	ctx.beginPath();
+	ctx.moveTo(x, y + radius);
+	var oldX = 0;
+	var oldY = radius;
+	for (var i = 0; i < sides; i++) {
+		var coords = rotatePoint(oldX, oldY, 360 / sides);
+		ctx.lineTo(coords.x + x, coords.y + y);
+		ctx.moveTo(coords.x + x, coords.y + y);
+		oldX = coords.x;
+		oldY = coords.y;
+	}
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+}
+
+drawPolygon(100, 100, 6, 100, 0);
 
 function Block(lane, color, distFromHex) {
 	this.height = 20;
@@ -60,70 +79,13 @@ function Block(lane, color, distFromHex) {
 		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex);
 
 		ctx.beginPath();
-		ctx.moveTo(baseX + p1.x, baseY + p1.y);
-		ctx.lineTo(baseX + p2.x, baseY + p2.y);
-		ctx.lineTo(baseX + p3.x, baseY + p3.y);
-		ctx.lineTo(baseX + p4.x, baseY + p4.y);
-		ctx.lineTo(baseX + p1.x, baseY + p1.y);
+		ctx.moveTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
+		ctx.lineTo(Math.round(baseX + p2.x), Math.round(baseY + p2.y));
+		ctx.lineTo(Math.round(baseX + p3.x), Math.round(baseY + p3.y));
+		ctx.lineTo(Math.round(baseX + p4.x), Math.round(baseY + p4.y));
+		ctx.lineTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
 		ctx.closePath();
 		ctx.fill();
 	};
 
 }
-=======
-// for (var i = 0; i < 6; i++) {
-// 	blocks.push(new Block(i, 'green'));
-// }
-
-Render();
-
-function drawPolygon(x, y, sides, radius, theta) {
-	ctx.beginPath();
-	ctx.moveTo(x, y + radius);
-	var oldX = 0;
-	var oldY = radius;
-	for (var i = 0; i < sides; i++) {
-		var coords = rotatePoint(oldX, oldY, 360 / sides); 
-		ctx.lineTo(coords.x + x, coords.y + y);
-		ctx.moveTo(coords.x + x, coords.y + y);
-		oldX = coords.x;
-		oldY = coords.y;
-		// console.log(coords);
-	}
-	ctx.closePath();
-	ctx.fill();
-	ctx.stroke();
-}
-
-function Render() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	// blocks.forEach(function(o){
-		// o.draw();
-	// });
-	drawPolygon(100, 100, 6, 100, 0);
-	requestAnimFrame(Render);
-}
-
-// function Block(lane, color, time) {
-// 	this.lane = lane;
-// 	this.angle = 15 * (Math.PI / 180) + 30 * (Math.PI / 180) * lane;
-// 	this.color = color;
-
-// 	this.draw = function() {
-// 		ctx.translate(canvas.width / 2, canvas.height / 2);
-// 		ctx.rotate(this.angle);
-// 		ctx.fillStyle = '#000';
-// 		ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 30, 30);
-// 		ctx.restore();
-// 		ctx.fillRect(200, 200, 200, 200);
-// 	};
-
-// 	if (!time) {
-// 		this.time = time;
-// 	}
-// 	else {
-// 		time = 200;
-// 	}
-// }
-
->>>>>>> cf79fbefde53e6994623e30795f806aa8efdb4d9
