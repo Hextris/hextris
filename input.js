@@ -8,3 +8,11 @@ keypress.register_combo({
 	on_keyup: function(){MainClock.rotate(-1)},
 });
 
+keypress.register_combo({
+	keys: "enter", 
+	on_keyup: function(){
+		if (gameState != 1) {
+			init();
+		}
+	},
+});
