@@ -14,11 +14,12 @@ var clock = new Clock(6);
 
 var blocks = [];
 
-// for (var i = 0; i < 12; i++) {
-// 	blocks.push(new Block(i, 'green'));
-// }
+for (var i = 0; i < 6; i++) {
+	blocks.push(new Block(i, 'green'));
+}
 
 var MainClock = new Clock(65);
+var iter = 1/100;
 
 function Render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -28,9 +29,11 @@ function Render() {
 		}
 	}
 	blocks.forEach(function(o){
+		MainClock.doesBlockCollide(o, iter);
+		if (!o.settled) {
+			o.distFromHex -= iter;
+		}
 		o.draw();
-		o.distFromHex -= 1/100;
-		// o.angle += 1/100;
 	});
 	MainClock.draw();
 	requestAnimFrame(Render);
@@ -58,7 +61,8 @@ function drawPolygon(x, y, sides, radius, theta) {
 	ctx.stroke();
 }
 
-function Block(lane, color, distFromHex) {
+function Block(lane, color, distFromHex, settled) {
+	this.settled = (settled == undefined) ? 0 : 1;
 	this.height = 20;
 	this.width = 65;
 	this.lane = lane;
@@ -79,7 +83,7 @@ function Block(lane, color, distFromHex) {
 		this.angle = 90 - (30 + 60 * this.lane);
 
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
-		this.widthswag = this.width + this.height;
+		this.widthswag = this.width + this.height + 5;
 		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
 		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
 		var p3 = rotatePoint(this.widthswag/2, -this.height/2, this.angle);

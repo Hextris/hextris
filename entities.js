@@ -1,9 +1,9 @@
 //you can change these to sexier stuff
 var colors = [
-"black",
-"orange", 
-"red",
-"blue",
+	"black",
+	"orange", 
+	"red",
+	"blue",
 ];
 
 var Clock = function(sideLength) {
@@ -12,7 +12,7 @@ var Clock = function(sideLength) {
 	this.blocks = [];
 	this.angle = 30;
 	this.sideLength = sideLength;
-	this.strokeColor = 'black';
+	this.strokeColor = 'blue';
 	this.x = canvas.width / 2;
 	this.y = canvas.height / 2;
 
@@ -21,6 +21,7 @@ var Clock = function(sideLength) {
 	}
 
 	this.addBlock = function(block) {
+		block.settled = 1;
 		var lane = 0;
 		lane += this.position + block.lane;
 		lane = lane % this.sides;
@@ -29,7 +30,25 @@ var Clock = function(sideLength) {
 		}
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
-	}
+	};
+
+	this.doesBlockCollide = function(block, iter) {
+		if (block.settled) return;
+		var arr = this.blocks[(block.lane + this.position % this.sides) % this.sides];
+		if (arr.length > 0) {
+			debugger;
+			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				this.addBlock(block);
+			}
+		}
+		else {
+			if (block.distFromHex - (this.sideLength/2) * Math.sqrt(3) <= 0) {
+				this.addBlock(block);
+			}
+
+		}
+
+	};
 
 	this.rotate = function(steps) {
 		var oldPosition = this.position;
@@ -48,11 +67,11 @@ var Clock = function(sideLength) {
 			}
 		}
 		this.angle = 30 + this.position * 60;
-	}
+	};
 
 	this.draw = function() {
 		this.drawPolygon(this.x, this.y, this.sides, this.sideLength, this.angle);
-	}
+	};
 
 	this.drawPolygon = function(x, y, sides, radius, theta) { // can make more elegant, reduce redundancy, fix readability
 		ctx.beginPath();
@@ -72,5 +91,5 @@ var Clock = function(sideLength) {
 		// ctx.fill();
 		ctx.strokeStyle = this.strokeColor;
 		ctx.stroke();
-	}
+	};
 }
