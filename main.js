@@ -37,10 +37,11 @@ function init() {
 	lastGen = Date.now();
 	prevScore = Date.now();
 	nextGen = 1000;
-
+	requestAnimFrame(animloop);
 }
 var colors = ["#e74c3c", "#f1c40f","#3498db"];
-var hexagonBackgroundColor = '#ecf0f1';
+var hexagonBackgroundColor = 'rgb(236, 240, 241)';
+var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
 var swegBlue = '#2c3e50'; //tumblr?
 
 function render() {
@@ -93,21 +94,22 @@ function render() {
 	drawPolygon(canvas.width/2, canvas.height/2, 6, 270, 30, "gray", false);
 }
 
-(function animloop(){
-	requestAnimFrame(animloop);
-
+function animloop(){
 	if (gameState == 0) {
 		showModal('Start!', 'Press enter to start!');
 	}
 	else if (gameState == 1) {
+		requestAnimFrame(animloop);
 		render();
 		checkGameOver();
 	}
 	else if (gameState == 2) {
-		showModal('Game over!', score + ' pts!');
+		showModal('Game over: '+score+' pts!', 'Press enter to restart!');
 
 	}
-})();
+}
+requestAnimFrame(animloop);
+
 
 function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more elegant, reduce redundancy, fix readability
 	if(fill==undefined)
@@ -149,7 +151,7 @@ function showModal(text, secondaryText) {
 	var buttonSize = 150;
 	var fontSizeLarge = 50;
 	var fontSizeSmall = 25;
-	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
+	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColorClear);
 	ctx.fillStyle = swegBlue;
 	// drawPolygon(canvas.width / 2, canvas.height / 2, 6, buttonSize, 30, swegBlue);
 	ctx.font =  fontSizeLarge+'px "Roboto"';
