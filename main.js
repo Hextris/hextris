@@ -4,9 +4,6 @@ var ctx = canvas.getContext('2d');
 var gameState = 1; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
 
-
-ct = 0;
-
 window.requestAnimFrame = (function(){
 	return window.requestAnimationFrame	||
 	window.webkitRequestAnimationFrame	||
