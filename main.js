@@ -39,7 +39,10 @@ function render() {
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, iter);
+			MainClock.doesBlockCollide(block, iter, j, MainClock.blocks[i]);
+			if (!MainClock.blocks[i][j].settled) {
+				MainClock.blocks[i][j].distFromHex -= iter;
+			}
 			block.draw();
 		}
 	}
