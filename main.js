@@ -20,14 +20,11 @@ for (var i = 0; i < 6; i++) {
 Render();
 
 function Render() {
-	ctx.fillStyle = 'green';
-	ctx.fillRect(10, 10, 10, 10);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	blocks.forEach(function(o){
 		o.draw();
 	});
-
-	canvas.clearRect(0, 0, canvas.width, canvas.height);
-	requestAnimFrame(animloop);
+	requestAnimFrame(Render);
 }
 
 function Block(lane, color, time) {
@@ -36,12 +33,12 @@ function Block(lane, color, time) {
 	this.color = color;
 
 	this.draw = function() {
-		// ctx.translate(canvas.width / 2, canvas.height / 2);
-		// ctx.rotate(this.angle);
-		// ctx.fillStyle = '#000';
-		// ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 70, 30);
-		// ctx.restore();
-		// ctx.fillRect(200, 200, 200, 200);
+		ctx.translate(canvas.width / 2, canvas.height / 2);
+		ctx.rotate(this.angle);
+		ctx.fillStyle = '#000';
+		ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 30, 30);
+		ctx.restore();
+		ctx.fillRect(200, 200, 200, 200);
 	};
 
 	if (!time) {
