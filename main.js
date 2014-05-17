@@ -23,7 +23,7 @@ function Render() {
 	blocks.forEach(function(o){
 		o.draw();
 		o.distFromHex -= 1/100;
-		o.angle += 1/100;
+		// o.angle += 1/100;
 	});
 
 	requestAnimFrame(Render);
@@ -40,7 +40,7 @@ function drawPolygon(x, y, sides, radius, theta) {
 	var oldX = 0;
 	var oldY = radius;
 	for (var i = 0; i < sides; i++) {
-		var coords = rotatePoint(oldX, oldY, 360 / sides);
+		var coords = rotatePoint(oldX, oldY, 360 / sides); 
 		ctx.lineTo(coords.x + x, coords.y + y);
 		ctx.moveTo(coords.x + x, coords.y + y);
 		oldX = coords.x;
@@ -50,8 +50,6 @@ function drawPolygon(x, y, sides, radius, theta) {
 	ctx.fill();
 	ctx.stroke();
 }
-
-drawPolygon(100, 100, 6, 100, 0);
 
 function Block(lane, color, distFromHex) {
 	this.height = 20;
@@ -71,14 +69,15 @@ function Block(lane, color, distFromHex) {
 		this.distFromHex = 300;
 	}
 	this.draw = function() {
+		this.width = this.distFromHex;
 		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
 		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
 		var p3 = rotatePoint(this.width/2, -this.height/2, this.angle);
 		var p4 = rotatePoint(-this.width/2, -this.height/2, this.angle);
 		
 		ctx.fillStyle="#FF0000";
-		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex);
-		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex);
+		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
+		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
 
 		ctx.beginPath();
 		ctx.moveTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
@@ -88,6 +87,13 @@ function Block(lane, color, distFromHex) {
 		ctx.lineTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
 		ctx.closePath();
 		ctx.fill();
+
+		ctx.strokeStyle = '#322'
+		ctx.beginPath();
+		ctx.moveTo(canvas.width/2, canvas.height/2);
+		ctx.lineTo(canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height), canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height));
+		ctx.closePath();
+		ctx.stroke();
 	};
 
 }
