@@ -4,6 +4,8 @@ var ctx = canvas.getContext('2d');
 var gameState = 1; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
 
+var score = 0;
+var scoreScalar = 1;
 
 ct = 0;
 
@@ -22,6 +24,7 @@ var blocks = [];
 var MainClock = new Clock(65);
 var iter = 1;
 var lastGen = Date.now();
+var prevScore = Date.now();
 var nextGen = 1000;
 
 var colors = ["#e74c3c", "#f1c40f","#3498db"];
@@ -29,11 +32,16 @@ var hexagonBackgroundColor = '#ecf0f1';
 var swegBlue = '#2c3e50'; //tumblr?
 
 function render() {
+	document.getElementById("score").innerHTML = score + " (x"+scoreScalar+")";
 	var now = Date.now();
 	if(now - lastGen > nextGen) {
 		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
 		lastGen = Date.now();
 		nextGen = randInt(500, 1500);
+	}
+	if(now - prevScore > 1000) {
+		score += 5 * scoreScalar;
+		prevScore = now;
 	}
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
