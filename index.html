@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
     <style>
       body {
+      	color: white;
         font-family: 'Roboto', sans-serif;
         font-size: 24px;
       }
@@ -13,8 +14,10 @@
 </head>
 <body style="background-color:#2c3e50">
 	<center>
-		<div id="score">0</div>
-		<canvas id="canvas" width = '700' height = '700' style='background-color:#2c3e50; margin-top: calc( 50% - 350px ) ;  '></canvas>
+		<div style='z-index:2;position:absolute;left:50%;margin-left:-70px;top:0px;'><h1 style='color:#ecf0f1;font-size:50px;'>Hextris</h1></div>
+		<canvas id="canvas" width = '700' height = '700' style='background-color:#2c3e50; position:absolute; margin-top:70px;left:50%;margin-left:-350px;'></canvas>
+		<div style="height:725px; width: 700px;"></div>
+		<div style="z-index:2; position:absolute;" id="score">0 (x1)</div>
 	</center>
 	<script src="math.js"></script>
 	<script src="entities.js"></script>

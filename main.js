@@ -37,11 +37,12 @@ function render() {
 	if(now - lastGen > nextGen) {
 		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
 		lastGen = Date.now();
-		nextGen = randInt(500, 1500);
+		nextGen = randInt(500/iter, 1500/iter);
 	}
 	if(now - prevScore > 1000) {
 		score += 5 * scoreScalar;
 		prevScore = now;
+		iter += 0.1;
 	}
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
@@ -79,7 +80,7 @@ function render() {
 		checkGameOver();
 	}
 	else if (gameState == 2) {
-		showModal('Game Over');
+		showModal('Game Over ' + score + ' pts');
 	}
 })();
 
@@ -103,7 +104,7 @@ function drawPolygon(x, y, sides, radius, theta, color) { // can make more elega
 
 function checkGameOver() { // fix font, fix size of hex
 	for(var i=0; i<MainClock.sides;i++) {
-		if(MainClock.blocks[i].length>5)
+		if(MainClock.blocks[i].length>8)
 		{
 			gameState = 2;	
 		}
