@@ -75,7 +75,7 @@ function Block(lane, color, distFromHex, settled) {
 		this.distFromHex = 300;
 	}
 	this.draw = function() {
-		this.width = this.distFromHex;
+		this.width = 2 * this.distFromHex / Math.sqrt(3) + this.height;
 		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
 		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
 		var p3 = rotatePoint(this.width/2, -this.height/2, this.angle);
@@ -94,12 +94,12 @@ function Block(lane, color, distFromHex, settled) {
 		ctx.closePath();
 		ctx.fill();
 
-		ctx.strokeStyle = '#322'
-		ctx.beginPath();
-		ctx.moveTo(canvas.width/2, canvas.height/2);
-		ctx.lineTo(canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height), canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height));
-		ctx.closePath();
-		ctx.stroke();
+		// ctx.strokeStyle = '#322'
+		// ctx.beginPath();
+		// ctx.moveTo(canvas.width/2, canvas.height/2);
+		// ctx.lineTo(canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height), canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height));
+		// ctx.closePath();
+		// ctx.stroke();
 	};
 
 }
