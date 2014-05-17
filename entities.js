@@ -27,14 +27,25 @@ var Clock = function(sideLength) {
 		while(lane < 0) {
 			lane = lane + this.sides;
 		}
+		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length + block.height/2;
 		this.blocks[lane].push(block);
 	}
 
 	this.rotate = function(steps) {
+		var oldPosition = this.position;
 		this.position += steps;
 		this.position = this.position % this.sides;
 		while(this.position < 0) {
 			this.position = this.position + this.sides; 
+		}
+		for(var i=0; i<this.blocks.length; i++) {
+			for(var j=0; j<this.blocks[i].length; j++) {
+				this.blocks[i][j].lane += (this.position - oldPosition);
+				this.blocks[i][j].lane = this.blocks[i][j].lane % this.sides;
+				while(this.blocks[i][j].lane < 0) {
+					this.blocks[i][j].lane += this.sides;
+				}
+			}
 		}
 		this.angle = 30 + this.position * 60;
 	}
