@@ -6,6 +6,47 @@ var colors = [
 	"blue",
 ];
 
+
+function Block(lane, color, distFromHex, settled) {
+	this.settled = (settled == undefined) ? 0 : 1;
+	this.height = 20;
+	this.width = 65;
+	this.lane = lane;
+	this.angle = 90 - (30 + 60 * lane);
+	if (this.angle < 0) {
+		this.angle += 360;
+	}
+
+	this.color = color;
+	
+	if (distFromHex) {
+		this.distFromHex = distFromHex;
+	}
+	else {
+		this.distFromHex = 300;
+	}
+	this.draw = function() {
+		this.width = 2 * this.distFromHex / Math.sqrt(3) + this.height;
+		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
+		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
+		var p3 = rotatePoint(this.width/2, -this.height/2, this.angle);
+		var p4 = rotatePoint(-this.width/2, -this.height/2, this.angle);
+		
+		ctx.fillStyle="#FF0000";
+		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
+		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
+
+		ctx.beginPath();
+		ctx.moveTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
+		ctx.lineTo(Math.round(baseX + p2.x), Math.round(baseY + p2.y));
+		ctx.lineTo(Math.round(baseX + p3.x), Math.round(baseY + p3.y));
+		ctx.lineTo(Math.round(baseX + p4.x), Math.round(baseY + p4.y));
+		ctx.lineTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
+		ctx.closePath();
+		ctx.fill();
+	};
+}
+
 var Clock = function(sideLength) {
 	this.position = 0;
 	this.sides = 6;
@@ -31,12 +72,12 @@ var Clock = function(sideLength) {
 		this.blocks[lane].push(block);
 	};
 
-	this.doesBlockCollide = function(block, iter) {
+	this.doesBlockCollide = function(block, iter, index) {
 		if (block.settled) return;
 		var arr = this.blocks[(block.lane + this.position % this.sides) % this.sides];
-		if (arr.length > 0) {
-			debugger;
-			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+		var thisIn = index === undefined ? arr.length - 1 : index - 1;
+		if (arr.length > 0 || thisIn > 0) {
+			if (block.distFromHex + iter - arr[thisIn].distFromHex - arr[thisIn].height <= 0) {
 				this.addBlock(block);
 			}
 		}
@@ -53,7 +94,7 @@ var Clock = function(sideLength) {
 		this.position += steps;
 		this.position = this.position % this.sides;
 		while(this.position < 0) {
-			this.position = this.position + this.sides; 
+			this.position = this.position + this.sides;
 		}
 		this.angle = 30 + this.position * 60;
 	};
