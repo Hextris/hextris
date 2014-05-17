@@ -9,11 +9,12 @@ keypress.register_combo({
 });
 
 keypress.register_combo({
-	keys: "enter", 
+	keys: "enter",
 	on_keyup: function(){
 		if (gameState != 1) {
 			init();
 		}
+		console.log('sweg');
 	},
 });
 
