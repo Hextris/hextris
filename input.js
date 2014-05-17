@@ -14,7 +14,6 @@ keypress.register_combo({
 		if (gameState != 1) {
 			init();
 		}
-		console.log('sweg');
 	},
 });
 

@@ -77,7 +77,12 @@ function eraseBlocks(clock,deleted) {
 		length =3;
 		flag=0;
 		if(clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index]){
-			flag= clock.blocks[getIndex(clock.blocks,side+horizontal+length)][index].color == clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index].color;
+			try {
+				flag= clock.blocks[getIndex(clock.blocks,side+horizontal+length)][index].color == clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index].color;
+			}
+			catch (e) {
+				console.log(e);
+			}
 		}
 		while(flag) {
 			if(clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index]){
