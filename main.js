@@ -14,14 +14,23 @@ var clock = new Clock(6);
 
 var blocks = [];
 
-for (var i = 0; i < 6; i++) {
-	blocks.push(new Block(i, 'green'));
-}
-
 var MainClock = new Clock(65);
 var iter = 1/100;
+var lastGen = Date.now();
+var nextGen = 1000;
+
+var colors = ["green", "red"];
 
 function Render() {
+	var now = Date.now();
+	if(now - lastGen > nextGen) {
+		console.log("YES coachh");
+		blocks.push(new Block(randInt(0, 5), colors[randInt(0, colors.length-1)]));
+		lastGen = Date.now();
+		nextGen = randInt(100, 500);
+		console.log(nextGen);
+	}
+
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(var i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
@@ -89,7 +98,7 @@ function Block(lane, color, distFromHex, settled) {
 		var p3 = rotatePoint(this.widthswag/2, -this.height/2, this.angle);
 		var p4 = rotatePoint(-this.widthswag/2, -this.height/2, this.angle);
 		
-		ctx.fillStyle="#FF0000";
+		ctx.fillStyle=this.color;
 		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
 		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
 
