@@ -65,10 +65,10 @@ var Clock = function(sideLength) {
 
 	this.addBlock = function(block) {
 		block.settled = 1;
-		var lane = 0;
-		lane += this.position - block.lane;
-		while(lane < 0) {
-			lane = lane + this.sides;
+		var lane = this.sides - block.lane;//  -this.position;
+		lane += this.position;
+		while (lane < 0) {
+			lane += this.sides;
 		}
 		lane = lane % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
@@ -79,10 +79,11 @@ var Clock = function(sideLength) {
 	this.doesBlockCollide = function(block, iter) {
 		if (block.settled) return;
 
-		var lane = block.lane - this.position;
+		var lane = this.sides - block.lane;//  -this.position;
+		lane += this.position;
 
 		while (lane < 0) {
-			lane += 6;
+			lane += this.sides;
 		}
 		lane = lane % this.sides;
 
