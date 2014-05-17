@@ -96,7 +96,7 @@ function animloop(){
 		checkGameOver();
 	}
 	else if (gameState == 2) {
-		showModal('Game over!', score + ' pts!');
+		showModal('Game over: '+score+' pts!', 'Press enter to restart!');
 
 	}
 }
