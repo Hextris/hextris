@@ -1,13 +1,17 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+var gameState = 1; // 0 - start, 1 - playing, 2 - end
+var framerate = 60;
+
+
 ct = 0;
 window.requestAnimFrame = (function(){
-	return window.requestAnimationFrame		||
-		window.webkitRequestAnimationFrame	||
-		window.mozRequestAnimationFrame		||
-		function( callback ) {
-			window.setTimeout(callback, 1000 / 60);
-		};
+	return window.requestAnimationFrame	||
+	window.webkitRequestAnimationFrame	||
+	window.mozRequestAnimationFrame		||
+	function( callback ) {
+		window.setTimeout(callback, 1000 / framerate);
+	};
 })();
 
 var clock = new Clock(6);
@@ -19,17 +23,19 @@ var iter = 1;
 var lastGen = Date.now();
 var nextGen = 1000;
 
-var colors = ["green", "red"];
+var colors = ["#e74c3c", "#f1c40f","#3498db"];
+var hexagonBackgroundColor = '#ecf0f1';
+var swegBlue = '#2c3e50';
 
-function Render() {
+function render() {
 	var now = Date.now();
 	if(now - lastGen > nextGen) {
-		blocks.push(new Block(randInt(0, 5), colors[randInt(0, colors.length-1)]));
+		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
 		lastGen = Date.now();
-		nextGen = randInt(500, 1500);
+		nextGen = randInt(100, 200);
 	}
-
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
 	var objectsToRemove = [];
 	MainClock.blocks.forEach(function(hexBlocks){
 		for (var i = 0; i < hexBlocks.length; i++) {
@@ -60,74 +66,49 @@ function Render() {
 }
 
 (function animloop(){
-	requestAnimFrame(animloop);
-	Render();
+	if (gameState == 1) {
+		requestAnimFrame(animloop);
+		render();
+		checkGameOver();
+	}
+	else if (gameState == 2) {
+		showModal('Game Over');
+	}
 })();
 
-function drawPolygon(x, y, sides, radius, theta) {
+function drawPolygon(x, y, sides, radius, theta, color) { // can make more elegant, reduce redundancy, fix readability
+	ctx.fillStyle = color;
 	ctx.beginPath();
-	ctx.moveTo(x, y + radius);
-	var oldX = 0;
-	var oldY = radius;
+	var coords = rotatePoint(0, radius, theta);
+	ctx.moveTo(coords.x + x, coords.y + y);
+	var oldX = coords.x;
+	var oldY = coords.y;
 	for (var i = 0; i < sides; i++) {
-		var coords = rotatePoint(oldX, oldY, 360 / sides);
+		coords = rotatePoint(oldX, oldY, 360 / sides); 
 		ctx.lineTo(coords.x + x, coords.y + y);
-		ctx.moveTo(coords.x + x, coords.y + y);
+		// ctx.moveTo(coords.x + x, coords.y + y);
 		oldX = coords.x;
 		oldY = coords.y;
 	}
 	ctx.closePath();
 	ctx.fill();
-	ctx.stroke();
+	// console.log(ctx.fillStyle);
+	// ctx.strokeStyle = this.strokeColor;
+	// ctx.stroke();
+};
+function checkGameOver() { // fix font, fix size of hex
+	for(var i=0; i<MainClock.sides;i++) {
+		if(MainClock.blocks[i].length>5)
+		{
+			gameState = 2;	
+		}
+	}
 }
 
-function Block(lane, color, distFromHex, settled) {
-	this.settled = (settled == undefined) ? 0 : 1;
-	this.height = 20;
-	this.width = 65;
-	this.lane = lane;
-	this.angle = 90 - (30 + 60 * lane);
-	if (this.angle < 0) {
-		this.angle += 360;
-	}
-
-	this.color = color;
-	
-	if (distFromHex) {
-		this.distFromHex = distFromHex;
-	}
-	else {
-		this.distFromHex = 300;
-	}
-	this.draw = function() {
-		this.angle = 90 - (30 + 60 * this.lane);
-
-		this.width = 2 * this.distFromHex / Math.sqrt(3);
-		this.widthswag = this.width + this.height + 5;
-		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
-		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
-		var p3 = rotatePoint(this.widthswag/2, -this.height/2, this.angle);
-		var p4 = rotatePoint(-this.widthswag/2, -this.height/2, this.angle);
-		
-		ctx.fillStyle=this.color;
-		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
-		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
-
-		ctx.beginPath();
-		ctx.moveTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
-		ctx.lineTo(Math.round(baseX + p2.x), Math.round(baseY + p2.y));
-		ctx.lineTo(Math.round(baseX + p3.x), Math.round(baseY + p3.y));
-		ctx.lineTo(Math.round(baseX + p4.x), Math.round(baseY + p4.y));
-		ctx.lineTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
-		ctx.closePath();
-		ctx.fill();
-
-		// ctx.strokeStyle = '#322'
-		// ctx.beginPath();
-		// ctx.moveTo(canvas.width/2, canvas.height/2);
-		// ctx.lineTo(canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height), canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height));
-		// ctx.closePath();
-		// ctx.stroke();
-	};
-
+function showModal(text) {
+	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
+	ctx.fillStyle = swegBlue;
+	ctx.font = '40pt "Helvetica Neue"';
+	ctx.textAlign = 'center';
+	ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 }

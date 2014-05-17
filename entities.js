@@ -1,11 +1,4 @@
 //you can change these to sexier stuff
-var colors = [
-	"black",
-	"orange", 
-	"red",
-	"blue",
-];
-
 
 function Block(lane, color, distFromHex, settled) {
 	this.settled = (settled == undefined) ? 0 : 1;
@@ -26,28 +19,33 @@ function Block(lane, color, distFromHex, settled) {
 		this.distFromHex = 300;
 	}
 	this.draw = function() {
-		this.width = 2 * this.distFromHex / Math.sqrt(3) + this.height;
+		this.angle = 90 - (30 + 60 * this.lane);
+
+		this.width = 2 * this.distFromHex / Math.sqrt(3);
+		this.widthswag = this.width + this.height + 3;
 		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
 		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
-		var p3 = rotatePoint(this.width/2, -this.height/2, this.angle);
-		var p4 = rotatePoint(-this.width/2, -this.height/2, this.angle);
+		var p3 = rotatePoint(this.widthswag/2, -this.height/2, this.angle);
+		var p4 = rotatePoint(-this.widthswag/2, -this.height/2, this.angle);
 		
-		ctx.fillStyle="#FF0000";
+		ctx.fillStyle=this.color;
 		var baseX = canvas.width/2 + Math.sin((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
 		var baseY = canvas.height/2 - Math.cos((this.angle) * (Math.PI/180)) * (this.distFromHex + this.height/2);
 
 		ctx.beginPath();
-		ctx.moveTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
-		ctx.lineTo(Math.round(baseX + p2.x), Math.round(baseY + p2.y));
-		ctx.lineTo(Math.round(baseX + p3.x), Math.round(baseY + p3.y));
-		ctx.lineTo(Math.round(baseX + p4.x), Math.round(baseY + p4.y));
-		ctx.lineTo(Math.round(baseX + p1.x), Math.round(baseY + p1.y));
+		ctx.moveTo(baseX + p1.x, baseY + p1.y);
+		ctx.lineTo(baseX + p2.x, baseY + p2.y);
+		ctx.lineTo(baseX + p3.x, baseY + p3.y);
+		ctx.lineTo(baseX + p4.x, baseY + p4.y);
+		ctx.lineTo(baseX + p1.x, baseY + p1.y);
 		ctx.closePath();
 		ctx.fill();
 	};
+
 }
 
 var Clock = function(sideLength) {
+	this.fillColor = '#2c3e50';
 	this.position = 0;
 	this.sides = 6;
 	this.blocks = [];
@@ -108,29 +106,11 @@ var Clock = function(sideLength) {
 				}
 			}
 		}
+		
 		this.angle = 30 + this.position * 60;
 	};
 
 	this.draw = function() {
-		this.drawPolygon(this.x, this.y, this.sides, this.sideLength, this.angle);
-	};
-
-	this.drawPolygon = function(x, y, sides, radius, theta) { // can make more elegant, reduce redundancy, fix readability
-		ctx.beginPath();
-		var coords = rotatePoint(0, radius, theta);
-		ctx.moveTo(coords.x + x, coords.y + y);
-		var oldX = coords.x;
-		var oldY = coords.y;
-		for (var i = 0; i < sides; i++) {
-			coords = rotatePoint(oldX, oldY, 360 / sides); 
-			ctx.lineTo(coords.x + x, coords.y + y);
-			ctx.moveTo(coords.x + x, coords.y + y);
-			oldX = coords.x;
-			oldY = coords.y;
-		}
-		ctx.closePath();
-		// ctx.fill();
-		ctx.strokeStyle = this.strokeColor;
-		ctx.stroke();
+		drawPolygon(this.x, this.y, this.sides, this.sideLength, this.angle, this.fillColor);
 	};
 }
