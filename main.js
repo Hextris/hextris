@@ -71,7 +71,6 @@ function Block(lane, color, distFromHex) {
 	};
 
 }
-=======
 // for (var i = 0; i < 6; i++) {
 // 	blocks.push(new Block(i, 'green'));
 // }
@@ -127,4 +126,3 @@ function Render() {
 // 	}
 // }
 
->>>>>>> cf79fbefde53e6994623e30795f806aa8efdb4d9
