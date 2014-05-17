@@ -50,7 +50,11 @@ function render() {
 	if(now - lastGen > nextGen) {
 		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
 		lastGen = Date.now();
-		nextGen = randInt(500/iter, 1500/iter);
+		var minTime = 500/iter;
+		if(minTime < 100) {
+			minTime = 100;
+		}
+		nextGen = randInt(minTime, 1500/iter);
 	}
 	if(now - prevScore > 1000) {
 		score += 5 * scoreScalar;
@@ -64,7 +68,10 @@ function render() {
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, iter);
+			MainClock.doesBlockCollide(block, iter, j, MainClock.blocks[i]);
+			if (!MainClock.blocks[i][j].settled) {
+				MainClock.blocks[i][j].distFromHex -= iter;
+			}
 			block.draw();
 		}
 	}
@@ -84,6 +91,7 @@ function render() {
 		blocks.splice(o, 1);
 	});
 	MainClock.draw();
+	drawPolygon(canvas.width/2, canvas.height/2, 6, 270, 30, "gray", false);
 }
 
 function animloop(){
@@ -103,8 +111,14 @@ function animloop(){
 requestAnimFrame(animloop);
 
 
-function drawPolygon(x, y, sides, radius, theta, color) { // can make more elegant, reduce redundancy, fix readability
-	ctx.fillStyle = color;
+function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more elegant, reduce redundancy, fix readability
+	if(fill==undefined)
+		fill = true;
+	if(fill) 
+		ctx.fillStyle = color;
+	else
+		ctx.strokeStyle = color;
+
 	ctx.beginPath();
 	var coords = rotatePoint(0, radius, theta);
 	ctx.moveTo(coords.x + x, coords.y + y);
@@ -118,7 +132,10 @@ function drawPolygon(x, y, sides, radius, theta, color) { // can make more elega
 		oldY = coords.y;
 	}
 	ctx.closePath();
-	ctx.fill();
+	if(fill)
+		ctx.fill();
+	else 
+		ctx.stroke();
 };
 
 function checkGameOver() { // fix font, fix size of hex
