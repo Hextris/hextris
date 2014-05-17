@@ -74,10 +74,22 @@ function eraseBlocks(clock,deleted) {
 		side = deleted[0][0];
 		index = deleted[0][1];
 		horizontal = deleted[0][2];
-		for(var i=0;i<3;i++) {
+		length =3;
+		flag=0;
+		if(clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index]){
+			flag= clock.blocks[getIndex(clock.blocks,side+horizontal+length)][index].color == clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index].color;
+		}
+		while(flag) {
+			if(clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index]){
+				flag= clock.blocks[getIndex(clock.blocks,side+horizontal+length)][index].color == clock.blocks[getIndex(clock.blocks,side+horizontal+length+1)][index].color;
+			}
+			length++;
+		}
+		console.log(length);
+		for(var i=0;i<length;i++) {
 			clock.blocks[getIndex(clock.blocks,side+horizontal+i)].splice(index,1);
 		}
-		for(var i=0;i<3;i++) {
+		for(var i=0;i<length;i++) {
 			if(side+horizontal+i<clock.blocks.length) {
 				consolidateBlocks(clock,getIndex(clock.blocks,side+horizontal+i),index);
 			}
@@ -87,6 +99,10 @@ function eraseBlocks(clock,deleted) {
 		side = deleted[1][0];
 		index = deleted[1][1];
 		vertical = deleted[1][2];
+		vertlength=3;
+		while(index+vertical+vertlength<clock.blocks[side].length-1 && (clock.blocks[slide][index+vertical+length].color ==clock.blocks[slide][index+vertical+length+1].color )) {
+			vertlength+=1;
+		}
 		clock.blocks[side].splice(index+vertical,2+(1*(!deleted[0].length>0)));
 		for(var i=0; i<clock.blocks[side].length-(index+vertical); i++) {
 			consolidateBlocks(clock,side,index+vertical+i);
@@ -99,7 +115,7 @@ function eraseBlocks(clock,deleted) {
 		}
 	}
 	if(deleted[0].length>0){
-		for(var i=0;i<3;i++) {
+		for(var i=0;i<length;i++) {
 				if(deleted[0][2] != "false" ) {
 					sidesChanged.push(getIndex(clock.blocks,deleted[0][0]+deleted[0][2]+i));
 				}
