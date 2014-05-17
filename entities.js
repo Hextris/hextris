@@ -87,6 +87,7 @@ var Clock = function(sideLength) {
 		lane = lane % this.sides;
 
 		var arr = this.blocks[lane];
+
 		if (arr.length > 0) {
 			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 				this.addBlock(block);

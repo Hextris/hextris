@@ -12,7 +12,7 @@ window.requestAnimFrame = (function(){
 var clock = new Clock(6);
 
 var blocks = [];
-
+doRand = 1;
 var MainClock = new Clock(65);
 var iter = 1;
 var lastGen = Date.now();
