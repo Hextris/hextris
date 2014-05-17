@@ -10,6 +10,8 @@ window.requestAnimFrame = (function(){
 		};
 })();
 
+var clock = new Clock(6);
+
 var blocks = [];
 
 for (var i = 0; i < 12; i++) {
