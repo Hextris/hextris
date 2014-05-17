@@ -12,7 +12,7 @@ keypress.register_combo({
 	keys: "enter", 
 	on_keyup: function(){
 		if (gameState != 1) {
-			gameState = 1;
+			init();
 		}
 	},
 });
