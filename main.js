@@ -14,14 +14,19 @@ clock = new Clock(6);
 
 var blocks = [];
 
-for (var i = 0; i < 12; i++) {
-	blocks.push(new Block(i, 'green'));
-}
+// for (var i = 0; i < 12; i++) {
+// 	blocks.push(new Block(i, 'green'));
+// }
 
 var MainClock = new Clock(65);
 
 function Render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for(var i=0; i<MainClock.blocks.length; i++) {
+		for(var j=0; j<MainClock.blocks[i].length; j++) {
+			MainClock.blocks[i][j].draw();
+		}
+	}
 	blocks.forEach(function(o){
 		o.draw();
 		o.distFromHex -= 1/100;
@@ -53,6 +58,8 @@ function Block(lane, color, distFromHex) {
 		this.distFromHex = 300;
 	}
 	this.draw = function() {
+		this.angle = 90 - (30 + 60 * this.lane);
+
 		var p1 = rotatePoint(-this.width/2, this.height/2, this.angle);
 		var p2 = rotatePoint(this.width/2, this.height/2, this.angle);
 		var p3 = rotatePoint(this.width/2, -this.height/2, this.angle);
