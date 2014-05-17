@@ -18,6 +18,8 @@ for (var i = 0; i < 12; i++) {
 	blocks.push(new Block(i, 'green'));
 }
 
+var MainClock = new Clock(65);
+
 function Render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	blocks.forEach(function(o){
@@ -25,7 +27,7 @@ function Render() {
 		o.distFromHex -= 1/100;
 		// o.angle += 1/100;
 	});
-
+	MainClock.draw();
 	requestAnimFrame(Render);
 }
 
