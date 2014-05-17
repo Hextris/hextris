@@ -5,7 +5,7 @@ window.requestAnimFrame = (function(){
 	return window.requestAnimationFrame 	||
 		window.webkitRequestAnimationFrame	||
 		window.mozRequestAnimationFrame		||
-		function( callback ){
+		function( callback ) {
 			window.setTimeout(callback, 1000 / 60);
 		};
 })();
@@ -18,24 +18,31 @@ window.requestAnimFrame = (function(){
 
 Render();
 
-function drawClock(x, y, sides, sideLength, theta) {
+function drawPolygon(x, y, sides, radius, theta) {
 	ctx.beginPath();
-	ctx.moveTo(0, sideLength);
+	ctx.moveTo(x, y + radius);
+	var oldX = 0;
+	var oldY = radius;
 	for (var i = 0; i < sides; i++) {
-		var coords = rotatePoint(x, y, 60); 
-		ctx.lineTo(coords.x, coords.y);
-		ctx.moveTo(coords.x, coords.y);
+		var coords = rotatePoint(oldX, oldY, 360 / sides); 
+		ctx.lineTo(coords.x + x, coords.y + y);
+		ctx.moveTo(coords.x + x, coords.y + y);
+		oldX = coords.x;
+		oldY = coords.y;
+		// console.log(coords);
 	}
+	ctx.closePath();
+	ctx.fill();
 	ctx.stroke();
 }
 
 function Render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	blocks.forEach(function(o){
-		o.draw();
-	});
+	// blocks.forEach(function(o){
+		// o.draw();
+	// });
+	drawPolygon(100, 100, 6, 100, 0);
 	requestAnimFrame(Render);
-
 }
 
 // function Block(lane, color, time) {
