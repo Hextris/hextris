@@ -13,22 +13,21 @@ window.requestAnimFrame = (function(){
 
 var blocks = [];
 
-for (var i = 0; i < 6, i++) {
+for (var i = 0; i < 6; i++) {
 	blocks.push(new Block(i, 'green'));
 }
 
-(function animloop(){
-  requestAnimFrame(animloop);
-  render();
-})();
+Render();
 
 function Render() {
-	// game code
+	ctx.fillStyle = 'green';
+	ctx.fillRect(10, 10, 10, 10);
 	blocks.forEach(function(o){
 		o.draw();
-	})
+	});
 
-	ctx.fillRect(200, 200, 200, 200);
+	canvas.clearRect(0, 0, canvas.width, canvas.height);
+	requestAnimFrame(animloop);
 }
 
 function Block(lane, color, time) {
@@ -37,11 +36,12 @@ function Block(lane, color, time) {
 	this.color = color;
 
 	this.draw = function() {
-		ctx.translate(canvas.width / 2, canvas.height / 2);
-		ctx.rotate(this.angle);
-		ctx.fillStyle = color;
-		ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 70, 30);
-		ctx.restore();
+		// ctx.translate(canvas.width / 2, canvas.height / 2);
+		// ctx.rotate(this.angle);
+		// ctx.fillStyle = '#000';
+		// ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 70, 30);
+		// ctx.restore();
+		// ctx.fillRect(200, 200, 200, 200);
 	};
 
 	if (!time) {
