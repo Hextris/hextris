@@ -18,7 +18,7 @@ window.requestAnimFrame = (function(){
 
 function render() {
 	// game code
-	requestAnimFrame(animloop);
+	requestAnimFrame(render);
 }
 
 function block(lane) {
