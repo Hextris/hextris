@@ -36,7 +36,6 @@ var Clock = function(sideLength) {
 		if (block.settled) return;
 		var arr = this.blocks[(block.lane + this.position % this.sides) % this.sides];
 		if (arr.length > 0) {
-			debugger;
 			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 				this.addBlock(block);
 			}
