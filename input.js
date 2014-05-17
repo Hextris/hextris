@@ -1,3 +1,4 @@
+// HackExeter
 keypress.register_combo({
 	keys: "left", 
 	on_keyup: function(){MainClock.rotate(1)},
