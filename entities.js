@@ -71,20 +71,15 @@ var Clock = function(sideLength) {
 		}
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
-		consolidateBlocks(this,lane,this.blocks.length-1);
+		// consolidateBlocks(this,lane,this.blocks.length-1);
 	};
 
 	this.doesBlockCollide = function(block, iter, index) {
 		if (block.settled) return;
 		var arr = this.blocks[(block.lane + this.position % this.sides) % this.sides];
-<<<<<<< HEAD
 		var thisIn = index === undefined ? arr.length - 1 : index - 1;
-		if (arr.length > 0 && thisIn > 0) {
-			if (block.distFromHex + iter - arr[thisIn].distFromHex - arr[thisIn].height <= 0) {
-=======
 		if (arr.length > 0) {
-			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
->>>>>>> b843b427127cb9456cba537938f2cd8691013d35
+			if (block.distFromHex + iter - arr[thisIn].distFromHex - arr[thisIn].height <= 0) {
 				this.addBlock(block);
 			}
 		}
@@ -132,7 +127,6 @@ var Clock = function(sideLength) {
 			ctx.moveTo(coords.x + x, coords.y + y);
 			oldX = coords.x;
 			oldY = coords.y;
-			// console.log(coords);
 		}
 		ctx.closePath();
 		// ctx.fill();
