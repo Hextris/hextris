@@ -16,3 +16,15 @@ keypress.register_combo({
 		}
 	},
 });
+
+keypress.register_combo({
+	keys: "space", 
+	on_keyup: function(){
+		iter = 1;
+		scoreAdditionCoeff = 1;
+	},
+	on_keydown: function() {
+		iter = 2;
+		scoreAdditionCoeff = 2;
+	}
+});

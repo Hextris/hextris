@@ -66,7 +66,7 @@ function consolidateBlocks(clock,side,index) {
 		deleted.push([]);
 	}
 	eraseBlocks(clock,deleted);
-	return 
+	return;
 }
 
 function eraseBlocks(clock,deleted) {
