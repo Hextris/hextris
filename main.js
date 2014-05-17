@@ -12,7 +12,6 @@ window.requestAnimFrame = (function(){
 var clock = new Clock(6);
 
 var blocks = [];
-doRand = 1;
 var MainClock = new Clock(65);
 var iter = 1;
 var lastGen = Date.now();
@@ -23,9 +22,7 @@ var colors = ["green", "red"];
 function Render() {
 	var now = Date.now();
 	if(now - lastGen > nextGen) {
-		if (doRand) {
-			blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length-1)]));
-		}
+		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length-1)]));
 		lastGen = Date.now();
 		nextGen = randInt(500, 1500);
 	}
