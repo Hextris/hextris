@@ -14,7 +14,6 @@ clock = new Clock(6);
 
 var blocks = [];
 
-<<<<<<< HEAD
 for (var i = 0; i < 12; i++) {
 	blocks.push(new Block(i, 'green'));
 }
