@@ -27,7 +27,7 @@ var Clock = function(sideLength) {
 		while(lane < 0) {
 			lane = lane + this.sides;
 		}
-		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length + block.height/2;
+		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 	}
 
