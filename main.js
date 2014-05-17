@@ -17,17 +17,7 @@ for (var i = 0; i < 6; i++) {
 	blocks.push(new Block(i, 'green'));
 }
 
-(function animloop(){
-  requestAnimFrame(animloop);
-  render();
-})();
-
-
-function render() {
-	requestAnimFrame(animloop);
-	drawClock(10, 10, 0, 6);
-
-}
+Render();
 
 function drawClock(x, y, sides, sideLength, theta) {
 	ctx.beginPath();
@@ -38,6 +28,14 @@ function drawClock(x, y, sides, sideLength, theta) {
 		ctx.moveTo(coords.x, coords.y);
 	}
 	ctx.stroke();
+
+function Render() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	blocks.forEach(function(o){
+		o.draw();
+	});
+	requestAnimFrame(Render);
+
 }
 
 function Block(lane, color, time) {
@@ -48,9 +46,10 @@ function Block(lane, color, time) {
 	this.draw = function() {
 		ctx.translate(canvas.width / 2, canvas.height / 2);
 		ctx.rotate(this.angle);
-		ctx.fillStyle = color;
-		ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 70, 30);
+		ctx.fillStyle = '#000';
+		ctx.fillRect(canvas.width/2 + Math.cos(this.angle) * time, canvas.height/2 + Math.sin(this.angle) * time, 30, 30);
 		ctx.restore();
+		ctx.fillRect(200, 200, 200, 200);
 	};
 
 	if (!time) {
