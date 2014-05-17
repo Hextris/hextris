@@ -14,18 +14,21 @@ var clock = new Clock(6);
 
 var blocks = [];
 
-for (var i = 0; i < 12; i++) {
+for (var i = 0; i < 6; i++) {
 	blocks.push(new Block(i, 'green'));
 }
 
 var MainClock = new Clock(65);
+var iter = 1/100;
 
 function Render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	blocks.forEach(function(o){
+		MainClock.doesBlockCollide(o, iter);
+		if (!o.settled) {
+			o.distFromHex -= iter;
+		}
 		o.draw();
-		o.distFromHex -= 1/100;
-		// o.angle += 1/100;
 	});
 	MainClock.draw();
 	requestAnimFrame(Render);
@@ -53,7 +56,8 @@ function drawPolygon(x, y, sides, radius, theta) {
 	ctx.stroke();
 }
 
-function Block(lane, color, distFromHex) {
+function Block(lane, color, distFromHex, settled) {
+	this.settled = (settled == undefined) ? 0 : 1;
 	this.height = 20;
 	this.width = 65;
 	this.lane = lane;
