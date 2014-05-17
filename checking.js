@@ -64,7 +64,9 @@ function consolidateBlocks(clock,side,index) {
 		deleted.push([]);
 	}
 	eraseBlocks(clock,deleted);
+	return 
 }
+
 function eraseBlocks(clock,deleted) {
 	if(deleted[0].length>0){
 		side = deleted[0][0];
@@ -88,4 +90,22 @@ function eraseBlocks(clock,deleted) {
 			consolidateBlocks(clock,side,index+vertical+i);
 		}
 	}
+	sidesChanged = [];
+	if(deleted[1].length>0){
+		if(deleted[1][0] != "false") {
+			sidesChanged.push(deleted[1][0]);
+		}
+	}
+	if(deleted[0].length>0){
+		for(var i=0;i<3;i++) {
+				if(deleted[0][2] != "false" ) {
+					sidesChanged.push(getIndex(clock.blocks,deleted[0][0]+deleted[0][2]+i));
+				}
+		}
+	}
+	sidesChanged.forEach(function(o){
+		MainClock.blocks[o].forEach(function(block) {
+			block.settled = 0;
+		})
+	});
 }
