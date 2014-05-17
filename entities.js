@@ -16,7 +16,7 @@ function Block(lane, color, distFromHex, settled) {
 		this.distFromHex = distFromHex;
 	}
 	else {
-		this.distFromHex = 470;
+		this.distFromHex = 300;
 	}
 	this.draw = function() {
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
@@ -110,7 +110,7 @@ var Clock = function(sideLength) {
 				block.angle = block.angle - steps * 60;
 			});
 		});
-		
+
 		this.angle = this.angle + steps * 60;
 	};
 

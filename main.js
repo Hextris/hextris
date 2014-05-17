@@ -33,7 +33,7 @@ function render() {
 	if(now - lastGen > nextGen) {
 		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
 		lastGen = Date.now();
-		nextGen = randInt(100, 200);
+		nextGen = randInt(500, 1500);
 	}
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
