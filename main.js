@@ -42,9 +42,10 @@ function init() {
 var colors = ["#e74c3c", "#f1c40f","#3498db"];
 var hexagonBackgroundColor = '#ecf0f1';
 var swegBlue = '#2c3e50'; //tumblr?
+var scoreAdditionCoeff = 1;
 
 function render() {
-	document.getElementById("score").innerHTML = score + " (x"+scoreScalar+")";
+	document.getElementById("score").innerHTML = score + " (x"+scoreScalar * scoreAdditionCoeff+")";
 	var now = Date.now();
 	if(now - lastGen > nextGen) {
 		blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
@@ -52,7 +53,7 @@ function render() {
 		nextGen = randInt(500/iter, 1500/iter);
 	}
 	if(now - prevScore > 1000) {
-		score += 5 * scoreScalar;
+		score += 5 * (scoreScalar * scoreAdditionCoeff);
 		prevScore = now;
 		iter += 0.1;
 	}

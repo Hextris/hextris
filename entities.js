@@ -88,22 +88,34 @@ function Clock(sideLength) {
 			if (position <= 0) {
 				if (block.distFromHex - (this.sideLength/2) * Math.sqrt(3) <= 0) {
 					block.settled = 1;
+					if (iter == 2 && block.distFromHex + 1 - (this.sideLength/2) * Math.sqrt(3) <= 0) {
+						block.distFromHex--;
+					}
 				}
 			}
 			else {
 				if (block.distFromHex + iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.settled = 1;
+					if (iter == 2 && block.distFromHex + 1 + iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+						block.distFromHex--;
+					}
 				}
 			}
 		}
 		else {
 			if (arr.length > 0) {
 				if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+					if (iter == 2 && block.distFromHex + iter + 1 - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+						block.distFromHex--;
+					}
 					this.addBlock(block);
 				}
 			}
 			else {
 				if (block.distFromHex + iter - (this.sideLength/2) * Math.sqrt(3) <= 0) {
+					if (iter == 2 && block.distFromHex + iter + 1 - (this.sideLength/2) * Math.sqrt(3) <= 0) {
+						block.distFromHex--;	
+					}
 					this.addBlock(block);
 				}
 			}
