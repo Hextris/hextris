@@ -1,6 +1,6 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-
+ct = 0;
 window.requestAnimFrame = (function(){
 	return window.requestAnimationFrame		||
 		window.webkitRequestAnimationFrame	||
@@ -14,12 +14,12 @@ var clock = new Clock(6);
 
 var blocks = [];
 
-for (var i = 0; i < 6; i++) {
+for (var i = 0; i < 1; i++) {
 	blocks.push(new Block(i, 'green'));
 }
 
 var MainClock = new Clock(65);
-var iter = 1/100;
+var iter = 1;
 
 function Render() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -46,11 +46,10 @@ function Render() {
 	}
 
 	objectsToRemove.forEach(function(o){
-		arr.splice(o,1);
+		blocks.splice(o,1);
 	});
-
+	ct++;
 	MainClock.draw();
-	requestAnimFrame(Render);
 }
 
 (function animloop(){
