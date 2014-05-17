@@ -1,4 +1,6 @@
 // main thing here
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
 
 window.requestAnimFrame = (function(){
 	return window.requestAnimationFrame 		||
@@ -16,6 +18,9 @@ window.requestAnimFrame = (function(){
 
 function render() {
 	// game code
-
 	requestAnimFrame(animloop);
+}
+
+function block(lane) {
+
 }
