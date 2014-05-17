@@ -1,5 +1,4 @@
 //you can change these to sexier stuff
-
 function Block(lane, color, distFromHex, settled) {
 	this.settled = (settled == undefined) ? 0 : 1;
 	this.height = 20;
@@ -18,6 +17,7 @@ function Block(lane, color, distFromHex, settled) {
 	else {
 		this.distFromHex = 300;
 	}
+
 	this.draw = function() {
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
 		this.widthswag = this.width + this.height + 3;
@@ -43,7 +43,7 @@ function Block(lane, color, distFromHex, settled) {
 
 }
 
-var Clock = function(sideLength) {
+function Clock(sideLength) {
 	this.fillColor = '#2c3e50';
 	this.position = 0;
 	this.sides = 6;
@@ -71,7 +71,7 @@ var Clock = function(sideLength) {
 		consolidateBlocks(this,lane,this.blocks[lane].length-1);
 	};
 
-	this.doesBlockCollide = function(block, iter) {
+	this.doesBlockCollide = function(block, iter, position, tArr) {
 		if (block.settled) return;
 
 		var lane = this.sides - block.lane;//  -this.position;
@@ -81,21 +81,33 @@ var Clock = function(sideLength) {
 			lane += this.sides;
 		}
 		lane = lane % this.sides;
-
 		var arr = this.blocks[lane];
 
-		if (arr.length > 0) {
-			if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
-				this.addBlock(block);
+		if (position !== undefined) {
+			arr = tArr;
+			if (position <= 0) {
+				if (block.distFromHex - (this.sideLength/2) * Math.sqrt(3) <= 0) {
+					block.settled = 1;
+				}
+			}
+			else {
+				if (block.distFromHex + iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+					block.settled = 1;
+				}
 			}
 		}
 		else {
-			if (block.distFromHex - (this.sideLength/2) * Math.sqrt(3) <= 0) {
-				this.addBlock(block);
+			if (arr.length > 0) {
+				if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+					this.addBlock(block);
+				}
 			}
-
+			else {
+				if (block.distFromHex + iter - (this.sideLength/2) * Math.sqrt(3) <= 0) {
+					this.addBlock(block);
+				}
+			}
 		}
-
 	};
 
 	this.rotate = function(steps) {

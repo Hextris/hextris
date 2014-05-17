@@ -1,7 +1,7 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-var gameState = 1; // 0 - start, 1 - playing, 2 - end
+var gameState = 0; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
 
 var score = 0;
@@ -18,15 +18,27 @@ window.requestAnimFrame = (function(){
 	};
 })();
 
-var clock = new Clock(6);
 
 var blocks = [];
-var MainClock = new Clock(65);
-var iter = 1;
-var lastGen = Date.now();
-var prevScore = Date.now();
-var nextGen = 1000;
+var MainClock;
+var iter;
+var lastGen;
+var prevScore;
+var nextGen;
 
+function init() {
+	score = 0;
+	scoreScalar = 1;
+	gameState = 1;
+	ct = 0;
+	blocks = [];
+	MainClock = new Clock(65);
+	iter = 1;
+	lastGen = Date.now();
+	prevScore = Date.now();
+	nextGen = 1000;
+
+}
 var colors = ["#e74c3c", "#f1c40f","#3498db"];
 var hexagonBackgroundColor = '#ecf0f1';
 var swegBlue = '#2c3e50'; //tumblr?
@@ -55,7 +67,10 @@ function render() {
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, iter);
+			MainClock.doesBlockCollide(block, iter, j, MainClock.blocks[i]);
+			if (!MainClock.blocks[i][j].settled) {
+				MainClock.blocks[i][j].distFromHex -= iter;
+			}
 			block.draw();
 		}
 	}
@@ -79,13 +94,18 @@ function render() {
 }
 
 (function animloop(){
-	if (gameState == 1) {
-		requestAnimFrame(animloop);
+	requestAnimFrame(animloop);
+
+	if (gameState == 0) {
+		showModal('Start!', 'Press enter to start!');
+	}
+	else if (gameState == 1) {
 		render();
 		checkGameOver();
 	}
 	else if (gameState == 2) {
-		showModal('Game Over ' + score + ' pts');
+		showModal('Game over!', score + ' pts!');
+
 	}
 })();
 
@@ -125,10 +145,17 @@ function checkGameOver() { // fix font, fix size of hex
 	}
 }
 
-function showModal(text) {
+function showModal(text, secondaryText) {
+	var buttonSize = 150;
+	var fontSizeLarge = 50;
+	var fontSizeSmall = 25;
 	drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
 	ctx.fillStyle = swegBlue;
-	ctx.font = '40pt "Helvetica Neue"';
+	// drawPolygon(canvas.width / 2, canvas.height / 2, 6, buttonSize, 30, swegBlue);
+	ctx.font =  fontSizeLarge+'px "Roboto"';
 	ctx.textAlign = 'center';
-	ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+	// ctx.fillStyle = hexagonBackgroundColor;
+	ctx.fillText(text, canvas.width / 2, canvas.height / 2  + (fontSizeLarge / 4));
+	ctx.font =  fontSizeSmall+'px "Roboto"';
+	ctx.fillText(secondaryText, canvas.width/2, canvas.height/2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30); 
 }
