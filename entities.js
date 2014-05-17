@@ -70,13 +70,14 @@ var Clock = function(sideLength) {
 			lane = lane + this.sides;
 		}
 		this.blocks[lane].push(block);
+		consolidateBlocks(this,lane,this.blocks.length-1);
 	};
 
 	this.doesBlockCollide = function(block, iter, index) {
 		if (block.settled) return;
 		var arr = this.blocks[(block.lane + this.position % this.sides) % this.sides];
 		var thisIn = index === undefined ? arr.length - 1 : index - 1;
-		if (arr.length > 0 || thisIn > 0) {
+		if (arr.length > 0 && thisIn > 0) {
 			if (block.distFromHex + iter - arr[thisIn].distFromHex - arr[thisIn].height <= 0) {
 				this.addBlock(block);
 			}
