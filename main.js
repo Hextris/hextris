@@ -10,6 +10,8 @@ window.requestAnimFrame = (function(){
 		};
 })();
 
+clock = new Clock(6);
+
 var blocks = [];
 
 for (var i = 0; i < 12; i++) {
@@ -71,3 +73,6 @@ function Block(lane, color, distFromHex) {
 	};
 
 }
+
+Render();
+

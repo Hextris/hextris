@@ -21,12 +21,22 @@ var Clock = function(sideLength) {
 	}
 
 	this.addBlock = function(block) {
-		this.blocks[this.position].push(block);
+		var lane = 0;
+		lane += this.position + block.lane;
+		lane = lane % this.sides;
+		while(lane < 0) {
+			lane = lane + this.sides;
+		}
+		this.blocks[lane].push(block);
 	}
 
 	this.rotate = function(steps) {
-		this.positione += steps;
-		this.position = Math.abs(((this.position%sides)+this.position) % sides);
+		this.position += steps;
+		this.position = this.position % this.sides;
+		while(this.position < 0) {
+			this.position = this.position + this.sides; 
+		}
+		this.angle = 30 + this.position * 60;
 	}
 
 	this.draw = function() {
