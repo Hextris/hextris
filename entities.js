@@ -1,3 +1,4 @@
+// HackExeter
 //you can change these to sexier stuff
 function Block(lane, color, distFromHex, settled) {
 	this.settled = (settled == undefined) ? 0 : 1;
