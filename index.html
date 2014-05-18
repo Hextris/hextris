@@ -21,12 +21,15 @@
 	<div style='margin: 0 auto; width: 100%;text-align: center; margin-top: 20px;'><h1 style='color:#ecf0f1; font-size:50px;'>Hextris</h1>
 		<span id="score">0 (x1)</span>
 	</div>
-
 	<canvas id="canvas" width = '700' height = '700' style='background-color:#2c3e50; position:absolute;left:50%;margin-left:-350px'></canvas>
+	<div id="leftTap" style="position:absolute; left:0; top:0; height:100%;width:50%"></div>
+	<div id="rightTap" style="position:absolute; left:50%; top:0; height:100%;width:50%"></div>
+
 	
 	<script src="math.js"></script>
 	<script src="entities.js"></script>
 	<script src="math.js"></script>
+	<script src="hammer.min.js"></script>
 	<script src="keypress.min.js"></script>
 	<script src="input.js"></script>
 	<script src="checking.js"></script>
