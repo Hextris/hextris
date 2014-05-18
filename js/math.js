@@ -1,22 +1,24 @@
 // HackExeter
 function rotatePoint(x, y, theta) {
-	var thetaRad = theta * (Math.PI / 180);
-	var rotX = Math.cos(thetaRad) * x - Math.sin(thetaRad) * y;
-	var rotY = Math.sin(thetaRad) * x + Math.cos(thetaRad) * y;
+    var thetaRad = theta * (Math.PI / 180);
+    var rotX = Math.cos(thetaRad) * x - Math.sin(thetaRad) * y;
+    var rotY = Math.sin(thetaRad) * x + Math.cos(thetaRad) * y;
 
-	return { 
-		x: rotX,
-		y: rotY,
-	};
+    return {
+        x: rotX,
+        y: rotY
+    };
 }
 
 function randInt(min, max) {
-	return Math.floor((Math.random() * max) + min);
+    return Math.floor((Math.random() * max) + min);
 }
 
 //http://stackoverflow.com/questions/15397036/drawing-dashed-lines-on-html5-canvas
-CanvasRenderingContext2D.prototype.dashedLine = function (x1, y1, x2, y2, dashLen) {
-    if (dashLen == undefined) dashLen = 2;
+CanvasRenderingContext2D.prototype.dashedLine = function(x1, y1, x2, y2, dashLen) {
+    if (dashLen == undefined) {
+        dashLen = 2;
+    }
     this.moveTo(x1, y1);
 
     var dX = x2 - x1;
