@@ -1,6 +1,13 @@
 // HackExeter
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+canvas.originalHeight = canvas.height;
+canvas.originalWidth = canvas.width;
+if (window.devicePixelRatio) {
+    canvas.width *= window.devicePixelRatio;
+    canvas.height *= window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
 
 var gameState = 0; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
@@ -61,8 +68,8 @@ function render() {
         prevScore = now;
         iter += 0.1;
     }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColor);
+    ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColor);
     var objectsToRemove = [];
     var i;
     for (i in MainClock.blocks) {
@@ -90,7 +97,7 @@ function render() {
         blocks.splice(o, 1);
     });
     MainClock.draw();
-    drawPolygon(canvas.width / 2, canvas.height / 2, 6, 270, 30, "gray", false);
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 270, 30, "gray", false);
 }
 
 function animloop() {
@@ -150,13 +157,13 @@ function showModal(text, secondaryText) {
     var buttonSize = 150;
     var fontSizeLarge = 50;
     var fontSizeSmall = 25;
-    drawPolygon(canvas.width / 2, canvas.height / 2, 6, canvas.width / 2, 30, hexagonBackgroundColorClear);
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColorClear);
     ctx.fillStyle = swegBlue;
-    // drawPolygon(canvas.width / 2, canvas.height / 2, 6, buttonSize, 30, swegBlue);
+    // drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, buttonSize, 30, swegBlue);
     ctx.font = fontSizeLarge + 'px "Roboto"';
     ctx.textAlign = 'center';
     // ctx.fillStyle = hexagonBackgroundColor;
-    ctx.fillText(text, canvas.width / 2, canvas.height / 2 + (fontSizeLarge / 4));
+    ctx.fillText(text, canvas.originalWidth / 2, canvas.originalHeight / 2 + (fontSizeLarge / 4));
     ctx.font = fontSizeSmall + 'px "Roboto"';
-    ctx.fillText(secondaryText, canvas.width / 2, canvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
+    ctx.fillText(secondaryText, canvas.originalWidth / 2, canvas.originalHeight / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
