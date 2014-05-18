@@ -28,8 +28,8 @@ function Block(lane, color, distFromHex, settled) {
         var p4 = rotatePoint(-this.widthswag / 2, -this.height / 2, this.angle);
 
         ctx.fillStyle = this.color;
-        var baseX = canvas.width / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
-        var baseY = canvas.height / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
+        var baseX = canvas.originalWidth / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
+        var baseY = canvas.originalHeight / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
 
         ctx.beginPath();
         ctx.moveTo(baseX + p1.x, baseY + p1.y);
@@ -51,8 +51,8 @@ function Clock(sideLength) {
     this.angle = 30;
     this.sideLength = sideLength;
     this.strokeColor = 'blue';
-    this.x = canvas.width / 2;
-    this.y = canvas.height / 2;
+    this.x = canvas.originalWidth / 2;
+    this.y = canvas.originalHeight / 2;
 
     for (var i = 0; i < this.sides; i++) {
         this.blocks.push([]);
