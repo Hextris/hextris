@@ -49,6 +49,10 @@ function Block(lane, color, distFromHex, settled) {
     };
 
 }
+var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
+	 "#f1c40f":new Audio("../sounds/highest.ogg"),
+	 "#3498db":new Audio("../sounds/middle.ogg")
+};
 
 function Clock(sideLength) {
     this.fillColor = '#2c3e50';
@@ -76,6 +80,11 @@ function Clock(sideLength) {
         block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
         this.blocks[lane].push(block);
         consolidateBlocks(this, lane, this.blocks[lane].length - 1);
+ 	if (window.chrome) {
+		colorSounds[block.color].load();	
+	}
+	colorSounds[block.color].play();	
+	
     };
 
     this.doesBlockCollide = function(block, iter, position, tArr) {
