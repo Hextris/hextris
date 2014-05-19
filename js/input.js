@@ -1,21 +1,21 @@
 // HackExeter
 keypress.register_combo({
     keys: "left",
-    on_keyup: function() {
+    on_keydown: function() {
         MainClock.rotate(1)
     }
 });
 
 keypress.register_combo({
     keys: "right",
-    on_keyup: function() {
+    on_keydown: function() {
         MainClock.rotate(-1)
     }
 });
 
 keypress.register_combo({
     keys: "enter",
-    on_keyup: function() {
+    on_keydown: function() {
         if (gameState != 1) {
             init();
         }
