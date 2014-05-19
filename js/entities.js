@@ -1,19 +1,14 @@
 // HackExeter
+var angularVelocityConst = 6;
+
 function Block(lane, color, distFromHex, settled) {
     this.settled = (settled == undefined) ? 0 : 1;
     this.height = 20;
     this.width = 65;
     this.lane = lane;
     this.angle = 90 - (30 + 60 * lane);
+    this.angularVelocity = 0;
     this.targetAngle = this.angle;
-
-    if (this.angle < 0) {
-        this.angle += 360;
-    }
-    if(this.targetAngle < 0) {
-        this.targetAngle += 360;
-    }
-
     this.color = color;
 
     if (distFromHex) {
@@ -31,10 +26,18 @@ function Block(lane, color, distFromHex, settled) {
         }
 
         if(this.angle > this.targetAngle) {
-            this.angle -= 10;
+            this.angularVelocity -= angularVelocityConst;
         }
         else if(this.angle < this.targetAngle) {
-            this.angle += 10;
+            this.angularVelocity += angularVelocityConst;
+        }
+
+        if (Math.abs(this.angle - this.targetAngle + this.angularVelocity) <= Math.abs(this.angularVelocity)) { //do better soon
+            this.angle = this.targetAngle;
+            this.angularVelocity = 0;
+        }
+        else {
+            this.angle += this.angularVelocity;
         }
 
         this.width = 2 * this.distFromHex / Math.sqrt(3);
@@ -67,6 +70,7 @@ var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
 
 function Clock(sideLength) {
     this.fillColor = '#2c3e50';
+    this.angularVelocity = 0;
     this.position = 0;
     this.sides = 6;
     this.blocks = [];
@@ -167,11 +171,19 @@ function Clock(sideLength) {
     };
 
     this.draw = function() {
-        if(this.angle > this.targetAngle) {
-            this.angle -= 10;
+        if (this.angle > this.targetAngle) {
+            this.angularVelocity -= angularVelocityConst;
         }
         else if(this.angle < this.targetAngle) {
-            this.angle += 10;
+            this.angularVelocity += angularVelocityConst;
+        }
+
+        if (Math.abs(this.angle - this.targetAngle + this.angularVelocity) <= Math.abs(this.angularVelocity)) { //do better soon
+            this.angle = this.targetAngle;
+            this.angularVelocity = 0;
+        }
+        else {
+            this.angle += this.angularVelocity;
         }
 
         drawPolygon(this.x, this.y, this.sides, this.sideLength, this.angle, this.fillColor);
