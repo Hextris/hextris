@@ -126,14 +126,14 @@ function Clock(sideLength) {
 				}
 			} else {
 				if (block.distFromHex + iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
-					block.distFromHex = arr[position - 1].distFromHex - arr[position - 1].height;
+					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 				}
 			}
 		} else {
 			if (arr.length > 0) {
 				if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
-					block.distFromHex = arr[arr.length - 1].distFromHex - arr[arr.length - 1].height;
+					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
 			} else {
