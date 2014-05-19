@@ -116,10 +116,9 @@ function consolidateBlocks(clock, side, index) {
 	}
 	sidesChanged.forEach(function(o) {
 		MainClock.blocks[o].forEach(function(block) {
+			console.log('unsettled');
 		    block.settled = 0;
 		})
     });
 
 }
-    
-
