@@ -18,7 +18,14 @@ function Block(lane, color, distFromHex, settled) {
         this.distFromHex = 300;
     }
 
-    this.draw = function() {
+    this.draw = function(attached, index) {
+        if(attached == undefined)
+            attached = false;
+
+        if(attached) {
+            this.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (index-1) * this.height;
+        }
+
         this.width = 2 * this.distFromHex / Math.sqrt(3);
         this.widthswag = this.width + this.height + 3;
 

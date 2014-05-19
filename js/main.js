@@ -79,7 +79,7 @@ function render() {
             if (!MainClock.blocks[i][j].settled) {
                 MainClock.blocks[i][j].distFromHex -= iter;
             }
-            block.draw();
+            block.draw(true, j);
         }
     }
 
