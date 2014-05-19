@@ -52,11 +52,12 @@ function horizontalScore(clock,side,index){
 
 }
 function consolidateBlocks(clock, side, index) {
-	sidesChanged = [];
+	var sidesChanged = [];
 	if (clock.blocks[side][index] !== undefined){
 		var color = clock.blocks[side][index].color;
 		var count =1;
 		if(verticalScore(clock,side,index)){
+			console.log("hey");
 			sidesChanged.push(side);
 			while(clock.blocks[side][index-count] !== undefined) {
 				if(clock.blocks[side][index-count].color == color) {
@@ -84,13 +85,15 @@ function consolidateBlocks(clock, side, index) {
 	}
 	if (clock.blocks[side][index] !== undefined){
 		if(horizontalScore(clock,side,index)){
+			sidesChanged.push(side);
+			console.log(sidesChanged);
 			var count=1;
 			var x=(side-count+clock.sides)%clock.sides;
 			while(clock.blocks[x][index] !== undefined) {
 				if(clock.blocks[x][index].color == color) {
+					sidesChanged.push(x);
 					clock.blocks[x].splice(index,1);
 					consolidateBlocks(clock,x,index);
-					sidesChanged.push(x);
 					count++;
 				}
 				else {
@@ -112,13 +115,15 @@ function consolidateBlocks(clock, side, index) {
 				}
 				x = (side+count+clock.sides)%clock.sides;
 			}
+			console.log(sidesChanged);
 		}
 	}
+	
 	sidesChanged.forEach(function(o) {
 		MainClock.blocks[o].forEach(function(block) {
 			console.log('unsettled');
 		    block.settled = 0;
 		})
-    });
+	});
 
 }
