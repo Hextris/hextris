@@ -41,7 +41,7 @@ function init() {
     iter = 1;
     lastGen = Date.now();
     prevScore = Date.now();
-    nextGen = 1000;
+    nextGen = 1500;
     requestAnimFrame(animloop);
 }
 
@@ -61,7 +61,9 @@ function render() {
         if (minTime < 100) {
             minTime = 100;
         }
-        nextGen = randInt(minTime, 1500 / iter);
+	if(nextGen>400){
+    	    nextGen-=10*((nextGen-200)/1000);
+	}
     }
     if (now - prevScore > 1000) {
         score += 5 * (scoreScalar * scoreAdditionCoeff);
