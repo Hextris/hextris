@@ -1,13 +1,17 @@
 // HackExeter
-//you can change these to sexier stuff
 function Block(lane, color, distFromHex, settled) {
     this.settled = (settled == undefined) ? 0 : 1;
     this.height = 20;
     this.width = 65;
     this.lane = lane;
     this.angle = 90 - (30 + 60 * lane);
+    this.targetAngle = this.angle;
+
     if (this.angle < 0) {
         this.angle += 360;
+    }
+    if(this.targetAngle < 0) {
+        this.targetAngle += 360;
     }
 
     this.color = color;
@@ -24,6 +28,13 @@ function Block(lane, color, distFromHex, settled) {
 
         if(attached) {
             this.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (index-1) * this.height;
+        }
+
+        if(this.angle > this.targetAngle) {
+            this.angle -= 10;
+        }
+        else if(this.angle < this.targetAngle) {
+            this.angle += 10;
         }
 
         this.width = 2 * this.distFromHex / Math.sqrt(3);
@@ -59,7 +70,9 @@ function Clock(sideLength) {
     this.position = 0;
     this.sides = 6;
     this.blocks = [];
-    this.angle = 30;
+    this.angle = 180 / this.sides;
+    this.targetAngle = this.angle;
+
     this.sideLength = sideLength;
     this.strokeColor = 'blue';
     this.x = canvas.originalWidth / 2;
@@ -146,14 +159,21 @@ function Clock(sideLength) {
         this.position = this.position % this.sides;
         this.blocks.forEach(function(blocks) {
             blocks.forEach(function(block) {
-                block.angle = block.angle - steps * 60;
+                block.targetAngle = block.targetAngle - steps * 60;
             });
         });
 
-        this.angle = this.angle + steps * 60;
+        this.targetAngle = this.targetAngle - steps * 60;
     };
 
     this.draw = function() {
+        if(this.angle > this.targetAngle) {
+            this.angle -= 10;
+        }
+        else if(this.angle < this.targetAngle) {
+            this.angle += 10;
+        }
+
         drawPolygon(this.x, this.y, this.sides, this.sideLength, this.angle, this.fillColor);
     };
 }
