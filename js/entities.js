@@ -2,7 +2,7 @@ var angularVelocityConst = 6;
 
 function Block(lane, color, distFromHex, settled) {
 	this.settled = (settled == undefined) ? 0 : 1;
-	this.height = 20;
+	this.height = 15;
 	this.width = 65;
 	this.lane = lane;
 	this.angle = 90 - (30 + 60 * lane);
