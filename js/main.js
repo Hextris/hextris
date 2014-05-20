@@ -101,7 +101,7 @@ function render() {
         blocks.splice(o, 1);
     });
     MainClock.draw();
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 270, 30, '#95a5a6', false);
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 220, 30, '#95a5a6', false);
 }
 
 function animloop() {
