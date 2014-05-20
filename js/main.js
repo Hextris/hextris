@@ -50,14 +50,14 @@ var hexagonBackgroundColor = 'rgb(236, 240, 241)';
 var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
 var centerBlue = '#2c3e50'; //tumblr?
 var scoreAdditionCoeff = 1;
+var x = 0;
 
 function render() {
     document.getElementById("score").innerHTML = score + " (x" + scoreScalar * scoreAdditionCoeff + ")";
     var now = Date.now();
     if (now - lastGen > nextGen) {
-	var x = randInt(0, MainClock.sides);
         blocks.push(new Block(x, colors[randInt(0, colors.length)]));
-        blocks.push(new Block((x+MainClock.sides/2)%MainClock.sides, colors[randInt(0, colors.length)]));
+	x++;
         lastGen = Date.now();
         var minTime = 500 / iter;
         if (minTime < 100) {
