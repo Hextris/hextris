@@ -9,6 +9,10 @@ function Block(lane, color, distFromHex, settled) {
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
 	this.color = color;
+	if (window.chrome){
+			colorSounds[this.color].load();
+		}
+		colorSounds[this.color].play();
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
@@ -96,11 +100,7 @@ function Clock(sideLength) {
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
-		if (window.chrome){
-			colorSounds[block.color].load();
-		}
-		colorSounds[block.color].play();
-	};
+		};
 
 	this.doesBlockCollide = function(block, iter, position, tArr) {
 		if (block.settled) {
