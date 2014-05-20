@@ -55,7 +55,9 @@ function render() {
     document.getElementById("score").innerHTML = score + " (x" + scoreScalar * scoreAdditionCoeff + ")";
     var now = Date.now();
     if (now - lastGen > nextGen) {
-        blocks.push(new Block(randInt(0, 6), colors[randInt(0, colors.length)]));
+	var x = randInt(0, MainClock.sides);
+        blocks.push(new Block(x, colors[randInt(0, colors.length)]));
+        blocks.push(new Block((x+MainClock.sides/2)%MainClock.sides, colors[randInt(0, colors.length)]));
         lastGen = Date.now();
         var minTime = 500 / iter;
         if (minTime < 100) {
