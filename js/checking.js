@@ -14,7 +14,7 @@ function floodFill(clock,side,index) {
 		for(var y =-1;y<2;y++){
 			if(x==0 && y==0){continue;}
 			if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y] !== undefined){
-				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color== color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) == -1){
+				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color== color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) == false){
 					deleting.push([(side+x+clock.sides)%clock.sides,index+y]);
 					floodFill(clock,(side+x+clock.sides)%clock.sides,index+y);
 				}
@@ -23,6 +23,7 @@ function floodFill(clock,side,index) {
 	}
 }
 function consolidateBlocks(clock,side,index){
+	var deleted=[];
 	for(var i=0;i<clock.sides.length;i++){
 		deleted.push(0);
 	}
