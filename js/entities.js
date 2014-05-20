@@ -1,4 +1,3 @@
-// HackExeter
 var angularVelocityConst = 6;
 
 function Block(lane, color, distFromHex, settled) {
@@ -10,6 +9,10 @@ function Block(lane, color, distFromHex, settled) {
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
 	this.color = color;
+	if (window.chrome){
+			colorSounds[this.color].load();
+		}
+		colorSounds[this.color].play();
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
@@ -41,12 +44,12 @@ function Block(lane, color, distFromHex, settled) {
 		}
 
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
-		this.widthswag = this.width + this.height + 3;
+		this.widthWide = this.width + this.height + 3;
 
 		var p1 = rotatePoint(-this.width / 2, this.height / 2, this.angle);
 		var p2 = rotatePoint(this.width / 2, this.height / 2, this.angle);
-		var p3 = rotatePoint(this.widthswag / 2, -this.height / 2, this.angle);
-		var p4 = rotatePoint(-this.widthswag / 2, -this.height / 2, this.angle);
+		var p3 = rotatePoint(this.widthWide / 2, -this.height / 2, this.angle);
+		var p4 = rotatePoint(-this.widthWide / 2, -this.height / 2, this.angle);
 
 		ctx.fillStyle = this.color;
 		var baseX = canvas.originalWidth / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
@@ -64,8 +67,8 @@ function Block(lane, color, distFromHex, settled) {
 
 }
 var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
-	 "#f1c40f":new Audio("../sounds/highest.ogg"),
-	 "#3498db":new Audio("../sounds/middle.ogg")
+"#f1c40f":new Audio("../sounds/highest.ogg"),
+"#3498db":new Audio("../sounds/middle.ogg")
 };
 
 function Clock(sideLength) {
@@ -97,11 +100,7 @@ function Clock(sideLength) {
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
-		if (window.chrome){
-			colorSounds[block.color].load();
-		}
-		colorSounds[block.color].play();
-	};
+		};
 
 	this.doesBlockCollide = function(block, iter, position, tArr) {
 		if (block.settled) {
@@ -176,7 +175,9 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-
+		ctx.shadowColor = '#2980b9';
+		ctx.shadowBlur = 15;
 		drawPolygon(this.x, this.y, this.sides, this.sideLength, this.angle, this.fillColor);
+		clearShadows();
 	};
 }
