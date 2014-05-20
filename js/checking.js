@@ -13,6 +13,7 @@ function floodFill(clock,side,index) {
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
 			if(x==0 && y==0){continue;}
+			if(clock.blocks[(side+x+clock.sides)%clock.sides] === undefined){continue;}
 			if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y] !== undefined){
 				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color== color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) == false){
 					deleting.push([(side+x+clock.sides)%clock.sides,index+y]);
@@ -23,10 +24,6 @@ function floodFill(clock,side,index) {
 	}
 }
 function consolidateBlocks(clock,side,index){
-	var deleted=[];
-	for(var i=0;i<clock.sides.length;i++){
-		deleted.push(0);
-	}
 	var sidesChanged =[];
 	deleting=[];
 	deleting.push([side,index]);
@@ -40,12 +37,24 @@ function consolidateBlocks(clock,side,index){
 			if(sidesChanged.indexOf(arr[0])==-1){ 
 				sidesChanged.push(arr[0]);
 			}
-			clock.blocks[arr[0]].splice(arr[1]-deleted[arr[0]],1);
-			deleted[arr[0]]++;
+			clock.blocks[arr[0]][arr[1]].deleted = 1;
 		}
 	}	
+	for( i in sidesChanged) {
+		var flag =0;
+		for( var j=0;j<clock.blocks[sidesChanged[i]].length;j++) {
+			if(clock.blocks[sidesChanged[i]][j].deleted ==1){
+				clock.blocks[sidesChanged[i]].splice(j,1);
+				j--;
+				flag=1;
+			}
+			else if(flag==1){
+				consolidateBlocks(clock,sidesChanged[i],j);
+			}
+		}
+	}
 	sidesChanged.forEach(function(o) {
-		MainClock.blocks[o].forEach(function(block) {
+		clock.blocks[o].forEach(function(block) {
 			console.log('unsettled');
 		    block.settled = 0;
 		})

@@ -10,6 +10,7 @@ function Block(lane, color, distFromHex, settled) {
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
 	this.color = color;
+	this.deleted=0;
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;

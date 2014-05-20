@@ -1,6 +1,0 @@
-use pre existing minimum
-2 dimensional array that holds sides
-
-
-get layer one get sides it applies to
-do that again to all sides touching one level up that are the same color
