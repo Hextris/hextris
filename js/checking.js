@@ -44,8 +44,7 @@ function horizontalScore(clock,side,index){
 			break;
 		}
 	}
-	if(downcount+upcount>=2){
-
+	if(downcount+upcount>=2) {
 		return true;
 	}
 	return false;

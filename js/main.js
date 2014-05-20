@@ -1,4 +1,3 @@
-// HackExeter
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 canvas.originalHeight = canvas.height;
@@ -48,7 +47,7 @@ function init() {
 var colors = ["#e74c3c", "#f1c40f", "#3498db"];
 var hexagonBackgroundColor = 'rgb(236, 240, 241)';
 var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
-var swegBlue = '#2c3e50'; //tumblr?
+var centerBlue = '#2c3e50'; //tumblr?
 var scoreAdditionCoeff = 1;
 
 function render() {
@@ -61,9 +60,9 @@ function render() {
         if (minTime < 100) {
             minTime = 100;
         }
-	if(nextGen>400){
-    	    nextGen-=10*((nextGen-200)/1000);
-	}
+        if(nextGen>400){
+            nextGen-=10*((nextGen-200)/1000);
+        }
     }
     if (now - prevScore > 1000) {
         score += 5 * (scoreScalar * scoreAdditionCoeff);
@@ -71,7 +70,7 @@ function render() {
         iter += 0.1;
     }
     ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColor);
+    clearGameBoard();
     var objectsToRemove = [];
     var i;
     for (i in MainClock.blocks) {
@@ -99,11 +98,12 @@ function render() {
         blocks.splice(o, 1);
     });
     MainClock.draw();
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 270, 30, "gray", false);
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 270, 30, '#95a5a6', false);
 }
 
 function animloop() {
     if (gameState == 0) {
+        clearGameBoard();
         showModal('Start!', 'Press enter to start!');
     } else if (gameState == 1) {
         requestAnimFrame(animloop);
@@ -116,6 +116,12 @@ function animloop() {
 }
 requestAnimFrame(animloop);
 
+function clearGameBoard() {
+    ctx.shadowColor = '#2980b9';
+    ctx.shadowBlur = 25;
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColor);
+    clearShadows();
+}
 
 function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more elegant, reduce redundancy, fix readability
     if (fill == undefined) {
@@ -124,6 +130,12 @@ function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more
     if (fill) {
         ctx.fillStyle = color;
     } else {
+        // ctx.shadowColor = '#2980b9';
+        // ctx.shadowColor = color;
+        // ctx.shadowColor = '#2ecc71';
+        // ctx.shadowBlur = 10;
+        // ctx.strokeStyle = rgba(0,0,0,0);
+        ctx.lineWidth = 3;
         ctx.strokeStyle = color;
     }
 
@@ -159,13 +171,20 @@ function showModal(text, secondaryText) {
     var buttonSize = 150;
     var fontSizeLarge = 50;
     var fontSizeSmall = 25;
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColorClear);
-    ctx.fillStyle = swegBlue;
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColorClear);
     // drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, buttonSize, 30, swegBlue);
-    ctx.font = fontSizeLarge + 'px "Roboto"';
+    ctx.font = fontSizeLarge + 'px Roboto'; // figure out what is not working
     ctx.textAlign = 'center';
+    ctx.fillStyle = centerBlue;
     // ctx.fillStyle = hexagonBackgroundColor;
     ctx.fillText(text, canvas.originalWidth / 2, canvas.originalHeight / 2 + (fontSizeLarge / 4));
-    ctx.font = fontSizeSmall + 'px "Roboto"';
+    ctx.font = fontSizeSmall + 'px Roboto';
     ctx.fillText(secondaryText, canvas.originalWidth / 2, canvas.originalHeight / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
+}
+
+function clearShadows() {
+    ctx.shadowColor = 0;
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
 }
