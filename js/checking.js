@@ -28,7 +28,6 @@ function consolidateBlocks(clock,side,index){
 	deleting=[];
 	deleting.push([side,index]);
 	floodFill(clock,side,index);
-	debugger;
 	var deleteList= deleting;
 	if(deleteList.length<3){return;}
 	for(i in deleteList){
