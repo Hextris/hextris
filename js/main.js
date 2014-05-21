@@ -95,7 +95,6 @@ function update() {
 }
 
 function render() {
-    document.getElementById("score").innerHTML = score + " (x" + scoreScalar * scoreAdditionCoeff + ")";
     ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
     clearGameBoard();
 
