@@ -3,6 +3,7 @@ var ctx = canvas.getContext('2d');
 ctx.translate(0.5, 0.5);
 canvas.originalHeight = canvas.height;
 canvas.originalWidth = canvas.width;
+
 if (window.devicePixelRatio) {
     canvas.width *= window.devicePixelRatio;
     canvas.height *= window.devicePixelRatio;
@@ -95,8 +96,7 @@ function update() {
 }
 
 function render() {
-    // document.getElementById("score").innerHTML =;
-   
+    document.getElementById("score").innerHTML = score + " (x" + scoreScalar * scoreAdditionCoeff + ")";
     ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
     clearGameBoard();
 
