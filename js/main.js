@@ -95,10 +95,12 @@ function update() {
 }
 
 function render() {
-    document.getElementById("score").innerHTML = score + " (x" + scoreScalar * scoreAdditionCoeff + ")";
+    // document.getElementById("score").innerHTML =;
    
     ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
     clearGameBoard();
+
+    renderText(score + " (x" + scoreScalar * scoreAdditionCoeff + ")", canvas.originalWidth/2, canvas.originalHeight/2 - 360);
     
     var i;
     for (i in MainClock.blocks) {
