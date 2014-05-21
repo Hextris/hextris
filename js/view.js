@@ -18,6 +18,23 @@ function showModal(text, secondaryText) {
     ctx.fillText(secondaryText, canvas.originalWidth / 2, canvas.originalHeight / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
+function renderText(lines, x, y, fontSize) {
+    if(typeof lines == 'string' || lines instanceof String) {
+        lines = [lines];
+    }
+
+    var fontSize = fontSize || 50;
+
+    ctx.font = fontSize + 'px Roboto'; // figure out what is not working
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'white';
+
+    for(var i=0; i<lines.length; i++) {
+        ctx.fillText(lines[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
+    }
+}
+
+
 function clearShadows() {
     ctx.shadowColor = 0;
     ctx.shadowBlur = 0;
