@@ -9,10 +9,13 @@ function Block(lane, color, distFromHex, settled) {
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
 	this.color = color;
-	this.deleted=0;
+	this.deleted = 0;
+	this.tint = 0; //todo
+	this.opacity = 1;
+
 	if (window.chrome){
-			colorSounds[this.color].load();
-		}
+		colorSounds[this.color].load();
+	}
 	colorSounds[this.color].play();
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
@@ -66,6 +69,7 @@ function Block(lane, color, distFromHex, settled) {
 	};
 
 }
+
 var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
 "#f1c40f":new Audio("../sounds/highest.ogg"),
 "#3498db":new Audio("../sounds/middle.ogg")
