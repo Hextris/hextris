@@ -1,6 +1,5 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-ctx.translate(0.5, 0.5);
 canvas.originalHeight = canvas.height;
 canvas.originalWidth = canvas.width;
 
@@ -118,7 +117,7 @@ function render() {
 }
 
 function animloop() {
-    if (gameState == 0) {
+    if (gameState === 0) {
         clearGameBoard();
         showModal('Start!', 'Press enter to start!');
     } else if (gameState == 1) {
