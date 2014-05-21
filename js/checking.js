@@ -12,7 +12,7 @@ function floodFill(clock,side,index) {
 	var  color = clock.blocks[side][index].color;
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
-			if(x==y){continue;}
+			if(Math.abs(x)==Math.abs(y)){continue;}
 			if(clock.blocks[(side+x+clock.sides)%clock.sides] === undefined){continue;}
 			if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y] !== undefined){
 				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color== color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) == false){
@@ -28,7 +28,7 @@ function consolidateBlocks(clock,side,index){
 	deleting=[];
 	deleting.push([side,index]);
 	floodFill(clock,side,index);
-	debugger;
+
 	var deleteList= deleting;
 	if(deleteList.length<3){return;}
 	for(i in deleteList){
