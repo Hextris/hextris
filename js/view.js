@@ -44,7 +44,7 @@ function clearShadows() {
 
 function clearGameBoard() {
     ctx.shadowColor = '#2980b9';
-    ctx.shadowBlur = 25;
+    //ctx.shadowBlur = 25;
     drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColor);
     clearShadows();
 }
