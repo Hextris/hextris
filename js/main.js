@@ -143,7 +143,7 @@ function update() {
         if (!blocks[i].settled) {
             blocks[i].distFromHex -= iter;
         } else {
-            objectsToRemove.push(i);
+            blocks[i].removed = 1;
         }
     }
 
@@ -156,10 +156,12 @@ function update() {
             }
         }
     }
-
-    objectsToRemove.forEach(function(o) {
-        blocks.splice(o, 1);
-    });
+    for(var i=0;i<blocks.length;i++){
+ 	if(blocks[i].removed == 1){
+		blocks.splice(i,1);
+		i--;
+	}
+    }
 
     count++;
 }

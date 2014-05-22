@@ -10,6 +10,7 @@ function Block(lane, color, distFromHex, settled) {
 	this.targetAngle = this.angle;
 	this.color = color;
 	this.deleted = 0;
+	this.removed = 0;
 	this.tint = 0; //todo
 	this.opacity = 1;
 	this.parentArr;
