@@ -26,15 +26,15 @@ function Block(lane, color, distFromHex, settled) {
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
-			this.opacity = this.opacity - 0.05;
+			this.opacity = this.opacity - 0.03;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
 				var i = 0;
 				var j;
 				for (i = 0; i < this.parentArr.length; i++) {
-					j = i;
 					if (this.parentArr[i] == this) {
 						this.parentArr.splice(i, 1);
+						j = i;
 					}
 				}
 				if (j < this.parentArr.length) {
@@ -89,6 +89,9 @@ function Block(lane, color, distFromHex, settled) {
 		ctx.fill();
 
 		if (this.tint) {
+			if (this.opacity < 1) {
+				this.tint = 0;
+			}
 			ctx.fillStyle = "#FFFFFF";
 			ctx.globalAlpha = this.tint;
 			ctx.beginPath();
