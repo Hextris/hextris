@@ -32,6 +32,9 @@ var blocks = [];
 var MainClock;
 var iter;
 
+var gdx = 0;
+var gdy = 0;
+
 var lastGen;
 var prevScore;
 var nextGen;
@@ -192,16 +195,22 @@ function animloop() {
         render();
         checkGameOver();
     } else if (gameState == 2) {
-        showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
-
+        if (checkGameOver()) {
+            showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
+        }
+        else {
+            gameState = 1;
+        }
     }
 }
 requestAnimFrame(animloop);
 
-function checkGameOver() { // fix font, fix size of hex
+function checkGameOver() {
     for (var i = 0; i < MainClock.sides; i++) {
         if (MainClock.blocks[i].length > 8) {
             gameState = 2;
+            return true;
         }
     }
+    return false;
 }

@@ -1,7 +1,7 @@
 function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
 	this.lastGen = Date.now();
-    	this.prevScore = Date.now();
-    	this.nextGen = 1500;
+	this.prevScore = Date.now();
+	this.nextGen = 1500;
 	this.start = start;
 	this.jumps = jumps;
 	this.simultaneousShots = simultaneousShots;
@@ -10,8 +10,6 @@ function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
 	this.update = function() {
 		var now = Date.now();
 		if (now - this.lastGen > this.nextGen) {
-			console.log("hey");
-
 			for(var i=this.jumps.length-1;i>0;i--) {
 				this.jumps[i-1] = (this.jumps[i-1]+this.jumps[i])%this.clock.sides;
 			}
@@ -33,7 +31,5 @@ function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
 			prevScore = now;
 			iter += 0.1;
 		}
-
-
 	}
 }

@@ -30,16 +30,17 @@ function consolidateBlocks(clock,side,index){
 	floodFill(clock,side,index);
 	var deleteList= deleting;
 	if(deleteList.length<3){return;}
+	var i;
 	for(i in deleteList){
 		var arr = deleteList[i];
 		if(arr !== undefined && arr.length==2) {
-			if(sidesChanged.indexOf(arr[0])==-1){ 
+			if(sidesChanged.indexOf(arr[0])==-1){
 				sidesChanged.push(arr[0]);
 			}
 			clock.blocks[arr[0]][arr[1]].deleted = 1;
 		}
-	}	
-	for( i in sidesChanged) {
+	}
+	for (i in sidesChanged) {
 		var flag =0;
 		for( var j=0;j<clock.blocks[sidesChanged[i]].length;j++) {
 			if(clock.blocks[sidesChanged[i]][j].deleted ==1){
