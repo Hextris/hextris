@@ -1,4 +1,4 @@
-var colors = ["#e74c3c", "#f1c40f", "#3498db"];
+colors = ["#e74c3c", "#f1c40f", "#3498db"];
 var hexagonBackgroundColor = 'rgb(236, 240, 241)';
 var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
 var centerBlue = '#2c3e50'; //tumblr?
