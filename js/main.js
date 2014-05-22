@@ -98,72 +98,79 @@ function exportHistory() {
 }
 
 function update() {
-	if (importing) {
-		if (importedHistory[count]) {
-			if (importedHistory[count].block) {
-				addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color,importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
-			}
-	
-			if (importedHistory[count].rotate) {
-				MainClock.rotate(importedHistory[count].rotate);
-			}
-		}
-	}
+    if (importing) {
+        if (importedHistory[count]) {
+            if (importedHistory[count].block) {
+                addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color,importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
+            }
+    
+            if (importedHistory[count].rotate) {
+                MainClock.rotate(importedHistory[count].rotate);
+            }
+        }
+    }
 
+    var now = Date.now();
+    if (now - lastGen > nextGen) {
+        if (!importing) {
+            addNewBlock(spawnLane, colors[randInt(0, colors.length)]);
+        }
+
+        spawnLane++;
+        lastGen = Date.now();
+        var minTime = 500 / iter;
+        if (minTime < 100) {
+            minTime = 100;
+        }
+        if(nextGen > 400){
+            nextGen -= 10 * ((nextGen - 200)/1000);
+        }
+    }
+    if (now - prevScore > 1000) {
+        score += 5 * (scoreScalar * scoreAdditionCoeff);
+        prevScore = now;
+        iter += 0.1;
+    }
+
+    if (!importing) {
+        waveone.update();
 	var now = Date.now();
-	if (now - lastGen > nextGen) {
-		if (!importing) {
-			addNewBlock(spawnLane, colors[randInt(0, colors.length)]);
-		}
-
-		spawnLane++;
-		lastGen = Date.now();
-		var minTime = 500 / iter;
-		if (minTime < 100) {
-			minTime = 100;
-		}
-		if(nextGen > 400){
-			nextGen -= 10 * ((nextGen - 200)/1000);
-		}
-	}
-	if (now - prevScore > 1000) {
+	if (now - waveone.prevScore > 1000) {
 		score += 5 * (scoreScalar * scoreAdditionCoeff);
-		prevScore = now;
+		waveone.prevScore = now;
 		iter += 0.1;
 	}
 
-	if (!importing) {
-		waveone.update();
-	}
+    }
 
-	var i;
-	var objectsToRemove = [];
-	for (i in blocks) {
-		MainClock.doesBlockCollide(blocks[i], iter);
-		if (!blocks[i].settled) {
-			blocks[i].distFromHex -= iter;
-		} else {
-			blocks[i].removed = 1;
-		}
-	}
+    var i;
+    var objectsToRemove = [];
+    for (i in blocks) {
+        MainClock.doesBlockCollide(blocks[i], iter);
+        if (!blocks[i].settled) {
+            blocks[i].distFromHex -= iter;
+        } else if(!blocks[i].removed){
+            blocks[i].removed = 1;
+        }
+    }
 
-	for (i in MainClock.blocks) {
-		for (var j = 0; j < MainClock.blocks[i].length; j++) {
-			var block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, iter, j, MainClock.blocks[i]);
-			if (!MainClock.blocks[i][j].settled) {
-				MainClock.blocks[i][j].distFromHex -= iter;
-			}
-		}
+    for (i in MainClock.blocks) {
+        for (var j = 0; j < MainClock.blocks[i].length; j++) {
+            var block = MainClock.blocks[i][j];
+            MainClock.doesBlockCollide(block, iter, j, MainClock.blocks[i]);
+            if (!MainClock.blocks[i][j].settled) {
+                MainClock.blocks[i][j].distFromHex -= iter;
+            }
+        }
+    }
+    for(var i=0;i<blocks.length;i++){
+ 	if(blocks[i].removed == 1){
+		blocks.splice(i,1);
+		i--;
 	}
-	for(var i=0;i<blocks.length;i++){
-		if(blocks[i].removed == 1){
-			blocks.splice(i,1);
-			i--;
-		}
-	}
+    }
 
-	count++;
+    count++;
 }
 
 function render() {
