@@ -34,24 +34,25 @@ function Block(lane, color, distFromHex, settled) {
 			if (this.opacity <= 0) {
 				this.opacity = 0;
 				var i = 0;
-				var j;
-				for (i = 0; i < this.parentArr.length; i++) {
-					if (this.parentArr[i] == this) {
-						this.parentArr.splice(i, 1);
-						j = i;
-					}
-				}
+				var j = this.getIndex();
+				this.parentArr.splice(j,1);
 				if (j < this.parentArr.length) {
-					for (i = 0; i < this.parentArr.length; i++) {
+					for (i = j; i < this.parentArr.length; i++) {
 		
-						consolidateBlocks(MainClock,lane,i);
-						if(i>=j)
-							this.parentArr[i].settled = 0;
+						this.parentArr[i].settled = 0;
 					}
 				}
 			}
 		}
 	};
+	this.getIndex = function (){
+		for (var i = 0; i < this.parentArr.length; i++) {
+			if (this.parentArr[i] == this) {
+				return i;
+			}
+		}
+
+	}
 
 	this.draw = function(attached, index) {
 		this.incrementOpacity();
@@ -156,7 +157,7 @@ function Clock(sideLength) {
 		this.blocks[lane].push(block);
 		block.parentArr = this.blocks[lane];
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
-		};
+	};
 
 	this.doesBlockCollide = function(block, iter, position, tArr) {
 		if (block.settled) {
@@ -178,11 +179,13 @@ function Clock(sideLength) {
 				if (block.distFromHex + iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
+					consolidateBlocks(this, lane, block.getIndex());
 				}
 			} else {
 				if (block.distFromHex + iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
+					consolidateBlocks(this, lane, block.getIndex());
 				}
 			}
 		} else {
