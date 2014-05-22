@@ -1,7 +1,7 @@
-var angularVelocityConst = 6;
+var angularVelocityConst = 4;
 
 function Block(lane, color, distFromHex, settled) {
-	this.settled = (settled == undefined) ? 0 : 1;
+	this.settled = (settled === undefined) ? 0 : 1;
 	this.height = 15;
 	this.width = 65;
 	this.lane = lane;
@@ -195,6 +195,17 @@ function Clock(sideLength) {
 
 	this.rotate = function(steps) {
 		this.position += steps;
+		if (!history[count]) {
+			history[count] = {};
+		}
+
+		if (!history[count].rotate) {
+			history[count].rotate = steps;
+		}
+		else {
+			history[count].rotate += steps;
+		}
+
 		while (this.position < 0) {
 			this.position += 6;
 		}
