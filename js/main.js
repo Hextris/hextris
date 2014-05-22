@@ -58,8 +58,8 @@ function update() {
         if (minTime < 100) {
             minTime = 100;
         }
-        if(nextGen>400){
-            nextGen-=10*((nextGen-200)/1000);
+        if(nextGen > 400){
+            nextGen -= 10 * ((nextGen - 200)/1000);
         }
     }
     if (now - prevScore > 1000) {
@@ -97,7 +97,6 @@ function update() {
 function render() {
     ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
     clearGameBoard();
-
     renderText(score + " (x" + scoreScalar * scoreAdditionCoeff + ")", canvas.originalWidth/2, canvas.originalHeight/2 - 360);
     
     var i;
@@ -111,6 +110,7 @@ function render() {
     for (i in blocks) {
         blocks[i].draw();
     }
+
     MainClock.draw();
     drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 220, 30, '#95a5a6', false);
 }
