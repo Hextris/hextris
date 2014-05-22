@@ -15,6 +15,12 @@ window.requestAnimFrame = (function() {
     };
 })();
 
+$('#clickToExit').bind('click', toggleDevTools);
+
+function toggleDevTools() {
+    $('#devtools').toggle();
+}
+
 var gameState = 0; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
 var history = {};
@@ -84,11 +90,11 @@ function importHistory() {
 }
 
 function exportHistory() {
-    return JSON.stringify(history);
+    $('#devtoolsText').html(JSON.stringify(history));
+    toggleDevTools();
 }
 
 function update() {
-<<<<<<< HEAD
     if (importing) {
         if (importedHistory[count]) {
             if (importedHistory[count].block) {

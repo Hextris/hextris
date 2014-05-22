@@ -26,7 +26,7 @@ function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
 			if(this.nextGen > 400){
 			    this.nextGen -= 10 * ((this.nextGen - 200)/1000);
 			}
-			blocks.push(new Block(this.jumps[0], colors[randInt(0, colors.length)]));
+			addNewBlock(this.jumps[0], colors[randInt(0, colors.length)]);
 		}
 		if (now - prevScore > 1000) {
 			score += 5 * (scoreScalar * scoreAdditionCoeff);
