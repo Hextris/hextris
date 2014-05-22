@@ -14,10 +14,6 @@ function Block(lane, color, distFromHex, settled) {
 	this.opacity = 1;
 	this.parentArr;
 
-	if (window.chrome){
-		colorSounds[this.color].load();
-	}
-	colorSounds[this.color].play();
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
 	} else {
@@ -46,9 +42,11 @@ function Block(lane, color, distFromHex, settled) {
 					}
 				}
 				if (j < this.parentArr.length) {
-					for (i = j; i < this.parentArr.length; i++) {
-						this.parentArr[i].settled = 0;
+					for (i = 0; i < this.parentArr.length; i++) {
+		
 						consolidateBlocks(MainClock,lane,i);
+						if(i>=j)
+							this.parentArr[i].settled = 0;
 					}
 				}
 			}

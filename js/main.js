@@ -42,32 +42,13 @@ function init() {
     blocks = [];
     MainClock = new Clock(65);
     iter = 1;
-    lastGen = Date.now();
-    prevScore = Date.now();
-    nextGen = 1500;
+    waveone = new waveGen(MainClock,0,[1,1,0],[1,1],[1,1]);
+    console.log(waveone);
     requestAnimFrame(animloop);
 }
 
 function update() {
-    var now = Date.now();
-    if (now - lastGen > nextGen) {
-        blocks.push(new Block(spawnLane, colors[randInt(0, colors.length)]));
-        spawnLane++;
-        lastGen = Date.now();
-        var minTime = 500 / iter;
-        if (minTime < 100) {
-            minTime = 100;
-        }
-        if(nextGen > 400){
-            nextGen -= 10 * ((nextGen - 200)/1000);
-        }
-    }
-    if (now - prevScore > 1000) {
-        score += 5 * (scoreScalar * scoreAdditionCoeff);
-        prevScore = now;
-        iter += 0.1;
-    }
-
+    waveone.update(); 
     var i;
     var objectsToRemove = [];
     for (i in blocks) {
