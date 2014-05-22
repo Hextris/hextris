@@ -26,6 +26,14 @@ function Block(lane, color, distFromHex, settled) {
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
+			var lane = MainClock.sides - this.lane;//  -this.position;
+			lane += MainClock.position;
+
+			while (lane < 0) {
+				lane += MainClock.sides;
+			}
+			lane = lane % MainClock.sides;
+
 			this.opacity = this.opacity - 0.03;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
@@ -40,6 +48,7 @@ function Block(lane, color, distFromHex, settled) {
 				if (j < this.parentArr.length) {
 					for (i = j; i < this.parentArr.length; i++) {
 						this.parentArr[i].settled = 0;
+						consolidateBlocks(MainClock,lane,i);
 					}
 				}
 			}
