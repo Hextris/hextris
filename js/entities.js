@@ -26,22 +26,25 @@ function Block(lane, color, distFromHex, settled) {
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
-			this.opacity = this.opacity - .05;
+			this.opacity = this.opacity - 0.05;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
 				var i = 0;
+				var j;
 				for (i = 0; i < this.parentArr.length; i++) {
+					j = i;
 					if (this.parentArr[i] == this) {
 						this.parentArr.splice(i, 1);
 					}
 				}
-
-				for (i = 0; i < this.parentArr.length; i++) {
-					this.parentArr[i].settled = 0;
+				if (j < this.parentArr.length) {
+					for (i = j; i < this.parentArr.length; i++) {
+						this.parentArr[i].settled = 0;
+					}
 				}
 			}
 		}
-	}
+	};
 
 	this.draw = function(attached, index) {
 		this.incrementOpacity();
@@ -85,6 +88,23 @@ function Block(lane, color, distFromHex, settled) {
 		ctx.closePath();
 		ctx.fill();
 
+		if (this.tint) {
+			ctx.fillStyle = "#FFFFFF";
+			ctx.globalAlpha = this.tint;
+			ctx.beginPath();
+			ctx.moveTo(baseX + p1.x, baseY + p1.y);
+			ctx.lineTo(baseX + p2.x, baseY + p2.y);
+			ctx.lineTo(baseX + p3.x, baseY + p3.y);
+			ctx.lineTo(baseX + p4.x, baseY + p4.y);
+			ctx.lineTo(baseX + p1.x, baseY + p1.y);
+			ctx.closePath();
+			ctx.fill();
+			this.tint -= 0.02;
+			if (this.tint < 0) {
+				this.tint = 0;
+			}
+		}
+
 		ctx.globalAlpha = 1;
 	};
 
@@ -115,6 +135,7 @@ function Clock(sideLength) {
 
 	this.addBlock = function(block) {
 		block.settled = 1;
+		block.tint = .6;
 		var lane = this.sides - block.lane;//  -this.position;
 		lane += this.position;
 		while (lane < 0) {
