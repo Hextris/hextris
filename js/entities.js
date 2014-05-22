@@ -56,8 +56,8 @@ function Block(lane, color, distFromHex, settled) {
 	}
 
 	this.draw = function(attached, index) {
-		var xd = (this.settled) ? gdx : 0;
-		var yd = (this.settled) ? gdy : 0;
+		// var xd = (this.settled) ? gdx : 0;
+		// var yd = (this.settled) ? gdy : 0;
 
 		this.incrementOpacity();
 		if(attached == undefined)
@@ -88,8 +88,8 @@ function Block(lane, color, distFromHex, settled) {
 
 		ctx.fillStyle = this.color;
 		ctx.globalAlpha = this.opacity;
-		var baseX = canvas.originalWidth / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + xd;
-		var baseY = canvas.originalHeight / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + yd;
+		var baseX = canvas.originalWidth / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdx;
+		var baseY = canvas.originalHeight / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdy;
 		ctx.beginPath();
 		ctx.moveTo(baseX + p1.x, baseY + p1.y);
 		ctx.lineTo(baseX + p2.x, baseY + p2.y);
