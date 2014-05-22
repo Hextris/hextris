@@ -23,9 +23,16 @@ keypress.register_combo({
 });
 
 keypress.register_combo({
+    keys: "q",
+    on_keydown: function() {
+        toggleDevTools();
+    }
+});
+
+keypress.register_combo({
     keys: "e",
     on_keydown: function() {
-        alert(exportHistory());
+        exportHistory();
     }
 });
 
