@@ -45,9 +45,8 @@ function init() {
     blocks = [];
     MainClock = new Clock(65);
     iter = 1;
-    lastGen = Date.now();
-    prevScore = Date.now();
-    nextGen = 1500;
+    waveone = new waveGen(MainClock,0,[1,1,0],[1,1],[1,1]);
+    console.log(waveone);
     requestAnimFrame(animloop);
 }
 
@@ -89,6 +88,7 @@ function exportHistory() {
 }
 
 function update() {
+<<<<<<< HEAD
     if (importing) {
         if (importedHistory[count]) {
             if (importedHistory[count].block) {
@@ -121,6 +121,10 @@ function update() {
         score += 5 * (scoreScalar * scoreAdditionCoeff);
         prevScore = now;
         iter += 0.1;
+    }
+
+    if (!importing) {
+        waveone.update();
     }
 
     var i;
