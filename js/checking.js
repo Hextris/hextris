@@ -43,8 +43,9 @@ function consolidateBlocks(clock,side,index){
 		var flag =0;
 		for( var j=0;j<clock.blocks[sidesChanged[i]].length;j++) {
 			if(clock.blocks[sidesChanged[i]][j].deleted ==1){
-				clock.blocks[sidesChanged[i]].splice(j,1);
-				j--;
+				// clock.blocks[sidesChanged[i]].splice(j,1);
+				// j--;
+				// Not sure what else to do here - is this even necessary any more?
 				flag=1;
 			}
 			else if(flag==1){
@@ -52,10 +53,10 @@ function consolidateBlocks(clock,side,index){
 			}
 		}
 	}
-	sidesChanged.forEach(function(o) {
-		clock.blocks[o].forEach(function(block) {
-			console.log('unsettled');
-		    block.settled = 0;
-		})
-	});
+	// sidesChanged.forEach(function(o) {
+	// 	clock.blocks[o].forEach(function(block) {
+	// 		console.log('unsettled');
+	// 	    block.settled = 0;
+	// 	})
+	// });
 }

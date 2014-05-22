@@ -12,6 +12,7 @@ function Block(lane, color, distFromHex, settled) {
 	this.deleted = 0;
 	this.tint = 0; //todo
 	this.opacity = 1;
+	this.parentArr;
 
 	if (window.chrome){
 		colorSounds[this.color].load();
@@ -23,13 +24,29 @@ function Block(lane, color, distFromHex, settled) {
 		this.distFromHex = 300;
 	}
 
+	this.incrementOpacity = function() {
+		if (this.deleted) {
+			this.opacity = this.opacity - .05;
+			if (this.opacity <= 0) {
+				this.opacity = 0;
+				var i = 0;
+				for (i = 0; i < this.parentArr.length; i++) {
+					if (this.parentArr[i] == this) {
+						this.parentArr.splice(i, 1);
+					}
+				}
+
+				for (i = 0; i < this.parentArr.length; i++) {
+					this.parentArr[i].settled = 0;
+				}
+			}
+		}
+	}
+
 	this.draw = function(attached, index) {
+		this.incrementOpacity();
 		if(attached == undefined)
 			attached = false;
-
-		// if(attached) {
-		// 	this.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (index-1) * this.height;
-		// }
 
 		if(this.angle > this.targetAngle) {
 			this.angularVelocity -= angularVelocityConst;
@@ -55,6 +72,7 @@ function Block(lane, color, distFromHex, settled) {
 		var p4 = rotatePoint(-this.widthWide / 2, -this.height / 2, this.angle);
 
 		ctx.fillStyle = this.color;
+		ctx.globalAlpha = this.opacity;
 		var baseX = canvas.originalWidth / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
 		var baseY = canvas.originalHeight / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2);
 
@@ -66,6 +84,8 @@ function Block(lane, color, distFromHex, settled) {
 		ctx.lineTo(baseX + p1.x, baseY + p1.y);
 		ctx.closePath();
 		ctx.fill();
+
+		ctx.globalAlpha = 1;
 	};
 
 }
@@ -103,6 +123,7 @@ function Clock(sideLength) {
 		lane = lane % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
+		block.parentArr = this.blocks[lane];
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
 		};
 
