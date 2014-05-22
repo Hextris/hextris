@@ -26,10 +26,5 @@ function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
 			}
 			addNewBlock(this.jumps[0], colors[randInt(0, colors.length)]);
 		}
-		if (now - prevScore > 1000) {
-			score += 5 * (scoreScalar * scoreAdditionCoeff);
-			prevScore = now;
-			iter += 0.1;
-		}
 	}
 }

@@ -134,6 +134,13 @@ function update() {
 
     if (!importing) {
         waveone.update();
+	var now = Date.now();
+	if (now - waveone.prevScore > 1000) {
+		score += 5 * (scoreScalar * scoreAdditionCoeff);
+		waveone.prevScore = now;
+		iter += 0.1;
+	}
+
     }
 
     var i;
@@ -142,7 +149,7 @@ function update() {
         MainClock.doesBlockCollide(blocks[i], iter);
         if (!blocks[i].settled) {
             blocks[i].distFromHex -= iter;
-        } else {
+        } else if(!blocks[i].removed){
             blocks[i].removed = 1;
         }
     }
