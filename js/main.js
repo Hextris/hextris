@@ -2,7 +2,7 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 canvas.originalHeight = canvas.height;
 canvas.originalWidth = canvas.width;
-
+var count = 0;
 if (window.devicePixelRatio) {
     canvas.width *= window.devicePixelRatio;
     canvas.height *= window.devicePixelRatio;
@@ -17,12 +17,10 @@ window.requestAnimFrame = (function() {
 
 var gameState = 0; // 0 - start, 1 - playing, 2 - end
 var framerate = 60;
-
+var history = {};
 var score = 0;
 var scoreScalar = 1;
 var scoreAdditionCoeff = 1;
-
-ct = 0;
 
 var blocks = [];
 var MainClock;
@@ -32,13 +30,18 @@ var lastGen;
 var prevScore;
 var nextGen;
 var spawnLane = 0;
+var importing = 0;
+var importedHistory;
 
 function init() {
+    history = {};
+    importedHistory = undefined;
+    importing = 0;
     score = 0;
     spawnLane = 0;
     scoreScalar = 1;
     gameState = 1;
-    ct = 0;
+    count = 0;
     blocks = [];
     MainClock = new Clock(65);
     iter = 1;
@@ -48,10 +51,62 @@ function init() {
     requestAnimFrame(animloop);
 }
 
+function addNewBlock(blocklane, color, distFromHex, settled) { //last two are optional parameters
+    if (!history[count]) {
+        history[count] = {};
+    }
+
+    history[count].block = {
+        blocklane:blocklane,
+        color:color
+    };
+
+    if (distFromHex) {
+        history[count].distFromHex = distFromHex;
+    }
+    if (settled) {
+        blockHist[count].settled = settled;
+    }
+
+    blocks.push(new Block(blocklane, color, distFromHex, settled));
+}
+
+function importHistory() {
+    try {
+        init();
+        importedHistory = JSON.parse(prompt("Import JSON"));
+        if (importedHistory) {
+            importing = 1;
+        }
+    }
+    catch (e) {
+        alert("Error importing JSON");
+    }
+}
+
+function exportHistory() {
+    return JSON.stringify(history);
+}
+
 function update() {
+    if (importing) {
+        if (importedHistory[count]) {
+            if (importedHistory[count].block) {
+                addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color,importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
+            }
+    
+            if (importedHistory[count].rotate) {
+                MainClock.rotate(importedHistory[count].rotate);
+            }
+        }
+    }
+
     var now = Date.now();
     if (now - lastGen > nextGen) {
-        blocks.push(new Block(spawnLane, colors[randInt(0, colors.length)]));
+        if (!importing) {
+            addNewBlock(spawnLane, colors[randInt(0, colors.length)]);
+        }
+
         spawnLane++;
         lastGen = Date.now();
         var minTime = 500 / iter;
@@ -92,6 +147,8 @@ function update() {
     objectsToRemove.forEach(function(o) {
         blocks.splice(o, 1);
     });
+
+    count++;
 }
 
 function render() {
