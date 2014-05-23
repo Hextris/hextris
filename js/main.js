@@ -28,8 +28,9 @@ var score = 0;
 var scoreScalar = 1;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
-// var numHighScores = 3;
-var highscores = [12312];
+var numHighScores = 3;
+var highscores = localStorage.getItem('highscores').split(',').map(Number) || [0, 0, 0];
+localStorage.setItem('highscores', highscores);
 
 var blocks = [];
 var MainClock;
@@ -218,6 +219,17 @@ function animloop() {
 	else if (gameState == 2) {
 		if (checkGameOver()) {
 			showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
+			highscores = localStorage.getItem('highscores').split(',').map(Number);
+			for (var i = 0; i < numHighScores; i++) {
+				if (highscores[i] < score) {
+					for (var j = numHighScores - 1; j > i; j--) {
+						highscores[j] = highscores[j - 1];
+					}
+					highscores[i] = score;
+					break;
+				}
+			}
+			localStorage.setItem('highscores', highscores);
 		}
 		else {
 			gameState = 1;
