@@ -16,9 +16,19 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-        if (gameState != 1) {
+        if (Math.abs(gameState) != 1) {
             init();
         }
+    }
+});
+
+keypress.register_combo({
+    keys: "p",
+    on_keydown: function() {
+        if (Math.abs(gameState) == 1) {
+            gameState = -gameState;
+        }
+        requestAnimFrame(animloop);
     }
 });
 
