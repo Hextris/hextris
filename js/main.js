@@ -29,7 +29,11 @@ var scoreScalar = 1;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
-var highscores = localStorage.getItem('highscores').split(',').map(Number) || [0, 0, 0];
+
+var highscores = [0, 0, 0]
+if(localStorage.getItem('highscores'))
+    highscores = localStorage.getItem('highscores').split(',').map(Number);
+
 localStorage.setItem('highscores', highscores);
 
 var blocks = [];
