@@ -35,11 +35,12 @@
 </head>
 <body>
     <ul class='navbar'>
-        <li><button>High Scores</button></li>
+        <li><button onclick='showHighScores()'>High Scores</button></li>
         <li id='title'>Hextris</li>
-        <li><button>Help</button></li>
+        <li><button onclick='showHelp()'>Help</button></li>
     </ul>
     <div id='score'> Score: --- </div>
+    <div id='highscores' class='not-visible'></div>
     <!-- <div style="margin: 1vmin auto 0 auto; width: 100%; text-align: center; margin-top: 5vmin;"> -->
     <!-- <h1 style="color: #ecf0f1; font-size: 5vmin;">Hextris</h1> -->
     <!-- </div> -->

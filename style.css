@@ -20,6 +20,13 @@
 	text-align: center;
 	width: 100%;
 }
+#highscores {
+	text-align: center;
+	list-style: none;
+}
+.not-visible {
+	display: none;
+}
 button {
 	color: #ecf0f1;
 	background-color: rgba(0,0,0,0);

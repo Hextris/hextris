@@ -28,6 +28,8 @@ var score = 0;
 var scoreScalar = 1;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
+// var numHighScores = 3;
+var highscores = [12312];
 
 var blocks = [];
 var MainClock;
