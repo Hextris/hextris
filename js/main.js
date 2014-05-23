@@ -49,6 +49,7 @@ var nextGen;
 var spawnLane = 0;
 var importing = 0;
 var importedHistory;
+var startTime;
 
 function init() {
 	history = {};
@@ -58,14 +59,16 @@ function init() {
 	prevScore = 0;
 	spawnLane = 0;
 	scoreScalar = 1;
-	gameState = 1;
+	gameState = -2;
 	count = 0;
 	blocks = [];
 	MainClock = new Clock(65);
+	MainClock.y = -100;
 	iter = 1;
+	startTime = Date.now();
 	waveone = new waveGen(MainClock,0,[1,1,0],[1,1],[1,1]);
 	console.log(waveone);
-	requestAnimFrame(animloop);
+	requestAnimFrame(animLoop);
 }
 
 function addNewBlock(blocklane, color, distFromHex, settled) { //last two are optional parameters
@@ -188,8 +191,6 @@ function update() {
 function render() {
 	ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
 	clearGameBoard();
-	// renderText(score + " (x" + scoreScalar * scoreAdditionCoeff + ")", canvas.originalWidth/2, canvas.originalHeight/2 - 360);
-
 	var i;
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
@@ -203,23 +204,53 @@ function render() {
 	}
 
 	MainClock.draw();
-	drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, 220, 30, '#95a5a6', false);
+	drawPolygon(canvas.originalWidth / 2, MainClock.y + MainClock.dy, 6, 220, 30, '#95a5a6', false);
 }
 
-function animloop() {
-	if (gameState === 0) {
-		clearGameBoard();
-		showModal('Start!', 'Press enter to start!');
-	} 
-	else if (gameState == -1) {
-		showModal('Paused!', 'Press "P" to continue.');
+function stepInitialLoad() {
+	var dur = 1300;
+	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.height/2, dur);
+	if (Date.now() - startTime > dur) {
+		MainClock.dy = 0;
+		MainClock.y = canvas.height/2;
+		gameState = 1;
+	} else {
+		MainClock.dy = dy;
 	}
-	else if (gameState == 1) {
-		requestAnimFrame(animloop);
+}
+
+//t: current time, b: begInnIng value, c: change In value, d: duration
+function getStepDY(t, b, c, d) {
+	if ((t/=d) < (1/2.75)) {
+		return c*(7.5625*t*t) + b;
+	} else if (t < (2/2.75)) {
+		return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
+	} else if (t < (2.5/2.75)) {
+		return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
+	} else {
+		return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
+	}
+};
+
+function animLoop() {
+	if (gameState == 1) {
+		requestAnimFrame(animLoop);
 		update();
 		render();
 		checkGameOver();
 	} 
+	else if (gameState === 0) {
+		clearGameBoard();
+		showModal('Start!', 'Press enter to start!');
+	}
+	else if (gameState == -2) { //initialization screen just before starting
+		requestAnimFrame(animLoop);
+		stepInitialLoad();
+		render();
+	}
+	else if (gameState == -1) {
+		showModal('Paused!', 'Press "P" to continue.');
+	}
 	else if (gameState == 2) {
 		if (checkGameOver()) {
 			showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
@@ -240,7 +271,7 @@ function animloop() {
 		}
 	}
 }
-requestAnimFrame(animloop);
+requestAnimFrame(animLoop);
 
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {

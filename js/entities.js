@@ -134,6 +134,7 @@ function Clock(sideLength) {
 	this.fillColor = '#2c3e50';
 	this.angularVelocity = 0;
 	this.position = 0;
+	this.dy = 0;
 	this.sides = 6;
 	this.blocks = [];
 	this.angle = 180 / this.sides;
@@ -274,7 +275,7 @@ function Clock(sideLength) {
 		}
 		ctx.shadowColor = '#2980b9';
 		ctx.shadowBlur = 15;
-		drawPolygon(this.x + gdx, this.y + gdy, this.sides, this.sideLength, this.angle, this.fillColor);
+		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor);
 		clearShadows();
 	};
 }
