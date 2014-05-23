@@ -22,28 +22,28 @@
         </style>
     </head>
     <body style="background-color:#2c3e50">
+        <div style="margin: 1vmin auto 0 auto; width: 100%; text-align: center;">
+            <h1 style="color: #ecf0f1; font-size: 10vmin;">Hextris</h1>
+        </div>
 
-    <div style="margin: 1vmin auto 0 auto; width: 100%; text-align: center;">
-        <h1 style="color: #ecf0f1; font-size: 10vmin;">Hextris</h1>
-    </div>
+        <canvas id="canvas" width="800" height="800" style="position: absolute; left: calc(50% - 80vmin / 2); height: 80vmin; width: 80vmin; background: -webkit-radial-gradient(#2980b9 35%,rgba(44,62,80,50) 68%);"></canvas>
 
-    <canvas id="canvas" width="800" height="800" style="position: absolute; left: calc(50% - 80vmin / 2); height: 80vmin; width: 80vmin; background: -webkit-radial-gradient(#2980b9 35%,rgba(44,62,80,50) 68%);"></canvas>
-
-    <div id="leftTap" style="position: absolute; left: 0; top: 0; height: 100%; width: 50%;"></div>
-    <div id="rightTap" style="position: absolute; right: 0; top: 0; height :100%; width: 50%;"></div>
-    <div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
-        <h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
-        <textarea id ='devtoolsText' style = 'height:300px;width:400px;'></textarea>
-    </div>
-    <script type = 'text/javascript' src="vendor/hammer.min.js"></script>
-    <script type = 'text/javascript' src="vendor/keypress.min.js"></script>
-    <script type = 'text/javascript' src="vendor/jquery.js"></script>
-    <script type = 'text/javascript' src="js/view.js"></script>
-    <script type = 'text/javascript' src="js/wavegen.js"></script>
-    <script type = 'text/javascript' src="js/math.js"></script>
-    <script type = 'text/javascript' src="js/entities.js"></script>
-    <script type = 'text/javascript' src="js/input.js"></script>
-    <script type = 'text/javascript' src="js/checking.js"></script>
-    <script type = 'text/javascript' src="js/main.js"></script>
+        <div id="leftTap" style="position: absolute; left: 0; top: 0; height: 100%; width: 50%;"></div>
+        <div id="rightTap" style="position: absolute; right: 0; top: 0; height :100%; width: 50%;"></div>
+        <div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
+            <h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
+            <textarea id ='devtoolsText' style = 'height:300px;width:400px;'></textarea>
+        </div>
+        <script type = 'text/javascript' src="vendor/hammer.min.js"></script>
+        <script type = 'text/javascript' src="vendor/keypress.min.js"></script>
+        <script type = 'text/javascript' src="vendor/jquery.js"></script>
+        <script type = 'text/javascript' src="js/view.js"></script>
+        <script type = 'text/javascript' src="js/wavegen.js"></script>
+        <script type = 'text/javascript' src="js/math.js"></script>
+        <script type = 'text/javascript' src="js/entities.js"></script>
+        <script type = 'text/javascript' src="js/input.js"></script>
+        <script type = 'text/javascript' src="js/checking.js"></script>
+        <script type = 'text/javascript' src="js/main.js"></script>
+        <script type = 'text/javascript' src="js/analytics.js"></script>
     </body>
 </html>
