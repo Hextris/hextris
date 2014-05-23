@@ -58,14 +58,14 @@ var tapRight = Hammer(document.getElementById("rightTap")).on("tap", function(ev
     MainClock.rotate(-1);
 });
 
-keypress.register_combo({
-    keys: "space",
-    on_keyup: function() {
-        iter = 1;
-        scoreAdditionCoeff = 1;
-    },
-    on_keydown: function() {
-        iter = 2;
-        scoreAdditionCoeff = 2;
-    }
-});
+// keypress.register_combo({
+//     keys: "space",
+//     on_keyup: function() {
+//         iter = 1; // <- 1337 hax that reset speed anywhere in the game
+//         scoreAdditionCoeff = 1;
+//     },
+//     on_keydown: function() {
+//         iter = 2;
+//         scoreAdditionCoeff = 2;
+//     }
+// });
