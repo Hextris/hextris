@@ -31,7 +31,7 @@ function Block(lane, color, distFromHex, settled) {
 			}
 			lane = lane % MainClock.sides;
 
-			this.opacity = this.opacity - 0.03;
+			this.opacity = this.opacity - 0.1;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
 				var i = 0;
