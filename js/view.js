@@ -87,3 +87,23 @@ function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more
         ctx.stroke();
     }
 };
+
+function showHighScores() {
+    $('#highscores').html(function() {
+        var str = '<li> High Scores: </li>';
+        for (var i = 0; i < highscores.length; i++) {
+            str += '<li>' + highscores[i]+ '</li>';
+        }
+        return str;
+    });
+    toggleClass('#highscores', 'not-visible');
+}
+
+function toggleClass(element, active) {
+    if ($(element).hasClass(active)) {
+        $(element).removeClass(active);
+    }
+    else {
+        $(element).addClass(active);
+    }
+}
