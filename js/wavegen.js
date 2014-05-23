@@ -1,6 +1,6 @@
 function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
 	this.lastGen = Date.now();
-	this.prevScore = Date.now();
+	this.prevTimeScored = Date.now();
 	this.nextGen = 1500;
 	this.start = start;
 	this.jumps = jumps;

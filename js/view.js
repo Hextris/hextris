@@ -9,12 +9,12 @@ function showModal(text, secondaryText) {
     var fontSizeSmall = 25;
     drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColorClear);
     // drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, buttonSize, 30, swegBlue);
-    ctx.font = fontSizeLarge + 'px Roboto'; // figure out what is not working
+    ctx.font = fontSizeLarge + 'px Helvetica'; // figure out what is not working
     ctx.textAlign = 'center';
     ctx.fillStyle = centerBlue;
     // ctx.fillStyle = hexagonBackgroundColor;
     ctx.fillText(text, canvas.originalWidth / 2, canvas.originalHeight / 2 + (fontSizeLarge / 4));
-    ctx.font = fontSizeSmall + 'px Roboto';
+    ctx.font = fontSizeSmall + 'px Helvetica';
     ctx.fillText(secondaryText, canvas.originalWidth / 2, canvas.originalHeight / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
@@ -34,6 +34,9 @@ function renderText(lines, x, y, fontSize) {
     }
 }
 
+function updateScoreboard() {
+    $('#score').html('Score: '+score + " (x" + scoreScalar * scoreAdditionCoeff + ")");
+}
 
 function clearShadows() {
     ctx.shadowColor = 0;
