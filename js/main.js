@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	debugger;
+});
+
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 canvas.originalHeight = canvas.height;
@@ -230,7 +234,7 @@ function getStepDY(t, b, c, d) {
 	} else {
 		return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
 	}
-};
+}
 
 function animLoop() {
 	if (gameState == 1) {
@@ -238,7 +242,7 @@ function animLoop() {
 		update();
 		render();
 		checkGameOver();
-	} 
+	}
 	else if (gameState === 0) {
 		clearGameBoard();
 		showModal('Start!', 'Press enter to start!');
