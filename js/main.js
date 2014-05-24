@@ -135,7 +135,7 @@ function update() {
 
 		}
 	}
-	else {
+	else if (gameState == 1) {
 		waveone.update();
 		if (now - waveone.prevTimeScored > 1000) {
 			score += 5 * (scoreScalar * scoreAdditionCoeff);
@@ -154,15 +154,41 @@ function update() {
 		}
 	}
 
+	var lDI;
+	for (i = 0; i < MainClock.blocks.length; i++) {
+		lDI = 99;
+		for (j = 0; j < MainClock.blocks[i].length; j++) {
+			block = MainClock.blocks[i][j];
+			if (block.deleted == 2) {
+				debugger;
+				MainClock.blocks[i].splice(j,1);
+				if (j < lDI) lDI = j;
+				j--;
+			}
+		}
+
+		if (lDI < MainClock.blocks[i].length) {
+			debugger;
+			for (var q = lDI; q < MainClock.blocks[i].length; q++) {
+				debugger;
+				MainClock.blocks[i][q].settled = 0;
+			}
+		}
+	}
+
+	var block;
+	var j;
 	for (i in MainClock.blocks) {
-		for (var j = 0; j < MainClock.blocks[i].length; j++) {
-			var block = MainClock.blocks[i][j];
+		for (j = 0; j < MainClock.blocks[i].length; j++) {
+			block = MainClock.blocks[i][j];
 			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
+
 			if (!MainClock.blocks[i][j].settled) {
 				MainClock.blocks[i][j].distFromHex -= block.iter;
 			}
 		}
 	}
+
 	for(i=0;i<blocks.length;i++){
 		if(blocks[i].removed == 1){
 			blocks.splice(i,1);

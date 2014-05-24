@@ -35,16 +35,10 @@ function Block(lane, color, iter, distFromHex, settled) {
 			this.opacity = this.opacity - 0.1;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
-				var i = 0;
-				var j = this.getIndex();
-				this.parentArr.splice(j,1);
-				if (j < this.parentArr.length) {
-					for (i = j; i < this.parentArr.length; i++) {
-						this.parentArr[i].settled = 0;
-					}
-				}
+				this.deleted = 2;
 			}
 		}
+
 		if(!this.deleted && this.opacity < 1){
 			this.opacity = this.opacity + 0.05;
 		}
@@ -136,32 +130,6 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 		ctx.globalAlpha = 1;
 	};
-	this.incrementOpacity = function() {
-		if (this.deleted) {
-			var lane = MainClock.sides - this.lane;//  -this.position;
-			lane += MainClock.position;
-
-			lane = (lane+MainClock.sides) % MainClock.sides;
-
-			this.opacity = this.opacity - 0.1;
-			if (this.opacity <= 0) {
-				this.opacity = 0;
-				var i = 0;
-				var j = this.getIndex();
-				this.parentArr.splice(j,1);
-				if (j < this.parentArr.length) {
-					for (i = j; i < this.parentArr.length; i++) {
-						this.parentArr[i].settled = 0;
-					}
-				}
-			}
-		}
-		if(!this.deleted && this.opacity<1){
-			this.opacity = this.opacity + 0.05;
-		}
-	};
-
-
 }
 
 // t: current time, b: begInnIng value, c: change In value, d: duration
@@ -239,16 +207,23 @@ function Clock(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				if (block.distFromHex + block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				debugger;
+				if (block.distFromHex - block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					consolidateBlocks(this, lane, block.getIndex());
+				} else {
+					block.settled = 0;
 				}
 			} else {
-				if (block.distFromHex + block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+				if (arr[position - 1].settled && block.distFromHex - block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+					debugger;
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					consolidateBlocks(this, lane, block.getIndex());
+				}
+				else {
+					block.settled = 0;
 				}
 			}
 		} else {
