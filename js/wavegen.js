@@ -1,32 +1,49 @@
-function waveGen(clock, start, jumps, simultaneousShots, colorJumps) {
+// In each generator function you need a few things
+// Something defining when the next block is being generated
+// Something defining which and when the next function is going to be passed
+
+function waveGen(clock) {
 	this.lastGen = Date.now();
-	this.prevTimeScored = Date.now();
-	this.nextGen = 1500;
-	this.start = start;
-	this.jumps = jumps;
-	this.simultaneousShots = simultaneousShots;
+	this.nextGen = 1500; // - 1500; //delay before starting
+	this.start = Date.now();
 	this.colors = colors;
 	this.clock = clock;
+	this.difficulty = 0;
+	
 	this.update = function() {
+		if (this.difficulty < 15) {
+			this.difficulty = Math.floor((Date.now() - this.start)/10000); // every 20 seconds raise the difficulty
+		}
+		debugger;
+		this.currentFunction();
+	};
+
+	this.randomGeneration = function() {
 		var now = Date.now();
 		if (now - this.lastGen > this.nextGen) {
-			// for(var i=this.jumps.length-1;i>0;i--) {
-			// 	this.jumps[i-1] = (this.jumps[i-1]+this.jumps[i])%this.clock.sides;
-			// }
-			// for(var i=this.simultaneousShots.length-1;i>0;i--) {
-			// 	this.simultaneousShots[i-1] = (this.simultaneousShots[i-1]+this.simultaneousShots[i])%this.clock.sides;
-			// }
-			this.lastGen = Date.now();
-			var minTime = 500 / iter;
-			if (minTime < 100) {
-			    minTime = 100;
-			}
-			if(this.nextGen > 400){
-			    this.nextGen -= 10 * ((this.nextGen - 200)/1000);
+			this.lastGen = now;
+			if (this.nextGen > 500)	{
+				this.nextGen -=  10 * ((this.nextGen - 200)/1000);
 			}
 			var fv = randInt(0, 6);
-			addNewBlock(fv, colors[randInt(0, colors.length)]);
-			addNewBlock((fv + 1) % 6, colors[randInt(0, colors.length)]);
+			addNewBlock(fv, colors[randInt(0, colors.length)], 1 + (this.difficulty/15) * 3);
+
+			// var nextPattern = randInt(0, 6)
+			// if () {
+			// 	this.currentFunction = this.
+			// }
 		}
-	}
+	};
+
+	// rest of generation functions
+
+	this.currentFunction = this.randomGeneration;
 }
+
+function generatorFunction() {
+	
+}
+
+// In each generator function you need a few things
+// Something defining when the next block is being generated
+// Something defining which and when the next function is going to be passed

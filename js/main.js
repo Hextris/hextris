@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	debugger;
+	//some sort loading anim until this point
 });
 
 var canvas = document.getElementById('canvas');
@@ -25,7 +25,7 @@ function toggleDevTools() {
 	$('#devtools').toggle();
 }
 
-var gameState = 0; // 0 - start, 1 - playing, 2 - end, -1 - paused
+var gameState = 0;
 var framerate = 60;
 var history = {};
 var score = 0;
@@ -34,7 +34,7 @@ var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
 
-var highscores = [0, 0, 0]
+var highscores = [0, 0, 0];
 if(localStorage.getItem('highscores'))
     highscores = localStorage.getItem('highscores').split(',').map(Number);
 
@@ -42,7 +42,6 @@ localStorage.setItem('highscores', highscores);
 
 var blocks = [];
 var MainClock;
-var iter;
 
 var gdx = 0;
 var gdy = 0;
@@ -68,14 +67,13 @@ function init() {
 	blocks = [];
 	MainClock = new Clock(65);
 	MainClock.y = -100;
-	iter = 1;
 	startTime = Date.now();
-	waveone = new waveGen(MainClock,0,[1,1,0],[1,1],[1,1]);
+	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	console.log(waveone);
 	requestAnimFrame(animLoop);
 }
 
-function addNewBlock(blocklane, color, distFromHex, settled) { //last two are optional parameters
+function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
 	if (!history[count]) {
 		history[count] = {};
 	}
@@ -92,15 +90,15 @@ function addNewBlock(blocklane, color, distFromHex, settled) { //last two are op
 		blockHist[count].settled = settled;
 	}
 
-	blocks.push(new Block(blocklane, color, distFromHex, settled));
+	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
 }
 
 function importHistory() {
 	try {
-		init();
 		importedHistory = JSON.parse(prompt("Import JSON"));
 		if (importedHistory) {
 			importing = 1;
+			init();
 		}
 	}
 	catch (e) {
@@ -113,11 +111,12 @@ function exportHistory() {
 	toggleDevTools();
 }
 
+//remember to update history function to show the respective iter speeds
 function update() {
 	if (importing) {
 		if (importedHistory[count]) {
 			if (importedHistory[count].block) {
-				addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color,importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
+				addNewBlock(importedHistory[count].block.blocklane, 1, importedHistory[count].block.color,importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
 			}
 
 			if (importedHistory[count].rotate) {
@@ -127,43 +126,26 @@ function update() {
 	}
 
 	var now = Date.now();
-	if (now - lastGen > nextGen) {
-		if (!importing) {
-			addNewBlock(spawnLane, colors[randInt(0, colors.length)]);
-		}
-
-		spawnLane++;
-		lastGen = Date.now();
-		var minTime = 500 / iter;
-		if (minTime < 100) {
-			minTime = 100;
-		}
-		if(nextGen > 400){
-			nextGen -= 10 * ((nextGen - 200)/1000);
-		}
-	}
+	
 	if (now - prevTimeScored > 1000) {
 		score += 5 * (scoreScalar * scoreAdditionCoeff);
 		prevTimeScored = now;
-		iter += 0.1;
 	}
 
 	if (!importing) {
 		waveone.update();
-		var now = Date.now();
 		if (now - waveone.prevTimeScored > 1000) {
 			score += 5 * (scoreScalar * scoreAdditionCoeff);
 			waveone.prevTimeScored = now;
-			iter += 0.1;
 		}
 	}
 
 	var i;
 	var objectsToRemove = [];
 	for (i in blocks) {
-		MainClock.doesBlockCollide(blocks[i], iter);
+		MainClock.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
-			blocks[i].distFromHex -= iter;
+			blocks[i].distFromHex -= blocks[i].iter;
 		} else if(!blocks[i].removed){
 			blocks[i].removed = 1;
 		}
@@ -172,13 +154,13 @@ function update() {
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, iter, j, MainClock.blocks[i]);
+			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
 			if (!MainClock.blocks[i][j].settled) {
-				MainClock.blocks[i][j].distFromHex -= iter;
+				MainClock.blocks[i][j].distFromHex -= block.iter;
 			}
 		}
 	}
-	for(var i=0;i<blocks.length;i++){
+	for(i=0;i<blocks.length;i++){
 		if(blocks[i].removed == 1){
 			blocks.splice(i,1);
 			i--;
@@ -189,7 +171,7 @@ function update() {
 	if (score != prevScore) {
 		updateScoreboard();
 		prevScore = score;
-	} 
+	}
 }
 
 function render() {
