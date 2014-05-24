@@ -135,7 +135,7 @@ function update() {
 
 		}
 	}
-	else {
+	else if (gameState == 1) {
 		waveone.update();
 		if (now - waveone.prevTimeScored > 1000) {
 			score += 5 * (scoreScalar * scoreAdditionCoeff);
