@@ -89,7 +89,6 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 	if (settled) {
 		blockHist[count].settled = settled;
 	}
-
 	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
 }
 
