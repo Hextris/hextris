@@ -251,11 +251,11 @@ function animLoop() {
 	}
 	else if (gameState == 2) { // fix so that it clears blocks then checks for game over
 		// if (checkGameOver()) {
-		if (MainClock.angle != MainClock.targetAngle) {
+		// if (MainClock.angle != MainClock.targetAngle) {
 			requestAnimFrame(animLoop);
-			update();
+			update(); // score will keep incrementing at gameover
 			render();
-		}
+		// }
 			// checkGameOver();
 			showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
 			highscores = localStorage.getItem('highscores').split(',').map(Number);
