@@ -179,6 +179,7 @@ function update() {
 function render() {
 	ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
 	clearGameBoard();
+	drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, 'lightgrey', 0, 'rgba(0,0,0,0)');
 	var i;
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
@@ -192,7 +193,7 @@ function render() {
 	}
 
 	MainClock.draw();
-	drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#BDA0CB', false,6);
+	// drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#BDA0CB', false,6);
 }
 
 function stepInitialLoad() {
