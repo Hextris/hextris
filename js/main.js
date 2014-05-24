@@ -192,7 +192,7 @@ function render() {
 	}
 
 	MainClock.draw();
-	drawPolygon(canvas.originalWidth / 2, MainClock.y + MainClock.dy, 6, 220, 30, '#95a5a6', false);
+	drawPolygon(canvas.originalWidth / 2, MainClock.y + MainClock.dy, 6, 220, 30, '#1abc9c', false,6);
 }
 
 function stepInitialLoad() {
