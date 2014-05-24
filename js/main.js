@@ -24,7 +24,6 @@ $('#clickToExit').bind('click', toggleDevTools);
 function toggleDevTools() {
 	$('#devtools').toggle();
 }
-
 var gameState = 0;
 var framerate = 60;
 var history = {};
@@ -270,3 +269,8 @@ function checkGameOver() {
 	}
 	return false;
 }
+window.onblur = function (e) {
+	gameState=-1;	
+}
+
+
