@@ -16,15 +16,15 @@ function waveGen(clock) {
 	this.update = function() {
 		this.currentFunction();
 		this.dt += 16.6666667;
-	};
-
-	this.randomGeneration = function() {
 		this.computeDifficulty();
 		if (this.dt - this.lastGen > this.nextGen) {
 			if (this.nextGen > 1000) {
-				this.nextGen -=  4;
+				this.nextGen -=  3 * (this.nextGen/1300);
 			}
 		}
+	};
+
+	this.randomGeneration = function() {
 		if (this.dt - this.lastGen > this.nextGen) {
 			this.ct++;
 			this.lastGen = this.dt;
@@ -94,7 +94,7 @@ function waveGen(clock) {
 	};
 
 	this.crosswiseGeneration = function() {
-		if (this.dt - this.lastGen > this.nextGen + 300) {
+		if (this.dt - this.lastGen > this.nextGen) {
 			var ri = randInt(0, colors.length);
 			var i = randInt(0, colors.length);
 			addNewBlock(i, colors[ri], 0.6 + (this.integerDifficulty/15) * 3);
