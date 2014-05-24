@@ -146,8 +146,7 @@ function update() {
 	var objectsToRemove = [];
 	for (i in blocks) {
 		MainClock.doesBlockCollide(blocks[i]);
-		if (!blocks[i].settled && !blocks[i].initializing) {
-			debugger;
+		if (!blocks[i].settled) {
 			blocks[i].distFromHex -= blocks[i].iter;
 		} else if(!blocks[i].removed){
 			blocks[i].removed = 1;
@@ -189,12 +188,11 @@ function render() {
 	}
 
 	for (i in blocks) {
-		debugger;
 		blocks[i].draw();
 	}
 
 	MainClock.draw();
-	drawPolygon(canvas.originalWidth / 2, MainClock.y + MainClock.dy, 6, 220, 30, '#95a5a6', false);
+	drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#BDA0CB', false,6);
 }
 
 function stepInitialLoad() {
