@@ -1,6 +1,6 @@
 var angularVelocityConst = 4;
 
-function Block(lane, color, distFromHex, settled) {
+function Block(lane, color, iter, distFromHex, settled) {
 	this.settled = (settled === undefined) ? 0 : 1;
 	this.height = 15;
 	this.width = 65;
@@ -14,6 +14,7 @@ function Block(lane, color, distFromHex, settled) {
 	this.tint = 0; //todo
 	this.opacity = 1;
 	this.parentArr;
+	this.iter = iter;
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
@@ -39,7 +40,6 @@ function Block(lane, color, distFromHex, settled) {
 				this.parentArr.splice(j,1);
 				if (j < this.parentArr.length) {
 					for (i = j; i < this.parentArr.length; i++) {
-		
 						this.parentArr[i].settled = 0;
 					}
 				}
@@ -182,7 +182,7 @@ function Clock(sideLength) {
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
 	};
 
-	this.doesBlockCollide = function(block, iter, position, tArr) {
+	this.doesBlockCollide = function(block, position, tArr) {
 		if (block.settled) {
 			return;
 		}
@@ -199,13 +199,14 @@ function Clock(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				if (block.distFromHex + iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex + block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					consolidateBlocks(this, lane, block.getIndex());
 				}
 			} else {
-				if (block.distFromHex + iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+				debugger;
+				if (block.distFromHex + block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					consolidateBlocks(this, lane, block.getIndex());
@@ -213,12 +214,12 @@ function Clock(sideLength) {
 			}
 		} else {
 			if (arr.length > 0) {
-				if (block.distFromHex + iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				if (block.distFromHex + block.iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
 			} else {
-				if (block.distFromHex + iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex + block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
 				}

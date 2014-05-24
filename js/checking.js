@@ -15,7 +15,7 @@ function floodFill(clock,side,index) {
 			if(Math.abs(x)==Math.abs(y)){continue;}
 			if(clock.blocks[(side+x+clock.sides)%clock.sides] === undefined){continue;}
 			if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y] !== undefined){
-				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color== color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) == false){
+				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color == color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) === false) {
 					deleting.push([(side+x+clock.sides)%clock.sides,index+y]);
 					floodFill(clock,(side+x+clock.sides)%clock.sides,index+y);
 				}
