@@ -28,7 +28,7 @@ keypress.register_combo({
         if (Math.abs(gameState) == 1) {
             gameState = -gameState;
         }
-        requestAnimFrame(animloop);
+        requestAnimFrame(animLoop);
     }
 });
 
