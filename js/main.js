@@ -35,7 +35,7 @@ var numHighScores = 3;
 
 var highscores = [0, 0, 0];
 if(localStorage.getItem('highscores'))
-    highscores = localStorage.getItem('highscores').split(',').map(Number);
+	highscores = localStorage.getItem('highscores').split(',').map(Number);
 
 localStorage.setItem('highscores', highscores);
 
@@ -240,8 +240,12 @@ function animLoop() {
 	else if (gameState == -1) {
 		showModal('Paused!', 'Press "P" to continue.');
 	}
-	else if (gameState == 2) {
-		if (checkGameOver()) {
+	else if (gameState == 2) { // fix so that it clears blocks then checks for game over
+		// if (checkGameOver()) {
+			requestAnimFrame(animLoop);
+			update();
+			render();
+			checkGameOver();
 			showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
 			highscores = localStorage.getItem('highscores').split(',').map(Number);
 			for (var i = 0; i < numHighScores; i++) {
@@ -256,9 +260,9 @@ function animLoop() {
 			localStorage.setItem('highscores', highscores);
 		}
 		else {
-			gameState = 1;
+			gameState = 0;
 		}
-	}
+	// }
 }
 requestAnimFrame(animLoop);
 
@@ -272,7 +276,7 @@ function checkGameOver() {
 	return false;
 }
 window.onblur = function (e) {
-	gameState=-1;	
+	if (gameState == 1) gameState = -1;	
 }
 
 
