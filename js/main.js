@@ -24,6 +24,7 @@ $('#clickToExit').bind('click', toggleDevTools);
 function toggleDevTools() {
 	$('#devtools').toggle();
 }
+var firstTime = 1;
 var gameState = 0;
 var framerate = 60;
 var history = {};
@@ -69,7 +70,10 @@ function init() {
 	startTime = Date.now();
 	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	console.log(waveone);
-	requestAnimFrame(animLoop);
+	if (firstTime) {
+		firstTime = 0;
+		requestAnimFrame(animLoop);
+	}
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
