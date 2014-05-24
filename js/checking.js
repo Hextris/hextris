@@ -29,7 +29,6 @@ function floodFill(clock,side,index,deleting) {
 }
 
 function consolidateBlocks(clock,side,index){
-	debugger;
 	var sidesChanged =[];
 	var deleting=[];
 	deleting.push([side,index]);
