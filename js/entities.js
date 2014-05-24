@@ -17,7 +17,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.ct = 0;
 	this.parentArr;
 	this.iter = iter;
-	this.initLen = 5;
+	this.initLen = 9;
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
