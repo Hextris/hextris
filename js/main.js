@@ -178,7 +178,18 @@ function update() {
 function render() {
 	ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
 	clearGameBoard();
-	
+
+	if (gameState == -2) {
+		if (Date.now() - startTime > 1300) {
+			var op = (Date.now() - startTime - 1300)/500;
+			ctx.globalAlpha = op;
+			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, "#bdc3c7", false,6);
+			ctx.globalAlpha = 1;
+		}
+	} else {
+		drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#bdc3c7', false,6);
+	}
+
 	var i;
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
@@ -192,17 +203,6 @@ function render() {
 	}
 
 	MainClock.draw();
-
-	if (gameState == -2) {
-		if (Date.now() - startTime > 1300) {
-			var op = (Date.now() - startTime - 1300)/500;
-			ctx.globalAlpha = op;
-			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, "#bdc3c7", false,6);
-			ctx.globalAlpha = 1;
-		}
-	} else {
-		drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#bdc3c7', false,6);
-	}
 }
 
 function stepInitialLoad() {

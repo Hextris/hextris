@@ -27,6 +27,7 @@ function floodFill(clock,side,index,deleting) {
 		}
 	}
 }
+
 function consolidateBlocks(clock,side,index){
 	var sidesChanged =[];
 	var deleting=[];
