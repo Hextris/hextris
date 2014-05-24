@@ -87,6 +87,7 @@ function waveGen(clock) {
 			for (var i = 0; i < MainClock.sides; i++) {
 				addNewBlock(i, colorList[i % numColors], 1.2 + (this.integerDifficulty/15) * 3);
 			}
+
 			this.ct += 15;
 			this.lastGen = this.dt;
 			this.shouldGoBackToRandom();
@@ -133,7 +134,6 @@ function waveGen(clock) {
 	this.shouldGoBackToRandom = function() {
 		if (this.ct > 8) {
 			if (randInt(0, 2) === 0) {
-				debugger;
 				this.setRandom();
 				return 1;
 			}
