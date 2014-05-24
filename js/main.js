@@ -192,16 +192,28 @@ function render() {
 	}
 
 	MainClock.draw();
-	drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#BDA0CB', false,6);
+	if (gameState == -2) {
+		if (Date.now() - startTime > 1300) {
+			var op = (Date.now() - startTime - 1300)/500;
+			debugger;
+			ctx.globalAlpha = op;
+			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, "#bda0cb", false,6);
+			ctx.globalAlpha = 1;
+		}
+	} else {
+		drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#BDA0CB', false,6);
+	}
+	
 }
 
 function stepInitialLoad() {
-	var dur = 1300;
-	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.height/2, dur);
-	if (Date.now() - startTime > dur) {
+	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.height/2, 1300);
+	if (Date.now() - startTime > 1300) {
 		MainClock.dy = 0;
 		MainClock.y = canvas.height/2;
-		gameState = 1;
+		if (Date.now() - startTime - 500 > 1300) {
+			gameState = 1;
+		}
 	} else {
 		MainClock.dy = dy;
 	}
