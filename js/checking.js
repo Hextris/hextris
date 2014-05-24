@@ -12,11 +12,14 @@ function floodFill(clock,side,index,deleting) {
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
 			if(Math.abs(x)==Math.abs(y)){continue;}
-			if(clock.blocks[(side+x+clock.sides)%clock.sides] === undefined){continue;}
-			if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y] !== undefined){
-				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color == color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) === false) {
-					deleting.push([(side+x+clock.sides)%clock.sides,index+y]);
-					floodFill(clock,(side+x+clock.sides)%clock.sides,index+y,deleting);
+			console.log("hey");
+			var curSide =(side+x+clock.sides)%clock.sides;
+			var curIndex = curIndex;
+			if(clock.blocks[curSide] === undefined){continue;}
+			if(clock.blocks[curSide][curIndex] !== undefined){
+				if(clock.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false) {
+					deleting.push([curSide,curIndex]);
+					floodFill(clock,curSide,curIndex,deleting);
 				}
 			}
 		}
