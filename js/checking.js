@@ -12,9 +12,8 @@ function floodFill(clock,side,index,deleting) {
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
 			if(Math.abs(x)==Math.abs(y)){continue;}
-			console.log("hey");
 			var curSide =(side+x+clock.sides)%clock.sides;
-			var curIndex = curIndex;
+			var curIndex = index+y;
 			if(clock.blocks[curSide] === undefined){continue;}
 			if(clock.blocks[curSide][curIndex] !== undefined){
 				if(clock.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false) {
