@@ -6,7 +6,7 @@ function waveGen(clock) {
 	var now = Date.now();
 	this.lastGen = now;
 	this.last = now;
-	this.nextGen = 1500; // - 1500; //delay before starting
+	this.nextGen = 1050; // - 1500; //delay before starting
 	this.start = now;
 	this.colors = colors;
 	this.ct = 0;
@@ -18,13 +18,8 @@ function waveGen(clock) {
 		this.computeDifficulty();
 		this.currentFunction();
 		if (Date.now() - this.lastGen > this.nextGen) {
-			if (this.nextGen > 1000) {
-				if (this.integerDifficulty < 8) {
-					this.nextGen -=  20 * ((this.nextGen)/1100);
-				}
-				else {
-					this.nextGen -=  10 * ((this.nextGen)/1100);
-				}
+			if (this.nextGen > 800) {
+				this.nextGen -=  1 * ((this.nextGen - 200)/1100);
 			}
 		}
 	};
@@ -94,7 +89,6 @@ function waveGen(clock) {
 				addNewBlock(i, colorList[i % numColors], 1.2 + (this.integerDifficulty/15) * 3);
 			}
 			this.ct += 15;
-			
 			this.lastGen = now;
 			this.shouldGoBackToRandom();
 		}
@@ -108,7 +102,6 @@ function waveGen(clock) {
 			addNewBlock(i, colors[ri], 0.6 + (this.integerDifficulty/15) * 3);
 			addNewBlock((i + 3) % MainClock.sides, colors[ri], 0.6 + (this.integerDifficulty/15) * 3);
 			this.ct += 1.5;
-			
 			this.lastGen = now;
 			this.shouldGoBackToRandom();
 		}
@@ -119,7 +112,6 @@ function waveGen(clock) {
 		if (now - this.lastGen > this.nextGen/2) {
 			addNewBlock(this.ct % MainClock.sides, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * (3/2));
 			this.ct += 1;
-			
 			this.lastGen = now;
 			this.shouldGoBackToRandom();
 		}
@@ -132,7 +124,6 @@ function waveGen(clock) {
 			addNewBlock(i, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * 3);
 			addNewBlock((i + 1) % MainClock.sides, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * 3);
 			this.ct += 2;
-			
 			this.lastGen = now;
 			this.shouldGoBackToRandom();
 		}
