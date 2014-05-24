@@ -12,7 +12,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.deleted = 0;
 	this.removed = 0;
 	this.tint = 0; //todo
-	this.opacity = 1;
+	this.opacity = 0;
 	this.initialization = 1;
 	this.parentArr;
 	this.iter = iter;
@@ -42,6 +42,9 @@ function Block(lane, color, iter, distFromHex, settled) {
 					}
 				}
 			}
+		}
+		if(!this.deleted && this.opacity<1){
+			this.opacity = this.opacity + 0.05;
 		}
 	};
 
