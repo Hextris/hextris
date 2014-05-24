@@ -34,6 +34,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	}
 
 	this.draw = function(attached, index) {
+		this.incrementOpacity();
 		if(attached === undefined)
 			attached = false;
 
@@ -110,6 +111,31 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 		ctx.globalAlpha = 1;
 	};
+	this.incrementOpacity = function() {
+		if (this.deleted) {
+			var lane = MainClock.sides - this.lane;//  -this.position;
+			lane += MainClock.position;
+
+			lane = (lane+MainClock.sides) % MainClock.sides;
+
+			this.opacity = this.opacity - 0.1;
+			if (this.opacity <= 0) {
+				this.opacity = 0;
+				var i = 0;
+				var j = this.getIndex();
+				this.parentArr.splice(j,1);
+				if (j < this.parentArr.length) {
+					for (i = j; i < this.parentArr.length; i++) {
+						this.parentArr[i].settled = 0;
+					}
+				}
+			}
+		}
+		if(!this.deleted && this.opacity<1){
+			this.opacity = this.opacity + 0.05;
+		}
+	};
+
 
 }
 
