@@ -40,15 +40,5 @@ function consolidateBlocks(clock,side,index){
 			clock.blocks[arr[0]][arr[1]].deleted = 1;
 		}
 	}
-	for (i in sidesChanged) {
-		var flag =0;
-		for( var j=0;j<clock.blocks[sidesChanged[i]].length;j++) {
-			if(clock.blocks[sidesChanged[i]][j].deleted ==1){
-				flag=1;
-			}
-			else if(flag==1){
-				consolidateBlocks(clock,sidesChanged[i],j);
-			}
-		}
-	}
+	
 }
