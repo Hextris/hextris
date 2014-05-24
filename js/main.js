@@ -69,7 +69,6 @@ function init() {
 	MainClock.y = -100;
 	startTime = Date.now();
 	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
-	console.log(waveone);
 	if (firstTime) {
 		firstTime = 0;
 		requestAnimFrame(animLoop);
