@@ -133,7 +133,6 @@ function waveGen(clock) {
 	this.shouldGoBackToRandom = function() {
 		if (this.ct > 8) {
 			if (randInt(0, 2) === 0) {
-				debugger;
 				this.setRandom();
 				return 1;
 			}
