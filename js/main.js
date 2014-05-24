@@ -89,7 +89,6 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 	if (settled) {
 		blockHist[count].settled = settled;
 	}
-
 	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
 }
 
@@ -146,7 +145,7 @@ function update() {
 	for (i in blocks) {
 		MainClock.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
-			blocks[i].distFromHex -= blocks[i].iter;
+			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter;
 		} else if(!blocks[i].removed){
 			blocks[i].removed = 1;
 		}
@@ -178,7 +177,18 @@ function update() {
 function render() {
 	ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
 	clearGameBoard();
-	drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, 'lightgrey', 0, 'rgba(0,0,0,0)');
+
+	if (gameState == -2) {
+		if (Date.now() - startTime > 1300) {
+			var op = (Date.now() - startTime - 1300)/500;
+			ctx.globalAlpha = op;
+			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, "#bdc3c7", false,6);
+			ctx.globalAlpha = 1;
+		}
+	} else {
+		drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#bdc3c7', false,6);
+	}
+
 	var i;
 	for (i in MainClock.blocks) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
@@ -192,7 +202,6 @@ function render() {
 	}
 
 	MainClock.draw();
-	// drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#f39c12', false,6);
 }
 
 function stepInitialLoad() {
