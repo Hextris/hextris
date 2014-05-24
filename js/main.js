@@ -144,7 +144,7 @@ function update() {
 	var objectsToRemove = [];
 	for (i in blocks) {
 		MainClock.doesBlockCollide(blocks[i]);
-		if (!blocks[i].settled) {
+		if (!blocks[i].settled) { // && blocks[i].initialization) {
 			blocks[i].distFromHex -= blocks[i].iter;
 		} else if(!blocks[i].removed){
 			blocks[i].removed = 1;
