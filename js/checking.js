@@ -1,4 +1,3 @@
-var deleting;
 function search(twoD,oneD){
 	for(var i=0;i<twoD.length;i++){
 		if(twoD[i][0] == oneD[0] && twoD[i][1] == oneD[1]) {
@@ -7,9 +6,9 @@ function search(twoD,oneD){
 	}
 	return false;
 }
-function floodFill(clock,side,index) {
+function floodFill(clock,side,index,deleting) {
 	if(clock.blocks[side] === undefined || clock.blocks[side][index] === undefined){return;}
-	var  color = clock.blocks[side][index].color;
+	var color = clock.blocks[side][index].color;
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
 			if(Math.abs(x)==Math.abs(y)){continue;}
@@ -17,7 +16,7 @@ function floodFill(clock,side,index) {
 			if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y] !== undefined){
 				if(clock.blocks[(side+x+clock.sides)%clock.sides][index+y].color == color && search(deleting,[(side+x+clock.sides)%clock.sides,index+y]) === false) {
 					deleting.push([(side+x+clock.sides)%clock.sides,index+y]);
-					floodFill(clock,(side+x+clock.sides)%clock.sides,index+y);
+					floodFill(clock,(side+x+clock.sides)%clock.sides,index+y,deleting);
 				}
 			}
 		}
@@ -25,9 +24,10 @@ function floodFill(clock,side,index) {
 }
 function consolidateBlocks(clock,side,index){
 	var sidesChanged =[];
-	deleting=[];
+	var deleting=[];
 	deleting.push([side,index]);
-	floodFill(clock,side,index);
+	
+	floodFill(clock,side,index,deleting);
 	var deleteList= deleting;
 	if(deleteList.length<3){return;}
 	var i;
