@@ -52,9 +52,12 @@ function clearGameBoard() {
     // clearShadows();
 }
 
-function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more elegant, reduce redundancy, fix readability
+function drawPolygon(x, y, sides, radius, theta, color, fill, lineWidth) { // can make more elegant, reduce redundancy, fix readability
     if (fill == undefined) {
         fill = true;
+    }
+    if (lineWidth == undefined) {
+        lineWidth = 3;
     }
     if (fill) {
         ctx.fillStyle = color;
@@ -64,7 +67,7 @@ function drawPolygon(x, y, sides, radius, theta, color, fill) { // can make more
         // ctx.shadowColor = '#2ecc71';
         // ctx.shadowBlur = 10;
         // ctx.strokeStyle = rgba(0,0,0,0);
-        ctx.lineWidth = 3;
+        ctx.lineWidth = lineWidth;
         ctx.strokeStyle = color;
     }
 

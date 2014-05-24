@@ -13,7 +13,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.removed = 0;
 	this.tint = 0; //todo
 	this.opacity = 1;
-	this.initializing = 1;
+	this.initialization = 1;
 	this.parentArr;
 	this.iter = iter;
 
@@ -28,10 +28,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 			var lane = MainClock.sides - this.lane;//  -this.position;
 			lane += MainClock.position;
 
-			while (lane < 0) {
-				lane += MainClock.sides;
-			}
-			lane = lane % MainClock.sides;
+			lane = (lane+MainClock.sides) % MainClock.sides;
 
 			this.opacity = this.opacity - 0.1;
 			if (this.opacity <= 0) {
@@ -173,10 +170,7 @@ function Clock(sideLength) {
 		var lane = this.sides - block.lane;//  -this.position;
 		this.shakes.push({lane:block.lane, magnitude:2});
 		lane += this.position;
-		while (lane < 0) {
-			lane += this.sides;
-		}
-		lane = lane % this.sides;
+		lane = (lane+this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.parentArr = this.blocks[lane];
@@ -191,10 +185,7 @@ function Clock(sideLength) {
 		var lane = this.sides - block.lane;//  -this.position;
 		lane += this.position;
 
-		while (lane < 0) {
-			lane += this.sides;
-		}
-		lane = lane % this.sides;
+		lane = (lane+this.sides) % this.sides;
 		var arr = this.blocks[lane];
 
 		if (position !== undefined) {
