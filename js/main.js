@@ -24,7 +24,6 @@ $('#clickToExit').bind('click', toggleDevTools);
 function toggleDevTools() {
 	$('#devtools').toggle();
 }
-
 var gameState = 0;
 var framerate = 60;
 var history = {};
@@ -193,16 +192,17 @@ function render() {
 	}
 
 	MainClock.draw();
-	// drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#BDA0CB', false,6);
+	drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#f39c12', false,6);
 }
 
 function stepInitialLoad() {
-	var dur = 1300;
-	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.originalHeight/2, dur);
-	if (Date.now() - startTime > dur) {
+	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.height/2, 1300);
+	if (Date.now() - startTime > 1300) {
 		MainClock.dy = 0;
-		MainClock.y = canvas.originalHeight/2;
-		gameState = 1;
+		MainClock.y = canvas.height/2;
+		if (Date.now() - startTime - 500 > 1300) {
+			gameState = 1;
+		}
 	} else {
 		MainClock.dy = dy;
 	}
@@ -271,3 +271,8 @@ function checkGameOver() {
 	}
 	return false;
 }
+window.onblur = function (e) {
+	gameState=-1;	
+}
+
+
