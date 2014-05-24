@@ -212,6 +212,7 @@ function Clock(sideLength) {
 	};
 
 	this.addBlock = function(block) {
+		if (gameState != 1) return;
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.lane;//  -this.position;
