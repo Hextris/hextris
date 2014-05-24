@@ -2,6 +2,7 @@
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
+        debugger;
         if (MainClock) {
             MainClock.rotate(1);
         }

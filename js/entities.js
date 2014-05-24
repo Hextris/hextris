@@ -267,7 +267,7 @@ function Clock(sideLength) {
 	};
 
 	this.rotate = function(steps) {
-		if (gameState != 1) return;
+		if (gameState != 1 && gameState != -2) return;
 		this.position += steps;
 		if (!history[count]) {
 			history[count] = {};
