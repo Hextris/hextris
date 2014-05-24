@@ -80,7 +80,8 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 
 	history[count].block = {
 		blocklane:blocklane,
-		color:color
+		color:color,
+		iter:iter
 	};
 
 	if (distFromHex) {
@@ -95,10 +96,11 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 
 function importHistory() {
 	try {
-		importedHistory = JSON.parse(prompt("Import JSON"));
-		if (importedHistory) {
-			importing = 1;
+		var ih = JSON.parse(prompt("Import JSON"));
+		if (ih) {
 			init();
+			importing = 1;
+			importedHistory = ih;
 		}
 	}
 	catch (e) {
@@ -113,18 +115,6 @@ function exportHistory() {
 
 //remember to update history function to show the respective iter speeds
 function update() {
-	if (importing) {
-		if (importedHistory[count]) {
-			if (importedHistory[count].block) {
-				addNewBlock(importedHistory[count].block.blocklane, 1, importedHistory[count].block.color,importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
-			}
-
-			if (importedHistory[count].rotate) {
-				MainClock.rotate(importedHistory[count].rotate);
-			}
-		}
-	}
-
 	var now = Date.now();
 	
 	if (now - prevTimeScored > 1000) {
@@ -132,7 +122,19 @@ function update() {
 		prevTimeScored = now;
 	}
 
-	if (!importing) {
+	if (importing) {
+		if (importedHistory[count]) {
+			if (importedHistory[count].block) {
+				addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color, importedHistory[count].block.iter, importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
+			}
+
+			if (importedHistory[count].rotate) {
+				MainClock.rotate(importedHistory[count].rotate);
+			}
+
+		}
+	}
+	else {
 		waveone.update();
 		if (now - waveone.prevTimeScored > 1000) {
 			score += 5 * (scoreScalar * scoreAdditionCoeff);
