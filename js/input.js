@@ -22,6 +22,9 @@ keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
         init();
+        if (gameState == -1) {
+            requestAnimFrame(animLoop);
+        }
     }
 });
 
