@@ -205,7 +205,6 @@ function Clock(sideLength) {
 					consolidateBlocks(this, lane, block.getIndex());
 				}
 			} else {
-				debugger;
 				if (block.distFromHex + block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
