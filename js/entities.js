@@ -12,10 +12,12 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.deleted = 0;
 	this.removed = 0;
 	this.tint = 0; //todo
-	this.opacity = 0;
-	this.initialization = 1;
+	this.opacity = 1;
+	this.initializing = 1;
+	this.ct = 0;
 	this.parentArr;
 	this.iter = iter;
+	this.initLen = 9;
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
@@ -43,7 +45,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 				}
 			}
 		}
-		if(!this.deleted && this.opacity<1){
+		if(!this.deleted && this.opacity < 1){
 			this.opacity = this.opacity + 0.05;
 		}
 	};
@@ -57,11 +59,8 @@ function Block(lane, color, iter, distFromHex, settled) {
 	}
 
 	this.draw = function(attached, index) {
-		// var xd = (this.settled) ? gdx : 0;
-		// var yd = (this.settled) ? gdy : 0;
-
 		this.incrementOpacity();
-		if(attached == undefined)
+		if(attached === undefined)
 			attached = false;
 
 		if(this.angle > this.targetAngle) {
@@ -81,11 +80,26 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
 		this.widthWide = this.width + this.height + 3;
-
-		var p1 = rotatePoint(-this.width / 2, this.height / 2, this.angle);
-		var p2 = rotatePoint(this.width / 2, this.height / 2, this.angle);
-		var p3 = rotatePoint(this.widthWide / 2, -this.height / 2, this.angle);
-		var p4 = rotatePoint(-this.widthWide / 2, -this.height / 2, this.angle);
+		var p1;
+		var p2;
+		var p3;
+		var p4;
+		if (this.initializing) {
+			this.ct++;
+			var rat = (this.ct/this.initLen);
+			p1 = rotatePoint((-this.width / 2) * rat, this.height / 2, this.angle);
+			p2 = rotatePoint((this.width / 2) * rat, this.height / 2, this.angle);
+			p3 = rotatePoint((this.widthWide / 2) * rat, -this.height / 2, this.angle);
+			p4 = rotatePoint((-this.widthWide / 2) * rat, -this.height / 2, this.angle);
+			if (this.ct == this.initLen) {
+				this.initializing = 0;
+			}
+		} else {
+			p1 = rotatePoint(-this.width / 2, this.height / 2, this.angle);
+			p2 = rotatePoint(this.width / 2, this.height / 2, this.angle);
+			p3 = rotatePoint(this.widthWide / 2, -this.height / 2, this.angle);
+			p4 = rotatePoint(-this.widthWide / 2, -this.height / 2, this.angle);
+		}
 
 		ctx.fillStyle = this.color;
 		ctx.globalAlpha = this.opacity;
@@ -122,8 +136,38 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 		ctx.globalAlpha = 1;
 	};
+	this.incrementOpacity = function() {
+		if (this.deleted) {
+			var lane = MainClock.sides - this.lane;//  -this.position;
+			lane += MainClock.position;
+
+			lane = (lane+MainClock.sides) % MainClock.sides;
+
+			this.opacity = this.opacity - 0.1;
+			if (this.opacity <= 0) {
+				this.opacity = 0;
+				var i = 0;
+				var j = this.getIndex();
+				this.parentArr.splice(j,1);
+				if (j < this.parentArr.length) {
+					for (i = j; i < this.parentArr.length; i++) {
+						this.parentArr[i].settled = 0;
+					}
+				}
+			}
+		}
+		if(!this.deleted && this.opacity<1){
+			this.opacity = this.opacity + 0.05;
+		}
+	};
+
 
 }
+
+// t: current time, b: begInnIng value, c: change In value, d: duration
+function easeOutCubic(t, b, c, d) {
+		return c*((t=t/d-1)*t*t + 1) + b;
+	}
 
 var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
 	"#f1c40f":new Audio("../sounds/highest.ogg"),

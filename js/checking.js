@@ -7,7 +7,10 @@ function search(twoD,oneD){
 	return false;
 }
 function floodFill(clock,side,index,deleting) {
-	if(clock.blocks[side] === undefined || clock.blocks[side][index] === undefined){return;}
+	if (clock.blocks[side] === undefined || clock.blocks[side][index] === undefined) {
+		return;
+	}
+
 	var color = clock.blocks[side][index].color;
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
@@ -24,7 +27,9 @@ function floodFill(clock,side,index,deleting) {
 		}
 	}
 }
+
 function consolidateBlocks(clock,side,index){
+	debugger;
 	var sidesChanged =[];
 	var deleting=[];
 	deleting.push([side,index]);
