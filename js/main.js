@@ -195,10 +195,10 @@ function render() {
 
 function stepInitialLoad() {
 	var dur = 1300;
-	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.height/2, dur);
+	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.originalHeight/2, dur);
 	if (Date.now() - startTime > dur) {
 		MainClock.dy = 0;
-		MainClock.y = canvas.height/2;
+		MainClock.y = canvas.originalHeight/2;
 		gameState = 1;
 	} else {
 		MainClock.dy = dy;
