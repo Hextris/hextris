@@ -34,7 +34,7 @@ function waveGen(clock) {
 		if (now - this.lastGen > this.nextGen) {
 			this.ct++;
 			this.lastGen = now;
-			var fv = randInt(0, 6);
+			var fv = randInt(0, MainClock.sides);
 			addNewBlock(fv, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * 3);
 			if (this.ct > 5) {
 				var nextPattern = randInt(0, 20 + 4);
@@ -90,7 +90,7 @@ function waveGen(clock) {
 				colorList.push(colors[q]);
 			}
 
-			for (var i = 0; i < 6; i++) {
+			for (var i = 0; i < MainClock.sides; i++) {
 				addNewBlock(i, colorList[i % numColors], 1.2 + (this.integerDifficulty/15) * 3);
 			}
 			this.ct += 15;
@@ -106,7 +106,7 @@ function waveGen(clock) {
 			var ri = randInt(0, colors.length);
 			var i = randInt(0, colors.length);
 			addNewBlock(i, colors[ri], 0.6 + (this.integerDifficulty/15) * 3);
-			addNewBlock((i + 3) % 6, colors[ri], 0.6 + (this.integerDifficulty/15) * 3);
+			addNewBlock((i + 3) % MainClock.sides, colors[ri], 0.6 + (this.integerDifficulty/15) * 3);
 			this.ct += 1.5;
 			
 			this.lastGen = now;
@@ -117,7 +117,7 @@ function waveGen(clock) {
 	this.spiralGeneration = function() {
 		var now = Date.now();
 		if (now - this.lastGen > this.nextGen/2) {
-			addNewBlock(this.ct % 6, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * (3/2));
+			addNewBlock(this.ct % MainClock.sides, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * (3/2));
 			this.ct += 1;
 			
 			this.lastGen = now;
@@ -130,7 +130,7 @@ function waveGen(clock) {
 		if (now - this.lastGen > this.nextGen) {
 			var i = randInt(0, colors.length);
 			addNewBlock(i, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * 3);
-			addNewBlock((i + 1) % 6, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * 3);
+			addNewBlock((i + 1) % MainClock.sides, colors[randInt(0, colors.length)], 1.2 + (this.integerDifficulty/15) * 3);
 			this.ct += 2;
 			
 			this.lastGen = now;
