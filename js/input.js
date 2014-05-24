@@ -2,23 +2,25 @@
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
-        MainClock.rotate(1);
+        if (MainClock) {
+            MainClock.rotate(1);
+        }
     }
 });
 
 keypress.register_combo({
     keys: "right",
     on_keydown: function() {
-        MainClock.rotate(-1);
+        if (MainClock){
+            MainClock.rotate(-1);
+        }
     }
 });
 
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-        if (Math.abs(gameState) != 1) {
-            init();
-        }
+        init();
     }
 });
 
@@ -28,7 +30,10 @@ keypress.register_combo({
         if (Math.abs(gameState) == 1) {
             gameState = -gameState;
         }
-        requestAnimFrame(animLoop);
+
+        if (gameState == 1) {
+            requestAnimFrame(animLoop);
+        }
     }
 });
 
