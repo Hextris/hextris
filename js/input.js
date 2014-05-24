@@ -2,23 +2,25 @@
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
-        MainClock.rotate(1);
+        if (MainClock) {
+            MainClock.rotate(1);
+        }
     }
 });
 
 keypress.register_combo({
     keys: "right",
     on_keydown: function() {
-        MainClock.rotate(-1);
+        if (MainClock){
+            MainClock.rotate(-1);
+        }
     }
 });
 
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-        if (gameState == 0 || gameState == 2) {
-            init();
-        }
+        init();
     }
 });
 
@@ -27,6 +29,9 @@ keypress.register_combo({
     on_keydown: function() {
         if (Math.abs(gameState) == 1) {
             gameState = -gameState;
+        }
+
+        if (gameState == 1) {
             requestAnimFrame(animLoop);
         }
     }
@@ -67,15 +72,3 @@ var tapRight = Hammer(document.getElementById("rightTap")).on("tap", function(ev
     }
     MainClock.rotate(-1);
 });
-
-// keypress.register_combo({
-//     keys: "space",
-//     on_keyup: function() {
-//         iter = 1; // <- 1337 hax that reset speed anywhere in the game
-//         scoreAdditionCoeff = 1;
-//     },
-//     on_keydown: function() {
-//         iter = 2;
-//         scoreAdditionCoeff = 2;
-//     }
-// });
