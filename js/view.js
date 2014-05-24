@@ -48,29 +48,20 @@ function clearShadows() {
 function clearGameBoard() {
     // ctx.shadowColor = '#2980b9';
     // ctx.shadowBlur = 25;
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColor);
+    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColor, 0, 'rgba(0,0,0,0)');
     // clearShadows();
 }
 
-function drawPolygon(x, y, sides, radius, theta, color, fill, lineWidth) { // can make more elegant, reduce redundancy, fix readability
-    if (fill == undefined) {
-        fill = true;
-    }
-    if (lineWidth == undefined) {
-        lineWidth = 3;
-    }
-    if (fill) {
-        ctx.fillStyle = color;
-    } else {
-        // ctx.shadowColor = '#2980b9';
-        // ctx.shadowColor = color;
-        // ctx.shadowColor = '#2ecc71';
-        // ctx.shadowBlur = 10;
-        // ctx.strokeStyle = rgba(0,0,0,0);
-        ctx.lineWidth = lineWidth;
-        ctx.strokeStyle = color;
-    }
-
+function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor) { // can make more elegant, reduce redundancy, fix readability
+    ctx.fillStyle = fillColor;
+    // ctx.shadowColor = '#2980b9';
+    // ctx.shadowColor = color;
+    // ctx.shadowColor = '#2ecc71';
+    // ctx.shadowBlur = 10;
+    // ctx.strokeStyle = rgba(0,0,0,0);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = lineColor;
+    
     ctx.beginPath();
     var coords = rotatePoint(0, radius, theta);
     ctx.moveTo(coords.x + x, coords.y + y);
@@ -84,11 +75,8 @@ function drawPolygon(x, y, sides, radius, theta, color, fill, lineWidth) { // ca
         oldY = coords.y;
     }
     ctx.closePath();
-    if (fill) {
-        ctx.fill();
-    } else {
-        ctx.stroke();
-    }
+    ctx.fill();
+    ctx.stroke();
 };
 
 function showHighScores() {
