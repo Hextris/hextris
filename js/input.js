@@ -2,7 +2,6 @@
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
-        debugger;
         if (MainClock) {
             MainClock.rotate(1);
         }
@@ -21,8 +20,14 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
+        var shouldAnimLoop = 0;
+        if (gameState === -1) {
+            shouldAnimLoop = 1;
+        }
+
         init();
-        if (gameState == -1) {
+
+        if (shouldAnimLoop) {
             requestAnimFrame(animLoop);
         }
     }
