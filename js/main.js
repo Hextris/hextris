@@ -98,7 +98,7 @@ function init() {
 	count = 0;
 	blocks = [];
 	MainClock = new Clock(settings.hexWidth);
-	MainClock.y = -100/(window.devicePixelRatio ? window.devicePixelRatio : 1);
+	MainClock.y = -100;
 	startTime = Date.now();
 	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 }
@@ -259,10 +259,10 @@ function render() {
 }
 
 function stepInitialLoad() {
-	var dy = getStepDY(Date.now() - startTime, 0, (100 + canvas.height/2)/(window.devicePixelRatio ? window.devicePixelRatio : 1), 1300);
+	var dy = getStepDY(Date.now() - startTime, 0, (100 + canvas.height/2), 1300);
 	if (Date.now() - startTime > 1300) {
 		MainClock.dy = 0;
-		MainClock.y = (canvas.height/2)/(window.devicePixelRatio ? window.devicePixelRatio : 1);
+		MainClock.y = (canvas.height/2);
 		if (Date.now() - startTime - 500 > 1300) {
 			gameState = 1;
 		}
