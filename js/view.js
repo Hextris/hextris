@@ -7,15 +7,15 @@ function showModal(text, secondaryText) {
     var buttonSize = 150;
     var fontSizeLarge = 50;
     var fontSizeSmall = 25;
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2 - 25, 30, hexagonBackgroundColorClear);
-    // drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, buttonSize, 30, swegBlue);
+    drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, trueCanvas.width / 2 - 25, 30, hexagonBackgroundColorClear);
+    // drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, buttonSize, 30, swegBlue);
     ctx.font = fontSizeLarge + 'px Helvetica'; // figure out what is not working
     ctx.textAlign = 'center';
     ctx.fillStyle = centerBlue;
     // ctx.fillStyle = hexagonBackgroundColor;
-    ctx.fillText(text, canvas.originalWidth / 2, canvas.originalHeight / 2 + (fontSizeLarge / 4));
+    ctx.fillText(text, trueCanvas.width / 2, trueCanvas.height / 2 + (fontSizeLarge / 4));
     ctx.font = fontSizeSmall + 'px Helvetica';
-    ctx.fillText(secondaryText, canvas.originalWidth / 2, canvas.originalHeight / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
+    ctx.fillText(secondaryText, trueCanvas.width / 2, trueCanvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
 function renderText(lines, x, y, fontSize) {
@@ -39,7 +39,7 @@ function updateScoreboard() {
 }
 
 function clearGameBoard() {
-    drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColor, 0, 'rgba(0,0,0,0)');
+    drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, trueCanvas.width / 2, 30, hexagonBackgroundColor, 0, 'rgba(0,0,0,0)');
 }
 
 function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor) { // can make more elegant, reduce redundancy, fix readability

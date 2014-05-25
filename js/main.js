@@ -4,24 +4,41 @@ $(window).resize(scaleCanvas);
 function scaleCanvas() {
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
-	canvas.originalHeight = canvas.height;
-	canvas.originalWidth = canvas.width;
+
 	if (canvas.height > canvas.width) {
-		settings.scale = canvas.width/800;
+		settings.scale = (canvas.width/800) * settings.baseScale;
 	} else {
-		settings.scale = canvas.height/800;
+		settings.scale = (canvas.height/800) * settings.baseScale;
 	}
-	
+
+	trueCanvas = {
+		width:canvas.width,
+		height:canvas.height
+	};
+
 	if (window.devicePixelRatio) {
-		canvas.style.width = canvas.width/window.devicePixelRatio + "px";
-		canvas.style.height = canvas.height/window.devicePixelRatio + "px";
-		ctx.scale(window.devicePixelRatio,window.devicePixelRatio)
+		//from https://gist.github.com/joubertnel/870190
+		var cw = $("#canvas").attr('width');
+		var ch = $("#canvas").attr('height');
+	
+		$("#canvas").attr('width', cw * window.devicePixelRatio);
+		$("#canvas").attr('height', ch * window.devicePixelRatio);
+		$("#canvas").css('width', cw);
+		$("#canvas").css('height', ch);
+
+		trueCanvas = {
+			width:cw,
+			height:ch
+		};
+
+		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
 }
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var count = 0;
+var trueCanvas = {width:canvas.width,height:canvas.height};
 
 window.requestAnimFrame = (function() {
 	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
@@ -39,8 +56,11 @@ var settings;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 	settings = {
+		startDist:227,
+		creationDt:40,
+		baseScale:1.4,
 		scale:1,
-		prevScale:1,
+		prevScale:1.3,
 		baseHexWidth:87,
 		hexWidth:87,
 		baseBlockHeight:20,
@@ -51,6 +71,9 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 	};
 } else {
 	settings = {
+		baseScale:1,
+		startDist:340,
+		creationDt:30,
 		scale:1,
 		prevScale:1,
 		hexWidth:65,
@@ -110,6 +133,7 @@ function init() {
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
+	iter *= settings.speedModifier;
 	if (!history[count]) {
 		history[count] = {};
 	}
@@ -231,7 +255,7 @@ function update() {
 }
 
 function render() {
-	ctx.clearRect(0, 0, canvas.originalWidth, canvas.originalHeight);
+	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
 	clearGameBoard();
 
 	if (gameState == -2) {
@@ -241,11 +265,11 @@ function render() {
 				op = 1;
 			}
 			ctx.globalAlpha = op;
-			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, "#bdc3c7", false,6);
+			drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, "#bdc3c7", false,6);
 			ctx.globalAlpha = 1;
 		}
 	} else {
-		drawPolygon(canvas.originalWidth / 2 + gdx, canvas.originalHeight / 2 + gdy, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, '#bdc3c7', false, 6);
+		drawPolygon(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, '#bdc3c7', false, 6);
 	}
 
 	var i;
@@ -265,14 +289,15 @@ function render() {
 }
 
 function stepInitialLoad() {
-	var dy = getStepDY(Date.now() - startTime, 0, (100 + canvas.height/2), 1300);
+	var dy = getStepDY(Date.now() - startTime, 0, (100 + trueCanvas.height/2), 1300);
 	if (Date.now() - startTime > 1300) {
 		MainClock.dy = 0;
-		MainClock.y = (canvas.height/2);
+		MainClock.y = (trueCanvas.height/2);
 		if (Date.now() - startTime - 500 > 1300) {
 			gameState = 1;
 		}
 	} else {
+		console.log(dy);
 		MainClock.dy = dy;
 	}
 }
@@ -315,7 +340,6 @@ function animLoop() {
 		render();
 	}
 	else if (gameState == -1) {
-		debugger;
 		showModal('Paused!', 'Press "P" to continue.');
 	}
 	else if (gameState == 2) {
