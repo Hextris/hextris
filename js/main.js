@@ -6,6 +6,11 @@ function scaleCanvas() {
 	canvas.height = $(window).height();
 	canvas.originalHeight = canvas.height;
 	canvas.originalWidth = canvas.width;
+	if (canvas.height > canvas.width) {
+		settings.scale = canvas.width/800;
+	} else {
+		settings.scale = canvas.height/800;
+	}
 }
 
 var canvas = document.getElementById('canvas');
@@ -52,7 +57,6 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 	};
 }
 
-var firstTime = 1;
 var gameState = 0;
 var framerate = 60;
 var history = {};
@@ -99,10 +103,6 @@ function init() {
 	MainClock.y = -100/(window.devicePixelRatio ? window.devicePixelRatio : 1);
 	startTime = Date.now();
 	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
-	if (firstTime) {
-		firstTime = 0;
-		requestAnimFrame(animLoop);
-	}
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
@@ -305,6 +305,7 @@ function animLoop() {
 		}
 	}
 	else if (gameState === 0) {
+		requestAnimFrame(animLoop);
 		clearGameBoard();
 		showModal('Start!', 'Press enter to start!');
 	}
