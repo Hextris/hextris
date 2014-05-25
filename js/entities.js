@@ -22,7 +22,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
 	} else {
-		this.distFromHex = 320;
+		this.distFromHex = 320 * settings.scale;
 	}
 
 	this.incrementOpacity = function() {
@@ -45,9 +45,15 @@ function Block(lane, color, iter, distFromHex, settled) {
 				return i;
 			}
 		}
-	}
+	};
 
 	this.draw = function(attached, index) {
+		this.height = settings.blockHeight;
+		if (Math.abs(settings.scale - settings.prevScale) > .000000001) {
+			debugger;
+			this.distFromHex *= (settings.scale/settings.prevScale);
+		}
+
 		this.incrementOpacity();
 		if(attached === undefined)
 			attached = false;
@@ -198,7 +204,7 @@ function Clock(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				if (block.distFromHex - block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex - block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					consolidateBlocks(this, block.attachedLane, block.getIndex());
@@ -206,7 +212,7 @@ function Clock(sideLength) {
 					block.settled = 0;
 				}
 			} else {
-				if (arr[position - 1].settled && block.distFromHex - block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+				if (arr[position - 1].settled && block.distFromHex - block.iter * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					consolidateBlocks(this, block.attachedLane, block.getIndex());
@@ -223,12 +229,12 @@ function Clock(sideLength) {
 			var arr = this.blocks[lane];
 
 			if (arr.length > 0) {
-				if (block.distFromHex + block.iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				if (block.distFromHex + block.iter * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
 			} else {
-				if (block.distFromHex + block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex + block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
 				}
@@ -249,7 +255,12 @@ function Clock(sideLength) {
 		else {
 			history[count].rotate += steps;
 		}
-		this.position = (this.position + this.sides) % this.sides;
+
+		while (this.position < 0) {
+			this.position += 6;
+		}
+
+		this.position = this.position % this.sides;
 		this.blocks.forEach(function(blocks) {
 			blocks.forEach(function(block) {
 				block.targetAngle = block.targetAngle - steps * 60;
@@ -260,6 +271,7 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
+		this.sideLength = settings.hexWidth;
 		gdx = 0;
 		gdy = 0;
 		for (var i = 0; i < this.shakes.length; i++) {

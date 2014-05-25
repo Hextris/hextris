@@ -46,19 +46,11 @@ function clearShadows() {
 }
 
 function clearGameBoard() {
-    // ctx.shadowColor = '#2980b9';
-    // ctx.shadowBlur = 25;
     drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColor, 0, 'rgba(0,0,0,0)');
-    // clearShadows();
 }
 
 function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor) { // can make more elegant, reduce redundancy, fix readability
     ctx.fillStyle = fillColor;
-    // ctx.shadowColor = '#2980b9';
-    // ctx.shadowColor = color;
-    // ctx.shadowColor = '#2ecc71';
-    // ctx.shadowBlur = 10;
-    // ctx.strokeStyle = rgba(0,0,0,0);
     ctx.lineWidth = lineWidth;
     ctx.strokeStyle = lineColor;
     
@@ -70,14 +62,14 @@ function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor
     for (var i = 0; i < sides; i++) {
         coords = rotatePoint(oldX, oldY, 360 / sides);
         ctx.lineTo(coords.x + x, coords.y + y);
-        // ctx.moveTo(coords.x + x, coords.y + y);
         oldX = coords.x;
         oldY = coords.y;
     }
+
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
-};
+}
 
 function showHighScores() {
     $('#highscores').html(function() {

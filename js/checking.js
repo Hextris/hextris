@@ -46,4 +46,6 @@ function consolidateBlocks(clock,side,index){
 			clock.blocks[arr[0]][arr[1]].deleted = 1;
 		}
 	}
+	score += deleteList.length*deleteList.length;
+
 }
