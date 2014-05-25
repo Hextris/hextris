@@ -50,6 +50,15 @@ keypress.register_combo({
         importHistory();
     }
 });
+keypress.register_combo({
+    keys: "enter",
+    on_keydown: function() {
+	if (gameState != 1 && gameState != -2) {
+		init();
+	}
+    }
+});
+
 
 document.body.addEventListener('touchstart', function(e){
 
