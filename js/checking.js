@@ -19,7 +19,7 @@ function floodFill(clock,side,index,deleting) {
 			var curIndex = index+y;
 			if(clock.blocks[curSide] === undefined){continue;}
 			if(clock.blocks[curSide][curIndex] !== undefined){
-				if(clock.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false) {
+				if(clock.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false && clock.blocks[curSide][curIndex].deleted == 0 ) {
 					deleting.push([curSide,curIndex]);
 					floodFill(clock,curSide,curIndex,deleting);
 				}

@@ -1,35 +1,16 @@
 $(document).ready(scaleCanvas);
 $(window).resize(scaleCanvas);
+
 function scaleCanvas() {
-	var h = $(window).height();
-	var w = $(window).width();
-	if (w > h) {
-		$('#canvas').css("width", h * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
-		$('#canvas').css("height", (h * (Math.sqrt(3)/2)) * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
-	}
-	else {
-		$('#canvas').css("width", w * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
-		$('#canvas').css("height", (w * (Math.sqrt(3)/2)) * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
-	}
-
-
-	$('#canvas').css("left", w/2 + 'px');
-	$('#canvas').css("top", h/2 + 'px');
-	$('#canvas').css("margin-left", -$("#canvas").width()/2 + 'px');
-	$('#canvas').css("margin-top", -$("#canvas").height()/2 + 'px');
+	canvas.width = $(window).width();
+	canvas.height = $(window).height();
+	canvas.originalHeight = canvas.height;
+	canvas.originalWidth = canvas.width;
 }
 
 var canvas = document.getElementById('canvas');
-
 var ctx = canvas.getContext('2d');
-canvas.originalHeight = canvas.height;
-canvas.originalWidth = canvas.width;
 var count = 0;
-if (window.devicePixelRatio) {
-	canvas.width *= window.devicePixelRatio;
-	canvas.height *= window.devicePixelRatio;
-	ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-}
 
 window.requestAnimFrame = (function() {
 	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
@@ -47,7 +28,11 @@ var settings;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 	settings = {
+		scale:1,
+		prevScale:1,
+		baseHexWidth:87,
 		hexWidth:87,
+		baseBlockHeight:20,
 		blockHeight:20,
 		rows:6,
 		speedModifier:0.8,
@@ -55,7 +40,11 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 	};
 } else {
 	settings = {
+		scale:1,
+		prevScale:1,
 		hexWidth:65,
+		baseHexWidth:87,
+		baseBlockHeight:20,
 		blockHeight:15,
 		rows:8,
 		speedModifier:1,
@@ -157,8 +146,10 @@ function exportHistory() {
 
 //remember to update history function to show the respective iter speeds
 function update() {
+	settings.hexWidth = settings.baseHexWidth * settings.scale;
+	settings.blockHeight = settings.baseBlockHeight * settings.scale;
+
 	var now = Date.now();
-	
 	if (now - prevTimeScored > 1000) {
 		score += 5 * (scoreScalar * scoreAdditionCoeff);
 		prevTimeScored = now;
@@ -189,8 +180,8 @@ function update() {
 	for (i in blocks) {
 		MainClock.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
-			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter;
-		} else if(!blocks[i].removed){
+			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter * settings.scale;
+		} else if (!blocks[i].removed) {
 			blocks[i].removed = 1;
 		}
 	}
@@ -222,7 +213,7 @@ function update() {
 			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
 
 			if (!MainClock.blocks[i][j].settled) {
-				MainClock.blocks[i][j].distFromHex -= block.iter;
+				MainClock.blocks[i][j].distFromHex -= block.iter * settings.scale;
 			}
 		}
 	}
@@ -256,11 +247,7 @@ function render() {
 			ctx.globalAlpha = 1;
 		}
 	} else {
-		ctx.save();
-		ctx.translate(canvas.originalWidth / 2 + gdx, canvas.originalHeight / 2 + gdy);
-		ctx.rotate(MainClock.angle * (Math.PI/180) + 30 * (Math.PI/180));
-		drawPolygon(0, 0, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, '#bdc3c7', false,6);
-		ctx.restore();
+		drawPolygon(canvas.originalWidth / 2 + gdx, canvas.originalHeight / 2 + gdy, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, '#bdc3c7', false, 6);
 	}
 
 	var i;
@@ -276,6 +263,7 @@ function render() {
 	}
 
 	MainClock.draw();
+	settings.prevScale = settings.scale;
 }
 
 function stepInitialLoad() {
@@ -322,6 +310,8 @@ function animLoop() {
 	}
 	else if (gameState == -2) { //initialization screen just before starting
 		requestAnimFrame(animLoop);
+		settings.hexWidth = settings.baseHexWidth * settings.scale;
+		settings.blockHeight = settings.baseBlockHeight * settings.scale;
 		stepInitialLoad();
 		render();
 	}
@@ -329,26 +319,26 @@ function animLoop() {
 		showModal('Paused!', 'Press "P" to continue.');
 	}
 	else if (gameState == 2) {
-			requestAnimFrame(animLoop);
-			update();
-			render();
-			showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
-			highscores = localStorage.getItem('highscores').split(',').map(Number);
-			for (var i = 0; i < numHighScores; i++) {
-				if (highscores[i] < score) {
-					for (var j = numHighScores - 1; j > i; j--) {
-						highscores[j] = highscores[j - 1];
-					}
-					highscores[i] = score;
-					break;
+		requestAnimFrame(animLoop);
+		update();
+		render();
+		showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
+		highscores = localStorage.getItem('highscores').split(',').map(Number);
+		for (var i = 0; i < numHighScores; i++) {
+			if (highscores[i] < score) {
+				for (var j = numHighScores - 1; j > i; j--) {
+					highscores[j] = highscores[j - 1];
 				}
+				highscores[i] = score;
+				break;
 			}
-			localStorage.setItem('highscores', highscores);
 		}
-		else {
-			gameState = 0;
-		}
-	// }
+
+		localStorage.setItem('highscores', highscores);
+	}
+	else {
+		gameState = 0;
+	}
 }
 
 requestAnimFrame(animLoop);
