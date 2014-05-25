@@ -309,6 +309,7 @@ function animLoop() {
 		render();
 	}
 	else if (gameState == -1) {
+		debugger;
 		showModal('Paused!', 'Press "P" to continue.');
 	}
 	else if (gameState == 2) {
