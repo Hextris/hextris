@@ -27,11 +27,6 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
-			var lane = MainClock.sides - this.lane;//  -this.position;
-			lane += MainClock.position;
-
-			lane = (lane+MainClock.sides) % MainClock.sides;
-
 			this.opacity = this.opacity - 0.1;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
