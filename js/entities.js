@@ -291,9 +291,6 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-		ctx.shadowColor = '#2980b9';
-		ctx.shadowBlur = 15;
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
-		clearShadows();
 	};
 }
