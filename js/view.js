@@ -35,7 +35,7 @@ function renderText(lines, x, y, fontSize) {
 }
 
 function updateScoreboard() {
-    $('#score').html('Score: '+score + " (x" + scoreScalar * scoreAdditionCoeff + ")");
+    $('#score').html('Score: '+score + " (x" + scoreAdditionCoeff + ")");
 }
 
 function clearShadows() {
