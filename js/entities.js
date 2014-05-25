@@ -22,7 +22,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
 	} else {
-		this.distFromHex = 320 * settings.scale;
+		this.distFromHex = 340 * settings.scale;
 	}
 
 	this.incrementOpacity = function() {
@@ -271,6 +271,10 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
+		if (gameState == 1) {
+			this.x = canvas.width/2;
+			this.y = canvas.height/2;
+		}
 		this.sideLength = settings.hexWidth;
 		gdx = 0;
 		gdy = 0;
