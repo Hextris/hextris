@@ -38,13 +38,6 @@ function updateScoreboard() {
     $('#score').html('Score: '+score + " (x" + scoreAdditionCoeff + ")");
 }
 
-function clearShadows() {
-    ctx.shadowColor = 0;
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-}
-
 function clearGameBoard() {
     drawPolygon(canvas.originalWidth / 2, canvas.originalHeight / 2, 6, canvas.originalWidth / 2, 30, hexagonBackgroundColor, 0, 'rgba(0,0,0,0)');
 }
