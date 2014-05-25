@@ -2,8 +2,7 @@ var angularVelocityConst = 4;
 
 function Block(lane, color, iter, distFromHex, settled) {
 	this.settled = (settled === undefined) ? 0 : 1;
-	this.height = 15;
-	this.width = 65;
+	this.height = settings.blockHeight;
 	this.lane = lane;
 	this.angle = 90 - (30 + 60 * lane);
 	this.angularVelocity = 0;
@@ -11,7 +10,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.color = color;
 	this.deleted = 0;
 	this.removed = 0;
-	this.tint = 0; //todo
+	this.tint = 0;
 	this.opacity = 1;
 	this.initializing = 1;
 	this.ct = 0;
@@ -22,7 +21,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
 	} else {
-		this.distFromHex = 300;
+		this.distFromHex = 320;
 	}
 
 	this.incrementOpacity = function() {
