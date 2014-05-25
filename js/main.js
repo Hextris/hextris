@@ -66,8 +66,8 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		baseBlockHeight:20,
 		blockHeight:20,
 		rows:6,
-		speedModifier:0.8,
-		creationSpeedModifier:0.8
+		speedModifier:0.7,
+		creationSpeedModifier:0.7
 	};
 } else {
 	settings = {
