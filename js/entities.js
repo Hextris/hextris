@@ -217,7 +217,6 @@ function Clock(sideLength) {
 				}
 			} else {
 				if (arr[position - 1].settled && block.distFromHex - block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
-					debugger;
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					consolidateBlocks(this, lane, block.getIndex());
