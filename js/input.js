@@ -1,4 +1,6 @@
 // HackExeter
+var prevGameState;
+
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
@@ -20,12 +22,13 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "p",
     on_keydown: function() {
-        if (Math.abs(gameState) == 1) {
-            gameState = -gameState;
-        }
-
-        if (gameState == 1) {
+        if (gameState == -1) {
+            gameState = prevGameState;
             requestAnimFrame(animLoop);
+        }
+        else {
+            prevGameState = gameState;
+            gameState = -1;
         }
     }
 });

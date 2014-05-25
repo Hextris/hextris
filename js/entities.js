@@ -27,7 +27,17 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
-			this.opacity = this.opacity - 0.1;
+			if (this.opacity >= 1 - .075) {
+				var tLane = this.attachedLane - MainClock.position;
+				tLane = MainClock.sides - tLane;
+				while (tLane < 0) {
+					tLane += MainClock.sides;
+				}
+
+				tLane %= MainClock.sides;
+				MainClock.shakes.push({lane:tLane, magnitude:3});
+			}
+			this.opacity = this.opacity - 0.075;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
 				this.deleted = 2;
@@ -50,7 +60,6 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.draw = function(attached, index) {
 		this.height = settings.blockHeight;
 		if (Math.abs(settings.scale - settings.prevScale) > .000000001) {
-			debugger;
 			this.distFromHex *= (settings.scale/settings.prevScale);
 		}
 
@@ -96,7 +105,11 @@ function Block(lane, color, iter, distFromHex, settled) {
 			p4 = rotatePoint(-this.widthWide / 2, -this.height / 2, this.angle);
 		}
 
-		ctx.fillStyle = this.color;
+		if (this.deleted) {
+			ctx.fillStyle = "#FFF";
+		} else {
+			ctx.fillStyle = this.color;
+		}
 		ctx.globalAlpha = this.opacity;
 		var baseX = trueCanvas.width / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdx;
 		var baseY = trueCanvas.height / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdy;
@@ -113,7 +126,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 			if (this.opacity < 1) {
 				this.tint = 0;
 			}
-			ctx.fillStyle = "#FFFFFF";
+			ctx.fillStyle = "#FFF";
 			ctx.globalAlpha = this.tint;
 			ctx.beginPath();
 			ctx.moveTo(baseX + p1.x, baseY + p1.y);
@@ -185,7 +198,7 @@ function Clock(sideLength) {
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.fallingLane;//  -this.position;
-		this.shakes.push({lane:block.fallingLane, magnitude:2});
+		this.shakes.push({lane:block.fallingLane, magnitude:3});
 		lane += this.position;
 		lane = (lane+this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
@@ -199,7 +212,6 @@ function Clock(sideLength) {
 		if (block.settled) {
 			return;
 		}
-
 	
 		if (position !== undefined) {
 			arr = tArr;
@@ -295,7 +307,6 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-		debugger;
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
 	};
 }
