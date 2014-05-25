@@ -16,13 +16,13 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.ct = 0;
 	this.parentArr;
 	this.iter = iter;
-	this.initLen = 9;
+	this.initLen = settings.creationDt;
 	this.attachedLane;
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
 	} else {
-		this.distFromHex = 340 * settings.scale;
+		this.distFromHex = settings.startDist * settings.scale;
 	}
 
 	this.incrementOpacity = function() {
@@ -98,8 +98,8 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 		ctx.fillStyle = this.color;
 		ctx.globalAlpha = this.opacity;
-		var baseX = canvas.originalWidth / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdx;
-		var baseY = canvas.originalHeight / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdy;
+		var baseX = trueCanvas.width / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdx;
+		var baseY = trueCanvas.height / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdy;
 		ctx.beginPath();
 		ctx.moveTo(baseX + p1.x, baseY + p1.y);
 		ctx.lineTo(baseX + p2.x, baseY + p2.y);
@@ -156,8 +156,8 @@ function Clock(sideLength) {
 	this.shakes = [];
 	this.sideLength = sideLength;
 	this.strokeColor = 'blue';
-	this.x = canvas.originalWidth / 2;
-	this.y = canvas.originalHeight / 2;
+	this.x = trueCanvas.width / 2;
+	this.y = trueCanvas.height / 2;
 
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
@@ -271,9 +271,9 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
+		this.x = trueCanvas.width/2;
 		if (gameState == 1) {
-			this.x = canvas.width/2;
-			this.y = canvas.height/2;
+			this.y = trueCanvas.height/2;
 		}
 		this.sideLength = settings.hexWidth;
 		gdx = 0;
@@ -295,6 +295,7 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
+		debugger;
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
 	};
 }

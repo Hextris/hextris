@@ -19,7 +19,7 @@ function waveGen(clock) {
 		this.computeDifficulty();
 		if (this.dt - this.lastGen > this.nextGen) {
 			if (this.nextGen > 1000) {
-				this.nextGen -=  3 * (this.nextGen/1300);
+				this.nextGen -=  (3 * (this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
 	};
