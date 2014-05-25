@@ -145,7 +145,7 @@ var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
 function Clock(sideLength) {
 	this.fillColor = '#2c3e50';
 	this.angularVelocity = 0;
-	this.position = 0;
+	this.position = 1;
 	this.dy = 0;
 	this.sides = 6;
 	this.blocks = [];
@@ -252,12 +252,7 @@ function Clock(sideLength) {
 		else {
 			history[count].rotate += steps;
 		}
-
-		while (this.position < 0) {
-			this.position += 6;
-		}
-
-		this.position = this.position % this.sides;
+		this.position = (this.position + this.sides) % this.sides;
 		this.blocks.forEach(function(blocks) {
 			blocks.forEach(function(block) {
 				block.targetAngle = block.targetAngle - steps * 60;
