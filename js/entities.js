@@ -3,7 +3,7 @@ var angularVelocityConst = 4;
 function Block(lane, color, iter, distFromHex, settled) {
 	this.settled = (settled === undefined) ? 0 : 1;
 	this.height = settings.blockHeight;
-	this.lane = lane;
+	this.fallingLane = lane;
 	this.angle = 90 - (30 + 60 * lane);
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
@@ -178,8 +178,8 @@ function Clock(sideLength) {
 		if (gameState != 1) return;
 		block.settled = 1;
 		block.tint = 0.6;
-		var lane = this.sides - block.lane;//  -this.position;
-		this.shakes.push({lane:block.lane, magnitude:2});
+		var lane = this.sides - block.fallingLane;//  -this.position;
+		this.shakes.push({lane:block.fallingLane, magnitude:2});
 		lane += this.position;
 		lane = (lane+this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
@@ -198,7 +198,6 @@ function Clock(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				debugger;
 				if (block.distFromHex - block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
@@ -217,7 +216,7 @@ function Clock(sideLength) {
 				}
 			}
 		} else {
-			var lane = this.sides - block.lane;//  -this.position;
+			var lane = this.sides - block.fallingLane;//  -this.position;
 			lane += this.position;
 
 			lane = (lane+this.sides) % this.sides;
