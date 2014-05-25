@@ -30,6 +30,7 @@ var framerate = 60;
 var history = {};
 var score = 0;
 var scoreScalar = 1;
+var isGameOver = 2;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
@@ -58,6 +59,7 @@ function init() {
 	history = {};
 	importedHistory = undefined;
 	importing = 0;
+	isGameOver = 2;
 	score = 0;
 	prevScore = 0;
 	spawnLane = 0;
@@ -210,6 +212,9 @@ function render() {
 	if (gameState == -2) {
 		if (Date.now() - startTime > 1300) {
 			var op = (Date.now() - startTime - 1300)/500;
+			if (op > 1) {
+				op = 1;
+			}
 			ctx.globalAlpha = op;
 			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, "#bdc3c7", false,6);
 			ctx.globalAlpha = 1;
@@ -259,12 +264,19 @@ function getStepDY(t, b, c, d) {
 	}
 }
 
+isGameOver--;
+
 function animLoop() {
 	if (gameState == 1) {
 		requestAnimFrame(animLoop);
 		update();
 		render();
-		checkGameOver();
+		if (checkGameOver()) {
+			isGameOver--;
+			if (isGameOver === 0) {
+				gameState = 2;
+			}
+		}
 	}
 	else if (gameState === 0) {
 		clearGameBoard();
@@ -304,19 +316,18 @@ function animLoop() {
 		}
 	// }
 }
+
 requestAnimFrame(animLoop);
 
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {
 		if (MainClock.blocks[i].length > 8) {
-			gameState = 2;
 			return true;
 		}
 	}
 	return false;
 }
-window.onblur = function (e) {
-	if (gameState == 1) gameState = -1;	
-}
 
-
+// window.onblur = function (e) {
+// 	if (gameState == 1) gameState = -1;	
+// }

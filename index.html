@@ -7,35 +7,42 @@
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" type="text/css" href="style.css">
         <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
+            @font-face {
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Roboto Regular'), local('Roboto-Regular'), url("fonts/roboto.woff") format('woff');
+            }
 
-        body {
-            color: #ecf0f1;
-            font-family: 'Roboto', sans-serif;
-	       background-color:#ecf0f1;
-        }
+            * {
+                padding: 0;
+                margin: 0;
+            }
 
-        #clickToExit {
-            cursor:pointer;
-        }
+            body {
+                color: #ecf0f1;
+                font-family: 'Roboto', sans-serif;
+               background-color:#ecf0f1;
+            }
 
-        #canvas {
-            position: absolute; 
-            left: calc(50% - 80vmin / 2); 
-            height: 80vmin; 
-            width: 80vmin; 
-	        background-color:#ecf0f1;
-            z-index:3;
-        }
+            #clickToExit {
+                cursor:pointer;
+            }
 
-        #title {
-            z-index:99999;
-            margin-top:20px;
-	        color:#2c3e50;
-        }
+            #canvas {
+                position: absolute; 
+                left: calc(50% - 80vmin / 2); 
+                height: 80vmin; 
+                width: 80vmin; 
+                background-color:#ecf0f1;
+                z-index:3;
+            }
+
+            #title {
+                z-index:99999;
+                margin-top:20px;
+                color:#2c3e50;
+            }
         </style>
     </head>
     <body>
