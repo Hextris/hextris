@@ -3,7 +3,7 @@ var angularVelocityConst = 4;
 function Block(lane, color, iter, distFromHex, settled) {
 	this.settled = (settled === undefined) ? 0 : 1;
 	this.height = settings.blockHeight;
-	this.lane = lane;
+	this.fallingLane = lane;
 	this.angle = 90 - (30 + 60 * lane);
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
@@ -22,16 +22,11 @@ function Block(lane, color, iter, distFromHex, settled) {
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
 	} else {
-		this.distFromHex = 320;
+		this.distFromHex = 320 * settings.scale;
 	}
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
-			var lane = MainClock.sides - this.lane;//  -this.position;
-			lane += MainClock.position;
-
-			lane = (lane+MainClock.sides) % MainClock.sides;
-
 			this.opacity = this.opacity - 0.1;
 			if (this.opacity <= 0) {
 				this.opacity = 0;
@@ -50,9 +45,15 @@ function Block(lane, color, iter, distFromHex, settled) {
 				return i;
 			}
 		}
-	}
+	};
 
 	this.draw = function(attached, index) {
+		this.height = settings.blockHeight;
+		if (Math.abs(settings.scale - settings.prevScale) > .000000001) {
+			debugger;
+			this.distFromHex *= (settings.scale/settings.prevScale);
+		}
+
 		this.incrementOpacity();
 		if(attached === undefined)
 			attached = false;
@@ -183,8 +184,8 @@ function Clock(sideLength) {
 		if (gameState != 1) return;
 		block.settled = 1;
 		block.tint = 0.6;
-		var lane = this.sides - block.lane;//  -this.position;
-		this.shakes.push({lane:block.lane, magnitude:2});
+		var lane = this.sides - block.fallingLane;//  -this.position;
+		this.shakes.push({lane:block.fallingLane, magnitude:2});
 		lane += this.position;
 		lane = (lane+this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
@@ -203,8 +204,7 @@ function Clock(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				debugger;
-				if (block.distFromHex - block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex - block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					consolidateBlocks(this, block.attachedLane, block.getIndex());
@@ -212,7 +212,7 @@ function Clock(sideLength) {
 					block.settled = 0;
 				}
 			} else {
-				if (arr[position - 1].settled && block.distFromHex - block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+				if (arr[position - 1].settled && block.distFromHex - block.iter * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					consolidateBlocks(this, block.attachedLane, block.getIndex());
@@ -222,19 +222,19 @@ function Clock(sideLength) {
 				}
 			}
 		} else {
-			var lane = this.sides - block.lane;//  -this.position;
+			var lane = this.sides - block.fallingLane;//  -this.position;
 			lane += this.position;
 
 			lane = (lane+this.sides) % this.sides;
 			var arr = this.blocks[lane];
 
 			if (arr.length > 0) {
-				if (block.distFromHex + block.iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				if (block.distFromHex + block.iter * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
 			} else {
-				if (block.distFromHex + block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex + block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
 				}
@@ -255,7 +255,12 @@ function Clock(sideLength) {
 		else {
 			history[count].rotate += steps;
 		}
-		this.position = (this.position + this.sides) % this.sides;
+
+		while (this.position < 0) {
+			this.position += 6;
+		}
+
+		this.position = this.position % this.sides;
 		this.blocks.forEach(function(blocks) {
 			blocks.forEach(function(block) {
 				block.targetAngle = block.targetAngle - steps * 60;
@@ -266,6 +271,7 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
+		this.sideLength = settings.hexWidth;
 		gdx = 0;
 		gdy = 0;
 		for (var i = 0; i < this.shakes.length; i++) {
