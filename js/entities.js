@@ -17,6 +17,7 @@ function Block(lane, color, iter, distFromHex, settled) {
 	this.parentArr;
 	this.iter = iter;
 	this.initLen = 9;
+	this.attachedLane;
 
 	if (distFromHex) {
 		this.distFromHex = distFromHex;
@@ -145,7 +146,7 @@ var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
 function Clock(sideLength) {
 	this.fillColor = '#2c3e50';
 	this.angularVelocity = 0;
-	this.position = 1;
+	this.position = 0;
 	this.dy = 0;
 	this.sides = 6;
 	this.blocks = [];
@@ -188,6 +189,7 @@ function Clock(sideLength) {
 		lane = (lane+this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
+		block.attachedLane = lane;
 		block.parentArr = this.blocks[lane];
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
 	};
@@ -197,12 +199,7 @@ function Clock(sideLength) {
 			return;
 		}
 
-		var lane = this.sides - block.lane;//  -this.position;
-		lane += this.position;
-
-		lane = (lane+this.sides) % this.sides;
-		var arr = this.blocks[lane];
-
+	
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
@@ -210,7 +207,7 @@ function Clock(sideLength) {
 				if (block.distFromHex - block.iter - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
-					consolidateBlocks(this, lane, block.getIndex());
+					consolidateBlocks(this, block.attachedLane, block.getIndex());
 				} else {
 					block.settled = 0;
 				}
@@ -218,13 +215,19 @@ function Clock(sideLength) {
 				if (arr[position - 1].settled && block.distFromHex - block.iter - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
-					consolidateBlocks(this, lane, block.getIndex());
+					consolidateBlocks(this, block.attachedLane, block.getIndex());
 				}
 				else {
 					block.settled = 0;
 				}
 			}
 		} else {
+			var lane = this.sides - block.lane;//  -this.position;
+			lane += this.position;
+
+			lane = (lane+this.sides) % this.sides;
+			var arr = this.blocks[lane];
+
 			if (arr.length > 0) {
 				if (block.distFromHex + block.iter - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
