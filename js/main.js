@@ -1,8 +1,26 @@
-$(document).ready(function(){
-	//some sort loading anim until this point
-});
+$(document).ready(scaleCanvas);
+$(window).resize(scaleCanvas);
+function scaleCanvas() {
+	var h = $(window).height();
+	var w = $(window).width();
+	if (w > h) {
+		$('#canvas').css("width", h * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
+		$('#canvas').css("height", (h * (Math.sqrt(3)/2)) * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
+	}
+	else {
+		$('#canvas').css("width", w * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
+		$('#canvas').css("height", (w * (Math.sqrt(3)/2)) * (window.devicePixelRatio ? window.devicePixelRatio : 1) + 'px');
+	}
+
+
+	$('#canvas').css("left", w/2 + 'px');
+	$('#canvas').css("top", h/2 + 'px');
+	$('#canvas').css("margin-left", -$("#canvas").width()/2 + 'px');
+	$('#canvas').css("margin-top", -$("#canvas").height()/2 + 'px');
+}
 
 var canvas = document.getElementById('canvas');
+
 var ctx = canvas.getContext('2d');
 canvas.originalHeight = canvas.height;
 canvas.originalWidth = canvas.width;
@@ -24,6 +42,27 @@ $('#clickToExit').bind('click', toggleDevTools);
 function toggleDevTools() {
 	$('#devtools').toggle();
 }
+
+var settings;
+
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	settings = {
+		hexWidth:87,
+		blockHeight:20,
+		rows:6,
+		speedModifier:0.8,
+		creationSpeedModifier:0.8
+	};
+} else {
+	settings = {
+		hexWidth:65,
+		blockHeight:15,
+		rows:8,
+		speedModifier:1,
+		creationSpeedModifier:0.8
+	};
+}
+
 var firstTime = 1;
 var gameState = 0;
 var framerate = 60;
@@ -67,8 +106,8 @@ function init() {
 	gameState = -2;
 	count = 0;
 	blocks = [];
-	MainClock = new Clock(65);
-	MainClock.y = -100;
+	MainClock = new Clock(settings.hexWidth);
+	MainClock.y = -100/(window.devicePixelRatio ? window.devicePixelRatio : 1);
 	startTime = Date.now();
 	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	if (firstTime) {
@@ -213,11 +252,15 @@ function render() {
 				op = 1;
 			}
 			ctx.globalAlpha = op;
-			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, "#bdc3c7", false,6);
+			drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, "#bdc3c7", false,6);
 			ctx.globalAlpha = 1;
 		}
 	} else {
-		drawPolygon(canvas.originalWidth / 2 , canvas.originalHeight / 2 , 6, 220, 30, '#bdc3c7', false,6);
+		ctx.save();
+		ctx.translate(canvas.originalWidth / 2 + gdx, canvas.originalHeight / 2 + gdy);
+		ctx.rotate(MainClock.angle * (Math.PI/180) + 30 * (Math.PI/180));
+		drawPolygon(0, 0, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, '#bdc3c7', false,6);
+		ctx.restore();
 	}
 
 	var i;
@@ -236,10 +279,10 @@ function render() {
 }
 
 function stepInitialLoad() {
-	var dy = getStepDY(Date.now() - startTime, 0, 100 + canvas.height/2, 1300);
+	var dy = getStepDY(Date.now() - startTime, 0, (100 + canvas.height/2)/(window.devicePixelRatio ? window.devicePixelRatio : 1), 1300);
 	if (Date.now() - startTime > 1300) {
 		MainClock.dy = 0;
-		MainClock.y = canvas.height/2;
+		MainClock.y = (canvas.height/2)/(window.devicePixelRatio ? window.devicePixelRatio : 1);
 		if (Date.now() - startTime - 500 > 1300) {
 			gameState = 1;
 		}
@@ -285,14 +328,10 @@ function animLoop() {
 	else if (gameState == -1) {
 		showModal('Paused!', 'Press "P" to continue.');
 	}
-	else if (gameState == 2) { // fix so that it clears blocks then checks for game over
-		// if (checkGameOver()) {
-		// if (MainClock.angle != MainClock.targetAngle) {
+	else if (gameState == 2) {
 			requestAnimFrame(animLoop);
-			update(); // score will keep incrementing at gameover
+			update();
 			render();
-		// }
-			// checkGameOver();
 			showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
 			highscores = localStorage.getItem('highscores').split(',').map(Number);
 			for (var i = 0; i < numHighScores; i++) {
@@ -316,7 +355,7 @@ requestAnimFrame(animLoop);
 
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {
-		if (MainClock.blocks[i].length > 8) {
+		if (MainClock.blocks[i].length > settings.rows) {
 			return true;
 		}
 	}
@@ -324,5 +363,5 @@ function checkGameOver() {
 }
 
 window.onblur = function (e) {
-	if (gameState == 1) gameState = -1;	
-}
+	if (gameState == 1) gameState = -1;
+};

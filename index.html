@@ -22,18 +22,22 @@
             body {
                 color: #ecf0f1;
                 font-family: 'Roboto', sans-serif;
-               background-color:#ecf0f1;
+                background-color:#ecf0f1;
             }
 
             #clickToExit {
                 cursor:pointer;
             }
 
+            #canvasCont {
+                width: 100%;
+                padding-bottom: 100%;
+            }
+
             #canvas {
-                position: absolute; 
-                left: calc(50% - 80vmin / 2); 
-                height: 80vmin; 
-                width: 80vmin; 
+                position: absolute;
+                /*height:100%;
+                width:100%;*/
                 background-color:#ecf0f1;
                 z-index:3;
             }
@@ -46,8 +50,10 @@
         </style>
     </head>
     <body>
-        <center  id='title'><div>Hextris</div></center>
-        <canvas id="canvas" width="800" height="800"></canvas>
+        <!-- <center  id='title'><div>Hextris</div></center> -->
+        <div id = 'canvasCont'>
+            <canvas id="canvas" width="800" height="692.820323"></canvas> <!--692.820323 = 800 * sqrt(3)/2-->
+        </div>
         <div id="leftTap" style="position: absolute; left: 0; top:0; height:100%; width:50%;"></div>
         <div id="rightTap" style="position: absolute; right: 0; top: 0; height:100%; width:50%;"></div>
         <div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
