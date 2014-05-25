@@ -60,7 +60,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		creationDt:40,
 		baseScale:1.4,
 		scale:1,
-		prevScale:1.3,
+		prevScale:1,
 		baseHexWidth:87,
 		hexWidth:87,
 		baseBlockHeight:20,
@@ -73,7 +73,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 	settings = {
 		baseScale:1,
 		startDist:340,
-		creationDt:30,
+		creationDt:9,
 		scale:1,
 		prevScale:1,
 		hexWidth:65,
@@ -297,7 +297,6 @@ function stepInitialLoad() {
 			gameState = 1;
 		}
 	} else {
-		console.log(dy);
 		MainClock.dy = dy;
 	}
 }
