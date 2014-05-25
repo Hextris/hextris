@@ -11,6 +11,12 @@ function scaleCanvas() {
 	} else {
 		settings.scale = canvas.height/800;
 	}
+	
+	if (window.devicePixelRatio) {
+		canvas.style.width = canvas.width/window.devicePixelRatio + "px";
+		canvas.style.height = canvas.height/window.devicePixelRatio + "px";
+		ctx.scale(window.devicePixelRatio,window.devicePixelRatio)
+	}
 }
 
 var canvas = document.getElementById('canvas');
