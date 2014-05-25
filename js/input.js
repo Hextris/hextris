@@ -18,22 +18,6 @@ keypress.register_combo({
 });
 
 keypress.register_combo({
-    keys: "enter",
-    on_keydown: function() {
-        var shouldAnimLoop = 0;
-        if (gameState === -1) {
-            shouldAnimLoop = 1;
-        }
-
-        init();
-
-        if (shouldAnimLoop) {
-            requestAnimFrame(animLoop);
-        }
-    }
-});
-
-keypress.register_combo({
     keys: "p",
     on_keydown: function() {
         if (Math.abs(gameState) == 1) {
@@ -67,17 +51,18 @@ keypress.register_combo({
     }
 });
 
-var tapLeft = Hammer(document.getElementById("leftTap")).on("tap", function(event) {
-    if (gameState != 1) {
-        init();
-    }
-    MainClock.rotate(1);
+document.body.addEventListener('touchstart', function(e){
 
-});
-
-var tapRight = Hammer(document.getElementById("rightTap")).on("tap", function(event) {
-    if (gameState != 1) {
-        init();
-    }
-    MainClock.rotate(-1);
-});
+ 	if( e.changedTouches[0].pageX<window.innerWidth/2){
+		if (gameState != 1 && gameState != -2) {
+			init();
+		}
+		MainClock.rotate(1);
+	}
+	if( e.changedTouches[0].pageX>window.innerWidth/2){
+		if (gameState != 1 && gameState != -2) {
+			init();
+		}
+		MainClock.rotate(-1);
+	}
+}, false)
