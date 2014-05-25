@@ -30,7 +30,7 @@ var framerate = 60;
 var history = {};
 var score = 0;
 var scoreScalar = 1;
-var isGameOver = 2;
+var isGameOver = 3;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
@@ -162,7 +162,6 @@ function update() {
 		for (j = 0; j < MainClock.blocks[i].length; j++) {
 			block = MainClock.blocks[i][j];
 			if (block.deleted == 2) {
-				debugger;
 				MainClock.blocks[i].splice(j,1);
 				if (j < lDI) lDI = j;
 				j--;
@@ -170,9 +169,7 @@ function update() {
 		}
 
 		if (lDI < MainClock.blocks[i].length) {
-			debugger;
 			for (var q = lDI; q < MainClock.blocks[i].length; q++) {
-				debugger;
 				MainClock.blocks[i][q].settled = 0;
 			}
 		}
@@ -264,8 +261,6 @@ function getStepDY(t, b, c, d) {
 	}
 }
 
-isGameOver--;
-
 function animLoop() {
 	if (gameState == 1) {
 		requestAnimFrame(animLoop);
@@ -328,6 +323,6 @@ function checkGameOver() {
 	return false;
 }
 
-// window.onblur = function (e) {
-// 	if (gameState == 1) gameState = -1;	
-// }
+window.onblur = function (e) {
+	if (gameState == 1) gameState = -1;	
+}
