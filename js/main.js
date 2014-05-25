@@ -68,7 +68,6 @@ var gameState = 0;
 var framerate = 60;
 var history = {};
 var score = 0;
-var scoreScalar = 1;
 var isGameOver = 3;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
@@ -102,7 +101,6 @@ function init() {
 	score = 0;
 	prevScore = 0;
 	spawnLane = 0;
-	scoreScalar = 1;
 	gameState = -2;
 	count = 0;
 	blocks = [];
@@ -158,12 +156,6 @@ function exportHistory() {
 //remember to update history function to show the respective iter speeds
 function update() {
 	var now = Date.now();
-	
-	if (now - prevTimeScored > 1000) {
-		score += 5 * (scoreScalar * scoreAdditionCoeff);
-		prevTimeScored = now;
-	}
-
 	if (importing) {
 		if (importedHistory[count]) {
 			if (importedHistory[count].block) {
@@ -179,7 +171,6 @@ function update() {
 	else if (gameState == 1) {
 		waveone.update();
 		if (now - waveone.prevTimeScored > 1000) {
-			score += 5 * (scoreScalar * scoreAdditionCoeff);
 			waveone.prevTimeScored = now;
 		}
 	}
