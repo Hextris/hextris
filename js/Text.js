@@ -34,5 +34,6 @@ function fadeUpAndOut(text){
 }
 
 function fadeOut(text){
-	text.alive -= 0.02;
+	text.opacity -=  Math.pow(Math.pow((1-text.opacity), 1/3)+1,3)/250;
+	text.alive = text.opacity;
 }
