@@ -11,7 +11,7 @@ function Text(x,y,text,font,color,incrementFunction){
 			ctx.font= this.font;
 			ctx.fillStyle = this.color;
 			ctx.globalAlpha = this.opacity;
-			ctx.fillText(text,this.x,this.y);
+			ctx.fillText(text,this.x+gdx,this.y+gdy);
 			ctx.globalAlpha =1;
 			//this.opacity = 1-(Date.now()-MainClock.lastCombo)/5000;
 			incrementFunction(this);
@@ -27,6 +27,10 @@ function Text(x,y,text,font,color,incrementFunction){
 }
 
 function fadeUpAndOut(text){
-	text.opacity -=0.05;
+	text.opacity -=0.07;
 	text.y-=3;
+}
+
+function fadeOut(text){
+	text.opacity -= 0.01 ;
 }
