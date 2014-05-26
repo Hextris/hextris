@@ -388,5 +388,13 @@ function checkGameOver() {
 }
 
 window.onblur = function (e) {
-	if (gameState == 1) gameState = -1;
+        if (gameState == -1) {
+            gameState = prevGameState;
+            requestAnimFrame(animLoop);
+        }
+        else if(gameState != -2 && gameState != 0) {
+            prevGameState = gameState;
+            gameState = -1;
+        }
+
 };
