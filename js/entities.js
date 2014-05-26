@@ -148,12 +148,12 @@ function Block(lane, color, iter, distFromHex, settled) {
 
 // t: current time, b: begInnIng value, c: change In value, d: duration
 function easeOutCubic(t, b, c, d) {
-		return c*((t=t/d-1)*t*t + 1) + b;
-	}
+	return c*((t=t/d-1)*t*t + 1) + b;
+}
 
 var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
-	"#f1c40f":new Audio("../sounds/highest.ogg"),
-	"#3498db":new Audio("../sounds/middle.ogg"),
+"#f1c40f":new Audio("../sounds/highest.ogg"),
+"#3498db":new Audio("../sounds/middle.ogg"),
 	"#2ecc71":new Audio("../sounds/highest.ogg") //fix this later
 };
 
@@ -197,10 +197,10 @@ function Clock(sideLength) {
 		if (gameState != 1) return;
 		block.settled = 1;
 		block.tint = 0.6;
-		var lane = this.sides - block.fallingLane;//  -this.position;
+		var lane = this.sides - block.fallingLane;// -this.position;
 		this.shakes.push({lane:block.fallingLane, magnitude:3});
 		lane += this.position;
-		lane = (lane+this.sides) % this.sides;
+		lane = (lane + this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
@@ -212,7 +212,7 @@ function Clock(sideLength) {
 		if (block.settled) {
 			return;
 		}
-	
+
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
