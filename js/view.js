@@ -38,7 +38,7 @@ function renderText(x, y, fontSize, color, text) {
 }
 
 function drawScoreboard() {
-    renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 50, grey, score);
+    renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 50, "#fff", score);
 }
 
 function clearGameBoard() {
