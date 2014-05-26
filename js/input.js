@@ -1,4 +1,3 @@
-// HackExeter
 var prevGameState;
 
 keypress.register_combo({
@@ -56,25 +55,25 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-	if (gameState != 1 && gameState != -2) {
-		init();
-	}
-    }
+       if (gameState != 1 && gameState != -2) {
+          init();
+      }
+  }
 });
 
 
-document.body.addEventListener('touchstart', function(e){
-
- 	if( e.changedTouches[0].pageX<window.innerWidth/2){
-		if (gameState != 1 && gameState != -2) {
-			init();
-		}
-		MainClock.rotate(1);
-	}
-	if( e.changedTouches[0].pageX>window.innerWidth/2){
-		if (gameState != 1 && gameState != -2) {
-			init();
-		}
-		MainClock.rotate(-1);
-	}
+document.body.addEventListener('touchstart', function(e) {
+    if (e.changedTouches[0].pageX<window.innerWidth/2) {
+        if (gameState != 1 && gameState != -2) {
+            init();
+        }
+        MainClock.rotate(1);
+    }
+    if (e.changedTouches[0].pageX>window.innerWidth/2) {
+        if (gameState != 1 && gameState != -2) {
+            init();
+        }
+        MainClock.rotate(-1);
+    }
 }, false)
+

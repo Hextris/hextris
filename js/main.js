@@ -172,122 +172,6 @@ function exportHistory() {
 	toggleDevTools();
 }
 
-//remember to update history function to show the respective iter speeds
-function update() {
-	settings.hexWidth = settings.baseHexWidth * settings.scale;
-	settings.blockHeight = settings.baseBlockHeight * settings.scale;
-
-	var now = Date.now();
-	if (importing) {
-		if (importedHistory[count]) {
-			if (importedHistory[count].block) {
-				addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color, importedHistory[count].block.iter, importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
-			}
-
-			if (importedHistory[count].rotate) {
-				MainClock.rotate(importedHistory[count].rotate);
-			}
-
-		}
-	}
-	else if (gameState == 1) {
-		waveone.update();
-		if (now - waveone.prevTimeScored > 1000) {
-			waveone.prevTimeScored = now;
-		}
-	}
-
-	var i;
-	var objectsToRemove = [];
-	for (i in blocks) {
-		MainClock.doesBlockCollide(blocks[i]);
-		if (!blocks[i].settled) {
-			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter * settings.scale;
-		} else if (!blocks[i].removed) {
-			blocks[i].removed = 1;
-		}
-	}
-
-	var lDI;
-	for (i = 0; i < MainClock.blocks.length; i++) {
-		lDI = 99;
-		for (j = 0; j < MainClock.blocks[i].length; j++) {
-			block = MainClock.blocks[i][j];
-			if (block.deleted == 2) {
-				MainClock.blocks[i].splice(j,1);
-				if (j < lDI) lDI = j;
-				j--;
-			}
-		}
-
-		if (lDI < MainClock.blocks[i].length) {
-			for (var q = lDI; q < MainClock.blocks[i].length; q++) {
-				MainClock.blocks[i][q].settled = 0;
-			}
-		}
-	}
-
-	var block;
-	var j;
-	for (i in MainClock.blocks) {
-		for (j = 0; j < MainClock.blocks[i].length; j++) {
-			block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
-
-			if (!MainClock.blocks[i][j].settled) {
-				MainClock.blocks[i][j].distFromHex -= block.iter * settings.scale;
-			}
-		}
-	}
-
-	for(i=0;i<blocks.length;i++){
-		if(blocks[i].removed == 1){
-			blocks.splice(i,1);
-			i--;
-		}
-	}
-
-	count++;
-	if (score != prevScore) {
-		updateScoreboard();
-		prevScore = score;
-	}
-}
-
-function render() {
-	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
-	clearGameBoard();
-
-	if (gameState == -2) {
-		if (Date.now() - startTime > 1300) {
-			var op = (Date.now() - startTime - 1300)/500;
-			if (op > 1) {
-				op = 1;
-			}
-			ctx.globalAlpha = op;
-			drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, "#bdc3c7", false,6);
-			ctx.globalAlpha = 1;
-		}
-	} else {
-		drawPolygon(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, '#bdc3c7', false, 6);
-	}
-
-	var i;
-	for (i in MainClock.blocks) {
-		for (var j = 0; j < MainClock.blocks[i].length; j++) {
-			var block = MainClock.blocks[i][j];
-			block.draw(true, j);
-		}
-	}
-
-	for (i in blocks) {
-		blocks[i].draw();
-	}
-
-	MainClock.draw();
-	settings.prevScale = settings.scale;
-}
-
 function stepInitialLoad() {
 	var dy = getStepDY(Date.now() - startTime, 0, (100 + trueCanvas.height/2), 1300);
 	if (Date.now() - startTime > 1300) {
@@ -320,10 +204,10 @@ function animLoop() {
 		update();
 		render();
 		if (checkGameOver()) {
-			isGameOver--;
-			if (isGameOver === 0) {
+			// isGameOver--;
+			// if (isGameOver === 0) {
 				gameState = 2;
-			}
+			// }
 		}
 	}
 	else if (gameState === 0) {
@@ -390,11 +274,9 @@ function checkGameOver() {
 window.onblur = function (e) {
         if (gameState == -1) {
             gameState = prevGameState;
-            requestAnimFrame(animLoop);
         }
         else if(gameState != -2 && gameState != 0) {
             prevGameState = gameState;
             gameState = -1;
         }
-
 };
