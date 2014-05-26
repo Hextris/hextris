@@ -18,16 +18,17 @@ function showModal(text, secondaryText) {
     ctx.fillText(secondaryText, trueCanvas.width / 2, trueCanvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
-function renderText(x, y, fontSize, text) {
+function renderText(x, y, fontSize, color, text) {
     // if(typeof text == 'string' || text instanceof String) {
     //     text = [text];
     // }
 
     // fontSize = fontSize || 50;
-
-    ctx.font = fontSize + 'px Roboto'; // figure out what is not working
+    // var lineHeight =;
+    ctx.font = fontSize + 'px/0 Roboto'; // figure out what is not working
     ctx.textAlign = 'center';
-    ctx.fillStyle = 'rgb(236, 240, 241)';
+    // ctx.fillStyle = 'rgb(236, 240, 241)';
+    ctx.fillStyle = color;
 
     // for(var i=0; i<text.length; i++) {
     //     ctx.fillText(text[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
@@ -37,7 +38,7 @@ function renderText(x, y, fontSize, text) {
 }
 
 function drawScoreboard() {
-    renderText(trueCanvas.width / 2, trueCanvas.height / 2, 50, score);
+    renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 50, grey, score);
 }
 
 function clearGameBoard() {
@@ -64,6 +65,7 @@ function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+    ctx.strokeStyle = 'rgba(0,0,0,0)';
 }
 
 function showHighScores() {
