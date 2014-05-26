@@ -314,7 +314,7 @@ window.onblur = function (e) {
         if (gameState == -1) {
             gameState = prevGameState;
         }
-        else if(gameState != -2 && gameState != 0) {
+        else if(gameState == 1) {
             prevGameState = gameState;
             gameState = -1;
         }

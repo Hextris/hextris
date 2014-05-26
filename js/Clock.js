@@ -12,8 +12,9 @@ function Clock(sideLength) {
 	this.strokeColor = 'blue';
 	this.x = trueCanvas.width / 2;
 	this.y = trueCanvas.height / 2;
-	this.lastCombo;
+	this.lastCombo = Date.now() - 5000;
 	this.comboMultiplier = 1;
+	this.texts = [];
 
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
@@ -150,5 +151,25 @@ function Clock(sideLength) {
 			this.angle += this.angularVelocity;
 		}
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
+		this.drawClockHand();
 	};
+
+	this.drawClockHand = function() {
+		ctx.beginPath();
+		var handColor = '#7f8c8d';
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = handColor;	
+		ctx.moveTo(this.x, this.y);
+		if(Date.now()-this.lastCombo >5000){
+			var handAngle =0;
+		}
+		else {
+			var handAngle = (360 * (Date.now() - this.lastCombo) / 5000);
+		}
+		var coords = rotatePoint(0, this.sideLength / 2 * Math.sqrt(3),  (handAngle+180)%360);
+		ctx.lineTo(this.x + coords.x, this.y + coords.y);
+		ctx.stroke();
+		ctx.strokeStyle = 'rgba(0,0,0,0)';
+	}
+
 }

@@ -62,6 +62,7 @@ function consolidateBlocks(clock,side,index){
 			clock.blocks[arr[0]][arr[1]].deleted = 1;
 		}
 	}
+	var lastBlock =  clock.blocks[arr[0]][arr[1]]
 	// add scores
 	var now = Date.now();
 	if(now - clock.lastCombo < 5000 ){
@@ -72,6 +73,8 @@ function consolidateBlocks(clock,side,index){
 		clock.lastCombo = now;
 		clock.comboMultiplier = 1;
 	}
-	score += deleting.length * deleting.length * clock.comboMultiplier;
+	var adder = deleting.length * deleting.length * clock.comboMultiplier;
+	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Roboto 24px","#9b59b6",fadeUpAndOut));
+	score += adder;
 
 }
