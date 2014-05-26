@@ -68,13 +68,13 @@ function consolidateBlocks(clock,side,index){
 	if(now - clock.lastCombo < 5000 ){
 		clock.comboMultiplier += 1;	
 		clock.lastCombo = now;
-		clock.texts.splice(0,1);
-		clock.texts.push(new Text(clock.x,clock.y+100,"x"+clock.comboMultiplier.toString(),'bold 500px Roboto',"#9b59b6"))
 	}
 	else{
 		clock.lastCombo = now;
 		clock.comboMultiplier = 1;
 	}
-	score += deleting.length * deleting.length * clock.comboMultiplier;
+	var adder = deleting.length * deleting.length * clock.comboMultiplier;
+	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Roboto 24px","#9b59b6",fadeUpAndOut));
+	score += adder;
 
 }

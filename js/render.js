@@ -17,10 +17,6 @@ function render() {
 	} else {
 		drawPolygon(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false, 6);
 	}
-	for (var i in MainClock.texts) {
-		MainClock.texts[i].draw();
-	}
-
 
 
 	for (var i in MainClock.blocks) {
@@ -39,5 +35,14 @@ function render() {
 	if (gameState == 1) {
 		drawScoreboard();
 	}
+	for (var i in MainClock.texts) {
+		var alive = MainClock.texts[i].draw();
+		if(!alive){
+			MainClock.texts.splice(i,1)
+		}
+		i--;
+	}
+
+
 	settings.prevScale = settings.scale;
 }
