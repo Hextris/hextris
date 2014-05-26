@@ -5,7 +5,7 @@ function update() {
 
 	var now = Date.now();
 	if (importing) {
-		if (importedHistory[count]) {
+		// if (importedHistory[count]) {
 			if (importedHistory[count].block) {
 				addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color, importedHistory[count].block.iter, importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
 			}
@@ -14,7 +14,7 @@ function update() {
 				MainClock.rotate(importedHistory[count].rotate);
 			}
 
-		}
+		// }
 	}
 	else if (gameState == 1) {
 		waveone.update();
@@ -71,8 +71,4 @@ function update() {
 	}
 
 	count++;
-	if (score != prevScore) {
-		// updateScoreboard();
-		prevScore = score;
-	}
 }
