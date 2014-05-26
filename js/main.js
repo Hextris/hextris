@@ -1,7 +1,6 @@
 $(document).ready(scaleCanvas);
 $(window).resize(scaleCanvas);
 $(window).unload(function() {
-	console.log("hello");
 	localStorage.setItem("saveState", exportSaveState());
 });
 
@@ -118,10 +117,11 @@ var importing = 0;
 var importedHistory;
 var startTime;
 
-if(localStorage.getItem("saveState") == "{}")
-	var gameState = 0;
-else
+var gameState;
+if(isStateSaved())
 	init();
+else
+	gameState = 0;
 
 function init() {
 	var saveState = localStorage.getItem("saveState") || "{}";
@@ -134,7 +134,9 @@ function init() {
 	score = saveState.score || 0;
 	prevScore = 0;
 	spawnLane = 0;
+
 	gameState = -2;
+
 	count = 0;
 
 	if(saveState.blocks) {
@@ -143,6 +145,9 @@ function init() {
 			blocks.push(block);
 		}
 		console.log(blocks);
+	}
+	else {
+		blocks = [];
 	}
 
 	gdx = saveState.gdx || 0;
@@ -154,11 +159,13 @@ function init() {
 			MainClock.blocks[i][j].settled = 0;
 		}
 	}
+
 	MainClock.y = -100;
+
 	startTime = Date.now();
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
-	localStorage.setItem("saveState", "{}"); 
+	clearSaveState();
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
@@ -236,6 +243,7 @@ function animLoop() {
 			// isGameOver--;
 			// if (isGameOver === 0) {
 				gameState = 2;
+				clearSaveState();
 			// }
 		}
 	}

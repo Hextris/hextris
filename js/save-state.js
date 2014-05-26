@@ -14,3 +14,11 @@ function exportSaveState() {
 
 	return JSONfn.stringify(state);
 }
+
+function clearSaveState() {
+	localStorage.setItem("saveState", "{}"); 
+}
+
+function isStateSaved() {
+	return localStorage.getItem("saveState") != "{}";
+}
