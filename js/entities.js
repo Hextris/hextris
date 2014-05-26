@@ -1,31 +1,39 @@
 var angularVelocityConst = 4;
 
-function Block(lane, color, iter, distFromHex, settled) {
+function Block(fallingLane, color, iter, distFromHex, settled) {
+	// whether or not a block is rested on the center clock or another block
 	this.settled = (settled === undefined) ? 0 : 1;
 	this.height = settings.blockHeight;
-	this.fallingLane = lane;
-	this.angle = 90 - (30 + 60 * lane);
+	//the lane which the block was shot from
+	this.fallingLane = fallingLane;
+	//the angle at which the block falls
+	this.angle = 90 - (30 + 60 * fallingLane);
+	//for calculating the rotation of blocks attached to the center clock
 	this.angularVelocity = 0;
 	this.targetAngle = this.angle;
 	this.color = color;
+	//blocks that are slated to be deleted after a valid score has happened
 	this.deleted = 0;
+	//blocks slated to be removed from falling and added to the clock
 	this.removed = 0;
+	//value for the opacity of the white blcok drawn over falling block to give it the glow as it attaches to the clock
 	this.tint = 0;
+	//value used for deletion animation
 	this.opacity = 1;
+	//boolean for when the block is expanding
 	this.initializing = 1;
 	this.ct = 0;
-	this.parentArr;
+	//speed of block
 	this.iter = iter;
+	//number of iterations before starting to drop
 	this.initLen = settings.creationDt;
+	//side which block is attached too
 	this.attachedLane;
-
-	if (distFromHex) {
-		this.distFromHex = distFromHex;
-	} else {
-		this.distFromHex = settings.startDist * settings.scale;
-	}
+	//distance from center clock
+	this.distFromHex = distFromHex || settings.startDist * settings.scale ;
 
 	this.incrementOpacity = function() {
+		
 		if (this.deleted) {
 			if (this.opacity >= 1 - .075) {
 				var tLane = this.attachedLane - MainClock.position;
@@ -43,15 +51,12 @@ function Block(lane, color, iter, distFromHex, settled) {
 				this.deleted = 2;
 			}
 		}
-
-		if(!this.deleted && this.opacity < 1){
-			this.opacity = this.opacity + 0.05;
-		}
 	};
 
 	this.getIndex = function (){
-		for (var i = 0; i < this.parentArr.length; i++) {
-			if (this.parentArr[i] == this) {
+		var parrentArr = MainClock.blocks[this.attachedLane]
+		for (var i = 0; i < parentArr.length; i++) {
+			if (parentArr[i] == this) {
 				return i;
 			}
 		}
