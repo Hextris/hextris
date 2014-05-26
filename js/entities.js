@@ -57,7 +57,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 
 	this.getIndex = function (){
 		//get the index of the block in its stack
-		var parrentArr = MainClock.blocks[this.attachedLane]
+		var parentArr = MainClock.blocks[this.attachedLane]
 		for (var i = 0; i < parentArr.length; i++) {
 			if (parentArr[i] == this) {
 				return i;
