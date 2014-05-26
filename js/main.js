@@ -156,7 +156,9 @@ function init() {
 	MainClock = saveState.clock || new Clock(settings.hexWidth);
 	for(var i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
-			MainClock.blocks[i][j].settled = 0;
+			var block = MainClock.blocks[i][j];
+			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
+			block.settled = 0;
 		}
 	}
 
