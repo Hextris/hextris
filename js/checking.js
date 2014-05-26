@@ -69,6 +69,8 @@ function consolidateBlocks(clock,side,index){
 	if(now - clock.lastCombo < 5000 ){
 		clock.comboMultiplier += 1;	
 		clock.lastCombo = now;
+		var coords = findCenterOfBlocks(deletedBlocks);
+		clock.texts.push(new Text(coords['x'],coords['y'],"x "+clock.comboMultiplier.toString(),"bold Lovelo 24px",deletedBlocks[0].color,fadeOut));
 	}
 	else{
 		clock.lastCombo = now;
