@@ -47,7 +47,6 @@ function Clock(sideLength) {
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
-		block.parentArr = this.blocks[lane];
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
 	};
 
