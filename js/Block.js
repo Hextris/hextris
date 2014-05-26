@@ -157,11 +157,12 @@ function findCenterOfBlocks(arr) {
 	var avgAngle = 0;
 	for (var i = 0; i < arr.length; i++) {
 		avgDFH += arr[i].distFromHex;
-		while (arr[i].angle < 0) {
-			arr[i].angle += 360;
+		var ang = arr[i].angle;
+		while (ang < 0) {
+			ang += 360;
 		}
 		
-		avgAngle += arr[i].angle % 360;
+		avgAngle += ang % 360;
 	}
 
 	avgDFH /= arr.length;

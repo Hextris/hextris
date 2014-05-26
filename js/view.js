@@ -9,12 +9,12 @@ function showModal(text, secondaryText) {
     var fontSizeSmall = 25;
     drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, trueCanvas.width / 2 - 25, 30, hexagonBackgroundColorClear);
     // drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, buttonSize, 30, swegBlue);
-    ctx.font = fontSizeLarge + 'px Lovelo'; // figure out what is not working
+    ctx.font = fontSizeLarge + 'px Helvetica'; // figure out what is not working
     ctx.textAlign = 'center';
     ctx.fillStyle = centerBlue;
     // ctx.fillStyle = hexagonBackgroundColor;
     ctx.fillText(text, trueCanvas.width / 2, trueCanvas.height / 2 + (fontSizeLarge / 4));
-    ctx.font = fontSizeSmall + 'px Lovelo';
+    ctx.font = fontSizeSmall + 'px Helvetica';
     ctx.fillText(secondaryText, trueCanvas.width / 2, trueCanvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
@@ -25,7 +25,7 @@ function renderText(x, y, fontSize, color, text) {
 
     // fontSize = fontSize || 50;
     // var lineHeight =;
-    ctx.font = fontSize + 'px/0 Lovelo'; // figure out what is not working
+    ctx.font = fontSize + 'px/0 Roboto'; // figure out what is not working
     ctx.textAlign = 'center';
     // ctx.fillStyle = 'rgb(236, 240, 241)';
     ctx.fillStyle = color;
@@ -33,7 +33,7 @@ function renderText(x, y, fontSize, color, text) {
     // for(var i=0; i<text.length; i++) {
     //     ctx.fillText(text[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
     // }
-    ctx.fillText(text, x, y + (fontSize / 2));
+    ctx.fillText(text, x, y + (fontSize / 4));
 
 }
 
