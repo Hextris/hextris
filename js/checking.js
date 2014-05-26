@@ -70,7 +70,7 @@ function consolidateBlocks(clock,side,index){
 		clock.comboMultiplier += 1;	
 		clock.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
-		clock.texts.push(new Text(coords['x'],coords['y'],"x "+clock.comboMultiplier.toString(),"bold Q 24px","#fff",fadeOut));
+		clock.texts.push(new Text(coords['x'],coords['y'],"x "+clock.comboMultiplier.toString(),"bold Q 24px","#fff",fadeUpAndOut));
 	}
 	else{
 		clock.lastCombo = now;
