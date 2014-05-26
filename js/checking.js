@@ -75,6 +75,6 @@ function consolidateBlocks(clock,side,index){
 		clock.comboMultiplier = 1;
 	}
 	var adder = deleting.length * deleting.length * clock.comboMultiplier;
-	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Roboto 24px",deletedBlocks[0].color,fadeUpAndOut));
+	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Lovelo 24px",deletedBlocks[0].color,fadeUpAndOut));
 	score += adder;
 }
