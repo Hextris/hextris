@@ -32,5 +32,5 @@ function fadeUpAndOut(text){
 }
 
 function fadeOut(text){
-	text.opacity -= 0.01 ;
+	text.opacity -= 0.02;
 }
