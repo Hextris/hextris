@@ -12,6 +12,8 @@ function Clock(sideLength) {
 	this.strokeColor = 'blue';
 	this.x = trueCanvas.width / 2;
 	this.y = trueCanvas.height / 2;
+	this.lastCombo;
+	this.comboMultiplier = 1;
 
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
