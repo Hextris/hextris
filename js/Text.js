@@ -5,9 +5,10 @@ function Text(x,y,text,font,color,incrementFunction){
 	this.color = color;
 	this.opacity =1;
 	this.text = text;
+	this.alive=1;
 	
 	this.draw = function(){
-		if(this.opacity>0){
+		if(this.alive>0){
 			ctx.font= this.font;
 			ctx.fillStyle = this.color;
 			ctx.globalAlpha = this.opacity;
@@ -28,9 +29,10 @@ function Text(x,y,text,font,color,incrementFunction){
 
 function fadeUpAndOut(text){
 	text.opacity -=0.07;
+	text.alive = text.opacity;
 	text.y-=3;
 }
 
 function fadeOut(text){
-	text.opacity -= 0.02;
+	text.alive -= 0.02;
 }
