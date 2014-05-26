@@ -1,21 +1,16 @@
 function exportSaveState() {
-	var state = {
-		clock: undefined,
-		blocks: undefined,
-		iter: undefined,
-		score: undefined,
-	};
+	var state = {};
 
-	if(gameState == 1) {
-		state.clock = MainClock;
-		state.blocks = blocks;
-		state.iter = iter;
-		state.score = score;
+	if(gameState == 1 || gameState == -1) {
+		state = {
+			clock: MainClock,
+			blocks: blocks,
+			score: score,
+			wavegen: waveone,
+			gdx: gdx,
+			gdy: gdy,
+		}
 	}
-	
-	return JSON.stringify(state);
-}
 
-function loadSaveState() {
-	
+	return JSONfn.stringify(state);
 }
