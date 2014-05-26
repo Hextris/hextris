@@ -62,11 +62,14 @@ function consolidateBlocks(clock,side,index){
 			clock.blocks[arr[0]][arr[1]].deleted = 1;
 		}
 	}
+	var lastBlock =  clock.blocks[arr[0]][arr[1]]
 	// add scores
 	var now = Date.now();
 	if(now - clock.lastCombo < 5000 ){
 		clock.comboMultiplier += 1;	
 		clock.lastCombo = now;
+		clock.texts.splice(0,1);
+		clock.texts.push(new Text(clock.x,clock.y+100,"x"+clock.comboMultiplier.toString(),'bold 500px Roboto',"#9b59b6"))
 	}
 	else{
 		clock.lastCombo = now;
