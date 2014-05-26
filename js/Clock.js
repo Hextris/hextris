@@ -150,6 +150,7 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
+
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
 	};
 }
