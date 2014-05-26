@@ -7,7 +7,7 @@ function search(twoD,oneD){
 	}
 	return false;
 }
-function floodFill(clock,side,index,deleting) {
+function floodFill(clock, side, index, deleting) {
 	if (clock.blocks[side] === undefined || clock.blocks[side][index] === undefined) {
 		//just makin sure stuff exists
 		return;
