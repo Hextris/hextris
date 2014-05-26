@@ -63,6 +63,15 @@ function consolidateBlocks(clock,side,index){
 		}
 	}
 	// add scores
-	score += deleting.length*deleting.length;
+	var now = Date.now();
+	if(now - clock.lastCombo < 5000 ){
+		clock.comboMultiplier += 1;	
+		clock.lastCombo = now;
+	}
+	else{
+		clock.lastCombo = now;
+		clock.comboMultiplier = 1;
+	}
+	score += deleting.length * deleting.length * clock.comboMultiplier;
 
 }
