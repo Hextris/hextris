@@ -25,7 +25,7 @@ keypress.register_combo({
             gameState = prevGameState;
             requestAnimFrame(animLoop);
         }
-        else {
+        else if(gameState != -2 && gameState != 0) {
             prevGameState = gameState;
             gameState = -1;
         }
