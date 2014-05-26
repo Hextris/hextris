@@ -160,7 +160,7 @@ function Clock(sideLength) {
 		ctx.strokeStyle = handColor;	
 		ctx.moveTo(this.x, this.y);
 		var handAngle = 360 * (Date.now() - this.lastCombo) / 5000;
-		var coords = rotatePoint(0, this.sideLength / 2 * Math.sqrt(3), this.angle);
+		var coords = rotatePoint(0, this.sideLength / 2 * Math.sqrt(3), this.angle + handAngle);
 		ctx.lineTo(this.x + coords.x, this.y + coords.y);
 		ctx.stroke();
 		ctx.strokeStyle = 'rgba(0,0,0,0)';
