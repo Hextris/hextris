@@ -39,10 +39,10 @@ function renderText(x, y, fontSize, color, text) {
 var scoreOpacity = 0;
 function drawScoreboard() {
     if(scoreOpacity < 1){
-	scoreOpacity+=(1/1-scoreOpacity)/100;
+	scoreOpacity+=0.01;
     }
     ctx.globalAlpha = scoreOpacity;
-    renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 50, "#fff", score);
+    renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "#fff", score);
     ctx.globalAlpha = 1;
 }
 
