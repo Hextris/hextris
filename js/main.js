@@ -1,5 +1,9 @@
 $(document).ready(scaleCanvas);
 $(window).resize(scaleCanvas);
+$(window).unload(function() {
+	console.log("hello");
+	localStorage.setItem("saveState", exportSaveState());
+});
 
 function scaleCanvas() {
 	canvas.width = $(window).width();
@@ -86,7 +90,6 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 	};
 }
 
-var gameState = 0;
 var framerate = 60;
 var history = {};
 var score = 0;
@@ -115,21 +118,47 @@ var importing = 0;
 var importedHistory;
 var startTime;
 
+if(localStorage.getItem("saveState") == "{}")
+	var gameState = 0;
+else
+	init();
+
 function init() {
+	var saveState = localStorage.getItem("saveState") || "{}";
+	saveState = JSONfn.parse(saveState);
+
 	history = {};
 	importedHistory = undefined;
 	importing = 0;
 	isGameOver = 2;
-	score = 0;
+	score = saveState.score || 0;
 	prevScore = 0;
 	spawnLane = 0;
 	gameState = -2;
 	count = 0;
-	blocks = [];
-	MainClock = new Clock(settings.hexWidth);
+
+	if(saveState.blocks) {
+		for(var i=0; i<saveState.blocks.length; i++) {
+			var block = saveState.blocks[i];
+			blocks.push(block);
+		}
+		console.log(blocks);
+	}
+
+	gdx = saveState.gdx || 0;
+	gdy = saveState.gdy || 0;
+
+	MainClock = saveState.clock || new Clock(settings.hexWidth);
+	for(var i=0; i<MainClock.blocks.length; i++) {
+		for(var j=0; j<MainClock.blocks[i].length; j++) {
+			MainClock.blocks[i][j].settled = 0;
+		}
+	}
 	MainClock.y = -100;
 	startTime = Date.now();
-	waveone = new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
+	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
+	
+	localStorage.setItem("saveState", "{}"); 
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters

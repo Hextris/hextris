@@ -54,7 +54,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	};
 
 	this.getIndex = function (){
-		var parrentArr = MainClock.blocks[this.attachedLane]
+		var parentArr = MainClock.blocks[this.attachedLane]
 		for (var i = 0; i < parentArr.length; i++) {
 			if (parentArr[i] == this) {
 				return i;
@@ -209,7 +209,7 @@ function Clock(sideLength) {
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
-		block.parentArr = this.blocks[lane];
+		//block.parentArr = this.blocks[lane];
 		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
 	};
 
