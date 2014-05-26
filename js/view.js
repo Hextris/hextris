@@ -33,7 +33,7 @@ function renderText(x, y, fontSize, color, text) {
     // for(var i=0; i<text.length; i++) {
     //     ctx.fillText(text[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
     // }
-    ctx.fillText(text, x, y + (fontSize / 4));
+    ctx.fillText(text, x, y + (fontSize / 2));
 
 }
 
