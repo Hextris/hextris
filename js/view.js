@@ -18,24 +18,26 @@ function showModal(text, secondaryText) {
     ctx.fillText(secondaryText, trueCanvas.width / 2, trueCanvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
-function renderText(lines, x, y, fontSize) {
-    if(typeof lines == 'string' || lines instanceof String) {
-        lines = [lines];
-    }
+function renderText(x, y, fontSize, text) {
+    // if(typeof text == 'string' || text instanceof String) {
+    //     text = [text];
+    // }
 
-    fontSize = fontSize || 50;
+    // fontSize = fontSize || 50;
 
     ctx.font = fontSize + 'px Roboto'; // figure out what is not working
     ctx.textAlign = 'center';
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = 'rgb(236, 240, 241)';
 
-    for(var i=0; i<lines.length; i++) {
-        ctx.fillText(lines[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
-    }
+    // for(var i=0; i<text.length; i++) {
+    //     ctx.fillText(text[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
+    // }
+    ctx.fillText(text, x, y + (fontSize / 4));
+
 }
 
-function updateScoreboard() {
-    $('#score').html('Score: '+score + " (x" + scoreAdditionCoeff + ")");
+function drawScoreboard() {
+    renderText(trueCanvas.width / 2, trueCanvas.height / 2, 50, score);
 }
 
 function clearGameBoard() {

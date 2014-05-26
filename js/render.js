@@ -28,5 +28,8 @@ function render() {
 	}
 
 	MainClock.draw();
+	if (gameState == 1) {
+		drawScoreboard();
+	}
 	settings.prevScale = settings.scale;
 }
