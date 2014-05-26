@@ -151,3 +151,25 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		ctx.globalAlpha = 1;
 	};
 }
+
+function findCenterOfBlocks(arr) {
+	var avgDFH = 0;
+	var avgAngle = 0;
+	for (var i = 0; i < arr.length; i++) {
+		avgDFH += arr[i].distFromHex;
+		while (arr[i].angle < 0) {
+			arr[i].angle += 360;
+		}
+		
+		avgAngle += arr[i].angle % 360;
+	}
+
+	avgDFH /= arr.length;
+	avgAngle /= arr.length;
+
+	return {
+		x:trueCanvas.width/2 + Math.cos(avgAngle * (Math.PI / 180)) * avgDFH,
+		y:trueCanvas.height/2 + Math.sin(avgAngle * (Math.PI / 180)) * avgDFH
+	}
+
+}
