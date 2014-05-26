@@ -43,6 +43,7 @@ function consolidateBlocks(clock,side,index){
 	//record which sides have been changed
 	var sidesChanged =[];
 	var deleting=[];
+	var deletedBlocks = []
 	//add start case
 	deleting.push([side,index]);
 	//fill deleting	
@@ -60,9 +61,9 @@ function consolidateBlocks(clock,side,index){
 			}
 			//mark as deleted
 			clock.blocks[arr[0]][arr[1]].deleted = 1;
+			deletedBlocks.push(clock.blocks[arr[0]][arr[1]]);
 		}
 	}
-	var lastBlock =  clock.blocks[arr[0]][arr[1]]
 	// add scores
 	var now = Date.now();
 	if(now - clock.lastCombo < 5000 ){
@@ -74,7 +75,6 @@ function consolidateBlocks(clock,side,index){
 		clock.comboMultiplier = 1;
 	}
 	var adder = deleting.length * deleting.length * clock.comboMultiplier;
-	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Roboto 24px","#9b59b6",fadeUpAndOut));
+	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Roboto 24px",deletedBlocks[0].color,fadeUpAndOut));
 	score += adder;
-
 }
