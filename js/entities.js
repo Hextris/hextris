@@ -33,9 +33,9 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	this.distFromHex = distFromHex || settings.startDist * settings.scale ;
 
 	this.incrementOpacity = function() {
-		
 		if (this.deleted) {
-			if (this.opacity >= 1 - .075) {
+			//add shakes
+			if (this.opacity >= .925) {
 				var tLane = this.attachedLane - MainClock.position;
 				tLane = MainClock.sides - tLane;
 				while (tLane < 0) {
@@ -45,8 +45,10 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				tLane %= MainClock.sides;
 				MainClock.shakes.push({lane:tLane, magnitude:3});
 			}
+			//fade out the opacity
 			this.opacity = this.opacity - 0.075;
 			if (this.opacity <= 0) {
+				//slate for final deletion
 				this.opacity = 0;
 				this.deleted = 2;
 			}
@@ -54,6 +56,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	};
 
 	this.getIndex = function (){
+		//get the index of the block in its stack
 		var parrentArr = MainClock.blocks[this.attachedLane]
 		for (var i = 0; i < parentArr.length; i++) {
 			if (parentArr[i] == this) {
