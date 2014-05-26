@@ -14,7 +14,7 @@ function showModal(text, secondaryText) {
     ctx.fillStyle = centerBlue;
     // ctx.fillStyle = hexagonBackgroundColor;
     ctx.fillText(text, trueCanvas.width / 2, trueCanvas.height / 2 + (fontSizeLarge / 4));
-    ctx.font = fontSizeSmall + 'px Helvetica';
+    ctx.font = fontSizeSmall + 'px Lovelo';
     ctx.fillText(secondaryText, trueCanvas.width / 2, trueCanvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
 }
 
