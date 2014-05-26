@@ -14,6 +14,7 @@ function Clock(sideLength) {
 	this.y = trueCanvas.height / 2;
 	this.lastCombo = Date.now() - 5000;
 	this.comboMultiplier = 1;
+	this.texts = [];
 
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
@@ -159,8 +160,13 @@ function Clock(sideLength) {
 		ctx.lineWidth = 3;
 		ctx.strokeStyle = handColor;	
 		ctx.moveTo(this.x, this.y);
-		var handAngle = 360 * (Date.now() - this.lastCombo) / 5000;
-		var coords = rotatePoint(0, this.sideLength / 2 * Math.sqrt(3), this.angle + handAngle);
+		if(Date.now()-this.lastCombo >5000){
+			var handAngle =0;
+		}
+		else {
+			var handAngle = (360 * (Date.now() - this.lastCombo) / 5000);
+		}
+		var coords = rotatePoint(0, this.sideLength / 2 * Math.sqrt(3),  (handAngle+180)%360);
 		ctx.lineTo(this.x + coords.x, this.y + coords.y);
 		ctx.stroke();
 		ctx.strokeStyle = 'rgba(0,0,0,0)';
