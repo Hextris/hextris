@@ -65,8 +65,8 @@ function consolidateBlocks(clock,side,index){
 		}
 	}
 	// add scores
-	var now = Date.now();
-	if(now - clock.lastCombo < 5000 ){
+	var now = MainClock.ct;
+	if(now - clock.lastCombo < 160 ){
 		clock.comboMultiplier += 1;	
 		clock.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
