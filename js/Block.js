@@ -171,6 +171,5 @@ function findCenterOfBlocks(arr) {
 	return {
 		x:trueCanvas.width/2 + Math.cos(avgAngle * (Math.PI / 180)) * avgDFH,
 		y:trueCanvas.height/2 + Math.sin(avgAngle * (Math.PI / 180)) * avgDFH
-	}
-
+	};
 }
