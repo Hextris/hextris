@@ -28,11 +28,8 @@ function Text(x,y,text,font,color,incrementFunction){
 }
 
 function fadeUpAndOut(text){
-	text.opacity -=0.07;
+	text.opacity -=  Math.pow(Math.pow((1-text.opacity), 1/3)+1,3)/100;
 	text.alive = text.opacity;
 	text.y-=3;
 }
 
-function fadeOut(text){
-	text.alive -= 0.02;
-}

@@ -1,4 +1,20 @@
 var prevGameState;
+function pause(x,o) {
+	if(x === undefined){x=true}
+        if (gameState == -1 ) {
+	    if(showingHelp && !o){return;}
+            gameState = prevGameState;
+            requestAnimFrame(animLoop);
+	    pauseText = true; 
+        }
+        else if(gameState != -2 && gameState != 0) {
+            prevGameState = gameState;
+            gameState = -1;
+	    pauseText = x; 
+        }
+    }
+
+
 
 keypress.register_combo({
     keys: "left",
@@ -20,16 +36,7 @@ keypress.register_combo({
 
 keypress.register_combo({
     keys: "p",
-    on_keydown: function() {
-        if (gameState == -1) {
-            gameState = prevGameState;
-            requestAnimFrame(animLoop);
-        }
-        else if(gameState != -2 && gameState != 0) {
-            prevGameState = gameState;
-            gameState = -1;
-        }
-    }
+    on_keydown: function(){pause();}
 });
 
 keypress.register_combo({

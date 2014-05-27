@@ -12,7 +12,8 @@ function Clock(sideLength) {
 	this.strokeColor = 'blue';
 	this.x = trueCanvas.width / 2;
 	this.y = trueCanvas.height / 2;
-	this.lastCombo = Date.now() - 5000;
+	this.ct = 0;
+	this.lastCombo = this.ct - 160;
 	this.comboMultiplier = 1;
 	this.texts = [];
 
@@ -126,6 +127,7 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
+		this.ct++;
 		this.x = trueCanvas.width/2;
 		if (gameState == 1) {
 			this.y = trueCanvas.height/2;

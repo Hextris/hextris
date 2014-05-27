@@ -26,9 +26,14 @@ function renderText(x, y, fontSize, color, text) {
     ctx.fillText(text, x, y + (fontSize / 4) + 3.5);
 
 }
-
+var scoreOpacity = 0;
 function drawScoreboard() {
-    renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, 50, "#fff", score);
+    if(scoreOpacity < 1){
+	scoreOpacity+=0.01;
+    }
+    ctx.globalAlpha = scoreOpacity;
+    renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "#fff", score);
+    ctx.globalAlpha = 1;
 }
 
 function clearGameBoard() {

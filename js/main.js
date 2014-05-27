@@ -1,3 +1,5 @@
+pauseText = true;
+showingHelp = false;
 $(document).ready(scaleCanvas);
 $(window).resize(scaleCanvas);
 $(window).unload(function() {
@@ -262,7 +264,9 @@ function animLoop() {
 		render();
 	}
 	else if (gameState == -1) {
-		showModal('Paused!', 'Press "P" to continue.');
+		if(pauseText){
+			showModal('Paused!', 'Press "P" to continue.');
+		}
 	}
 	else if (gameState == 2) {
 		requestAnimFrame(animLoop);
@@ -311,11 +315,16 @@ function checkGameOver() {
 }
 
 window.onblur = function (e) {
-        if (gameState == -1) {
-            gameState = prevGameState;
-        }
-        else if(gameState == 1) {
-            prevGameState = gameState;
-            gameState = -1;
-        }
+	pause();
 };
+function showHelp(){
+	pause(false,true);
+	if(document.getElementById("helpScreen").style.display=="none" || document.getElementById("helpScreen").style.display == ""){
+		document.getElementById("helpScreen").style.display = "block";
+	}
+	else if(document.getElementById("helpScreen").style.display=="block" ){
+		document.getElementById("helpScreen").style.display = "none";
+		
+	}
+	showingHelp = !showingHelp;
+}
