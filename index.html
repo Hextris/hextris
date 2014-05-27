@@ -54,52 +54,50 @@
         </style>
     </head>
     <body>
-	<canvas id="canvas"></canvas> 
-	<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
-	    <h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
-        <textarea id ='devtoolsText' style = 'height:300px;width:400px;'></textarea>
+    	<canvas id="canvas"></canvas> 
+    	<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
+    	    <h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
+            <textarea id ='devtoolsText' style = 'height:300px;width:400px;'></textarea>
         </div>
-        <script type = 'text/javascript' src="vendor/hammer.min.js"></script>
-        <script type = 'text/javascript' src="vendor/jsonfn.min.js"></script>
-        <script type = 'text/javascript' src="vendor/keypress.min.js"></script>
-        <script type = 'text/javascript' src="vendor/jquery.js"></script>
-        <script type = 'text/javascript' src="js/save-state.js"></script>
-        <script type = 'text/javascript' src="js/view.js"></script>
-        <script type = 'text/javascript' src="js/wavegen.js"></script>
-        <script type = 'text/javascript' src="js/math.js"></script>
-        <script type = 'text/javascript' src="js/entities.js"></script>
-        <script type = 'text/javascript' src="js/Block.js"></script>
-        <script type = 'text/javascript' src="js/Clock.js"></script>
-        <script type = 'text/javascript' src="js/Text.js"></script>
-        <script type = 'text/javascript' src="js/checking.js"></script>
-        <script type = 'text/javascript' src='js/update.js'></script>
-        <script type = 'text/javascript' src='js/render.js'></script>
-        <script type = 'text/javascript' src="js/main.js"></script>
-        <script type = 'text/javascript' src="js/input.js"></script>
-        <script type = 'text/javascript' src="js/analytics.js"></script>
-	<div id="helpScreen">
-		<h1 style="margin-left:5%;">Instructions</h1>
-		<br>
-		<p  style="margin-left:5%;">
-			The goal of Hextris is to keep your stacks managed and inside the outer gray hexagon.
-			<br>
-			<br>
-			You control the rotation of the inner hexagon with your arrow keys (or by tapping the left and right sides of the screen if you're so inclined)
-			<br>
-			<br>
-			Your score is based on the amount of blocks you clear in one combo, as well as the number of consecutive combos you can achieve
-			<br>
-			<br>
-			At any time you can pause by pressing p and restart by pressing enter.
-			<br>
-			<br>
-			If you want to report a bug you can press I and send it to ___@gmail.com with the text that pops up and the issue you've encountered
-			<br>
-			<br>
-
-		</p>
-	</div>
-	<div onClick="showHelp()" id="openSideBar">?</div>
-
+        <div id="helpScreen">
+            <h1 style="margin-left:5%;">Instructions</h1>
+            <br>
+            <p style="margin-left:5%;">
+                The goal of Hextris is to keep your stacks managed and inside the outer gray hexagon.
+                <br>
+                <br>
+                You control the rotation of the inner hexagon with your arrow keys (or by tapping the left and right sides of the screen if you're so inclined)
+                <br>
+                <br>
+                Your score is based on the amount of blocks you clear in one combo, as well as the number of consecutive combos you can achieve
+                <br>
+                <br>
+                At any time you can pause by pressing p and restart by pressing enter.
+                <br>
+                <br>
+                If you want to report a bug you can press I and send it to ___@gmail.com with the text that pops up and the issue you've encountered
+                <br>
+                <br>
+            </p>
+        </div>
+        <div onClick="showHelp()" id="openSideBar">?</div>
+        <script type = 'text/javascript' src = "vendor/hammer.min.js"></script>
+        <script type = 'text/javascript' src = "vendor/jsonfn.min.js"></script>
+        <script type = 'text/javascript' src = "vendor/keypress.min.js"></script>
+        <script type = 'text/javascript' src = "vendor/jquery.js"></script>
+        <script type = 'text/javascript' src = "js/save-state.js"></script>
+        <script type = 'text/javascript' src = "js/view.js"></script>
+        <script type = 'text/javascript' src = "js/wavegen.js"></script>
+        <script type = 'text/javascript' src = "js/math.js"></script>
+        <script type = 'text/javascript' src = "js/entities.js"></script>
+        <script type = 'text/javascript' src = "js/Block.js"></script>
+        <script type = 'text/javascript' src = "js/Clock.js"></script>
+        <script type = 'text/javascript' src = "js/Text.js"></script>
+        <script type = 'text/javascript' src = "js/checking.js"></script>
+        <script type = 'text/javascript' src = 'js/update.js'></script>
+        <script type = 'text/javascript' src = 'js/render.js'></script>
+        <script type = 'text/javascript' src = "js/main.js"></script>
+        <script type = 'text/javascript' src = "js/input.js"></script>
+        <script type = 'text/javascript' src = "js/analytics.js"></script>
     </body>
 </html>
