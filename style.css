@@ -35,3 +35,25 @@ button {
 button:focus {
 	outline: 0;
 }
+#openSideBar {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 20000;
+	color:#000;
+	cursor:hand;
+	cursor:pointer;
+}
+
+#helpScreen {
+	height:100%;
+	width:100%;
+	z-index:10000;
+	position:absolute;
+	top:0%;
+	left:0%;
+	display:none;
+	color:#000;
+	background-color:rgba(255,255,255,0.5);
+}
+
