@@ -19,20 +19,10 @@ function showModal(text, secondaryText) {
 }
 
 function renderText(x, y, fontSize, color, text) {
-    // if(typeof text == 'string' || text instanceof String) {
-    //     text = [text];
-    // }
-
-    // fontSize = fontSize || 50;
-    // var lineHeight =;
-    ctx.font = fontSize + 'px/0 Roboto'; // figure out what is not working
+    ctx.font = fontSize + 'px/0 Roboto'; 
     ctx.textAlign = 'center';
-    // ctx.fillStyle = 'rgb(236, 240, 241)';
     ctx.fillStyle = color;
 
-    // for(var i=0; i<text.length; i++) {
-    //     ctx.fillText(text[i], x, y + (fontSize / 4) * (i+1) + 30 * i );
-    // }
     ctx.fillText(text, x, y + (fontSize / 4) + 3.5);
 
 }
