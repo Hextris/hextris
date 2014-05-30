@@ -1,9 +1,11 @@
 var grey = '#bdc3c7';
 var op=0;
+var saveState = localStorage.getItem("saveState") || "{}";
+if(saveState !== "{}"){op=1;}
 function render() {
 	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
 	clearGameBoard();
-	if (gameState == 1) {
+	if (gameState == 1 || gameState ==2) {
 		if (op < 1) {
 			op += 0.01;
 		}
