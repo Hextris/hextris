@@ -49,7 +49,7 @@ function Clock(sideLength) {
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
-		consolidateBlocks(this, lane, this.blocks[lane].length - 1);
+                block.checked=1;
 	};
 
 	this.doesBlockCollide = function(block, position, tArr) {
@@ -63,7 +63,7 @@ function Clock(sideLength) {
 				if (block.distFromHex - block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
-					consolidateBlocks(this, block.attachedLane, block.getIndex());
+                                        block.checked=1;
 				} else {
 					block.settled = 0;
 				}
@@ -71,7 +71,7 @@ function Clock(sideLength) {
 				if (arr[position - 1].settled && block.distFromHex - block.iter * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
-					consolidateBlocks(this, block.attachedLane, block.getIndex());
+                                        block.checked=1;
 				}
 				else {
 					block.settled = 0;

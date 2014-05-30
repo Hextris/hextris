@@ -4,6 +4,8 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	this.height = settings.blockHeight;
 	//the lane which the block was shot from
 	this.fallingLane = fallingLane;
+
+        this.checked=0;
 	//the angle at which the block falls
 	this.angle = 90 - (30 + 60 * fallingLane);
 	//for calculating the rotation of blocks attached to the center clock
