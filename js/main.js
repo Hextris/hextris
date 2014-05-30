@@ -137,7 +137,8 @@ function init() {
 	prevScore = 0;
 	spawnLane = 0;
 
-	gameState = -2;
+        gameState = -2;
+	if(saveState.clock !== undefined) gameState = 1;
 
 	count = 0;
 
@@ -154,6 +155,7 @@ function init() {
 
 	gdx = saveState.gdx || 0;
 	gdy = saveState.gdy || 0;
+        comboMultiplier = saveState.comboMultiplier || 0;
 
 	MainClock = saveState.clock || new Clock(settings.hexWidth);
 	for(var i=0; i<MainClock.blocks.length; i++) {
