@@ -4,7 +4,8 @@
         <title>Hextris</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
         <link rel="icon" type="image/png" href="favicon.ico">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
     </head>
     <body>
     	<canvas id="canvas"></canvas> 
@@ -30,29 +31,29 @@
         <script type = 'text/javascript' src="js/main.js"></script>
         <script type = 'text/javascript' src="js/input.js"></script>
         <script type = 'text/javascript' src="js/analytics.js"></script>
-	<div id="helpScreen">
-		<h1 style="margin-left:5%;">Instructions</h1>
-		<br>
-		<p  style="margin-left:5%;">
-			The goal of Hextris is to keep your stacks managed and inside the outer gray hexagon.
-			<br>
-			<br>
-			You control the rotation of the inner hexagon with your arrow keys (or by tapping the left and right sides of the screen if you're so inclined)
-			<br>
-			<br>
-			Your score is based on the amount of blocks you clear in one combo, as well as the number of consecutive combos you can achieve
-			<br>
-			<br>
-			At any time you can pause by pressing p and restart by pressing enter.
-			<br>
-			<br>
-			If you want to report a bug you can press I and send it to ___@gmail.com with the text that pops up and the issue you've encountered
-			<br>
-			<br>
-
-		</p>
-	</div>
-	<div onClick="showHelp()" id="openSideBar">?</div>
+    	<div id="helpScreen">
+    		<h1 style="margin-left:5%;">Instructions</h1>
+    		<br>
+    		<p style="margin-left:5%;">
+                The goal of Hextris is to keep your stacks managed and inside the outer gray hexagon.
+    			<br>
+    			<br>
+                You control the rotation of the inner hexagon with your arrow keys (or by tapping the left and right sides of the screen if you're so inclined)
+    			<br>
+    			<br>
+                Your score is based on the amount of blocks you clear in one combo, as well as the number of consecutive combos you can achieve
+    			<br>
+    			<br>
+    			At any time you can pause by pressing p and restart by pressing enter.
+    			<br>
+    			<br>
+                If you want to report a bug you can press I and send it to ___@gmail.com with the text that pops up and the issue you've encountered
+    			<br>
+    			<br>
+    		</p>
+    	</div>
+        <div id = 'pauseBtn'><i class="fa fa-pause fa-2x"></i></div>
+        <div onClick="showHelp()" id="openSideBar">?</div>
         <div id="overlay" class="faded"></div>
     </body>
 </html>
