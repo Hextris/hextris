@@ -15,7 +15,7 @@ function waveGen(clock) {
 	this.dt = 0;
 	this.update = function() {
 		this.currentFunction();
-		this.dt += 16.6666667;
+		this.dt += 16.6666667 * spaceModifier;
 		this.computeDifficulty();
 		if (this.dt - this.lastGen * (1/settings.creationSpeedModifier) > this.nextGen) {
 			if (this.nextGen > 1000) {
