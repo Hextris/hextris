@@ -158,9 +158,10 @@ function init() {
 
 	gdx = saveState.gdx || 0;
 	gdy = saveState.gdy || 0;
-        comboMultiplier = saveState.comboMultiplier || 0;
+	comboMultiplier = saveState.comboMultiplier || 0;
 
 	MainClock = saveState.clock || new Clock(settings.hexWidth);
+
 	for(var i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
@@ -174,6 +175,8 @@ function init() {
 	startTime = Date.now();
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
+	MainClock.texts = []; //clear texts
+
 	clearSaveState();
 }
 
