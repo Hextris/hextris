@@ -12,17 +12,15 @@ function Text(x,y,text,font,color,incrementFunction){
 			ctx.font= this.font;
 			ctx.fillStyle = this.color;
 			ctx.globalAlpha = this.opacity;
-			ctx.fillText(text,this.x+gdx,this.y+gdy);
+			ctx.fillText(this.text,this.x+gdx,this.y+gdy);
 			ctx.globalAlpha =1;
 			//this.opacity = 1-(Date.now()-MainClock.lastCombo)/5000;
 			incrementFunction(this);
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
-
-
 	}
 
 }
