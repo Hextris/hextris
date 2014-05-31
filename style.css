@@ -18,7 +18,7 @@
 #score {
 	font-size: 4vmin;
 	text-align: center;
-	width: 100%;
+	width: 30%;
 }
 #highscores {
 	text-align: center;
@@ -37,18 +37,18 @@ button:focus {
 }
 #openSideBar {
 	position: absolute;
-	top: 10px;
-	left: 10px;
-	z-index: 20000;
+	top: 3px;
+	left: 3px;
+	z-index: 3000;
 	color:#000;
 	cursor:hand;
 	cursor:pointer;
 }
 
 #helpScreen {
-	height:100%;
-	width:100%;
-	z-index:10000;
+	height:30%;
+	width:30%;
+	z-index:3000;
 	position:absolute;
 	top:0%;
 	left:0%;
@@ -56,4 +56,37 @@ button:focus {
 	color:#000;
 	background-color:rgba(255,255,255,0.5);
 }
+#overlay{
+        transition: all 0.5s ease;
+        position:absolute;
+        height:20%;
+        width:40%;
+        left:50%;
+        top:50%;
+        margin-left:-20%;
+        margin-top:-5%;
+        z-index:3000;
+        color:#000;
+        text-align:center;
+}
+.faded{
+        opacity:0;
+}
+.centeredHeader{
+       font-size:72px; 
+       text-align:center;
+       line-height:30px;
+}
+.centeredSubHeader{
+       font-size:24; 
+       text-align:center;
+}
 
+.blur{
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter:blur(4px);
+    opacity:0.4;
+}

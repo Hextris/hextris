@@ -1,18 +1,31 @@
 var prevGameState;
-function pause(x,o) {
-	if(x === undefined){x=true}
+var messages = {
+        'paused':"<div class='centeredHeader'>Paused</div> \
+                  <br> \
+                  <div class='centeredSubHeader'>Press p to resume</div>"
+}
+function pause(x,o,message) {
+
+        if(x === undefined){x=true}
+        message = 'paused';
+        var c = document.getElementById("canvas");
+        var pt = document.getElementById("overlay");
         if (gameState == -1 ) {
-	    if(showingHelp && !o){return;}
+            if(showingHelp && !o){return;}
+            c.className = '';
+            pt.className = 'faded';
             gameState = prevGameState;
             requestAnimFrame(animLoop);
-	    pauseText = true; 
+
         }
         else if(gameState != -2 && gameState != 0) {
+            c.className = "blur";
+            pt.className = '';
+            pt.innerHTML = messages[message];
             prevGameState = gameState;
             gameState = -1;
-	    pauseText = x; 
         }
-    }
+}
 
 
 
