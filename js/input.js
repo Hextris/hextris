@@ -61,7 +61,7 @@ keypress.register_combo({
 });
 
 keypress.register_combo({
-    keys: "spacebar",
+    keys: "space",
     on_keydown: function() {
         spaceModifier = 2;
     },
