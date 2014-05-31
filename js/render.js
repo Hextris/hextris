@@ -1,5 +1,5 @@
 var grey = '#bdc3c7';
-var op=0;
+op=0;
 var saveState = localStorage.getItem("saveState") || "{}";
 if(saveState !== "{}"){op=1;}
 function render() {

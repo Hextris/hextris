@@ -136,6 +136,8 @@ function init() {
 	score = saveState.score || 0;
 	prevScore = 0;
 	spawnLane = 0;
+        op=0;
+        scoreOpacity=0;
 
         gameState = -2;
 	if(saveState.clock !== undefined) gameState = 1;
