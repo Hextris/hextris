@@ -43,7 +43,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				}
 
 				tLane %= MainClock.sides;
-				MainClock.shakes.push({lane:tLane, magnitude:3});
+				MainClock.shakes.push({lane:tLane, magnitude:3 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
 			}
 			//fade out the opacity
 			this.opacity = this.opacity - 0.075;
