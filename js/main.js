@@ -1,5 +1,5 @@
-pauseText = true;
-showingHelp = false;
+var pauseText = true;
+var showingHelp = false;
 $(document).ready(scaleCanvas);
 $(window).resize(scaleCanvas);
 $(window).unload(function() {
@@ -98,6 +98,7 @@ var isGameOver = 3;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
+var spaceModifier = 1;
 
 var highscores = [0, 0, 0];
 if(localStorage.getItem('highscores'))
@@ -157,9 +158,10 @@ function init() {
 
 	gdx = saveState.gdx || 0;
 	gdy = saveState.gdy || 0;
-        comboMultiplier = saveState.comboMultiplier || 0;
+	comboMultiplier = saveState.comboMultiplier || 0;
 
 	MainClock = saveState.clock || new Clock(settings.hexWidth);
+
 	for(var i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
@@ -173,6 +175,8 @@ function init() {
 	startTime = Date.now();
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
+	MainClock.texts = []; //clear texts
+
 	clearSaveState();
 }
 
