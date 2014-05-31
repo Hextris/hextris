@@ -9,7 +9,7 @@ function exportSaveState() {
 			wavegen: waveone,
 			gdx: gdx,
 			gdy: gdy,
-                        comboMultiplier:comboMultiplier
+			comboMultiplier:comboMultiplier
 		}
 	}
 
