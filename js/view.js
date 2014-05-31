@@ -22,11 +22,10 @@ function renderText(x, y, fontSize, color, text) {
     ctx.font = fontSize + 'px/0 Roboto'; 
     ctx.textAlign = 'center';
     ctx.fillStyle = color;
-
     ctx.fillText(text, x, y + (fontSize / 4) + 3.5);
 
 }
-var scoreOpacity = 0;
+scoreOpacity = 0;
 function drawScoreboard() {
     if(scoreOpacity < 1){
 	scoreOpacity+=0.01;
