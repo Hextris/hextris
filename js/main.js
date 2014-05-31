@@ -268,9 +268,7 @@ function animLoop() {
 		render();
 	}
 	else if (gameState == -1) {
-		if(pauseText){
-			showModal('Paused!', 'Press "P" to continue.');
-		}
+	
 	}
 	else if (gameState == 2) {
 		requestAnimFrame(animLoop);
