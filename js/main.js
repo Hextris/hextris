@@ -1,4 +1,4 @@
-var pauseText = true;
+var textShown = false;
 var showingHelp = false;
 $(document).ready(scaleCanvas);
 $(window).resize(scaleCanvas);
@@ -176,7 +176,7 @@ function init() {
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
 	MainClock.texts = []; //clear texts
-
+        hideText();
 	clearSaveState();
 }
 
@@ -262,7 +262,10 @@ function animLoop() {
 	else if (gameState === 0) {
 		requestAnimFrame(animLoop);
 		clearGameBoard();
-		showModal('Start!', 'Press enter to start!');
+                if(!textShown){
+                        showText('start');
+                        textShown = true;
+                }
 	}
 	else if (gameState == -2) { //initialization screen just before starting
 		requestAnimFrame(animLoop);

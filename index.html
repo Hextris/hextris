@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <div id="overlay" class="faded"></div>
     	<canvas id="canvas"></canvas> 
     	<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
     	    <h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
@@ -27,8 +28,8 @@
         <script type = 'text/javascript' src="js/checking.js"></script>
         <script type = 'text/javascript' src='js/update.js'></script>
         <script type = 'text/javascript' src='js/render.js'></script>
-        <script type = 'text/javascript' src="js/main.js"></script>
         <script type = 'text/javascript' src="js/input.js"></script>
+        <script type = 'text/javascript' src="js/main.js"></script>
         <script type = 'text/javascript' src="js/analytics.js"></script>
 	<div id="helpScreen">
 		<h1 style="margin-left:5%;">Instructions</h1>
@@ -53,6 +54,5 @@
 		</p>
 	</div>
 	<div onClick="showHelp()" id="openSideBar">?</div>
-        <div id="overlay" class="faded"></div>
     </body>
 </html>

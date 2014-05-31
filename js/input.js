@@ -1,19 +1,30 @@
 var prevGameState;
-var messages = {
-        'paused':"<div class='centeredHeader'>Paused</div> \
-                  <br> \
-                  <div class='centeredSubHeader'>Press p to resume</div>"
-}
 
+function showText(text){
+
+    var messages = {
+          'paused':"<div class='centeredHeader'>Paused</div> \
+          <br> \
+          <div class='centeredSubHeader'>Press p to resume</div>",
+          'start':"<div class='centeredHeader'>Press enter to start</div>"
+    }
+    var pt = document.getElementById("overlay");
+    pt.className = '';
+    pt.innerHTML = messages[text];
+}
+function hideText(text){
+    var pt = document.getElementById("overlay");
+    pt.className = 'faded';
+    pt.innerHTML = '';
+}
 function pause(x,o,message) {
     if(x === undefined){x=true}
     message = 'paused';
     var c = document.getElementById("canvas");
-    var pt = document.getElementById("overlay");
     if (gameState == -1 ) {
+        hideText();
         if(showingHelp && !o){return;}
         c.className = '';
-        pt.className = 'faded';
         setTimeout(function(){
             gameState = prevGameState;
             requestAnimFrame(animLoop);
@@ -22,8 +33,7 @@ function pause(x,o,message) {
     }
     else if(gameState != -2 && gameState != 0) {
         c.className = "blur";
-        pt.className = '';
-        pt.innerHTML = messages[message];
+        showText(message);
         prevGameState = gameState;
         gameState = -1;
     }
