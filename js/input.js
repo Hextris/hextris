@@ -4,27 +4,29 @@ var messages = {
                   <br> \
                   <div class='centeredSubHeader'>Press p to resume</div>"
 }
-function pause(x,o,message) {
 
-        if(x === undefined){x=true}
-        message = 'paused';
-        var c = document.getElementById("canvas");
-        var pt = document.getElementById("overlay");
-        if (gameState == -1 ) {
-            if(showingHelp && !o){return;}
-            c.className = '';
-            pt.className = 'faded';
+function pause(x,o,message) {
+    if(x === undefined){x=true}
+    message = 'paused';
+    var c = document.getElementById("canvas");
+    var pt = document.getElementById("overlay");
+    if (gameState == -1 ) {
+        if(showingHelp && !o){return;}
+        c.className = '';
+        pt.className = 'faded';
+        setTimeout(function(){
             gameState = prevGameState;
             requestAnimFrame(animLoop);
+        }, 300);
 
-        }
-        else if(gameState != -2 && gameState != 0) {
-            c.className = "blur";
-            pt.className = '';
-            pt.innerHTML = messages[message];
-            prevGameState = gameState;
-            gameState = -1;
-        }
+    }
+    else if(gameState != -2 && gameState != 0) {
+        c.className = "blur";
+        pt.className = '';
+        pt.innerHTML = messages[message];
+        prevGameState = gameState;
+        gameState = -1;
+    }
 }
 
 
