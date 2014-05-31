@@ -272,7 +272,8 @@ function animLoop() {
 		render();
 	}
 	else if (gameState == -1) {
-	
+		requestAnimFrame(animLoop);
+		render();
 	}
 	else if (gameState == 2) {
 		requestAnimFrame(animLoop);

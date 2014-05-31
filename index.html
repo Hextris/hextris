@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
     </head>
     <body>
-        <div id = 'pauseBtn'><i class="fa fa-pause fa-2x"></i></div>
     	<canvas id="canvas"></canvas> 
     	<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
     	    <h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
@@ -32,7 +31,7 @@
         <script type = 'text/javascript' src="js/main.js"></script>
         <script type = 'text/javascript' src="js/input.js"></script>
         <script type = 'text/javascript' src="js/analytics.js"></script>
-    	<div id="helpScreen">
+    	<div id="helpScreen" class = 'unselectable'>
     		<h1 style="margin-left:5%;">Instructions</h1>
     		<br>
     		<p style="margin-left:5%;">
@@ -55,5 +54,6 @@
     	</div>
         <div onClick="showHelp()" id="openSideBar">?</div>
         <div id="overlay" class="faded"></div>
+        <div id = 'pauseBtn'><i class="fa fa-pause fa-2x"></i></div>
     </body>
 </html>
