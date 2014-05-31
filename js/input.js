@@ -1,12 +1,7 @@
 var prevGameState;
-
 function showText(text){
-
     var messages = {
-          'paused':"<div class='centeredHeader'>Paused</div> \
-          <br> \
-          <div class='centeredSubHeader'>Press p to resume</div>",
-          'start':"<div class='centeredHeader'>Press enter to start</div>"
+            'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>"
     }
     var pt = document.getElementById("overlay");
     pt.className = '';
@@ -18,7 +13,7 @@ function hideText(text){
     pt.innerHTML = '';
 }
 function pause(x,o,message) {
-    if(x === undefined){x=true}
+    if(x === undefined){x=true;}
     message = 'paused';
     var c = document.getElementById("canvas");
     if (gameState == -1 ) {
@@ -27,7 +22,6 @@ function pause(x,o,message) {
         c.className = '';
         setTimeout(function(){
             gameState = prevGameState;
-            requestAnimFrame(animLoop);
         }, 300);
 
     }
@@ -97,25 +91,45 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-       if ( gameState != -2) {
+       if (gameState != -2 && gameState != -1) {
           init();
       }
   }
 });
 
+$(document).ready(function(){
+    $("#pauseBtn").mousedown(function() {
+        pause();
+        if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
+            $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
+        } else {
+            $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
+        }
 
-document.body.addEventListener('touchstart', function(e) {
-    if (e.changedTouches[0].pageX<window.innerWidth/2) {
+        return false;
+    });
+
+    document.body.addEventListener('mousedown', function(e) {
+        handleClickTap(e.clientX);
+    }, false);
+
+    document.body.addEventListener('touchstart', function(e) {
+        handleClickTap(e.changedTouches[0].clientX);
+    }, false);
+
+}, false);
+
+function handleClickTap(x) {
+    if (x < window.innerWidth/2) {
         if (gameState != 1 && gameState != -2) {
             init();
         }
         MainClock.rotate(1);
     }
-    if (e.changedTouches[0].pageX>window.innerWidth/2) {
+    if (x > window.innerWidth/2) {
         if (gameState != 1 && gameState != -2) {
             init();
         }
         MainClock.rotate(-1);
     }
-}, false)
-
+}

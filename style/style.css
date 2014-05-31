@@ -44,12 +44,20 @@ button:focus {
 }
 
 #openSideBar {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 3000;
+    color:#000;
+    cursor:pointer;
+}
+
+#pauseBtn {
 	position: absolute;
-	top: 3px;
-	left: 3px;
+	margin-bottom: 3px;
+	margin-right: 7px;
 	z-index: 3000;
 	color:#000;
-	cursor:hand;
 	cursor:pointer;
 }
 
@@ -145,7 +153,22 @@ body {
 }
 
 #title {
-    z-index:9000;
+    z-index:99;
     margin-top:20px;
     color:#2c3e50;
+}
+#pauseBtn {
+    position:absolute;
+    right:0;
+    bottom:0;
+    z-index:99;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
