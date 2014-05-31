@@ -4,55 +4,7 @@
         <title>Hextris</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
         <link rel="icon" type="image/png" href="favicon.ico">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <style>
-            @font-face {
-                font-family: 'Roboto';
-                font-style: normal;
-                font-weight: 400;
-                src: local('Roboto Regular'), local('Roboto-Regular'), url("fonts/roboto.woff") format('woff');
-            }
-	    @font-face {
-                font-family: 'Q';
-                font-style: normal;
-                font-weight: 400;
-                src: local('Q Regular'), local('Q-Regular'), url("fonts/QuattrocentoSans-Regular.ttf") format('ttf');
-            }
-
-
-            * {
-                padding: 0;
-                margin: 0;
-            }
-
-            body {
-                color: #ecf0f1;
-                font-family: 'Roboto', sans-serif;
-                background-color:#ecf0f1;
-            }
-
-            #clickToExit {
-                cursor:pointer;
-            }
-
-            #canvas {
-                transition: all 0.5s ease;
-                position: absolute;
-                left:0;
-                right:0;
-                /*height:100%;
-                width:100%;*/
-                background-color:#ecf0f1;
-                z-index:3;
-            }
-
-            #title {
-                z-index:9000;
-                margin-top:20px;
-                color:#2c3e50;
-            }
-        </style>
     </head>
     <body>
     	<canvas id="canvas"></canvas> 
