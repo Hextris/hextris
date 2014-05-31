@@ -63,7 +63,7 @@ function Clock(sideLength) {
 				if (block.distFromHex - block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
-                                        block.checked=1;
+                    block.checked = 1;
 				} else {
 					block.settled = 0;
 				}
@@ -71,7 +71,7 @@ function Clock(sideLength) {
 				if (arr[position - 1].settled && block.distFromHex - block.iter * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
-                                        block.checked=1;
+					block.checked = 1;
 				}
 				else {
 					block.settled = 0;
