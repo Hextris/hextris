@@ -33,6 +33,14 @@ function update() {
 		}
 	}
 
+	for (var i = 0; i < MainClock.blocks.length; i++) {
+		for (var j = 0; j < MainClock.blocks[i].length; j++) {
+                    if(MainClock.blocks[i][j].checked ==1 ){
+                        consolidateBlocks(MainClock,MainClock.blocks[i][j].attachedLane,MainClock.blocks[i][j].getIndex());
+                        MainClock.blocks[i][j].checked=0;
+                    }
+                }
+        }
 	var lowestDeletedIndex;
 	for (var i = 0; i < MainClock.blocks.length; i++) {
 		lowestDeletedIndex = 99;

@@ -62,7 +62,7 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-       if (gameState != 1 && gameState != -2) {
+       if ( gameState != -2) {
           init();
       }
   }
