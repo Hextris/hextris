@@ -43,13 +43,13 @@ function Clock(sideLength) {
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.fallingLane;// -this.position;
-		this.shakes.push({lane:block.fallingLane, magnitude:3});
+		this.shakes.push({lane:block.fallingLane, magnitude:4.5 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
 		lane += this.position;
 		lane = (lane + this.sides) % this.sides;
 		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
-                block.checked=1;
+        block.checked = 1;
 	};
 
 	this.doesBlockCollide = function(block, position, tArr) {

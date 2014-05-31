@@ -145,7 +145,14 @@ body {
 }
 
 #title {
-    z-index:9000;
+    z-index:99;
     margin-top:20px;
     color:#2c3e50;
+}
+
+#pauseBtn {
+    position:absolute;
+    right:0;
+    bottom:0;
+    z-index:99;
 }
