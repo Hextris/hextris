@@ -319,7 +319,9 @@ function checkGameOver() {
 }
 
 window.onblur = function (e) {
+    if(gameState==1){
 	pause();
+    }
 };
 function showHelp(){
 	pause(false,true);
