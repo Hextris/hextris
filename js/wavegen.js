@@ -1,6 +1,6 @@
 function blockDestroyed() {
 	if (waveone.nextGen > 1000) {
-		waveone.nextGen -= 5;
+		waveone.nextGen -= 10;
 	} else {
 		waveone.nextGen = 1000;
 	}
@@ -29,7 +29,7 @@ function waveGen(clock) {
 		this.computeDifficulty();
 		if (this.dt - this.lastGen * (1/settings.creationSpeedModifier) > this.nextGen) {
 			if (this.nextGen > 1000) {
-				this.nextGen -=  (0.4 * (this.nextGen/1300)) * settings.creationSpeedModifier;
+				this.nextGen -=  (.7 * (this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
 	};
