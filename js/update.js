@@ -22,9 +22,13 @@ function update() {
 			waveone.prevTimeScored = now;
 		}
 	}
+	var lowestDeletedIndex;
+	var i;
+	var j;
+	var block;
 
 	var objectsToRemove = [];
-	for (var i in blocks) {
+	for (i in blocks) {
 		MainClock.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
 			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter * settings.scale;
@@ -33,36 +37,37 @@ function update() {
 		}
 	}
 
-	for (var i = 0; i < MainClock.blocks.length; i++) {
-		for (var j = 0; j < MainClock.blocks[i].length; j++) {
+	for (i = 0; i < MainClock.blocks.length; i++) {
+		for (j = 0; j < MainClock.blocks[i].length; j++) {
                     if(MainClock.blocks[i][j].checked ==1 ){
                         consolidateBlocks(MainClock,MainClock.blocks[i][j].attachedLane,MainClock.blocks[i][j].getIndex());
                         MainClock.blocks[i][j].checked=0;
                     }
                 }
         }
-	var lowestDeletedIndex;
-	for (var i = 0; i < MainClock.blocks.length; i++) {
+
+	for (i = 0; i < MainClock.blocks.length; i++) {
 		lowestDeletedIndex = 99;
 		for (j = 0; j < MainClock.blocks[i].length; j++) {
 			block = MainClock.blocks[i][j];
 			if (block.deleted == 2) {
 				MainClock.blocks[i].splice(j,1);
+				blockDestroyed();
 				if (j < lowestDeletedIndex) lowestDeletedIndex = j;
 				j--;
 			}
 		}
 
 		if (lowestDeletedIndex < MainClock.blocks[i].length) {
-			for (var q = lowestDeletedIndex; q < MainClock.blocks[i].length; q++) {
+			for (j = lowestDeletedIndex; q < MainClock.blocks[i].length; q++) {
 				MainClock.blocks[i][q].settled = 0;
 			}
 		}
 	}
 
-	for (var i in MainClock.blocks) {
-		for (var j = 0; j < MainClock.blocks[i].length; j++) {
-			var block = MainClock.blocks[i][j];
+	for (i in MainClock.blocks) {
+		for (j = 0; j < MainClock.blocks[i].length; j++) {
+			block = MainClock.blocks[i][j];
 			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
 
 			if (!MainClock.blocks[i][j].settled) {
@@ -71,8 +76,8 @@ function update() {
 		}
 	}
 
-	for(var i=0;i<blocks.length;i++){
-		if(blocks[i].removed == 1){
+	for(i = 0; i < blocks.length;i++){
+		if (blocks[i].removed == 1) {
 			blocks.splice(i,1);
 			i--;
 		}
