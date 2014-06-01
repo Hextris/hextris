@@ -127,6 +127,7 @@ else
 	gameState = 0;
 
 function init() {
+	$('#pauseBtn').hide();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
 
@@ -226,6 +227,7 @@ function stepInitialLoad() {
 		MainClock.dy = 0;
 		MainClock.y = (trueCanvas.height/2);
 		if (Date.now() - startTime - 500 > 1300) {
+			$('#pauseBtn').show();
 			gameState = 1;
 		}
 	} else {
@@ -252,17 +254,17 @@ function animLoop() {
 		update();
 		render();
 		if (checkGameOver()) {
-                    gameState = 2;
-                    clearSaveState();
+            gameState = 2;
+            clearSaveState();
 		}
 	}
 	else if (gameState === 0) {
 		requestAnimFrame(animLoop);
 		clearGameBoard();
-                if(!textShown){
-                        showText('start');
-                        textShown = true;
-                }
+        if(!textShown){
+            showText('start');
+            textShown = true;
+        }
 	}
 	else if (gameState == -2) { //initialization screen just before starting
 		requestAnimFrame(animLoop);

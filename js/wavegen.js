@@ -1,12 +1,12 @@
 function blockDestroyed() {
-	if (waveone.nextGen > 1000) {
-		waveone.nextGen -= 10;
+	if (waveone.nextGen > 900) {
+		waveone.nextGen -= 5;
 	} else {
-		waveone.nextGen = 1000;
+		waveone.nextGen = 900;
 	}
 
 	if (waveone.difficulty < 15) {
-		waveone.difficulty += 0.075;
+		waveone.difficulty += 0.04;
 	} else {
 		waveone.difficulty = 15;
 	}
@@ -28,7 +28,7 @@ function waveGen(clock) {
 		this.dt += 16.6666667 * spaceModifier;
 		this.computeDifficulty();
 		if (this.dt - this.lastGen * (1/settings.creationSpeedModifier) > this.nextGen) {
-			if (this.nextGen > 1000) {
+			if (this.nextGen > 900) {
 				this.nextGen -=  (1 * (this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
@@ -64,10 +64,10 @@ function waveGen(clock) {
 	this.computeDifficulty = function() {
 		if (this.difficulty < 15) {
 			if (this.difficulty < 8) {
-				this.difficulty += (this.dt - this.last)/(1000000);
+				this.difficulty += (this.dt - this.last)/(2000000);
 			}
 			else {
-				this.difficulty += (this.dt - this.last)/(20000000);
+				this.difficulty += (this.dt - this.last)/(40000000);
 			}
 		}
 		this.integerDifficulty = Math.floor(this.difficulty);
