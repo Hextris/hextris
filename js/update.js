@@ -22,13 +22,13 @@ function update() {
 			waveone.prevTimeScored = now;
 		}
 	}
-	var lowestDeletedIndex;
+	var lowestDeletedIndex = 99;
 	var i;
 	var j;
 	var block;
 
 	var objectsToRemove = [];
-	for (i in blocks) {
+	for (i = 0; i < blocks.length; i++) {
 		MainClock.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
 			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter * settings.scale;
@@ -39,12 +39,12 @@ function update() {
 
 	for (i = 0; i < MainClock.blocks.length; i++) {
 		for (j = 0; j < MainClock.blocks[i].length; j++) {
-                    if(MainClock.blocks[i][j].checked ==1 ){
-                        consolidateBlocks(MainClock,MainClock.blocks[i][j].attachedLane,MainClock.blocks[i][j].getIndex());
-                        MainClock.blocks[i][j].checked=0;
-                    }
-                }
+            if (MainClock.blocks[i][j].checked ==1 ) {
+                consolidateBlocks(MainClock,MainClock.blocks[i][j].attachedLane,MainClock.blocks[i][j].getIndex());
+                MainClock.blocks[i][j].checked=0;
+            }
         }
+    }
 
 	for (i = 0; i < MainClock.blocks.length; i++) {
 		lowestDeletedIndex = 99;
@@ -59,13 +59,13 @@ function update() {
 		}
 
 		if (lowestDeletedIndex < MainClock.blocks[i].length) {
-			for (j = lowestDeletedIndex; q < MainClock.blocks[i].length; q++) {
-				MainClock.blocks[i][q].settled = 0;
+			for (j = lowestDeletedIndex; j < MainClock.blocks[i].length; j++) {
+				MainClock.blocks[i][j].settled = 0;
 			}
 		}
 	}
 
-	for (i in MainClock.blocks) {
+	for (i = 0; i < MainClock.blocks.length; i++) {
 		for (j = 0; j < MainClock.blocks[i].length; j++) {
 			block = MainClock.blocks[i][j];
 			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
