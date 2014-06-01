@@ -1,6 +1,16 @@
-// In each generator function you need a few things
-// Something defining when the next block is being generated
-// Something defining which and when the next function is going to be passed
+function blockDestroyed() {
+	if (waveone.nextGen > 1000) {
+		waveone.nextGen -= 10;
+	} else {
+		waveone.nextGen = 1000;
+	}
+
+	if (waveone.difficulty < 15) {
+		waveone.difficulty += 0.075;
+	} else {
+		waveone.difficulty = 15;
+	}
+}
 
 function waveGen(clock) {
 	this.lastGen = 0;
@@ -19,7 +29,7 @@ function waveGen(clock) {
 		this.computeDifficulty();
 		if (this.dt - this.lastGen * (1/settings.creationSpeedModifier) > this.nextGen) {
 			if (this.nextGen > 1000) {
-				this.nextGen -=  (3 * (this.nextGen/1300)) * settings.creationSpeedModifier;
+				this.nextGen -=  (1 * (this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
 	};
@@ -29,7 +39,7 @@ function waveGen(clock) {
 			this.ct++;
 			this.lastGen = this.dt;
 			var fv = randInt(0, MainClock.sides);
-			addNewBlock(fv, colors[randInt(0, colors.length)], 1.5 + (this.integerDifficulty/15) * 3);
+			addNewBlock(fv, colors[randInt(0, colors.length)], 1.3 + (this.integerDifficulty/15) * 3);
 			if (this.ct > 7) {
 				var nextPattern = randInt(0, 20 + 4);
 				if (nextPattern > 4 + 17) {
@@ -52,12 +62,12 @@ function waveGen(clock) {
 	};
 
 	this.computeDifficulty = function() {
-		if (this.difficulty < 11) {
+		if (this.difficulty < 15) {
 			if (this.difficulty < 8) {
-				this.difficulty += (this.dt - this.last)/250000;
+				this.difficulty += (this.dt - this.last)/(1000000);
 			}
 			else {
-				this.difficulty += (this.dt - this.last)/5000000;
+				this.difficulty += (this.dt - this.last)/(20000000);
 			}
 		}
 		this.integerDifficulty = Math.floor(this.difficulty);
@@ -166,11 +176,3 @@ function waveGen(clock) {
 
 	this.currentFunction = this.randomGeneration;
 }
-
-function generatorFunction() {
-	
-}
-
-// In each generator function you need a few things
-// Something defining when the next block is being generated
-// Something defining which and when the next function is going to be passed

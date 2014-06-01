@@ -1,17 +1,20 @@
 var prevGameState;
 function showText(text){
     var messages = {
-            'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>"
+        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>"
     }
+
     var pt = document.getElementById("overlay");
     pt.className = '';
     pt.innerHTML = messages[text];
 }
+
 function hideText(text){
     var pt = document.getElementById("overlay");
     pt.className = 'faded';
     pt.innerHTML = '';
 }
+
 function pause(x,o,message) {
     if(x === undefined){x=true;}
     message = 'paused';
@@ -98,7 +101,7 @@ keypress.register_combo({
 });
 
 $(document).ready(function(){
-    $("#pauseBtn").mousedown(function() {
+    $("#pauseBtn").on('touchstart mousedown', function() {
         pause();
         if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
             $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
