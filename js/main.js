@@ -252,11 +252,8 @@ function animLoop() {
 		update();
 		render();
 		if (checkGameOver()) {
-			// isGameOver--;
-			// if (isGameOver === 0) {
-				gameState = 2;
-				clearSaveState();
-			// }
+                    gameState = 2;
+                    clearSaveState();
 		}
 	}
 	else if (gameState === 0) {
