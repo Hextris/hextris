@@ -1,8 +1,9 @@
 var prevGameState;
 function showText(text){
     var messages = {
-        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>"
-    }
+        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>",
+        'start':"<div class='centeredHeader unselectable' >Press enter to start</div>"
+    };
 
     var pt = document.getElementById("overlay");
     pt.className = '';
@@ -16,19 +17,17 @@ function hideText(text){
 }
 
 function pause(x,o,message) {
-    if(x === undefined){x=true;}
     message = 'paused';
     var c = document.getElementById("canvas");
     if (gameState == -1 ) {
         hideText();
-        if(showingHelp && !o){return;}
         c.className = '';
         setTimeout(function(){
             gameState = prevGameState;
         }, 300);
 
     }
-    else if(gameState != -2 && gameState != 0) {
+    else if(gameState != -2 && gameState !== 0) {
         c.className = "blur";
         showText(message);
         prevGameState = gameState;
@@ -124,13 +123,13 @@ $(document).ready(function(){
 
 function handleClickTap(x) {
     if (x < window.innerWidth/2) {
-        if (gameState != 1 && gameState != -2) {
+        if (gameState != 1 && gameState != -2 && gameState != -1 ){
             init();
         }
         MainClock.rotate(1);
     }
     if (x > window.innerWidth/2) {
-        if (gameState != 1 && gameState != -2) {
+        if (gameState != 1 && gameState != -2 && gameState != -1) {
             init();
         }
         MainClock.rotate(-1);

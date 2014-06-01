@@ -5,7 +5,7 @@ if(saveState !== "{}"){op=1;}
 function render() {
 	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
 	clearGameBoard();
-	if (gameState == 1 || gameState ==2) {
+	if (gameState == 1 || gameState ==2 || gameState == -1) {
 		if (op < 1) {
 			op += 0.01;
 		}
@@ -27,7 +27,7 @@ function render() {
 
 
 	MainClock.draw();
-	if ( gameState ==1 ) {
+	if ( gameState ==1 | gameState ==-1 ) {
 		drawScoreboard();
 	}
 	for (var i in MainClock.texts) {
