@@ -38,6 +38,7 @@ function render() {
 		i--;
 	}
 
-
 	settings.prevScale = settings.scale;
+	settings.hexWidth = settings.baseHexWidth * settings.scale;
+	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 }

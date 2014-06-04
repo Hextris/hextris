@@ -1,8 +1,5 @@
 //remember to update history function to show the respective iter speeds
 function update() {
-	settings.hexWidth = settings.baseHexWidth * settings.scale;
-	settings.blockHeight = settings.baseBlockHeight * settings.scale;
-
 	var now = Date.now();
 	if (importing) {
 		// if (importedHistory[count]) {
