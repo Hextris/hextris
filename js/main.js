@@ -304,11 +304,11 @@ requestAnimFrame(animLoop);
 function isInfringing(clock){
 	for(var i=0;i<clock.sides;i++){
 		var subTotal=0;
-		for(var j=0;j<clock.blocks[i].length;j++){
+		for (var j=0;j<clock.blocks[i].length;j++){
 			subTotal+=clock.blocks[i][j].deleted ;
 		}
-		if(clock.blocks[i].length- subTotal>settings.rows){
-			return true;	
+		if (clock.blocks[i].length- subTotal>settings.rows){
+			return true;
 		}
 	}
 	return false;
@@ -325,12 +325,12 @@ function checkGameOver() {
 
 window.onblur = function (e) {
     if(gameState==1){
-	pause();
+		pause();
     }
 };
 function showHelp(){
 	pause(false,true);
-	if(document.getElementById("helpScreen").style.display=="none" || document.getElementById("helpScreen").style.display == ""){
+	if(document.getElementById("helpScreen").style.display=="none" || document.getElementById("helpScreen").style.display === ""){
 		document.getElementById("helpScreen").style.display = "block";
 	}
 	else if(document.getElementById("helpScreen").style.display=="block" ){
