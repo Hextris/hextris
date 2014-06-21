@@ -81,7 +81,7 @@ button:focus {
     left:50%;
     top:50%;
     margin-left:-20%;
-    margin-top:-5%;
+    margin-top:-10%;
     z-index:3000;
     color:#000;
     text-align:center;
@@ -103,11 +103,6 @@ button:focus {
 }
 
 .blur {
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter:blur(4px);
     opacity:0.4;
 }
 
