@@ -130,7 +130,7 @@ function init() {
 	$('#pauseBtn').hide();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
-
+        document.getElementById("canvas").className = "";
 	history = {};
 	importedHistory = undefined;
 	importing = 0;
@@ -281,7 +281,7 @@ function animLoop() {
 		requestAnimFrame(animLoop);
 		update();
 		render();
-		showModal('Game over: ' + score + ' pts!', 'Press enter to restart!');
+                gameOverDisplay();
 		highscores = localStorage.getItem('highscores').split(',').map(Number);
 		for (var i = 0; i < numHighScores; i++) {
 			if (highscores[i] < score) {

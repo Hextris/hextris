@@ -3,21 +3,6 @@ var hexagonBackgroundColor = 'rgb(236, 240, 241)';
 var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
 var centerBlue = '#2c3e50'; //tumblr?
 
-function showModal(text, secondaryText) {
-    var buttonSize = 150;
-    var fontSizeLarge = 50;
-    var fontSizeSmall = 25;
-    drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, trueCanvas.width / 2 - 25, 30, hexagonBackgroundColorClear);
-    // drawPolygon(trueCanvas.width / 2, trueCanvas.height / 2, 6, buttonSize, 30, swegBlue);
-    ctx.font = fontSizeLarge + 'px Helvetica'; // figure out what is not working
-    ctx.textAlign = 'center';
-    ctx.fillStyle = centerBlue;
-    // ctx.fillStyle = hexagonBackgroundColor;
-    ctx.fillText(text, trueCanvas.width / 2, trueCanvas.height / 2 + (fontSizeLarge / 4));
-    ctx.font = fontSizeSmall + 'px Helvetica';
-    ctx.fillText(secondaryText, trueCanvas.width / 2, trueCanvas.height / 2 + fontSizeLarge / 4 + fontSizeSmall / 4 + 30);
-}
-
 function renderText(x, y, fontSize, color, text) {
     ctx.font = fontSize + 'px/0 Roboto'; 
     ctx.textAlign = 'center';

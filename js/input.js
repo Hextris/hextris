@@ -2,7 +2,8 @@ var prevGameState;
 function showText(text){
     var messages = {
         'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>",
-        'start':"<div class='centeredHeader unselectable' >Press enter to start</div>"
+        'start':"<div class='centeredHeader unselectable' style='line-height:80px;' >Press enter to start</div>",
+        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div class='unselectablecenteredSubHeader'>Press enter to restart</div>",
     };
 
     var pt = document.getElementById("overlay");
@@ -14,6 +15,11 @@ function hideText(text){
     var pt = document.getElementById("overlay");
     pt.className = 'faded';
     pt.innerHTML = '';
+}
+function gameOverDisplay(){
+    var c = document.getElementById("canvas");
+    c.className = "blur";
+    showText('gameover');
 }
 
 function pause(x,o,message) {
