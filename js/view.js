@@ -9,8 +9,8 @@ function renderText(x, y, fontSize, color, text) {
     ctx.textAlign = 'center';
     ctx.fillStyle = color;
     ctx.fillText(text, x, y + (fontSize / 2) - 9 * settings.scale);
-
 }
+
 scoreOpacity = 0;
 function drawScoreboard() {
     if(scoreOpacity < 1){
