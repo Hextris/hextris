@@ -15,12 +15,12 @@ function blockDestroyed() {
 function waveGen(clock) {
 	this.lastGen = 0;
 	this.last = 0;
-	this.nextGen = 1650; // - 1500; //delay before starting
+	this.nextGen = 2000; // - 1500; //delay before starting
 	this.start = 0;
 	this.colors = colors;
 	this.ct = 0;
 	this.clock = clock;
-	this.difficulty = 0;
+	this.difficulty = 1;
 	this.dt = 0;
 	this.update = function() {
 		this.currentFunction();
