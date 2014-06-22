@@ -127,9 +127,10 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
-                this.ct++;
+        this.ct++;
 		this.x = trueCanvas.width/2;
-		if (gameState == 1) {
+
+		if (gameState != -2) {
 			this.y = trueCanvas.height/2;
 		}
 		this.sideLength = settings.hexWidth;
