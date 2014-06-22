@@ -13,29 +13,28 @@ function render() {
 		drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);
 		ctx.globalAlpha = 1;
 	}
-
-	for (var i in MainClock.blocks) {
+	var i;
+	for (i = 0; i < MainClock.blocks.length; i++) {
 		for (var j = 0; j < MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
 			block.draw(true, j);
 		}
 	}
 
-	for (var i in blocks) {
+	for (i = 0; i < blocks.length; i++) {
 		blocks[i].draw();
 	}
-
 
 	MainClock.draw();
 	if ( gameState ==1 | gameState ==-1 ) {
 		drawScoreboard();
 	}
-	for (var i in MainClock.texts) {
+	for (i = 0; i < MainClock.texts.length; i++) {
 		var alive = MainClock.texts[i].draw();
 		if(!alive){
-			MainClock.texts.splice(i,1)
+			MainClock.texts.splice(i,1);
+			i--;
 		}
-		i--;
 	}
 
 	settings.prevScale = settings.scale;
