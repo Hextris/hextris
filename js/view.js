@@ -4,10 +4,11 @@ var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
 var centerBlue = '#2c3e50'; //tumblr?
 
 function renderText(x, y, fontSize, color, text) {
-    ctx.font = fontSize + 'px/0 Roboto'; 
+    fontSize *= settings.scale;
+    ctx.font = fontSize + 'px/0 Roboto';
     ctx.textAlign = 'center';
     ctx.fillStyle = color;
-    ctx.fillText(text, x, y + (fontSize / 4) + 3.5);
+    ctx.fillText(text, x, y + (fontSize / 2) - 9 * settings.scale);
 
 }
 scoreOpacity = 0;

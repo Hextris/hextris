@@ -9,12 +9,15 @@ function Text(x,y,text,font,color,incrementFunction){
 	
 	this.draw = function(){
 		if(this.alive>0){
+			ctx.save();
+			var sf = settings.scale;
+			ctx.scale(sf, sf);
 			ctx.font= this.font;
 			ctx.fillStyle = this.color;
 			ctx.globalAlpha = this.opacity;
-			ctx.fillText(this.text,this.x+gdx,this.y+gdy);
+			ctx.fillText(this.text,(this.x + gdx) * (1/sf), (this.y + gdy) * (1/sf));
 			ctx.globalAlpha =1;
-			//this.opacity = 1-(Date.now()-MainClock.lastCombo)/5000;
+			ctx.restore();
 			incrementFunction(this);
 			return true;
 		}
