@@ -33,7 +33,7 @@ function pause(x,o,message) {
         }, 300);
 
     }
-    else if(gameState != -2 && gameState !== 0) {
+    else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
         c.className = "blur";
         showText(message);
         prevGameState = gameState;
