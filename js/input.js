@@ -41,8 +41,6 @@ function pause(x,o,message) {
     }
 }
 
-
-
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {

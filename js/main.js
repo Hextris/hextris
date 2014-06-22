@@ -163,7 +163,13 @@ function init() {
 
 	MainClock = saveState.clock || new Clock(settings.hexWidth);
 
+	scaleCanvas();
+	settings.blockHeight = settings.baseBlockHeight * settings.scale;
+	settings.hexWidth = settings.baseHexWidth * settings.scale;
+	MainClock.sideLength = settings.hexWidth;
+
 	for(var i=0; i<MainClock.blocks.length; i++) {
+		MainClock.blocks[i].height = settings.blockHeight;
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
 			var block = MainClock.blocks[i][j];
 			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
