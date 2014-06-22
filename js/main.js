@@ -145,10 +145,11 @@ function init() {
 	if(saveState.clock !== undefined) gameState = 1;
 
 	count = 0;
-
+	var i;
+	var block;
 	if(saveState.blocks) {
-		for(var i=0; i<saveState.blocks.length; i++) {
-			var block = saveState.blocks[i];
+		for(i=0; i<saveState.blocks.length; i++) {
+			block = saveState.blocks[i];
 			blocks.push(block);
 		}
 		console.log(blocks);
@@ -168,10 +169,10 @@ function init() {
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	MainClock.sideLength = settings.hexWidth;
 
-	for(var i=0; i<MainClock.blocks.length; i++) {
+	for(i=0; i<MainClock.blocks.length; i++) {
 		MainClock.blocks[i].height = settings.blockHeight;
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
-			var block = MainClock.blocks[i][j];
+			block = MainClock.blocks[i][j];
 			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
 			block.settled = 0;
 		}
