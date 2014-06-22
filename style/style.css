@@ -104,6 +104,25 @@ button:focus {
    text-align:center;
    line-height:1em;
 }
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+ .centeredHeader {
+   font-size:2em; 
+   text-align:center;
+   line-height:0.6em;
+ }
+ .centeredSubHeader {
+   font-size:1em; 
+   text-align:center;
+ }
+ #overlay {
+   margin-top: -20%;
+ }
+
+ 
+}
+
 
 .centeredSubHeader {
    font-size:2em; 
