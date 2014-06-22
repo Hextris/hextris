@@ -15,12 +15,12 @@ function blockDestroyed() {
 function waveGen(clock) {
 	this.lastGen = 0;
 	this.last = 0;
-	this.nextGen = 1650; // - 1500; //delay before starting
+	this.nextGen = 2000; // - 1500; //delay before starting
 	this.start = 0;
 	this.colors = colors;
 	this.ct = 0;
 	this.clock = clock;
-	this.difficulty = 0;
+	this.difficulty = 1;
 	this.dt = 0;
 	this.update = function() {
 		this.currentFunction();
@@ -28,7 +28,7 @@ function waveGen(clock) {
 		this.computeDifficulty();
 		if (this.dt - this.lastGen * (1/settings.creationSpeedModifier) > this.nextGen) {
 			if (this.nextGen > 1000) {
-				this.nextGen -=  (.7 * (this.nextGen/1300)) * settings.creationSpeedModifier;
+				this.nextGen -=  (0.7 * (this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
 	};
