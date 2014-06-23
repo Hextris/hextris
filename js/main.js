@@ -184,7 +184,7 @@ function init() {
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
 	MainClock.texts = []; //clear texts
-        hideText();
+    hideText();
 	clearSaveState();
 }
 
