@@ -78,5 +78,6 @@ function consolidateBlocks(clock,side,index){
 	}
 	var adder = deleting.length * deleting.length * clock.comboMultiplier;
 	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Q 24px",deletedBlocks[0].color,fadeUpAndOut));
+        clock.tempColor = deletedBlocks[0].color.slice(4,-1).split(",").map(Number);
 	score += adder;
 }
