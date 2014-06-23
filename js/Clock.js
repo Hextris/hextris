@@ -161,7 +161,8 @@ function arrayToColor(arr){
 }
 function tint(clock){
         var n = [];
-        var outerHexagon =[236,240,241];
+        //var outerHexagon =[236,240,241];
+        var outerHexagon =[189,195,199];
         if(clock.ct -clock.lastCombo<160){
             for(var i=0;i<3;i++){
                             n.push( Math.ceil(clock.fillColor[i]+((outerHexagon[i]-clock.fillColor[i])/160)*(160-(clock.ct-clock.lastCombo))));
