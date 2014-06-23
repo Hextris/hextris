@@ -1,5 +1,5 @@
 function Clock(sideLength) {
-	this.fillColor = '#2c3e50';
+	this.fillColor = [44,62,80];
 	this.angularVelocity = 0;
 	this.position = 0;
 	this.dy = 0;
@@ -153,7 +153,20 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-
-		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
+                drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(tint(this)) , 0, 'rgba(0,0,0,0)');
 	};
 }
+function arrayToColor(arr){
+        return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
+}
+function tint(clock){
+        var n = [];
+        if(clock.ct -clock.lastCombo<160){
+            for(var i=0;i<3;i++){
+                            n.push( Math.ceil(clock.fillColor[i]+((175-clock.fillColor[i])/160)*(160-(clock.ct-clock.lastCombo))));
+            }
+            return n;
+        }
+        return clock.fillColor;
+}
+
