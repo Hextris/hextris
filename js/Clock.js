@@ -13,7 +13,7 @@ function Clock(sideLength) {
 	this.x = trueCanvas.width / 2;
 	this.y = trueCanvas.height / 2;
 	this.ct = 0;
-	this.lastCombo = this.ct - 160;
+	this.lastCombo = this.ct - settings.comboMultiplier;
 	this.comboMultiplier = 1;
 	this.texts = [];
 
@@ -163,9 +163,9 @@ function tint(clock){
         var n = [];
         //var outerHexagon =[236,240,241];
         var outerHexagon =[189,195,199];
-        if(clock.ct -clock.lastCombo<160){
+        if(clock.ct -clock.lastCombo<settings.comboMultiplier){
             for(var i=0;i<3;i++){
-                            n.push( Math.ceil(clock.fillColor[i]+((outerHexagon[i]-clock.fillColor[i])/160)*(160-(clock.ct-clock.lastCombo))));
+                            n.push( Math.ceil(clock.fillColor[i]+((outerHexagon[i]-clock.fillColor[i])/settings.comboMultiplier)*(settings.comboMultiplier-(clock.ct-clock.lastCombo))));
             }
             return n;
         }
