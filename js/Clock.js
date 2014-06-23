@@ -1,5 +1,6 @@
 function Clock(sideLength) {
-	this.fillColor = '#2c3e50';
+	this.fillColor = [44,62,80];
+        this.tempColor = [44,62,80];
 	this.angularVelocity = 0;
 	this.position = 0;
 	this.dy = 0;
@@ -127,7 +128,7 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
-        this.ct++;
+                this.ct++;
 		this.x = trueCanvas.width/2;
 
 		if (gameState != -2) {
@@ -154,6 +155,34 @@ function Clock(sideLength) {
 			this.angle += this.angularVelocity;
 		}
 
-		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, this.fillColor, 0, 'rgba(0,0,0,0)');
+		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, arrayToColor(this.tempColor), 0, 'rgba(0,0,0,0)');
+                fadeTo(this);
 	};
+}
+function arrayToColor(arr){
+        return 'rgb(' + arr[0] + ',' + arr[1] + ',' + arr[2] + ')';
+}
+var subtracters=[];
+function fadeTo(clock){
+        var temp = clock.tempColor;
+        var base = clock.fillColor;
+        if(clock.ct - clock.lastCombo == 1){
+                for(var i=0;i<3;i++){
+                        if( base[i]>temp[i]) 
+                                subtracters[i] = Math.ceil((base[i]-temp[i])/160);
+                        if( base[i]<temp[i]) 
+                                subtracters[i] = Math.floor((base[i]-temp[i])/160);
+                }
+                console.log(subtracters);
+
+        }
+        if(clock.ct - clock.lastCombo >= 160){
+                subtracters=[0,0,0];
+                clock.tempColor = clock.fillColor;
+        }
+        for(var i=0;i<3;i++){
+                if(temp[i] != base[i]) {
+                        clock.tempColor[i] = clock.tempColor[i]+subtracters[i];
+                }
+        }
 }

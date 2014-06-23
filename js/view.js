@@ -1,7 +1,7 @@
-var colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
+var colors = ["rgb(231,76,60)", "rgb(241,196,15)", "rgb(52,152,219)", "rgb(46,204,113)"];
 var hexagonBackgroundColor = 'rgb(236, 240, 241)';
 var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
-var centerBlue = '#2c3e50'; //tumblr?
+var centerBlue = 'rgb(44,62,80)'; //tumblr?
 
 function renderText(x, y, fontSize, color, text) {
     fontSize *= settings.scale;
