@@ -10,7 +10,7 @@ function Text(x,y,text,font,color,incrementFunction){
 	this.draw = function(){
 		if(this.alive>0){
 			ctx.save();
-			var sf = settings.scale;
+			var sf = (settings.scale - 1)/3 + 1;
 			ctx.scale(sf, sf);
 			ctx.font= this.font;
 			ctx.fillStyle = this.color;
