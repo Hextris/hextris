@@ -231,7 +231,7 @@ function importHistory(j) {
 		try {
 			var ih = JSON.parse(prompt("Import JSON"));
 			if (ih) {
-				init();
+				init(1);
 				importing = 1;
 				importedHistory = ih;
 			}
@@ -240,7 +240,7 @@ function importHistory(j) {
 			alert("Error importing JSON");
 		}
 	} else {
-		init();
+		init(1);
 		importing = 1;
 		importedHistory = j;
 	}
