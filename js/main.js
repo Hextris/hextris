@@ -1,6 +1,9 @@
 var textShown = false;
 var showingHelp = false;
-$(document).ready(scaleCanvas);
+$(document).ready(function(){
+	scaleCanvas();
+	$('#startBtn').on('touchstart mousedown', init);
+});
 $(window).resize(scaleCanvas);
 $(window).unload(function() {
 	localStorage.setItem("saveState", exportSaveState());
@@ -124,13 +127,14 @@ var gameState;
 if(isStateSaved())
 	init();
 else
-	gameState = 0;
+	setStartScreen();
 
 function init() {
 	$('#pauseBtn').hide();
+	$('#startBtn').hide();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
-    document.getElementById("canvas").className = "";
+	document.getElementById("canvas").className = "";
 	history = {};
 	importedHistory = undefined;
 	importing = 0;
@@ -138,10 +142,10 @@ function init() {
 	score = saveState.score || 0;
 	prevScore = 0;
 	spawnLane = 0;
-        op=0;
-        scoreOpacity=0;
+		op=0;
+		scoreOpacity=0;
 
-        gameState = -2;
+		gameState = -2;
 	if(saveState.clock !== undefined) gameState = 1;
 
 	count = 0;
@@ -184,7 +188,7 @@ function init() {
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
 	MainClock.texts = []; //clear texts
-    hideText();
+	hideText();
 	clearSaveState();
 }
 
@@ -209,17 +213,23 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
 }
 
-function importHistory() {
-	try {
-		var ih = JSON.parse(prompt("Import JSON"));
-		if (ih) {
-			init();
-			importing = 1;
-			importedHistory = ih;
+function importHistory(j) {
+	if (!j) {
+		try {
+			var ih = JSON.parse(prompt("Import JSON"));
+			if (ih) {
+				init();
+				importing = 1;
+				importedHistory = ih;
+			}
 		}
-	}
-	catch (e) {
-		alert("Error importing JSON");
+		catch (e) {
+			alert("Error importing JSON");
+		}
+	} else {
+		init();
+		importing = 1;
+		importedHistory = j;
 	}
 }
 
@@ -242,6 +252,13 @@ function stepInitialLoad() {
 	}
 }
 
+function setStartScreen() {
+	init();
+	importHistory(introJSON);
+	gameState = 0;
+	$('#startBtn').show();
+}
+
 //t: current time, b: begInnIng value, c: change In value, d: duration
 function getStepDY(t, b, c, d) {
 	if ((t/=d) < (1/2.75)) {
@@ -256,22 +273,19 @@ function getStepDY(t, b, c, d) {
 }
 
 function animLoop() {
-	if (gameState == 1) {
+	if (gameState == 1) { //game play
 		requestAnimFrame(animLoop);
 		update();
 		render();
 		if (checkGameOver()) {
-            gameState = 2;
-            clearSaveState();
+			gameState = 2;
+			clearSaveState();
 		}
 	}
-	else if (gameState === 0) {
+	else if (gameState === 0) { //start screen
 		requestAnimFrame(animLoop);
-		clearGameBoard();
-        if(!textShown){
-            showText('start');
-            textShown = true;
-        }
+		update();
+		render();
 	}
 	else if (gameState == -2) { //initialization screen just before starting
 		requestAnimFrame(animLoop);
@@ -280,15 +294,15 @@ function animLoop() {
 		stepInitialLoad();
 		render();
 	}
-	else if (gameState == -1) {
+	else if (gameState == -1) { //pause
 		requestAnimFrame(animLoop);
 		render();
 	}
-	else if (gameState == 2) {
+	else if (gameState == 2) { //end screen
 		requestAnimFrame(animLoop);
 		update();
 		render();
-                gameOverDisplay();
+		gameOverDisplay();
 		highscores = localStorage.getItem('highscores').split(',').map(Number);
 		for (var i = 0; i < numHighScores; i++) {
 			if (highscores[i] < score) {
@@ -303,7 +317,7 @@ function animLoop() {
 		localStorage.setItem('highscores', highscores);
 	}
 	else {
-		gameState = 0;
+		setStartScreen();
 	}
 }
 
@@ -319,8 +333,8 @@ function isInfringing(clock){
 		}
 	}
 	return false;
-
 }
+
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {
 		if (isInfringing(MainClock)) {
@@ -331,9 +345,9 @@ function checkGameOver() {
 }
 
 window.onblur = function (e) {
-    if(gameState==1){
+	if (gameState==1) {
 		pause();
-    }
+	}
 };
 function showHelp(){
 	pause(false,true);

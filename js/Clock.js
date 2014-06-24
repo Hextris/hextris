@@ -40,7 +40,7 @@ function Clock(sideLength) {
 	};
 
 	this.addBlock = function(block) {
-		if (gameState != 1) return;
+		if (!(gameState == 1 || gameState == 0)) return;
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.fallingLane;// -this.position;
@@ -100,7 +100,7 @@ function Clock(sideLength) {
 	};
 
 	this.rotate = function(steps) {
-		if (gameState != 1 && gameState != -2) return;
+		if (!(gameState === 1 || gameState === 0) && gameState !== -2) return;
 		this.position += steps;
 		if (!history[count]) {
 			history[count] = {};
@@ -128,7 +128,7 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
-                this.ct++;
+        this.ct++;
 		this.x = trueCanvas.width/2;
 
 		if (gameState != -2) {

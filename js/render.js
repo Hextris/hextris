@@ -1,11 +1,14 @@
-var grey = '#bdc3c7';
 op=0;
 var saveState = localStorage.getItem("saveState") || "{}";
 if(saveState !== "{}"){op=1;}
 function render() {
+	var grey = '#bdc3c7';
+	if (gameState === 0) {
+		grey = "rgb(220, 223, 225)";
+	}
 	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
 	clearGameBoard();
-	if (gameState == 1 || gameState ==2 || gameState == -1) {
+	if (gameState === 1 || gameState === 2 || gameState === -1 || gameState === 0) {
 		if (op < 1) {
 			op += 0.01;
 		}
@@ -26,7 +29,7 @@ function render() {
 	}
 
 	MainClock.draw();
-	if ( gameState ==1 | gameState ==-1 ) {
+	if (gameState ==1 | gameState ==-1 || gameState == 0) {
 		drawScoreboard();
 	}
 	for (i = 0; i < MainClock.texts.length; i++) {

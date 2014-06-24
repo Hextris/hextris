@@ -69,7 +69,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		this.iter = this.baseIter * spaceModifier;
 
 		this.height = settings.blockHeight;
-		if (Math.abs(settings.scale - settings.prevScale) > .000000001) {
+		if (Math.abs(settings.scale - settings.prevScale) > 0.000000001) {
 			this.distFromHex *= (settings.scale/settings.prevScale);
 		}
 
@@ -117,7 +117,10 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 
 		if (this.deleted) {
 			ctx.fillStyle = "#FFF";
-		} else {
+		} else if (gameState === 0) {
+			ctx.fillStyle = colorsToTintedColors[this.color];
+		}
+		else {
 			ctx.fillStyle = this.color;
 		}
 		ctx.globalAlpha = this.opacity;
