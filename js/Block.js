@@ -91,14 +91,13 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-
+                this.ct++;
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
 		this.widthWide = this.width + this.height + 3;
 		var p1;
 		var p2;
 		var p3;
 		var p4;
-		this.ct++;
 		if (this.initializing) {
 			var rat = (this.ct/this.initLen);
 			p1 = rotatePoint((-this.width / 2) * rat, this.height / 2, this.angle);

@@ -316,7 +316,7 @@ function animLoop() {
 	}
 	else if (gameState == -1) { //pause
 		requestAnimFrame(animLoop);
-		render();
+                render();
 	}
 	else if (gameState == 2) { //end screen
 		requestAnimFrame(animLoop);
