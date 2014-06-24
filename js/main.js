@@ -140,8 +140,11 @@ var startTime;
 var gameState;
 setStartScreen();
 
-function init() {
-	console.log('o');
+function init(b) {
+	if (b) {
+		clearSaveState();
+	}
+
 	$('#pauseBtn').hide();
 	$('#startBtn').hide();
 	var saveState = localStorage.getItem("saveState") || "{}";
@@ -165,6 +168,7 @@ function init() {
 	if(saveState.blocks) {
 		for(i=0; i<saveState.blocks.length; i++) {
 			block = saveState.blocks[i];
+			block.distFromHex *= settings.scale;
 			blocks.push(block);
 		}
 	}
@@ -186,9 +190,8 @@ function init() {
 	for(i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
 			MainClock.blocks[i][j].height = settings.blockHeight;
-			block = MainClock.blocks[i][j];
-			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
-			block.settled = 0;
+			MainClock.blocks[i][j].settled = 0;
+			MainClock.blocks[i][j].distFromHex *= settings.scale;
 		}
 	}
 
@@ -200,7 +203,6 @@ function init() {
 	
 	MainClock.texts = []; //clear texts
 	hideText();
-	debugger;
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
