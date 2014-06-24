@@ -98,7 +98,7 @@ keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
        if (gameState==2 || gameState==1) {
-          init();
+          init(1);
       }
       if (gameState==0){ gameState=1}
   }
