@@ -2,8 +2,20 @@ var textShown = false;
 var showingHelp = false;
 $(document).ready(function(){
 	scaleCanvas();
-	$('#startBtn').on('touchstart mousedown', init);
+	$('#startBtn').on('touchstart mousedown', function(){
+		init();
+		setTimeout(function(){
+			document.body.addEventListener('mousedown', function(e) {
+				handleClickTap(e.clientX);
+			}, false);
+
+			document.body.addEventListener('touchstart', function(e) {
+				handleClickTap(e.changedTouches[0].clientX);
+			}, false);
+		}, 1);
+	});
 });
+
 $(window).resize(scaleCanvas);
 $(window).unload(function() {
 	localStorage.setItem("saveState", exportSaveState());
@@ -76,7 +88,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		rows:6,
 		speedModifier:0.7,
 		creationSpeedModifier:0.7,
-                comboMultiplier: 240
+				comboMultiplier: 240
 	};
 } else {
 	settings = {
@@ -90,9 +102,9 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		baseBlockHeight:20,
 		blockHeight:15,
 		rows:8,
-		speedModifier:.8,
+		speedModifier:0.8,
 		creationSpeedModifier:0.6,
-                comboMultiplier: 240
+		comboMultiplier:240
 	};
 }
 
@@ -126,10 +138,7 @@ var importedHistory;
 var startTime;
 
 var gameState;
-if(isStateSaved())
-	init();
-else
-	setStartScreen();
+setStartScreen();
 
 function init() {
 	$('#pauseBtn').hide();
@@ -144,10 +153,9 @@ function init() {
 	score = saveState.score || 0;
 	prevScore = 0;
 	spawnLane = 0;
-		op=0;
-		scoreOpacity=0;
-
-		gameState = -2;
+	op = 0;
+	scoreOpacity = 0;
+	gameState = -2;
 	if(saveState.clock !== undefined) gameState = 1;
 
 	count = 0;
@@ -179,7 +187,7 @@ function init() {
 		MainClock.blocks[i].height = settings.blockHeight;
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
 			block = MainClock.blocks[i][j];
-			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
+			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height - 5 * settings.scale;
 			block.settled = 0;
 		}
 	}
@@ -191,7 +199,6 @@ function init() {
 	
 	MainClock.texts = []; //clear texts
 	hideText();
-	clearSaveState();
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
@@ -255,10 +262,15 @@ function stepInitialLoad() {
 }
 
 function setStartScreen() {
+	debugger;
 	init();
-	importHistory(introJSON);
-	gameState = 0;
 	$('#startBtn').show();
+	if (!isStateSaved()) {
+		importHistory(introJSON);
+	} else {
+		importing = 0;
+	}
+	gameState = 0;
 }
 
 //t: current time, b: begInnIng value, c: change In value, d: duration
@@ -286,8 +298,11 @@ function animLoop() {
 	}
 	else if (gameState === 0) { //start screen
 		requestAnimFrame(animLoop);
-		update();
+		if (importing) {
+			update();
+		}
 		render();
+		debugger;
 	}
 	else if (gameState == -2) { //initialization screen just before starting
 		requestAnimFrame(animLoop);

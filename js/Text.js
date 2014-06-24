@@ -24,8 +24,7 @@ function Text(x,y,text,font,color,incrementFunction){
 		else {
 			return false;
 		}
-	}
-
+	};
 }
 
 function fadeUpAndOut(text){

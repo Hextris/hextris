@@ -118,7 +118,12 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		if (this.deleted) {
 			ctx.fillStyle = "#FFF";
 		} else if (gameState === 0) {
-			ctx.fillStyle = colorsToTintedColors[this.color];
+			if (this.color.charAt(0) == 'r') {
+				ctx.fillStyle = rgbColorsToTintedColors[this.color];
+			}
+			else {
+				ctx.fillStyle = hexColorsToTintedColors[this.color];
+			}
 		}
 		else {
 			ctx.fillStyle = this.color;
