@@ -1,6 +1,6 @@
 function Clock(sideLength) {
 	this.fillColor = [44,62,80];
-        this.tempColor = [44,62,80];
+    this.tempColor = [44,62,80];
 	this.angularVelocity = 0;
 	this.position = 0;
 	this.dy = 0;
@@ -14,7 +14,7 @@ function Clock(sideLength) {
 	this.x = trueCanvas.width / 2;
 	this.y = trueCanvas.height / 2;
 	this.ct = 0;
-	this.lastCombo = this.ct - 160;
+	this.lastCombo = this.ct - settings.comboMultiplier;
 	this.comboMultiplier = 1;
 	this.texts = [];
 
@@ -154,35 +154,24 @@ function Clock(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-
-		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle, arrayToColor(this.tempColor), 0, 'rgba(0,0,0,0)');
-                fadeTo(this);
+ 
+        drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(tint(this)) , 0, 'rgba(0,0,0,0)');
 	};
 }
-function arrayToColor(arr){
-        return 'rgb(' + arr[0] + ',' + arr[1] + ',' + arr[2] + ')';
-}
-var subtracters=[];
-function fadeTo(clock){
-        var temp = clock.tempColor;
-        var base = clock.fillColor;
-        if(clock.ct - clock.lastCombo == 1){
-                for(var i=0;i<3;i++){
-                        if( base[i]>temp[i]) 
-                                subtracters[i] = Math.ceil((base[i]-temp[i])/160);
-                        if( base[i]<temp[i]) 
-                                subtracters[i] = Math.floor((base[i]-temp[i])/160);
-                }
-                console.log(subtracters);
 
+function arrayToColor(arr){
+        return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
+}
+
+function tint(clock){
+        var n = [];
+        //var outerHexagon =[236,240,241];
+        var outerHexagon =[189,195,199];
+        if(clock.ct -clock.lastCombo<settings.comboMultiplier){
+            for(var i=0;i<3;i++){
+                            n.push( Math.ceil(clock.fillColor[i]+((outerHexagon[i]-clock.fillColor[i])/settings.comboMultiplier)*(settings.comboMultiplier-(clock.ct-clock.lastCombo))));
+            }
+            return n;
         }
-        if(clock.ct - clock.lastCombo >= 160){
-                subtracters=[0,0,0];
-                clock.tempColor = clock.fillColor;
-        }
-        for(var i=0;i<3;i++){
-                if(temp[i] != base[i]) {
-                        clock.tempColor[i] = clock.tempColor[i]+subtracters[i];
-                }
-        }
+        return clock.fillColor;
 }

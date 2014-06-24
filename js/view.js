@@ -29,7 +29,7 @@ function drawScoreboard() {
     }
 
     ctx.globalAlpha = scoreOpacity;
-    if (gameState == 0) {
+    if (gameState === 0) {
         renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
         renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
         renderText(trueCanvas.width/2+ gdx + 5 * settings.scale, trueCanvas.height/2+ gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
@@ -37,6 +37,7 @@ function drawScoreboard() {
     else {
         renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "rgb(236, 240, 241)", score);
     }
+
     ctx.globalAlpha = 1;
 }
 
