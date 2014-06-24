@@ -17,21 +17,8 @@ function drawScoreboard() {
 	scoreOpacity+=0.01;
     }
     ctx.globalAlpha = scoreOpacity;
-    renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, arrayToColor(invert()), score);
+    renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, '#fff', score);
     ctx.globalAlpha = 1;
-}
-function invert(){
-        var white=[255,255,255];
-        var clock = MainClock;
-        var n = [];
-        var innerHexagon = [44,62,80];
-        if(clock.ct -clock.lastCombo<settings.comboMultiplier){
-            for(var i=0;i<3;i++){
-                            n.push( Math.ceil(white[i]+((innerHexagon[i]-white[i])/settings.comboMultiplier)*(settings.comboMultiplier-(clock.ct-clock.lastCombo))));
-            }
-            return n;
-        }
-        return white;
 }
 
 function clearGameBoard() {
