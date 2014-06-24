@@ -78,6 +78,6 @@ function update() {
 			i--;
 		}
 	}
-
+        MainClock.ct++;
 	count++;
 }
