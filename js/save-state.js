@@ -1,7 +1,7 @@
 function exportSaveState() {
 	var state = {};
 
-	if(gameState == 1 || gameState == -1) {
+	if(gameState == 1 || gameState == -1 || gameState == 0) {
 		state = {
 			clock: MainClock,
 			blocks: blocks,
