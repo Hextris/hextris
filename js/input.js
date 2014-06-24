@@ -44,7 +44,7 @@ function pause(x,o,message) {
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
-        if (MainClock) {
+        if (MainClock && gameState !== 0) {
             MainClock.rotate(1);
         }
     }
@@ -53,7 +53,7 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "right",
     on_keydown: function() {
-        if (MainClock){
+        if (MainClock && gameState !== 0){
             MainClock.rotate(-1);
         }
     }
@@ -126,6 +126,10 @@ $(document).ready(function(){
 }, false);
 
 function handleClickTap(x) {
+    if (!MainClock || gameState == 0) {
+        return;
+    }
+
     if (x < window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1 ){
             init();
