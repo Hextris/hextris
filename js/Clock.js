@@ -15,6 +15,7 @@ function Clock(sideLength) {
 	this.y = trueCanvas.height / 2;
 	this.ct = 0;
 	this.lastCombo = this.ct - settings.comboMultiplier;
+        this.lastColorScored = "#000";
 	this.comboMultiplier = 1;
 	this.texts = [];
 
@@ -155,7 +156,7 @@ function Clock(sideLength) {
 			this.angle += this.angularVelocity;
 		}
  
-        drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(tint(this)) , 0, 'rgba(0,0,0,0)');
+                drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
 	};
 }
 
@@ -163,15 +164,3 @@ function arrayToColor(arr){
         return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
 }
 
-function tint(clock){
-        var n = [];
-        //var outerHexagon =[236,240,241];
-        var outerHexagon =[189,195,199];
-        if(clock.ct -clock.lastCombo<settings.comboMultiplier){
-            for(var i=0;i<3;i++){
-                            n.push( Math.ceil(clock.fillColor[i]+((outerHexagon[i]-clock.fillColor[i])/settings.comboMultiplier)*(settings.comboMultiplier-(clock.ct-clock.lastCombo))));
-            }
-            return n;
-        }
-        return clock.fillColor;
-}
