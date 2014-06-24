@@ -3,7 +3,6 @@ var showingHelp = false;
 $(document).ready(function(){
 	scaleCanvas();
 	$('#startBtn').on('touchstart mousedown', function(){
-		init();
 		setTimeout(function(){
 			document.body.addEventListener('mousedown', function(e) {
 				handleClickTap(e.clientX);
@@ -166,7 +165,6 @@ function init() {
 			block = saveState.blocks[i];
 			blocks.push(block);
 		}
-		console.log(blocks);
 	}
 	else {
 		blocks = [];
@@ -176,21 +174,22 @@ function init() {
 	gdy = saveState.gdy || 0;
 	comboMultiplier = saveState.comboMultiplier || 0;
 
-	MainClock = saveState.clock || new Clock(settings.hexWidth);
 
 	scaleCanvas();
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
+	MainClock = saveState.clock || new Clock(settings.hexWidth);
 	MainClock.sideLength = settings.hexWidth;
 
 	for(i=0; i<MainClock.blocks.length; i++) {
-		MainClock.blocks[i].height = settings.blockHeight;
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
+		        MainClock.blocks[i][j].height = settings.blockHeight;
 			block = MainClock.blocks[i][j];
-			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height - 5 * settings.scale;
+			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
 			block.settled = 0;
 		}
 	}
+
 
 	MainClock.y = -100;
 
@@ -262,7 +261,6 @@ function stepInitialLoad() {
 }
 
 function setStartScreen() {
-	debugger;
 	init();
 	$('#startBtn').show();
 	if (!isStateSaved()) {
@@ -271,6 +269,7 @@ function setStartScreen() {
 		importing = 0;
 	}
 	gameState = 0;
+        requestAnimFrame(animLoop);
 }
 
 //t: current time, b: begInnIng value, c: change In value, d: duration
@@ -339,7 +338,6 @@ function updateHighScore(){
     localStorage.setItem('highscores', highscores);
 
 }
-requestAnimFrame(animLoop);
 function isInfringing(clock){
 	for(var i=0;i<clock.sides;i++){
 		var subTotal=0;

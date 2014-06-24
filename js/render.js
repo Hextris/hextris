@@ -28,7 +28,7 @@ function render() {
 		blocks[i].draw();
 	}
 
-	MainClock.draw();
+        MainClock.draw();
 	if (gameState ==1 | gameState ==-1 || gameState == 0) {
 		drawScoreboard();
 	}
