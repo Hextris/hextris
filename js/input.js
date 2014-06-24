@@ -97,9 +97,10 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-       if (gameState != -2 && gameState != -1) {
+       if (gameState==2 || gameState==1) {
           init();
       }
+      if (gameState==0){ gameState=1}
   }
 });
 
@@ -123,13 +124,13 @@ function handleClickTap(x) {
 
     if (x < window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1 ){
-            init();
+            gameState=1;
         }
         MainClock.rotate(1);
     }
     if (x > window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1) {
-            init();
+            gameState=1;
         }
         MainClock.rotate(-1);
     }
