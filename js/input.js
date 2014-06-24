@@ -114,15 +114,6 @@ $(document).ready(function(){
 
         return false;
     });
-
-    document.body.addEventListener('mousedown', function(e) {
-        handleClickTap(e.clientX);
-    }, false);
-
-    document.body.addEventListener('touchstart', function(e) {
-        handleClickTap(e.changedTouches[0].clientX);
-    }, false);
-
 }, false);
 
 function handleClickTap(x) {
