@@ -1,7 +1,10 @@
 function exportSaveState() {
 	var state = {};
 
-	if(gameState == 1 || gameState == -1 || gameState == 0) {
+	if(gameState == 1 || gameState == -1 || (gameState == 0 && localStorage.getItem('saveState') !== undefined)) {
+	    	debugger
+                MainClock.blocks.map(function(block){block.distFromHex /= settings.scale});
+		blocks.map(function(block){block.distFromHex /= settings.scale})
 		state = {
 			clock: MainClock,
 			blocks: blocks,
