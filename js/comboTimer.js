@@ -2,11 +2,11 @@ function drawTimer(){
     if(MainClock.ct - MainClock.lastCombo < settings.comboMultiplier){
         for(var i=0;i<6;i++){
             var done = (MainClock.ct -MainClock.lastCombo);
-            if(done>=(settings.comboMultiplier)*(i+1)*(1/6)){
+            if(done<(settings.comboMultiplier)*(5-i)*(1/6)){
                 drawSide(i,i+1,1);
             }
             else{
-                drawSide(i,i+1,((done*6)/settings.comboMultiplier)%(1));
+                drawSide(i,i+1,1-((done*6)/settings.comboMultiplier)%(1));
                 break;
             }
         }

@@ -14,6 +14,7 @@ function render() {
                 }
                 ctx.globalAlpha = op;
                 drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);
+                drawTimer();
                 ctx.globalAlpha = 1;
         }
         var i;
@@ -29,7 +30,6 @@ function render() {
         }
 
         MainClock.draw();
-        drawTimer();
         if (gameState ==1 || gameState ==-1 || gameState == 0) {
                 drawScoreboard();
         }
