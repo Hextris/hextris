@@ -319,25 +319,27 @@ function animLoop() {
 		requestAnimFrame(animLoop);
 		update();
 		render();
-		gameOverDisplay();
-		highscores = localStorage.getItem('highscores').split(',').map(Number);
-		for (var i = 0; i < numHighScores; i++) {
-			if (highscores[i] < score) {
-				for (var j = numHighScores - 1; j > i; j--) {
-					highscores[j] = highscores[j - 1];
-				}
-				highscores[i] = score;
-				break;
-			}
-		}
-
-		localStorage.setItem('highscores', highscores);
-	}
+        }
 	else {
 		setStartScreen();
 	}
 }
 
+function updateHighScore(){
+    if(localStorage.getItem('highscores')){
+            highscores = localStorage.getItem('highscores').split(',').map(Number);
+    }
+    for (var i = 0; i < numHighScores; i++) {
+            if (highscores[i] <= score) {
+                    highscores.splice(i, 0, score);
+                    highscores = highscores.slice(0,-1);
+                    break;
+            }
+    }
+
+    localStorage.setItem('highscores', highscores);
+
+}
 requestAnimFrame(animLoop);
 function isInfringing(clock){
 	for(var i=0;i<clock.sides;i++){
@@ -355,6 +357,8 @@ function isInfringing(clock){
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {
 		if (isInfringing(MainClock)) {
+                        updateHighScore();
+		        gameOverDisplay();
 			return true;
 		}
 	}
