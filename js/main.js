@@ -3,6 +3,7 @@ var showingHelp = false;
 $(document).ready(function(){
 	scaleCanvas();
 	$('#startBtn').on('touchstart mousedown', function(){
+		gameState = 1;
 		setTimeout(function(){
 			document.body.addEventListener('mousedown', function(e) {
 				handleClickTap(e.clientX);
@@ -140,6 +141,7 @@ var gameState;
 setStartScreen();
 
 function init() {
+	console.log('o');
 	$('#pauseBtn').hide();
 	$('#startBtn').hide();
 	var saveState = localStorage.getItem("saveState") || "{}";
@@ -183,7 +185,7 @@ function init() {
 
 	for(i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
-		        MainClock.blocks[i][j].height = settings.blockHeight;
+			MainClock.blocks[i][j].height = settings.blockHeight;
 			block = MainClock.blocks[i][j];
 			block.distFromHex = 2 * MainClock.sideLength / Math.sqrt(3) + (j-1) * block.height;
 			block.settled = 0;
@@ -198,6 +200,7 @@ function init() {
 	
 	MainClock.texts = []; //clear texts
 	hideText();
+	debugger;
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
