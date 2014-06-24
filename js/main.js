@@ -298,11 +298,10 @@ function animLoop() {
 	}
 	else if (gameState === 0) { //start screen
 		requestAnimFrame(animLoop);
-		if (importing) {
-			update();
-		}
-		render();
-		debugger;
+                if (importing) {
+                        update();
+                }
+                render();
 	}
 	else if (gameState == -2) { //initialization screen just before starting
 		requestAnimFrame(animLoop);
