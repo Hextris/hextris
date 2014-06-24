@@ -75,7 +75,8 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		blockHeight:20,
 		rows:6,
 		speedModifier:0.7,
-		creationSpeedModifier:0.7
+		creationSpeedModifier:0.7,
+                comboMultiplier: 240
 	};
 } else {
 	settings = {
@@ -90,7 +91,8 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		blockHeight:15,
 		rows:8,
 		speedModifier:.8,
-		creationSpeedModifier:0.6
+		creationSpeedModifier:0.6,
+                comboMultiplier: 240
 	};
 }
 
