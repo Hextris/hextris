@@ -100,7 +100,7 @@ keypress.register_combo({
        if (gameState==2 || gameState==1) {
           init(1);
       }
-      if (gameState==0){ gameState=1}
+      if (gameState==0){ init();}
   }
 });
 
@@ -124,13 +124,13 @@ function handleClickTap(x) {
 
     if (x < window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1 ){
-            gameState=1;
+            init();
         }
         MainClock.rotate(1);
     }
     if (x > window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1) {
-            gameState=1;
+            init();
         }
         MainClock.rotate(-1);
     }

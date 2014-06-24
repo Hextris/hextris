@@ -240,7 +240,7 @@ function importHistory(j) {
 			alert("Error importing JSON");
 		}
 	} else {
-		init(1);
+		init();
 		importing = 1;
 		importedHistory = j;
 	}
@@ -266,11 +266,11 @@ function stepInitialLoad() {
 }
 
 function setStartScreen() {
-	init();
 	$('#startBtn').show();
 	if (!isStateSaved()) {
 		importHistory(introJSON);
 	} else {
+	        init();
 		importing = 0;
 	}
 	gameState = 0;
