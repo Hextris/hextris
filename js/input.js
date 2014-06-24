@@ -1,9 +1,9 @@
 var prevGameState;
 function showText(text){
     var messages = {
-        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectablecenteredSubHeader'>Press p to resume</div>",
+        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div>",
         'start':"<div class='centeredHeader unselectable' style='line-height:80px;' >Press enter to start</div>",
-        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div class='unselectablecenteredSubHeader'>Press enter to restart</div>",
+        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><table class='tg' style='margin:0px auto'> <tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[0]+"</th> </tr> <tr> <td class='tg-031e'>2.</td> <th class='tg-031e'>"+highscores[1]+"</th> </tr> <tr> <td class='tg-031e'>3.</td> <th class='tg-031e'>"+highscores[2]+"</th> </tr> </table><br><div class='unselectable centeredSubHeader'>Press enter to restart</div>",
     };
 
     var pt = document.getElementById("overlay");
