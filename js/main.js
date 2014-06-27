@@ -3,6 +3,10 @@ var showingHelp = false;
 $(document).ready(function(){
 	scaleCanvas();
 	$('#startBtn').on('touchstart mousedown', function(){
+		if (importing == 1) {
+			init();
+		}
+
 		gameState = 1;
 		setTimeout(function(){
 			document.body.addEventListener('mousedown', function(e) {
