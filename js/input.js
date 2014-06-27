@@ -97,7 +97,7 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
-       if (gameState==2 || gameState==1) {
+       if (gameState==2 || gameState==1 || importing == 1) {
           init(1);
       }
       if (gameState==0){ init();}
