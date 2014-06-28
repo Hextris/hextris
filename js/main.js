@@ -323,7 +323,7 @@ function animLoop() {
 			requestAnimFrame(animLoop);
 			update();
 			render();
-			if (checkGameOver()) {
+			if (checkGameOver() && !importing) {
 				gameState = 2;
 				clearSaveState();
 			}
