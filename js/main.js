@@ -278,6 +278,58 @@ function stepInitialLoad() {
 	}
 }
 
+function checkIfAllAreDeleted() {
+	var indicator = 2;
+	blocks.forEach(function(o){
+		if (o.deleted === 0) {
+			return 0;
+		}
+
+		if (o.deleted == 1) {
+			indicator = 1;
+		}
+	});
+
+	for (var i = 0; i < MainClock.blocks.length; i++) {
+		MainClock.blocks[i].forEach(function(o){
+			if (o.deleted === 0) {
+				return 0;
+			}
+
+			if (o.deleted == 1) {
+				indicator = 1;
+			}
+		});
+	}
+
+	return indicator;
+}
+
+function fadeOutObjectsOnScreen() {
+	switch (checkIfAllAreDeleted()) {
+		case 0:
+			importing = 0;
+			MainClock.blocks.map(function(i){
+				i.map(function(o){
+					o.deleted = 1;
+				});
+			});
+
+			blocks.map(function(o){
+				o.deleted = 1;
+			});
+			break;
+
+		case 1:
+			break;
+
+		case 2:
+			MainClock.blocks = [[],[],[],[],[],[]];
+			blocks = [];
+			break;
+	}
+}
+
 function setStartScreen() {
 	$('#startBtn').show();
 	if (!isStateSaved()) {
@@ -342,6 +394,12 @@ function animLoop() {
 			update();
 			render();
 			break;
+
+		case 3:
+			requestAnimFrame(animLoop);
+			fadeOutObjectsOnScreen();
+			render();
+
 		default:
 			setStartScreen();
 			break;
