@@ -101,8 +101,8 @@ keypress.register_combo({
         if (gameState==2 || gameState==1 || importing == 1) {
             init(1);
         }
-        if (gameState==0) {
-            init();
+        if (gameState===0) {
+            resumeGame();
         }
     }
 });
@@ -121,19 +121,29 @@ $(document).ready(function(){
 }, false);
 
 function handleClickTap(x) {
-    if (!MainClock || gameState == 0) {
+    if (!MainClock || gameState === 0) {
         return;
     }
 
     if (x < window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1 ){
-            init();
+            if (importing === 0) {
+                resumeGame();
+            }
+            else {
+                init(1);
+            }
         }
         MainClock.rotate(1);
     }
     if (x > window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1) {
-            init();
+            if (importing === 0) {
+                resumeGame();
+            }
+            else {
+                init(1);
+            }
         }
         MainClock.rotate(-1);
     }

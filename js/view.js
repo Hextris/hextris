@@ -6,6 +6,7 @@ var hexColorsToTintedColors = {
     "#2ecc71":"rgb(150,227,183)"
 };
 
+//legacy support
 var rgbToHex = {
     "rgb(231,76,60)":"#e74c3c",
     "rgb(241,196,15)":"#f1c40f",
@@ -13,6 +14,7 @@ var rgbToHex = {
     "rgb(46,204,113)":"#2ecc71"
 };
 
+//legacy support
 var rgbColorsToTintedColors = {
     "rgb(231,76,60)":"rgb(241,163,155)",
     "rgb(241,196,15)":"rgb(246,223,133)",
