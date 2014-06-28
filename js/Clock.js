@@ -129,6 +129,10 @@ function Clock(sideLength) {
 	};
 
 	this.draw = function() {
+		if (this.opacity < 1) {
+			ctx.globalAlpha = this.opacity;
+		}
+
 		this.x = trueCanvas.width/2;
 
 		if (gameState != -2) {
@@ -155,7 +159,8 @@ function Clock(sideLength) {
 			this.angle += this.angularVelocity;
 		}
  
-                drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
+        drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
+        ctx.globalAlpha = 1;
 	};
 }
 
