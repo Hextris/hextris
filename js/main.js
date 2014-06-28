@@ -22,6 +22,9 @@ $(document).ready(function(){
 });
 
 $(window).resize(scaleCanvas);
+$(window).unload(function(){
+	exportSaveState();
+});
 
 function scaleCanvas() {
 	canvas.width = $(window).width();

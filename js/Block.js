@@ -28,14 +28,14 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	//number of iterations before starting to drop
 	this.initLen = settings.creationDt;
 	//side which block is attached too
-	this.attachedLane;
+	this.attachedLane = 0;
 	//distance from center clock
 	this.distFromHex = distFromHex || settings.startDist * settings.scale ;
 
 	this.incrementOpacity = function() {
 		if (this.deleted) {
 			//add shakes
-			if (this.opacity >= .925) {
+			if (this.opacity >= 0.925) {
 				var tLane = this.attachedLane - MainClock.position;
 				tLane = MainClock.sides - tLane;
 				while (tLane < 0) {
@@ -51,16 +51,13 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				//slate for final deletion
 				this.opacity = 0;
 				this.deleted = 2;
-				if (gameState == 1) {
-					localStorage.setItem("saveState", exportSaveState());
-				}
 			}
 		}
 	};
 
 	this.getIndex = function (){
 		//get the index of the block in its stack
-		var parentArr = MainClock.blocks[this.attachedLane]
+		var parentArr = MainClock.blocks[this.attachedLane];
 		for (var i = 0; i < parentArr.length; i++) {
 			if (parentArr[i] == this) {
 				return i;
@@ -144,9 +141,6 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 
 		if (this.tint) {
 			if (this.opacity < 1) {
-				if (gameState == 1) {
-					localStorage.setItem("saveState", exportSaveState());
-				}
 				this.tint = 0;
 			}
 			ctx.fillStyle = "#FFF";
