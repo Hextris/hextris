@@ -51,6 +51,9 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				//slate for final deletion
 				this.opacity = 0;
 				this.deleted = 2;
+				if (gameState == 1) {
+					localStorage.setItem("saveState", exportSaveState());
+				}
 			}
 		}
 	};
@@ -141,6 +144,9 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 
 		if (this.tint) {
 			if (this.opacity < 1) {
+				if (gameState == 1) {
+					localStorage.setItem("saveState", exportSaveState());
+				}
 				this.tint = 0;
 			}
 			ctx.fillStyle = "#FFF";
