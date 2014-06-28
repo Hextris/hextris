@@ -4,10 +4,9 @@ $(document).ready(function(){
 	scaleCanvas();
 	$('#startBtn').on('touchstart mousedown', function(){
 		if (importing == 1) {
-			init();
+			init(1);
 		}
 
-		gameState = 1;
 		setTimeout(function(){
 			document.body.addEventListener('mousedown', function(e) {
 				handleClickTap(e.clientX);
@@ -373,8 +372,8 @@ function isInfringing(clock){
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {
 		if (isInfringing(MainClock)) {
-                        updateHighScore();
-		        gameOverDisplay();
+            updateHighScore();
+		    gameOverDisplay();
 			return true;
 		}
 	}
