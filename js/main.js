@@ -196,7 +196,7 @@ function init(b) {
 	comboMultiplier = saveState.comboMultiplier || 0;
 
 	for(i=0; i<MainClock.blocks.length; i++) {
-		for(var j=0; j<MainClock.blocks[i].length; j++) {
+		for (var j=0; j<MainClock.blocks[i].length; j++) {
 			MainClock.blocks[i][j].height = settings.blockHeight;
 			MainClock.blocks[i][j].settled = 0;
 		}
@@ -207,7 +207,7 @@ function init(b) {
 			if (rgbToHex[o.color]) {
 				o.color = rgbToHex[o.color];
 			}
-		})
+		});
 	});
 
 	MainClock.y = -100;

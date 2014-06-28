@@ -1,4 +1,4 @@
-var colors = ["rgb(231,76,60)", "rgb(241,196,15)", "rgb(52,152,219)", "rgb(46,204,113)"];
+var colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
 var hexColorsToTintedColors = {
     "#e74c3c":"rgb(241,163,155)",
     "#f1c40f":"rgb(246,223,133)",
