@@ -166,13 +166,18 @@ function init(b) {
 	gameState = -2;
 	if(saveState.clock !== undefined) gameState = 1;
 
+	scaleCanvas();
+	settings.blockHeight = settings.baseBlockHeight * settings.scale;
+	settings.hexWidth = settings.baseHexWidth * settings.scale;
+	MainClock = saveState.clock || new Clock(settings.hexWidth);
+	MainClock.sideLength = settings.hexWidth;
+
 	count = 0;
 	var i;
 	var block;
 	if(saveState.blocks) {
 		for(i=0; i<saveState.blocks.length; i++) {
 			block = saveState.blocks[i];
-			block.distFromHex *= settings.scale;
 			blocks.push(block);
 		}
 	}
@@ -184,18 +189,10 @@ function init(b) {
 	gdy = saveState.gdy || 0;
 	comboMultiplier = saveState.comboMultiplier || 0;
 
-
-	scaleCanvas();
-	settings.blockHeight = settings.baseBlockHeight * settings.scale;
-	settings.hexWidth = settings.baseHexWidth * settings.scale;
-	MainClock = saveState.clock || new Clock(settings.hexWidth);
-	MainClock.sideLength = settings.hexWidth;
-
 	for(i=0; i<MainClock.blocks.length; i++) {
 		for(var j=0; j<MainClock.blocks[i].length; j++) {
 			MainClock.blocks[i][j].height = settings.blockHeight;
 			MainClock.blocks[i][j].settled = 0;
-			MainClock.blocks[i][j].distFromHex *= settings.scale;
 		}
 	}
 
