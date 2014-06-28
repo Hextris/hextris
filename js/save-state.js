@@ -3,8 +3,8 @@ function exportSaveState() {
 
 	if(gameState == 1 || gameState == -1 || (gameState === 0 && localStorage.getItem('saveState') !== undefined)) {
 		state = {
-			clock: MainClock,
-			blocks: blocks,
+			clock: $.extend(true, {}, MainClock),
+			blocks: $.extend(true, [], blocks),
 			score: score,
 			wavegen: waveone,
 			gdx: gdx,
@@ -12,15 +12,30 @@ function exportSaveState() {
 			comboMultiplier:comboMultiplier
 		};
 
-		state.clock.blocks.map(function(i){i.map(function(o){o.distFromHex /= settings.scale})});
-		state.blocks.map(function(block){block.distFromHex /= settings.scale;});
+		state.clock.blocks.map(function(a){
+			for (var i = 0; i < a.length; i++) {
+				a[i] = $.extend(true, {}, a[i]);
+			}
+
+			a.map(descaleBlock);
+		});
+
+		for (var i = 0; i < state.blocks.length; i++) {
+			state.blocks[i] = $.extend(true, {}, state.blocks[i]);
+		}
+
+		state.blocks.map(descaleBlock);
 	}
 
 	return JSONfn.stringify(state);
 }
 
+function descaleBlock(b) {
+	b.distFromHex /= settings.scale;
+}
+
 function clearSaveState() {
-	localStorage.setItem("saveState", "{}"); 
+	localStorage.setItem("saveState", "{}");
 }
 
 function isStateSaved() {

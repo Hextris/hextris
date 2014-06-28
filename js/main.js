@@ -6,7 +6,7 @@ $(document).ready(function(){
 		if (importing == 1) {
 			init(1);
 		} else {
-			init();
+			resumeGame();
 		}
 
 		setTimeout(function(){
@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 $(window).resize(scaleCanvas);
 $(window).unload(function(){
-	exportSaveState();
+	localStorage.setItem("saveState", exportSaveState());
 });
 
 function scaleCanvas() {
@@ -145,13 +145,25 @@ var startTime;
 var gameState;
 setStartScreen();
 
+function resumeGame() {
+	gameState = 1;
+	hideUIElements();
+	importing = 0;
+	startTime = Date.now();
+	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
+}
+
+function hideUIElements() {
+	$('#pauseBtn').hide();
+	$('#startBtn').hide();
+}
+
 function init(b) {
 	if (b) {
 		clearSaveState();
 	}
 
-	$('#pauseBtn').hide();
-	$('#startBtn').hide();
+	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
 	document.getElementById("canvas").className = "";
