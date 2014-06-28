@@ -283,11 +283,11 @@ function setStartScreen() {
 	if (!isStateSaved()) {
 		importHistory(introJSON);
 	} else {
-	        init();
+		init();
 		importing = 0;
 	}
 	gameState = 0;
-        requestAnimFrame(animLoop);
+		requestAnimFrame(animLoop);
 }
 
 //t: current time, b: begInnIng value, c: change In value, d: duration
@@ -304,56 +304,64 @@ function getStepDY(t, b, c, d) {
 }
 
 function animLoop() {
-	if (gameState == 1) { //game play
-		requestAnimFrame(animLoop);
-		update();
-		render();
-		if (checkGameOver()) {
-			gameState = 2;
-			clearSaveState();
-		}
-	}
-	else if (gameState === 0) { //start screen
-		requestAnimFrame(animLoop);
-                if (importing) {
-                        update();
-                }
-                render();
-	}
-	else if (gameState == -2) { //initialization screen just before starting
-		requestAnimFrame(animLoop);
-		settings.hexWidth = settings.baseHexWidth * settings.scale;
-		settings.blockHeight = settings.baseBlockHeight * settings.scale;
-		stepInitialLoad();
-		render();
-	}
-	else if (gameState == -1) { //pause
-		requestAnimFrame(animLoop);
-                render();
-	}
-	else if (gameState == 2) { //end screen
-		requestAnimFrame(animLoop);
-		update();
-		render();
-        }
-	else {
-		setStartScreen();
+	switch (gameState) {
+		case 1:
+			requestAnimFrame(animLoop);
+			update();
+			render();
+			if (checkGameOver()) {
+				gameState = 2;
+				clearSaveState();
+			}
+			break;
+		
+		case 0:
+			requestAnimFrame(animLoop);
+			if (importing) {
+				update();
+			}
+			
+			render();
+			break;
+		
+		case -2:
+			requestAnimFrame(animLoop);
+			settings.hexWidth = settings.baseHexWidth * settings.scale;
+			settings.blockHeight = settings.baseBlockHeight * settings.scale;
+			stepInitialLoad();
+			render();
+			break;
+
+		case -1:
+			requestAnimFrame(animLoop);
+			render();
+			break;
+
+		case 2:
+			requestAnimFrame(animLoop);
+			update();
+			render();
+			break;
+		default:
+			setStartScreen();
+			break;
 	}
 }
 
 function updateHighScore(){
-    if(localStorage.getItem('highscores')){
-            highscores = localStorage.getItem('highscores').split(',').map(Number);
-    }
-    for (var i = 0; i < numHighScores; i++) {
-            if (highscores[i] <= score) {
-                    highscores.splice(i, 0, score);
-                    highscores = highscores.slice(0,-1);
-                    break;
-            }
-    }
+	if(localStorage.getItem('highscores')){
+		highscores = localStorage.getItem('highscores').split(',').map(Number);
+	}
 
-    localStorage.setItem('highscores', highscores);
+	for (var i = 0; i < numHighScores; i++) {
+		if (highscores[i] <= score) {
+			highscores.splice(i, 0, score);
+			highscores = highscores.slice(0,-1);
+			break;
+		}
+	}
+
+	localStorage.setItem('highscores', highscores);
 
 }
 function isInfringing(clock){
@@ -372,8 +380,8 @@ function isInfringing(clock){
 function checkGameOver() {
 	for (var i = 0; i < MainClock.sides; i++) {
 		if (isInfringing(MainClock)) {
-            updateHighScore();
-		    gameOverDisplay();
+			updateHighScore();
+			gameOverDisplay();
 			return true;
 		}
 	}
