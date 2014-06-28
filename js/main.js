@@ -176,6 +176,12 @@ function init(b) {
 	var i;
 	var block;
 	if(saveState.blocks) {
+		saveState.blocks.map(function(o){
+			if (rgbToHex[o.color]) {
+				o.color = rgbToHex[o.color];
+			}
+		});
+
 		for(i=0; i<saveState.blocks.length; i++) {
 			block = saveState.blocks[i];
 			blocks.push(block);
@@ -196,6 +202,13 @@ function init(b) {
 		}
 	}
 
+	MainClock.blocks.map(function(i){
+		i.map(function(o){
+			if (rgbToHex[o.color]) {
+				o.color = rgbToHex[o.color];
+			}
+		})
+	});
 
 	MainClock.y = -100;
 
