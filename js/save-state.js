@@ -2,8 +2,6 @@ function exportSaveState() {
 	var state = {};
 
 	if(gameState == 1 || gameState == -1 || (gameState === 0 && localStorage.getItem('saveState') !== undefined)) {
-		MainClock.blocks.map(function(i){i.map(function(o){o.distFromHex /= settings.scale})});
-		blocks.map(function(block){block.distFromHex /= settings.scale;});
 		state = {
 			clock: MainClock,
 			blocks: blocks,
@@ -13,6 +11,9 @@ function exportSaveState() {
 			gdy: gdy,
 			comboMultiplier:comboMultiplier
 		};
+
+		state.clock.blocks.map(function(i){i.map(function(o){o.distFromHex /= settings.scale})});
+		state.blocks.map(function(block){block.distFromHex /= settings.scale;});
 	}
 
 	return JSONfn.stringify(state);
