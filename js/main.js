@@ -5,6 +5,8 @@ $(document).ready(function(){
 	$('#startBtn').on('touchstart mousedown', function(){
 		if (importing == 1) {
 			init(1);
+		} else {
+			init();
 		}
 
 		setTimeout(function(){
@@ -20,9 +22,6 @@ $(document).ready(function(){
 });
 
 $(window).resize(scaleCanvas);
-$(window).unload(function() {
-	localStorage.setItem("saveState", exportSaveState());
-});
 
 function scaleCanvas() {
 	canvas.width = $(window).width();
