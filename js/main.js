@@ -120,7 +120,6 @@ var isGameOver = 3;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
-var spaceModifier = 1;
 
 var highscores = [0, 0, 0];
 if(localStorage.getItem('highscores'))
