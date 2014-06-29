@@ -86,16 +86,6 @@ keypress.register_combo({
 });
 
 keypress.register_combo({
-    keys: "space",
-    on_keydown: function() {
-        spaceModifier = 2;
-    },
-    on_keyup: function() {
-        spaceModifier = 1;
-    }
-});
-
-keypress.register_combo({
     keys: "enter",
     on_keydown: function() {
         if (gameState==2 || gameState==1 || importing == 1) {
