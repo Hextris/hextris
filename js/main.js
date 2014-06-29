@@ -148,6 +148,7 @@ setStartScreen();
 function resumeGame() {
 	gameState = 1;
 	hideUIElements();
+	$('#pauseBtn').show();
 	importing = 0;
 	startTime = Date.now();
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
