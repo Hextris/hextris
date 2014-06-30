@@ -67,6 +67,23 @@ button:focus {
 	z-index: 3000;
 	color:#000;
 	cursor:pointer;
+        position:absolute;
+        right:0;
+        bottom:0;
+        z-index:99;
+
+}
+#restartBtn {
+        position:absolute;
+        left:0;
+        bottom:0;
+        z-index:99;
+	position: absolute;
+	margin-bottom: 3px;
+	margin-left: 7px;
+	z-index: 3000;
+	color:#000;
+	cursor:pointer;
 }
 
 #helpScreen {
@@ -178,12 +195,6 @@ body {
     z-index:99;
     margin-top:20px;
     color:#2c3e50;
-}
-#pauseBtn {
-    position:absolute;
-    right:0;
-    bottom:0;
-    z-index:99;
 }
 
 .unselectable {

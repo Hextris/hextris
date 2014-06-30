@@ -155,6 +155,7 @@ function resumeGame() {
 
 function hideUIElements() {
 	$('#pauseBtn').hide();
+	$('#restartBtn').hide();
 	$('#startBtn').hide();
 }
 
@@ -285,6 +286,7 @@ function stepInitialLoad() {
 		MainClock.y = (trueCanvas.height/2);
 		if (Date.now() - startTime - 500 > 1300) {
 			$('#pauseBtn').show();
+			$('#restartBtn').show();
 			gameState = 1;
 		}
 	} else {
