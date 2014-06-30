@@ -120,7 +120,6 @@ var isGameOver = 3;
 var scoreAdditionCoeff = 1;
 var prevScore = 0;
 var numHighScores = 3;
-var spaceModifier = 1;
 
 var highscores = [0, 0, 0];
 if(localStorage.getItem('highscores'))
@@ -148,6 +147,7 @@ setStartScreen();
 function resumeGame() {
 	gameState = 1;
 	hideUIElements();
+	$('#pauseBtn').show();
 	importing = 0;
 	startTime = Date.now();
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);

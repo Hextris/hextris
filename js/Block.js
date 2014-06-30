@@ -24,7 +24,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	this.initializing = 1;
 	this.ct = 0;
 	//speed of block
-	this.baseIter = iter;
+	this.iter = iter;
 	//number of iterations before starting to drop
 	this.initLen = settings.creationDt;
 	//side which block is attached too
@@ -69,8 +69,6 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	};
 
 	this.draw = function(attached, index) {
-		this.iter = this.baseIter * spaceModifier;
-
 		this.height = settings.blockHeight;
 		if (Math.abs(settings.scale - settings.prevScale) > 0.000000001) {
 			this.distFromHex *= (settings.scale/settings.prevScale);
@@ -147,6 +145,8 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				if (gameState == 1) {
 					localStorage.setItem("saveState", exportSaveState());
 				}
+
+				this.iter = 2.25;
 				this.tint = 0;
 			}
 			ctx.fillStyle = "#FFF";
