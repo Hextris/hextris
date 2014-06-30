@@ -3,19 +3,21 @@ function drawTimer(){
         for(var i=0;i<6;i++){
             var done = (MainClock.ct -MainClock.lastCombo);
             if(done<(settings.comboMultiplier)*(5-i)*(1/6)){
-                drawSide(i,i+1,1);
+                drawSide(i,i+1,1,1);
+		drawSide(i,i+1,1,7);
             }
             else{
-                drawSide(i,i+1,1-((done*6)/settings.comboMultiplier)%(1));
+                drawSide(i,i+1,1-((done*6)/settings.comboMultiplier)%(1),1);
+		drawSide(i,i+1,1-((done*6)/settings.comboMultiplier)%(1),7);
                 break;
             }
         }
     }
 }
 
-function drawSide(startVertex,endVertex,fraction){
-    startVertex = startVertex%6;
-    endVertex = endVertex%6;
+function drawSide(startVertex,endVertex,fraction,offset){
+    startVertex = (startVertex+offset)%12;
+    endVertex = (endVertex+offset)%12;
     ctx.globalAlpha=1;
     ctx.beginPath();
     ctx.lineCap = "round";
@@ -28,7 +30,19 @@ function drawSide(startVertex,endVertex,fraction){
     var radius = (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth + 2;
     var halfRadius = radius/2;
     var triHeight = radius *(Math.sqrt(3)/2);
-    var Vertexes =[[halfRadius,triHeight],[radius,0],[halfRadius,-triHeight],[-halfRadius,-triHeight],[-radius,0],[-halfRadius,triHeight]].reverse();
+    var Vertexes =[
+	[(halfRadius*3)/2,triHeight/2],
+	[radius,0],
+	[(halfRadius*3)/2,-triHeight/2],
+	[halfRadius,-triHeight],
+	[0,-triHeight],
+	[-halfRadius,-triHeight],
+	[-(halfRadius*3)/2,-triHeight/2],
+	[-radius,0],
+	[-(halfRadius*3)/2,triHeight/2],
+	[-halfRadius,triHeight],
+	[0,triHeight],
+	[halfRadius,triHeight]].reverse();
     var startX =trueCanvas.width/2 + Vertexes[startVertex][0];
     var startY =trueCanvas.height/2 + Vertexes[startVertex][1];
     var endX = trueCanvas.width/2 + Vertexes[endVertex][0];
