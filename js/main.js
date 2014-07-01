@@ -179,6 +179,8 @@ function init(b) {
 	op = 0;
 	scoreOpacity = 0;
 	gameState = 1;
+        $("#restartBtn").show();
+        $("#pauseBtn").show();
 	if(saveState.clock !== undefined) gameState = 1;
 
 	scaleCanvas();
