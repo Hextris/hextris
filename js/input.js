@@ -121,7 +121,7 @@ $(document).ready(function(){
 }, false);
 
 function handleClickTap(x) {
-    if (!MainClock || gameState === 0) {
+    if (!MainClock || gameState === 0 || gameState==2 || gameState==-1) {
         return;
     }
 
