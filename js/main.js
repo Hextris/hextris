@@ -148,6 +148,7 @@ function resumeGame() {
 	gameState = 1;
 	hideUIElements();
 	$('#pauseBtn').show();
+	$('#restartBtn').show();
 	importing = 0;
 	startTime = Date.now();
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
@@ -155,6 +156,7 @@ function resumeGame() {
 
 function hideUIElements() {
 	$('#pauseBtn').hide();
+	$('#restartBtn').hide();
 	$('#startBtn').hide();
 }
 
@@ -285,6 +287,7 @@ function stepInitialLoad() {
 		MainClock.y = (trueCanvas.height/2);
 		if (Date.now() - startTime - 500 > 1300) {
 			$('#pauseBtn').show();
+			$('#restartBtn').show();
 			gameState = 1;
 		}
 	} else {
