@@ -145,13 +145,13 @@ var gameState;
 setStartScreen();
 
 function resumeGame() {
+	debugger;
 	gameState = 1;
 	hideUIElements();
 	$('#pauseBtn').show();
 	$('#restartBtn').show();
 	importing = 0;
 	startTime = Date.now();
-	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 }
 
 function hideUIElements() {
