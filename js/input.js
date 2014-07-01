@@ -108,6 +108,16 @@ $(document).ready(function(){
 
         return false;
     });
+
+    $("#restartBtn").on('touchstart mousedown', function() {
+        if (gameState==2 || gameState==1 || importing == 1) {
+            init(1);
+        }
+        if (gameState===0) {
+            resumeGame();
+        }
+
+    });
 }, false);
 
 function handleClickTap(x) {
