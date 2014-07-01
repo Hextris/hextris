@@ -4,11 +4,11 @@ function drawTimer(){
             var done = (MainClock.ct -MainClock.lastCombo);
             if(done<(settings.comboMultiplier)*(5-i)*(1/6)){
                 drawSide(i,i+1,1,1);
-		drawSide(i,i+1,1,7);
+		drawSide(12-i,11-i,1,1);
             }
             else{
                 drawSide(i,i+1,1-((done*6)/settings.comboMultiplier)%(1),1);
-		drawSide(i,i+1,1-((done*6)/settings.comboMultiplier)%(1),7);
+		drawSide(12-i,11-i,1-((done*6)/settings.comboMultiplier)%(1),1);
                 break;
             }
         }
