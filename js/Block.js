@@ -128,6 +128,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		else {
 			ctx.fillStyle = this.color;
 		}
+
 		ctx.globalAlpha = this.opacity;
 		var baseX = trueCanvas.width / 2 + Math.sin((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdx;
 		var baseY = trueCanvas.height / 2 - Math.cos((this.angle) * (Math.PI / 180)) * (this.distFromHex + this.height / 2) + gdy;
@@ -149,6 +150,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				this.iter = 2.25;
 				this.tint = 0;
 			}
+
 			ctx.fillStyle = "#FFF";
 			ctx.globalAlpha = this.tint;
 			ctx.beginPath();
