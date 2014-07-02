@@ -68,6 +68,7 @@ function Clock(sideLength) {
                     block.checked = 1;
 				} else {
 					block.settled = 0;
+					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
 			} else {
 				if (arr[position - 1].settled && block.distFromHex - block.iter * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
@@ -77,6 +78,7 @@ function Clock(sideLength) {
 				}
 				else {
 					block.settled = 0;
+					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
 			}
 		} else {
