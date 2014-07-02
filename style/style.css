@@ -116,6 +116,10 @@ button:focus {
     opacity:0;
 }
 
+.unfaded {
+    opacity:1;
+}
+
 .centeredHeader {
    font-size:5em; 
    text-align:center;
