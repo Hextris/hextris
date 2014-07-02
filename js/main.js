@@ -178,7 +178,9 @@ function init(b) {
 	spawnLane = 0;
 	op = 0;
 	scoreOpacity = 0;
-	gameState = -2;
+	gameState = 1;
+        $("#restartBtn").show();
+        $("#pauseBtn").show();
 	if(saveState.clock !== undefined) gameState = 1;
 
 	scaleCanvas();
@@ -280,21 +282,6 @@ function exportHistory() {
 	toggleDevTools();
 }
 
-function stepInitialLoad() {
-	var dy = getStepDY(Date.now() - startTime, 0, (100 + trueCanvas.height/2), 1300);
-	if (Date.now() - startTime > 1300) {
-		MainClock.dy = 0;
-		MainClock.y = (trueCanvas.height/2);
-		if (Date.now() - startTime - 500 > 1300) {
-			$('#pauseBtn').show();
-			$('#restartBtn').show();
-			gameState = 1;
-		}
-	} else {
-		MainClock.dy = dy;
-	}
-}
-
 function setStartScreen() {
 	$('#startBtn').show();
 	if (!isStateSaved()) {
@@ -341,14 +328,6 @@ function animLoop() {
 			render();
 			break;
 		
-		case -2:
-			requestAnimFrame(animLoop);
-			settings.hexWidth = settings.baseHexWidth * settings.scale;
-			settings.blockHeight = settings.baseBlockHeight * settings.scale;
-			stepInitialLoad();
-			render();
-			break;
-
 		case -1:
 			requestAnimFrame(animLoop);
 			render();
