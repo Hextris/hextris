@@ -89,13 +89,13 @@ function drawKey(key, x, y) {
 		case "right":
 			ctx.font = "20px Fontawesome";
 			ctx.translate(x + settings.scale * 12.5, y + settings.scale * 27.5);
-			ctx.scale( 	settings.scale, settings.scale);
+			ctx.scale(settings.scale, settings.scale);
 			ctx.fillText(String.fromCharCode("0xf04b"), 0, 0);
 			break;
 		
 		default:
 			ctx.font = "35px Roboto";
-			ctx.translate(x + settings.scale * 25 , y + settings.scale * 39.5)
+			ctx.translate(x + settings.scale * 25 , y + settings.scale * 39.5);
 			ctx.scale(settings.scale, settings.scale);
 			ctx.fillText(key, 0, 0);
 	}
