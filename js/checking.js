@@ -70,14 +70,14 @@ function consolidateBlocks(clock,side,index){
 		clock.comboMultiplier += 1;	
 		clock.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
-		clock.texts.push(new Text(coords['x'],coords['y'],"x "+clock.comboMultiplier.toString(),"bold Q 24px","#fff",fadeUpAndOut));
+		clock.texts.push(new Text(coords['x'],coords['y'],"x "+clock.comboMultiplier.toString(),"bold Q","#fff",fadeUpAndOut));
 	}
 	else{
 		clock.lastCombo = now;
 		clock.comboMultiplier = 1;
 	}
 	var adder = deleting.length * deleting.length * clock.comboMultiplier;
-	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Q 24px",deletedBlocks[0].color,fadeUpAndOut));
+	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
         clock.lastColorScored = deletedBlocks[0].color;
 	score += adder;
 }
