@@ -39,6 +39,7 @@ var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
 };
 
 function renderText(x, y, fontSize, color, text, font) {
+    ctx.save();
     if (!font) {
         font = 'px/0 Roboto';
     }
@@ -48,6 +49,7 @@ function renderText(x, y, fontSize, color, text, font) {
     ctx.textAlign = 'center';
     ctx.fillStyle = color;
     ctx.fillText(text, x, y + (fontSize / 2) - 9 * settings.scale);
+    ctx.restore();
 }
 
 scoreOpacity = 0;
