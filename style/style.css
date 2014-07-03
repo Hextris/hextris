@@ -95,7 +95,7 @@ button:focus {
 	left:0%;
 	display:none;
 	color:#000;
-	background-color:rgba(255,255,255,0.5);
+	background-color:rgba(255,255,255,0.0);
 }
 
 #overlay {
@@ -114,6 +114,10 @@ button:focus {
 
 .faded {
     opacity:0;
+}
+
+.unfaded {
+    opacity:1;
 }
 
 .centeredHeader {
