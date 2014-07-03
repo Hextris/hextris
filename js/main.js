@@ -145,7 +145,6 @@ var gameState;
 setStartScreen();
 
 function resumeGame() {
-	debugger;
 	gameState = 1;
 	hideUIElements();
 	$('#pauseBtn').show();
