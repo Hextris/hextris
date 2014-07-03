@@ -235,7 +235,7 @@ function init(b) {
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
 	MainClock.texts = []; //clear texts
-	MainClock.delay = 25;
+	MainClock.delay = 15;
 	hideText();
 }
 
