@@ -47,33 +47,57 @@ function render() {
 	settings.prevScale = settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
+
+	if (MainClock.ct < 400 && (gameState != 0) && !MainClock.playThrough) {
+		if (MainClock.ct > 350) {
+			ctx.globalAlpha = (50 - (MainClock.ct - 350))/50;
+		}
+
+		if (MainClock.ct < 50) {
+			ctx.globalAlpha = (MainClock.ct)/50;
+		}
+
+		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 208 * settings.scale, 35, '#2c3e50', 'Controls', '35px Roboto');
+		renderText((trueCanvas.width)/2 - 85 * settings.scale, (trueCanvas.height)/2 - 169 * settings.scale, 20, '#2c3e50', 'Rotation:', '20px Roboto');
+		renderText((trueCanvas.width)/2 - 21 * settings.scale, (trueCanvas.height)/2 - 141 * settings.scale, 12, '#2c3e50', 'Left', '12px Roboto');
+		renderText((trueCanvas.width)/2 + 25 * settings.scale, (trueCanvas.height)/2 - 141 * settings.scale, 12, '#2c3e50', 'Right', '12px Roboto');
+		drawKey("right",(trueCanvas.width)/2 + 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 195 * settings.scale);
+		drawKey("left",(trueCanvas.width)/2 - 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 195 * settings.scale);
+		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 125 * settings.scale, 20, '#2c3e50', 'Rotate the Hexagon to make combos of 3 or more touching blocks!', '20px Roboto');
+		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 105 * settings.scale, 20, '#2c3e50', 'Make combos in a row to receive a score multiplier!', '20px Roboto');
+		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 85 * settings.scale, 20, '#2c3e50', 'Don\'t let the blocks stack outside of the gray Hexagon!', '20px Roboto');
+		ctx.globalAlpha = 1;
+	}
 }
 
 function drawKey(key, x, y) {
 	ctx.save();
-	ctx.scale(settings.scale - .3,settings.scale - .3);
-
 	ctx.fillStyle = '#2c3e50';
 	ctx.strokeStyle = '#2c3e50';
-	ctx.lineWidth = 5;
-	ctx.rect(x + 2.5, y + 2.5, 45, 45);
+	ctx.lineWidth = 4 * settings.scale;
+	ctx.rect(x + 2.5 * settings.scale, y + 2.5 * settings.scale, 35 * settings.scale, 35 * settings.scale);
 	ctx.stroke();
 
 	switch (key) {
 		case "left":
-			ctx.translate(x + 24, y + 16.5);
+			ctx.translate(x + settings.scale * 28, y + settings.scale * 13);
 			ctx.rotate(3.14159);
-			ctx.font = "25px Fontawesome";
+			ctx.font = "20px Fontawesome";
+			ctx.scale(settings.scale, settings.scale);
 			ctx.fillText("", 0, 0);
 			break;
 		case "right":
-			ctx.font = "25px Fontawesome";
-			ctx.fillText("", x + 27, y + 34.5);
+			ctx.font = "20px Fontawesome";
+			ctx.translate(x + settings.scale * 12.5, y + settings.scale * 27.5);
+			ctx.scale( 	settings.scale, settings.scale);
+			ctx.fillText("", 0, 0);
 			break;
 		
 		default:
-			ctx.font = "40px Roboto";
-			ctx.fillText(key, x + 25 , y + 39.5);
+			ctx.font = "35px Roboto";
+			ctx.translate(x + settings.scale * 25 , y + settings.scale * 39.5)
+			ctx.scale(settings.scale, settings.scale);
+			ctx.fillText(key, 0, 0);
 	}
 
 	ctx.restore();

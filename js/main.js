@@ -186,6 +186,9 @@ function init(b) {
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	MainClock = saveState.clock || new Clock(settings.hexWidth);
+	if (saveState.clock) {
+		MainClock.playThrough += 1;
+	}
 	MainClock.sideLength = settings.hexWidth;
 
 	count = 0;
@@ -232,6 +235,7 @@ function init(b) {
 	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
 	
 	MainClock.texts = []; //clear texts
+	MainClock.delay = 25;
 	hideText();
 }
 
@@ -310,7 +314,11 @@ function animLoop() {
 	switch (gameState) {
 		case 1:
 			requestAnimFrame(animLoop);
-			update();
+			if (!MainClock.delay) {
+				update();
+			} else {
+				MainClock.delay--;
+			}
 			render();
 			if (checkGameOver() && !importing) {
 				gameState = 2;
@@ -342,6 +350,7 @@ function animLoop() {
 			requestAnimFrame(animLoop);
 			fadeOutObjectsOnScreen();
 			render();
+			break;
 
 		default:
 			setStartScreen();

@@ -1,4 +1,5 @@
 function Clock(sideLength) {
+	this.playThrough = 0;
 	this.fillColor = [44,62,80];
     this.tempColor = [44,62,80];
 	this.angularVelocity = 0;

@@ -16,6 +16,25 @@ keypress.register_combo({
     }
 });
 
+
+keypress.register_combo({
+    keys: "a",
+    on_keydown: function() {
+        if (MainClock && gameState !== 0) {
+            MainClock.rotate(1);
+        }
+    }
+});
+
+keypress.register_combo({
+    keys: "d",
+    on_keydown: function() {
+        if (MainClock && gameState !== 0){
+            MainClock.rotate(-1);
+        }
+    }
+});
+
 keypress.register_combo({
     keys: "p",
     on_keydown: function(){pause();}
@@ -24,21 +43,32 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "q",
     on_keydown: function() {
-        toggleDevTools();
+        if (devMode) toggleDevTools();
     }
 });
 
 keypress.register_combo({
     keys: "e",
     on_keydown: function() {
-        exportHistory();
+        if (devMode) exportHistory();
     }
 });
 
 keypress.register_combo({
     keys: "i",
     on_keydown: function() {
-        importHistory();
+        if (devMode) importHistory();
+    }
+});
+
+keypress.register_combo({
+    keys: "`",
+    on_keydown: function() {
+        if (devMode) {
+            devMode = 0;
+        } else {
+            devMode = 1;
+        }
     }
 });
 
