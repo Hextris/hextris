@@ -32,7 +32,9 @@ function render() {
 	}
 
 	MainClock.draw();
-	drawScoreboard();
+	if (gameState ==1 || gameState ==-1 || gameState === 0) {
+		drawScoreboard();
+	}
 
 	for (i = 0; i < MainClock.texts.length; i++) {
 		var alive = MainClock.texts[i].draw();
@@ -45,4 +47,34 @@ function render() {
 	settings.prevScale = settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
+}
+
+function drawKey(key, x, y) {
+	ctx.save();
+	ctx.scale(settings.scale - .3,settings.scale - .3);
+
+	ctx.fillStyle = '#2c3e50';
+	ctx.strokeStyle = '#2c3e50';
+	ctx.lineWidth = 5;
+	ctx.rect(x + 2.5, y + 2.5, 45, 45);
+	ctx.stroke();
+
+	switch (key) {
+		case "left":
+			ctx.translate(x + 24, y + 16.5);
+			ctx.rotate(3.14159);
+			ctx.font = "25px Fontawesome";
+			ctx.fillText("", 0, 0);
+			break;
+		case "right":
+			ctx.font = "25px Fontawesome";
+			ctx.fillText("", x + 27, y + 34.5);
+			break;
+		
+		default:
+			ctx.font = "40px Roboto";
+			ctx.fillText(key, x + 25 , y + 39.5);
+	}
+
+	ctx.restore();
 }
