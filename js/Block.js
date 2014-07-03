@@ -22,7 +22,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	this.opacity = 1;
 	//boolean for when the block is expanding
 	this.initializing = 1;
-	this.ct = 0;
+	this.ict = MainClock.ct;
 	//speed of block
 	this.iter = iter;
 	//number of iterations before starting to drop
@@ -92,7 +92,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		else {
 			this.angle += this.angularVelocity;
 		}
-                this.ct++;
+        
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
 		this.widthWide = this.width + this.height + 3;
 		var p1;
@@ -100,12 +100,12 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		var p3;
 		var p4;
 		if (this.initializing) {
-			var rat = (this.ct/this.initLen);
+			var rat = ((MainClock.ct - this.ict)/this.initLen);
 			p1 = rotatePoint((-this.width / 2) * rat, this.height / 2, this.angle);
 			p2 = rotatePoint((this.width / 2) * rat, this.height / 2, this.angle);
 			p3 = rotatePoint((this.widthWide / 2) * rat, -this.height / 2, this.angle);
 			p4 = rotatePoint((-this.widthWide / 2) * rat, -this.height / 2, this.angle);
-			if (this.ct == this.initLen) {
+			if ((MainClock.ct - this.ict) == this.initLen) {
 				this.initializing = 0;
 			}
 		} else {
