@@ -84,13 +84,13 @@ function drawKey(key, x, y) {
 			ctx.rotate(3.14159);
 			ctx.font = "20px Fontawesome";
 			ctx.scale(settings.scale, settings.scale);
-			ctx.fillText("", 0, 0);
+			ctx.fillText(String.fromCharCode("0xf04b"), 0, 0);
 			break;
 		case "right":
 			ctx.font = "20px Fontawesome";
 			ctx.translate(x + settings.scale * 12.5, y + settings.scale * 27.5);
 			ctx.scale( 	settings.scale, settings.scale);
-			ctx.fillText("", 0, 0);
+			ctx.fillText(String.fromCharCode("0xf04b"), 0, 0);
 			break;
 		
 		default:

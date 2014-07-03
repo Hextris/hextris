@@ -16,7 +16,7 @@ function Clock(sideLength) {
 	this.y = trueCanvas.height / 2;
 	this.ct = 0;
 	this.lastCombo = this.ct - settings.comboMultiplier;
-        this.lastColorScored = "#000";
+    this.lastColorScored = "#000";
 	this.comboMultiplier = 1;
 	this.texts = [];
 
@@ -42,7 +42,7 @@ function Clock(sideLength) {
 	};
 
 	this.addBlock = function(block) {
-		if (!(gameState == 1 || gameState == 0)) return;
+		if (!(gameState == 1 || gameState === 0)) return;
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.fallingLane;// -this.position;
