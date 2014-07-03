@@ -6,7 +6,7 @@ function Text(x,y,text,font,color,incrementFunction){
 	this.opacity =1;
 	this.text = text;
 	this.alive=1;
-	
+
 	this.draw = function(){
 		if(this.alive>0){
 			ctx.save();
@@ -32,4 +32,3 @@ function fadeUpAndOut(text){
 	text.alive = text.opacity;
 	text.y-=3;
 }
-
