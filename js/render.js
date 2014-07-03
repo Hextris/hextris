@@ -32,9 +32,9 @@ function render() {
 	}
 
 	MainClock.draw();
-	if (gameState ==1 || gameState ==-1 || gameState === 0) {
-		drawScoreboard();
-	}
+        if (gameState ==1 || gameState ==-1 || gameState === 0) {
+                drawScoreboard();
+        }
 
 	for (i = 0; i < MainClock.texts.length; i++) {
 		var alive = MainClock.texts[i].draw();
