@@ -395,7 +395,9 @@ window.onblur = function (e) {
 	}
 };
 function showHelp(){
-	pause(false,true);
+        if(gameState =1){
+	        pause();
+        }
 	if(document.getElementById("helpScreen").style.display=="none" || document.getElementById("helpScreen").style.display === ""){
 		document.getElementById("helpScreen").style.display = "block";
 	}

@@ -51,18 +51,29 @@ function renderText(x, y, fontSize, color, text, font) {
 }
 
 scoreOpacity = 0;
+var textOpacity=0;
 function drawScoreboard() {
     if (scoreOpacity < 1) {
         scoreOpacity += 0.01;
+        textOpacity += 0.01;
     }
 
-    ctx.globalAlpha = scoreOpacity;
+    ctx.globalAlpha = textOpacity;
     if (gameState === 0) {
         renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
         renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
         renderText(trueCanvas.width/2+ gdx + 5 * settings.scale, trueCanvas.height/2+ gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
     }
+    else if(gameState!=0 && textOpacity>0){
+        textOpacity -= 0.05;
+        renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
+        renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
+        renderText(trueCanvas.width/2+ gdx + 5 * settings.scale, trueCanvas.height/2+ gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
+        ctx.globalAlpha = scoreOpacity;
+        renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "rgb(236, 240, 241)", score);
+    }
     else {
+        ctx.globalAlpha = scoreOpacity;
         renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "rgb(236, 240, 241)", score);
     }
 
@@ -115,3 +126,47 @@ function toggleClass(element, active) {
         $(element).addClass(active);
     }
 }
+var prevGameState;
+function showText(text){
+    var messages = {
+        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div>",
+        'start':"<div class='centeredHeader unselectable' style='line-height:80px;' >Press enter to start</div>",
+        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><table class='tg' style='margin:0px auto'> <tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[0]+"</th> </tr> <tr> <td class='tg-031e'>2.</td> <th class='tg-031e'>"+highscores[1]+"</th> </tr> <tr> <td class='tg-031e'>3.</td> <th class='tg-031e'>"+highscores[2]+"</th> </tr> </table><br><div class='unselectable centeredSubHeader'>Press enter to restart</div>",
+    };
+
+    var pt = document.getElementById("overlay");
+    pt.className = 'unfaded';
+    pt.innerHTML = messages[text];
+}
+
+function hideText(text){
+    var pt = document.getElementById("overlay");
+    pt.className = 'faded';
+    pt.innerHTML = '';
+}
+function gameOverDisplay(){
+    var c = document.getElementById("canvas");
+    c.className = "blur";
+    showText('gameover');
+}
+
+function pause(x,o,message) {
+    message = 'paused';
+    var c = document.getElementById("canvas");
+    if (gameState == -1 ) {
+        hideText();
+        c.className = '';
+        setTimeout(function(){
+            gameState = prevGameState;
+        }, 300);
+
+    }
+    else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
+        c.className = "blur";
+        showText(message);
+        prevGameState = gameState;
+        gameState = -1;
+    }
+}
+
+
