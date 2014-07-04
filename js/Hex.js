@@ -15,9 +15,9 @@ function Hex(sideLength) {
 	this.x = trueCanvas.width / 2;
 	this.y = trueCanvas.height / 2;
 	this.ct = 0;
-	this.lastCombo = this.ct - settings.comboMultiplier;
+	this.lastCombo = this.ct - settings.comboTime;
     this.lastColorScored = "#000";
-	this.comboMultiplier = 1;
+	this.comboTime = 1;
 	this.texts = [];
 
 	for (var i = 0; i < this.sides; i++) {

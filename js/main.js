@@ -93,7 +93,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		rows:6,
 		speedModifier:0.7,
 		creationSpeedModifier:0.7,
-				comboMultiplier: 240
+		comboTime:240
 	};
 } else {
 	settings = {
@@ -109,7 +109,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		rows:8,
 		speedModifier:0.8,
 		creationSpeedModifier:0.6,
-		comboMultiplier:240
+		comboTime:240
 	};
 }
 
@@ -212,7 +212,7 @@ function init(b) {
 
 	gdx = saveState.gdx || 0;
 	gdy = saveState.gdy || 0;
-	comboMultiplier = saveState.comboMultiplier || 0;
+	comboTime = saveState.comboTime || 0;
 
 	for(i=0; i<MainHex.blocks.length; i++) {
 		for (var j=0; j<MainHex.blocks[i].length; j++) {

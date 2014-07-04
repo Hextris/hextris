@@ -9,7 +9,7 @@ function exportSaveState() {
 			wavegen: waveone,
 			gdx: gdx,
 			gdy: gdy,
-			comboMultiplier:comboMultiplier
+			comboTime:settings.comboTime
 		};
 
 		state.hex.blocks.map(function(a){
