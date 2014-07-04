@@ -121,6 +121,7 @@ function handleClickTap(x) {
                 init(1);
             }
         }
+
         MainHex.rotate(1);
     }
     if (x > window.innerWidth/2) {

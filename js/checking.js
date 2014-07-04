@@ -28,7 +28,7 @@ function floodFill(hex, side, index, deleting) {
 			if(hex.blocks[curSide] === undefined){continue;}
 			if(hex.blocks[curSide][curIndex] !== undefined){
 				// checking equivalency of color, if its already been explored, and if it isn't already deleted
-				if(hex.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false && hex.blocks[curSide][curIndex].deleted == 0 ) {
+				if(hex.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false && hex.blocks[curSide][curIndex].deleted === 0 ) {
 					//add this to the array of already explored
 					deleting.push([curSide,curIndex]);
 					//recall with next block explored
@@ -43,7 +43,7 @@ function consolidateBlocks(hex,side,index){
 	//record which sides have been changed
 	var sidesChanged =[];
 	var deleting=[];
-	var deletedBlocks = []
+	var deletedBlocks = [];
 	//add start case
 	deleting.push([side,index]);
 	//fill deleting	
@@ -51,7 +51,7 @@ function consolidateBlocks(hex,side,index){
 	//make sure there are more than 3 blocks to be deleted
 	if(deleting.length<3){return;}
 	var i;
-	for(var i=0; i<deleting.length;i++){
+	for(i=0; i<deleting.length;i++) {
 		var arr = deleting[i];
 		//just making sure the arrays are as they should be
 		if(arr !== undefined && arr.length==2) {
@@ -67,7 +67,7 @@ function consolidateBlocks(hex,side,index){
 	// add scores
 	var now = MainHex.ct;
 	if(now - hex.lastCombo < 240 ){
-		hex.comboMultiplier += 1;	
+		hex.comboMultiplier += 1;
 		hex.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
 		hex.texts.push(new Text(coords['x'],coords['y'],"x "+hex.comboMultiplier.toString(),"bold Q","#fff",fadeUpAndOut));
