@@ -3,7 +3,7 @@ function exportSaveState() {
 
 	if(gameState == 1 || gameState == -1 || (gameState === 0 && localStorage.getItem('saveState') !== undefined)) {
 		state = {
-			clock: $.extend(true, {}, MainClock),
+			clock: $.extend(true, {}, MainHex),
 			blocks: $.extend(true, [], blocks),
 			score: score,
 			wavegen: waveone,

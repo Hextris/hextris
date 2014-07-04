@@ -22,7 +22,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 	this.opacity = 1;
 	//boolean for when the block is expanding
 	this.initializing = 1;
-	this.ict = MainClock.ct;
+	this.ict = MainHex.ct;
 	//speed of block
 	this.iter = iter;
 	//number of iterations before starting to drop
@@ -36,14 +36,14 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		if (this.deleted) {
 			//add shakes
 			if (this.opacity >= 0.925) {
-				var tLane = this.attachedLane - MainClock.position;
-				tLane = MainClock.sides - tLane;
+				var tLane = this.attachedLane - MainHex.position;
+				tLane = MainHex.sides - tLane;
 				while (tLane < 0) {
-					tLane += MainClock.sides;
+					tLane += MainHex.sides;
 				}
 
-				tLane %= MainClock.sides;
-				MainClock.shakes.push({lane:tLane, magnitude:3 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
+				tLane %= MainHex.sides;
+				MainHex.shakes.push({lane:tLane, magnitude:3 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
 			}
 			//fade out the opacity
 			this.opacity = this.opacity - 0.075;
@@ -60,7 +60,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 
 	this.getIndex = function (){
 		//get the index of the block in its stack
-		var parentArr = MainClock.blocks[this.attachedLane];
+		var parentArr = MainHex.blocks[this.attachedLane];
 		for (var i = 0; i < parentArr.length; i++) {
 			if (parentArr[i] == this) {
 				return i;
@@ -100,12 +100,12 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		var p3;
 		var p4;
 		if (this.initializing) {
-			var rat = ((MainClock.ct - this.ict)/this.initLen);
+			var rat = ((MainHex.ct - this.ict)/this.initLen);
 			p1 = rotatePoint((-this.width / 2) * rat, this.height / 2, this.angle);
 			p2 = rotatePoint((this.width / 2) * rat, this.height / 2, this.angle);
 			p3 = rotatePoint((this.widthWide / 2) * rat, -this.height / 2, this.angle);
 			p4 = rotatePoint((-this.widthWide / 2) * rat, -this.height / 2, this.angle);
-			if ((MainClock.ct - this.ict) == this.initLen) {
+			if ((MainHex.ct - this.ict) == this.initLen) {
 				this.initializing = 0;
 			}
 		} else {

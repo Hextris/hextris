@@ -10,13 +10,13 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-			document.body.addEventListener('mousedown', function(e) {
-				handleClickTap(e.clientX);
-			}, false);
 
-			document.body.addEventListener('touchstart', function(e) {
-				handleClickTap(e.changedTouches[0].clientX);
-			}, false);
+                            document.body.addEventListener('touchstart', function(e) {
+                                    handleClickTap(e.changedTouches[0].clientX);
+                            }, false);
+                            //document.body.addEventListener('mousedown', function(e) {
+                                    //handleClickTap(e.clientX);
+                            //}, false);
 		}, 1);
 	});
 });
@@ -128,7 +128,7 @@ if(localStorage.getItem('highscores'))
 localStorage.setItem('highscores', highscores);
 
 var blocks = [];
-var MainClock;
+var MainHex;
 
 var gdx = 0;
 var gdy = 0;
@@ -185,11 +185,11 @@ function init(b) {
 	scaleCanvas();
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
-	MainClock = saveState.clock || new Clock(settings.hexWidth);
+	MainHex = saveState.clock || new Hex(settings.hexWidth);
 	if (saveState.clock) {
-		MainClock.playThrough += 1;
+		MainHex.playThrough += 1;
 	}
-	MainClock.sideLength = settings.hexWidth;
+	MainHex.sideLength = settings.hexWidth;
 
 	count = 0;
 	var i;
@@ -214,14 +214,14 @@ function init(b) {
 	gdy = saveState.gdy || 0;
 	comboTime = saveState.comboTime || 0;
 
-	for(i=0; i<MainClock.blocks.length; i++) {
-		for (var j=0; j<MainClock.blocks[i].length; j++) {
-			MainClock.blocks[i][j].height = settings.blockHeight;
-			MainClock.blocks[i][j].settled = 0;
+	for(i=0; i<MainHex.blocks.length; i++) {
+		for (var j=0; j<MainHex.blocks[i].length; j++) {
+			MainHex.blocks[i][j].height = settings.blockHeight;
+			MainHex.blocks[i][j].settled = 0;
 		}
 	}
 
-	MainClock.blocks.map(function(i){
+	MainHex.blocks.map(function(i){
 		i.map(function(o){
 			if (rgbToHex[o.color]) {
 				o.color = rgbToHex[o.color];
@@ -229,13 +229,13 @@ function init(b) {
 		});
 	});
 
-	MainClock.y = -100;
+	MainHex.y = -100;
 
 	startTime = Date.now();
-	waveone = saveState.wavegen || new waveGen(MainClock,Date.now(),[1,1,0],[1,1],[1,1]);
+	waveone = saveState.wavegen || new waveGen(MainHex,Date.now(),[1,1,0],[1,1],[1,1]);
 	
-	MainClock.texts = []; //clear texts
-	MainClock.delay = 15;
+	MainHex.texts = []; //clear texts
+	MainHex.delay = 15;
 	hideText();
 }
 
@@ -314,10 +314,10 @@ function animLoop() {
 	switch (gameState) {
 		case 1:
 			requestAnimFrame(animLoop);
-			if (!MainClock.delay) {
+			if (!MainHex.delay) {
 				update();
 			} else {
-				MainClock.delay--;
+				MainHex.delay--;
 			}
 			render();
 			if (checkGameOver() && !importing) {
@@ -388,8 +388,8 @@ function isInfringing(clock){
 }
 
 function checkGameOver() {
-	for (var i = 0; i < MainClock.sides; i++) {
-		if (isInfringing(MainClock)) {
+	for (var i = 0; i < MainHex.sides; i++) {
+		if (isInfringing(MainHex)) {
 			updateHighScore();
 			gameOverDisplay();
 			return true;

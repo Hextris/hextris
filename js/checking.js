@@ -65,7 +65,7 @@ function consolidateBlocks(clock,side,index){
 		}
 	}
 	// add scores
-	var now = MainClock.ct;
+	var now = MainHex.ct;
 	if(now - clock.lastCombo < 240 ){
 		clock.comboTime += 1;	
 		clock.lastCombo = now;
