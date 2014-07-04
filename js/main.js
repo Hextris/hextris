@@ -18,7 +18,8 @@ $(document).ready(function(){
 
 $(window).resize(scaleCanvas);
 $(window).unload(function(){
-	localStorage.setItem("saveState", exportSaveState());
+        if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+        else localStorage.clear();
 });
 
 function scaleCanvas() {
