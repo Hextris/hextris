@@ -175,8 +175,8 @@ function init(b) {
 	op = 0;
 	scoreOpacity = 0;
 	gameState = 1;
-		$("#restartBtn").show();
-		$("#pauseBtn").show();
+	$("#restartBtn").show();
+	$("#pauseBtn").show();
 	if(saveState.hex !== undefined) gameState = 1;
 
 	scaleCanvas();
@@ -284,9 +284,7 @@ function exportHistory() {
 
 function setStartScreen() {
 	$('#startBtn').show();
-	if (!isStateSaved()) {
-		importHistory(introJSON);
-	} else {
+	if (isStateSaved()) {
 		init();
 		importing = 0;
 	}
