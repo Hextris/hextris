@@ -158,8 +158,15 @@ function gameOverDisplay(){
     showText('gameover');
 }
 
-function pause(x,o,message) {
-    message = 'paused';
+function pause(o) {
+    var message;
+
+    if (o) {
+        message = '';
+    } else {
+        message = 'paused';
+    }
+
     var c = document.getElementById("canvas");
     if (gameState == -1 ) {
         hideText();
@@ -171,6 +178,10 @@ function pause(x,o,message) {
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
         c.className = "blur";
+        if (message == undefined) {
+            message = '';
+        }
+
         showText(message);
         prevGameState = gameState;
         gameState = -1;
