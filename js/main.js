@@ -9,17 +9,17 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-                                if(settings.platform == "mobile"){
-                                    document.body.addEventListener('touchstart', function(e) {
-                                                    handleClickTap(e.changedTouches[0].clientX);
-                                    }, false);
-                                }
-                                else{
-                                    document.body.addEventListener('mousedown', function(e) {
-                                                    handleClickTap(e.changedTouches[0].clientX);
-                                    }, false);
+            if(settings.platform == "mobile"){
+                document.body.addEventListener('touchstart', function(e) {
+                                handleClickTap(e.changedTouches[0].clientX);
+                }, false);
+            }
+            else{
+                document.body.addEventListener('mousedown', function(e) {
+                                handleClickTap(e.changedTouches[0].clientX);
+                }, false);
 
-                                }
+            }
 		}, 1);
 	});
 });
@@ -139,6 +139,7 @@ var MainHex;
 var gdx = 0;
 var gdy = 0;
 
+var devMode = 0;
 var lastGen;
 var prevTimeScored;
 var nextGen;
@@ -157,6 +158,9 @@ function resumeGame() {
 	$('#restartBtn').show();
 	importing = 0;
 	startTime = Date.now();
+	setTimeout(function(){
+		$('#helpText').fadeOut(150, "linear");
+	}, 7000);
 }
 
 function hideUIElements() {
@@ -167,6 +171,13 @@ function hideUIElements() {
 
 function init(b) {
 	if (b) {
+		if (!$('#helpText').is(":visible")) {
+			$('#helpText').fadeIn(150, "linear");
+		}
+
+		setTimeout(function() {
+			$('#helpText').fadeOut(150, "linear");
+		}, 7000);
 		clearSaveState();
 	}
 
@@ -325,6 +336,7 @@ function animLoop() {
 			}
 			render();
 			if (checkGameOver() && !importing) {
+				$('#helpText').fadeIn(150, "linear");
 				gameState = 2;
 				clearSaveState();
 			}

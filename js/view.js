@@ -164,7 +164,7 @@ function pause(o) {
     if (o) {
         message = '';
     } else {
-        message = 'paused';
+        message = 'Paused';
     }
 
     var c = document.getElementById("canvas");
@@ -178,7 +178,7 @@ function pause(o) {
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
         c.className = "blur";
-        if (message == undefined) {
+        if (message != 'Paused') {
             message = '';
         }
 
