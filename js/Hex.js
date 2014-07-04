@@ -19,7 +19,7 @@ function Hex(sideLength) {
     this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
-
+        this.lastRotate = Date.now();
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
 	}
@@ -104,6 +104,7 @@ function Hex(sideLength) {
 	};
 
 	this.rotate = function(steps) {
+                if(Date.now()-this.lastRotate<75) return;
 		if (!(gameState === 1 || gameState === 0)) return;
 		this.position += steps;
 		if (!history[count]) {
@@ -129,6 +130,7 @@ function Hex(sideLength) {
 		});
 
 		this.targetAngle = this.targetAngle - steps * 60;
+                this.lastRotate = Date.now();
 	};
 
 	this.draw = function() {
