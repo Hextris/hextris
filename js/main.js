@@ -9,9 +9,17 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-				document.body.addEventListener('touchstart', function(e) {
-						handleClickTap(e.changedTouches[0].clientX);
-				}, false);
+                                if(settings.platform == "mobile"){
+                                    document.body.addEventListener('touchstart', function(e) {
+                                                    handleClickTap(e.changedTouches[0].clientX);
+                                    }, false);
+                                }
+                                else{
+                                    document.body.addEventListener('mousedown', function(e) {
+                                                    handleClickTap(e.changedTouches[0].clientX);
+                                    }, false);
+
+                                }
 		}, 1);
 	});
 });
