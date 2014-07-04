@@ -88,19 +88,22 @@ button:focus {
 }
 
 #helpScreen {
-	height:30%;
-	width:30%;
+	height:480px;
+	width:320px;
 	z-index:2999;
-	position:absolute;
-	top:0%;
-	left:1%;
+	position:fixed;
+	top:18px;
+    margin:0;
+    font-size:14px;
+    text-align:center;
 	display:none;
 	color:#000;
-	background-color:rgba(255,255,255,0.0);
+	background-color:rgba(236,240,241,.7);
 }
 
 .instructions_body {
-    margin-left:5%;
+    margin-left:3px;
+    width:calc(100% - 12px) ! important;
 }
 
 @media only screen and (min-device-width : 320px) 
@@ -119,9 +122,8 @@ and (max-device-width : 480px) {
 
     .instructions_body {
         /*margin-top:20px;*/
-        margin-left:14px;
-        margin-right:14px;
-        width:calc(100% - 28px) ! important;
+        margin-left:3px;
+        width:calc(100% - 12px) ! important;
     }
 }
 

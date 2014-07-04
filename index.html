@@ -18,7 +18,6 @@
 		<script type = 'text/javascript' src="vendor/jsonfn.min.js"></script>
 		<script type = 'text/javascript' src="vendor/keypress.min.js"></script>
 		<script type = 'text/javascript' src="vendor/jquery.js"></script>
-		<script type = 'text/javascript' src="js/intro.js"></script>
 		<script type = 'text/javascript' src="js/save-state.js"></script>
 		<script type = 'text/javascript' src="js/view.js"></script>
 		<script type = 'text/javascript' src="js/wavegen.js"></script>
@@ -37,24 +36,32 @@
 		<div id="helpScreen" class = 'unselectable'>
 			<h1 class = 'instructions_body'>Instructions</h1>
 			<p class = 'instructions_body'>
-				The goal of Hextris is to keep your stacks managed and inside the outer gray hexagon.
+				The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon.
 				<br>
 				<br>
-					You control the rotation of the inner hexagon with your arrow keys (or by tapping the left and right sides of the screen if you're so inclined)
+				Tap the left and right sides of the screen to rotate the Hexagon.
 				<br>
 				<br>
-					Your score is based on the amount of blocks you clear in one combo, as well as the number of consecutive combos you score
+				Clear blocks by making 3 or more blocks of the same color touch
 				<br>
 				<br>
-					At any time you can pause by pressing p and restart by pressing enter.
+				Get points by clearing blocks! More cleared blocks = more points!
 				<br>
 				<br>
-					If you want to report a bug you can press e and send it to ___@gmail.com with the text that pops up and the issue you've encountered
+				Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon.
 				<br>
 				<br>
+				Pause by pressing <i class = 'fa fa-pause'></i>.
+				<br>
+				Restart by pressing <i class = 'fa fa-refresh'></i>.
+				<br>
+				Bring up this menu by pressing <i class = 'fa fa-info-circle'></i>.
+				<br>
+				<br>
+				<a href = 'url'>Found a bug? Go here</a>
 			</p>
 		</div>
-		<div onClick="showHelp()" id="openSideBar"><i class="fa fa-info-circle fa-lg"></i></div>
+		<div onClick="showHelp()" id="openSideBar"><i class="fa fa-info-circle fa-lg"></i><span id ='helpText'> <i class="fa fa-arrow-left"><b>  Help</b></span></div>
 		<div id="overlay" class="faded"></div>
 		<div id = 'pauseBtn'><i class="fa fa-pause fa-2x"></i></div>
 		<div id = 'restartBtn'><i class="fa fa-refresh fa-2x"></i></div>

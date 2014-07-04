@@ -65,8 +65,10 @@ keypress.register_combo({
     keys: "`",
     on_keydown: function() {
         if (devMode) {
+            alert('Developer mode: Off');
             devMode = 0;
         } else {
+            alert('Developer mode: On.\n\nPress "`" again to disable developer mode.');
             devMode = 1;
         }
     }
@@ -86,6 +88,10 @@ keypress.register_combo({
 
 $(document).ready(function(){
     $("#pauseBtn").on('touchstart mousedown', function() {
+        if (gameState != 1) {
+            return;
+        }
+
         pause();
         if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
             $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
