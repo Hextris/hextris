@@ -10,7 +10,6 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-
                             document.body.addEventListener('touchstart', function(e) {
                                     handleClickTap(e.changedTouches[0].clientX);
                             }, false);
@@ -175,8 +174,8 @@ function init(b) {
 	op = 0;
 	scoreOpacity = 0;
 	gameState = 1;
-        $("#restartBtn").show();
-        $("#pauseBtn").show();
+		$("#restartBtn").show();
+		$("#pauseBtn").show();
 	if(saveState.hex !== undefined) gameState = 1;
 
 	scaleCanvas();
@@ -401,9 +400,9 @@ window.onblur = function (e) {
 	}
 };
 function showHelp(){
-        if(gameState =1){
-	        pause();
-        }
+		if(gameState =1){
+			pause();
+		}
 	if(document.getElementById("helpScreen").style.display=="none" || document.getElementById("helpScreen").style.display === ""){
 		document.getElementById("helpScreen").style.display = "block";
 	}
