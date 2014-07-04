@@ -1,5 +1,4 @@
 var textShown = false;
-var showingHelp = false;
 $(document).ready(function(){
 	scaleCanvas();
 	$('#startBtn').on('touchstart mousedown', function(){
@@ -10,9 +9,9 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-                            document.body.addEventListener('touchstart', function(e) {
-                                    handleClickTap(e.changedTouches[0].clientX);
-                            }, false);
+				document.body.addEventListener('touchstart', function(e) {
+						handleClickTap(e.changedTouches[0].clientX);
+				}, false);
 		}, 1);
 	});
 });
@@ -77,6 +76,7 @@ var settings;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 	settings = {
+		platform:"mobile",
 		startDist:227,
 		creationDt:40,
 		baseScale:1.4,
@@ -93,6 +93,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 	};
 } else {
 	settings = {
+		platform:"nonmobile",
 		baseScale:1,
 		startDist:340,
 		creationDt:9,
@@ -400,15 +401,9 @@ window.onblur = function (e) {
 	}
 };
 function showHelp(){
-		if(gameState =1){
-			pause();
-		}
-	if(document.getElementById("helpScreen").style.display=="none" || document.getElementById("helpScreen").style.display === ""){
-		document.getElementById("helpScreen").style.display = "block";
+	if(gameState != 0){
+		pause();
 	}
-	else if(document.getElementById("helpScreen").style.display=="block" ){
-		document.getElementById("helpScreen").style.display = "none";
-		
-	}
-	showingHelp = !showingHelp;
+
+	$('#helpScreen').fadeToggle(150, "linear");
 }
