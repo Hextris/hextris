@@ -138,6 +138,11 @@ function showText(text){
 
     var pt = document.getElementById("overlay");
     pt.className = 'unfaded';
+
+    if (text == 'paused' && settings.platform == mobile) {
+        return;
+    }
+
     pt.innerHTML = messages[text];
 }
 
