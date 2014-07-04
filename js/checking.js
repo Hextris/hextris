@@ -7,39 +7,39 @@ function search(twoD,oneD){
 	}
 	return false;
 }
-function floodFill(clock, side, index, deleting) {
-	if (clock.blocks[side] === undefined || clock.blocks[side][index] === undefined) {
+function floodFill(hex, side, index, deleting) {
+	if (hex.blocks[side] === undefined || hex.blocks[side][index] === undefined) {
 		//just makin sure stuff exists
 		return;
 	}
 
 	//store the color
-	var color = clock.blocks[side][index].color;
+	var color = hex.blocks[side][index].color;
 	//nested for loops for navigating the blocks
 	for(var x =-1;x<2;x++){
 		for(var y =-1;y<2;y++){
 			//make sure the they aren't diagonals
 			if(Math.abs(x)==Math.abs(y)){continue;}
 			//calculate the side were exploring using mods
-			var curSide =(side+x+clock.sides)%clock.sides;
+			var curSide =(side+x+hex.sides)%hex.sides;
 			//calculate the index
 			var curIndex = index+y;
 			//making sure the block exists at this side and index
-			if(clock.blocks[curSide] === undefined){continue;}
-			if(clock.blocks[curSide][curIndex] !== undefined){
+			if(hex.blocks[curSide] === undefined){continue;}
+			if(hex.blocks[curSide][curIndex] !== undefined){
 				// checking equivalency of color, if its already been explored, and if it isn't already deleted
-				if(clock.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false && clock.blocks[curSide][curIndex].deleted == 0 ) {
+				if(hex.blocks[curSide][curIndex].color == color && search(deleting,[curSide,curIndex]) === false && hex.blocks[curSide][curIndex].deleted == 0 ) {
 					//add this to the array of already explored
 					deleting.push([curSide,curIndex]);
 					//recall with next block explored
-					floodFill(clock,curSide,curIndex,deleting);
+					floodFill(hex,curSide,curIndex,deleting);
 				}
 			}
 		}
 	}
 }
 
-function consolidateBlocks(clock,side,index){
+function consolidateBlocks(hex,side,index){
 	//record which sides have been changed
 	var sidesChanged =[];
 	var deleting=[];
@@ -47,7 +47,7 @@ function consolidateBlocks(clock,side,index){
 	//add start case
 	deleting.push([side,index]);
 	//fill deleting	
-	floodFill(clock,side,index,deleting);
+	floodFill(hex,side,index,deleting);
 	//make sure there are more than 3 blocks to be deleted
 	if(deleting.length<3){return;}
 	var i;
@@ -60,24 +60,24 @@ function consolidateBlocks(clock,side,index){
 				sidesChanged.push(arr[0]);
 			}
 			//mark as deleted
-			clock.blocks[arr[0]][arr[1]].deleted = 1;
-			deletedBlocks.push(clock.blocks[arr[0]][arr[1]]);
+			hex.blocks[arr[0]][arr[1]].deleted = 1;
+			deletedBlocks.push(hex.blocks[arr[0]][arr[1]]);
 		}
 	}
 	// add scores
 	var now = MainHex.ct;
-	if(now - clock.lastCombo < 240 ){
-		clock.comboMultiplier += 1;	
-		clock.lastCombo = now;
+	if(now - hex.lastCombo < 240 ){
+		hex.comboMultiplier += 1;	
+		hex.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
-		clock.texts.push(new Text(coords['x'],coords['y'],"x "+clock.comboMultiplier.toString(),"bold Q","#fff",fadeUpAndOut));
+		hex.texts.push(new Text(coords['x'],coords['y'],"x "+hex.comboMultiplier.toString(),"bold Q","#fff",fadeUpAndOut));
 	}
 	else{
-		clock.lastCombo = now;
-		clock.comboMultiplier = 1;
+		hex.lastCombo = now;
+		hex.comboMultiplier = 1;
 	}
-	var adder = deleting.length * deleting.length * clock.comboMultiplier;
-	clock.texts.push(new Text(clock.x,clock.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
-        clock.lastColorScored = deletedBlocks[0].color;
+	var adder = deleting.length * deleting.length * hex.comboMultiplier;
+	hex.texts.push(new Text(hex.x,hex.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
+        hex.lastColorScored = deletedBlocks[0].color;
 	score += adder;
 }

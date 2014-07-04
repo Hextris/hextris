@@ -180,13 +180,13 @@ function init(b) {
 	gameState = 1;
         $("#restartBtn").show();
         $("#pauseBtn").show();
-	if(saveState.clock !== undefined) gameState = 1;
+	if(saveState.hex !== undefined) gameState = 1;
 
 	scaleCanvas();
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
-	MainHex = saveState.clock || new Hex(settings.hexWidth);
-	if (saveState.clock) {
+	MainHex = saveState.hex || new Hex(settings.hexWidth);
+	if (saveState.hex) {
 		MainHex.playThrough += 1;
 	}
 	MainHex.sideLength = settings.hexWidth;
@@ -374,13 +374,13 @@ function updateHighScore(){
 	localStorage.setItem('highscores', highscores);
 
 }
-function isInfringing(clock){
-	for(var i=0;i<clock.sides;i++){
+function isInfringing(hex){
+	for(var i=0;i<hex.sides;i++){
 		var subTotal=0;
-		for (var j=0;j<clock.blocks[i].length;j++){
-			subTotal+=clock.blocks[i][j].deleted ;
+		for (var j=0;j<hex.blocks[i].length;j++){
+			subTotal+=hex.blocks[i][j].deleted ;
 		}
-		if (clock.blocks[i].length- subTotal>settings.rows){
+		if (hex.blocks[i].length- subTotal>settings.rows){
 			return true;
 		}
 	}
