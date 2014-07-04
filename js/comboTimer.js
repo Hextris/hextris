@@ -1,5 +1,4 @@
 function drawTimer(){
-<<<<<<< HEAD
 	if(MainHex.ct - MainHex.lastCombo < settings.comboTime){
 		for(var i=0;i<6;i++){
 			var done = (MainHex.ct -MainHex.lastCombo);
@@ -32,18 +31,19 @@ function drawSide(startVertex,endVertex,fraction,offset){
 	var halfRadius = radius/2;
 	var triHeight = radius *(Math.sqrt(3)/2);
 	var Vertexes =[
-	[(halfRadius*3)/2,triHeight/2],
-	[radius,0],
-	[(halfRadius*3)/2,-triHeight/2],
-	[halfRadius,-triHeight],
-	[0,-triHeight],
-	[-halfRadius,-triHeight],
-	[-(halfRadius*3)/2,-triHeight/2],
-	[-radius,0],
-	[-(halfRadius*3)/2,triHeight/2],
-	[-halfRadius,triHeight],
-	[0,triHeight],
-	[halfRadius,triHeight]].reverse();
+		[(halfRadius*3)/2,triHeight/2],
+		[radius,0],
+		[(halfRadius*3)/2,-triHeight/2],
+		[halfRadius,-triHeight],
+		[0,-triHeight],
+		[-halfRadius,-triHeight],
+		[-(halfRadius*3)/2,-triHeight/2],
+		[-radius,0],
+		[-(halfRadius*3)/2,triHeight/2],
+		[-halfRadius,triHeight],
+		[0,triHeight],
+		[halfRadius,triHeight]
+	].reverse();
 	var startX =trueCanvas.width/2 + Vertexes[startVertex][0];
 	var startY =trueCanvas.height/2 + Vertexes[startVertex][1];
 	var endX = trueCanvas.width/2 + Vertexes[endVertex][0];
