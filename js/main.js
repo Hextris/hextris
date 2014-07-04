@@ -9,16 +9,25 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-				document.body.addEventListener('touchstart', function(e) {
-						handleClickTap(e.changedTouches[0].clientX);
-				}, false);
+                                if(settings.platform == "mobile"){
+                                    document.body.addEventListener('touchstart', function(e) {
+                                                    handleClickTap(e.changedTouches[0].clientX);
+                                    }, false);
+                                }
+                                else{
+                                    document.body.addEventListener('mousedown', function(e) {
+                                                    handleClickTap(e.changedTouches[0].clientX);
+                                    }, false);
+
+                                }
 		}, 1);
 	});
 });
 
 $(window).resize(scaleCanvas);
 $(window).unload(function(){
-	localStorage.setItem("saveState", exportSaveState());
+        if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+        else localStorage.clear();
 });
 
 function scaleCanvas() {
