@@ -20,9 +20,9 @@ function render() {
 	}
 
 	var i;
-	for (i = 0; i < MainClock.blocks.length; i++) {
-		for (var j = 0; j < MainClock.blocks[i].length; j++) {
-			var block = MainClock.blocks[i][j];
+	for (i = 0; i < MainHex.blocks.length; i++) {
+		for (var j = 0; j < MainHex.blocks[i].length; j++) {
+			var block = MainHex.blocks[i][j];
 			block.draw(true, j);
 		}
 	}
@@ -31,15 +31,15 @@ function render() {
 		blocks[i].draw();
 	}
 
-	MainClock.draw();
+	MainHex.draw();
         if (gameState ==1 || gameState ==-1 || gameState === 0) {
                 drawScoreboard();
         }
 
-	for (i = 0; i < MainClock.texts.length; i++) {
-		var alive = MainClock.texts[i].draw();
+	for (i = 0; i < MainHex.texts.length; i++) {
+		var alive = MainHex.texts[i].draw();
 		if(!alive){
-			MainClock.texts.splice(i,1);
+			MainHex.texts.splice(i,1);
 			i--;
 		}
 	}
@@ -48,13 +48,13 @@ function render() {
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 
-	if (MainClock.ct < 400 && (gameState != 0) && !MainClock.playThrough) {
-		if (MainClock.ct > 350) {
-			ctx.globalAlpha = (50 - (MainClock.ct - 350))/50;
+	if (MainHex.ct < 400 && (gameState != 0) && !MainHex.playThrough) {
+		if (MainHex.ct > 350) {
+			ctx.globalAlpha = (50 - (MainHex.ct - 350))/50;
 		}
 
-		if (MainClock.ct < 50) {
-			ctx.globalAlpha = (MainClock.ct)/50;
+		if (MainHex.ct < 50) {
+			ctx.globalAlpha = (MainHex.ct)/50;
 		}
 
 		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 208 * settings.scale, 35, '#2c3e50', 'Controls', '35px Roboto');

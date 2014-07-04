@@ -1,4 +1,4 @@
-function Clock(sideLength) {
+function Hex(sideLength) {
 	this.playThrough = 0;
 	this.fillColor = [44,62,80];
     this.tempColor = [44,62,80];
@@ -49,7 +49,7 @@ function Clock(sideLength) {
 		this.shakes.push({lane:block.fallingLane, magnitude:4.5 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
 		lane += this.position;
 		lane = (lane + this.sides) % this.sides;
-		block.distFromHex = MainClock.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
+		block.distFromHex = MainHex.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
         block.checked = 1;

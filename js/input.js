@@ -1,8 +1,8 @@
 keypress.register_combo({
     keys: "left",
     on_keydown: function() {
-        if (MainClock && gameState !== 0) {
-            MainClock.rotate(1);
+        if (MainHex && gameState !== 0) {
+            MainHex.rotate(1);
         }
     }
 });
@@ -10,8 +10,8 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "right",
     on_keydown: function() {
-        if (MainClock && gameState !== 0){
-            MainClock.rotate(-1);
+        if (MainHex && gameState !== 0){
+            MainHex.rotate(-1);
         }
     }
 });
@@ -20,8 +20,8 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "a",
     on_keydown: function() {
-        if (MainClock && gameState !== 0) {
-            MainClock.rotate(1);
+        if (MainHex && gameState !== 0) {
+            MainHex.rotate(1);
         }
     }
 });
@@ -29,8 +29,8 @@ keypress.register_combo({
 keypress.register_combo({
     keys: "d",
     on_keydown: function() {
-        if (MainClock && gameState !== 0){
-            MainClock.rotate(-1);
+        if (MainHex && gameState !== 0){
+            MainHex.rotate(-1);
         }
     }
 });
@@ -108,7 +108,7 @@ $(document).ready(function(){
 }, false);
 
 function handleClickTap(x) {
-    if (!MainClock || gameState === 0 || gameState==2 || gameState==-1) {
+    if (!MainHex || gameState === 0 || gameState==2 || gameState==-1) {
         return;
     }
 
@@ -121,7 +121,7 @@ function handleClickTap(x) {
                 init(1);
             }
         }
-        MainClock.rotate(1);
+        MainHex.rotate(1);
     }
     if (x > window.innerWidth/2) {
         if (gameState != 1 && gameState != -2 && gameState != -1) {
@@ -132,6 +132,6 @@ function handleClickTap(x) {
                 init(1);
             }
         }
-        MainClock.rotate(-1);
+        MainHex.rotate(-1);
     }
 }
