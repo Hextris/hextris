@@ -400,7 +400,7 @@ window.onblur = function (e) {
 };
 function showHelp(){
 	if(gameState != 0){
-		pause();
+		pause(1);
 	}
 
 	$('#helpScreen').fadeToggle(150, "linear");
