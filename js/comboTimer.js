@@ -1,7 +1,8 @@
 function drawTimer(){
-	if(MainClock.ct - MainClock.lastCombo < settings.comboTime){
+<<<<<<< HEAD
+	if(MainHex.ct - MainHex.lastCombo < settings.comboTime){
 		for(var i=0;i<6;i++){
-			var done = (MainClock.ct -MainClock.lastCombo);
+			var done = (MainHex.ct -MainHex.lastCombo);
 			if(done<(settings.comboTime)*(5-i)*(1/6)){
 				drawSide(i,i+1,1,1);
 				drawSide(12-i,11-i,1,1);
@@ -22,9 +23,9 @@ function drawSide(startVertex,endVertex,fraction,offset){
 	ctx.beginPath();
 	ctx.lineCap = "round";
 	if (gameState === 0) {
-		ctx.strokeStyle = hexColorsToTintedColors[MainClock.lastColorScored];
+		ctx.strokeStyle = hexColorsToTintedColors[MainHex.lastColorScored];
 	} else {
-		ctx.strokeStyle = MainClock.lastColorScored;
+		ctx.strokeStyle = MainHex.lastColorScored;
 	}
 	ctx.lineWidth =4;
 	var radius = (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth + 2;
