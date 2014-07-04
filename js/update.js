@@ -8,7 +8,7 @@ function update() {
 			}
 
 			if (importedHistory[count].rotate) {
-				MainClock.rotate(importedHistory[count].rotate);
+				MainHex.rotate(importedHistory[count].rotate);
 			}
 		}
 	}
@@ -25,7 +25,7 @@ function update() {
 
 	var objectsToRemove = [];
 	for (i = 0; i < blocks.length; i++) {
-		MainClock.doesBlockCollide(blocks[i]);
+		MainHex.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
 			if (!blocks[i].initializing) blocks[i].distFromHex -= blocks[i].iter * settings.scale;
 		} else if (!blocks[i].removed) {
@@ -33,41 +33,41 @@ function update() {
 		}
 	}
 
-	for (i = 0; i < MainClock.blocks.length; i++) {
-		for (j = 0; j < MainClock.blocks[i].length; j++) {
-            if (MainClock.blocks[i][j].checked ==1 ) {
-                consolidateBlocks(MainClock,MainClock.blocks[i][j].attachedLane,MainClock.blocks[i][j].getIndex());
-                MainClock.blocks[i][j].checked=0;
+	for (i = 0; i < MainHex.blocks.length; i++) {
+		for (j = 0; j < MainHex.blocks[i].length; j++) {
+            if (MainHex.blocks[i][j].checked ==1 ) {
+                consolidateBlocks(MainHex,MainHex.blocks[i][j].attachedLane,MainHex.blocks[i][j].getIndex());
+                MainHex.blocks[i][j].checked=0;
             }
         }
     }
 
-	for (i = 0; i < MainClock.blocks.length; i++) {
+	for (i = 0; i < MainHex.blocks.length; i++) {
 		lowestDeletedIndex = 99;
-		for (j = 0; j < MainClock.blocks[i].length; j++) {
-			block = MainClock.blocks[i][j];
+		for (j = 0; j < MainHex.blocks[i].length; j++) {
+			block = MainHex.blocks[i][j];
 			if (block.deleted == 2) {
-				MainClock.blocks[i].splice(j,1);
+				MainHex.blocks[i].splice(j,1);
 				blockDestroyed();
 				if (j < lowestDeletedIndex) lowestDeletedIndex = j;
 				j--;
 			}
 		}
 
-		if (lowestDeletedIndex < MainClock.blocks[i].length) {
-			for (j = lowestDeletedIndex; j < MainClock.blocks[i].length; j++) {
-				MainClock.blocks[i][j].settled = 0;
+		if (lowestDeletedIndex < MainHex.blocks[i].length) {
+			for (j = lowestDeletedIndex; j < MainHex.blocks[i].length; j++) {
+				MainHex.blocks[i][j].settled = 0;
 			}
 		}
 	}
 
-	for (i = 0; i < MainClock.blocks.length; i++) {
-		for (j = 0; j < MainClock.blocks[i].length; j++) {
-			block = MainClock.blocks[i][j];
-			MainClock.doesBlockCollide(block, j, MainClock.blocks[i]);
+	for (i = 0; i < MainHex.blocks.length; i++) {
+		for (j = 0; j < MainHex.blocks[i].length; j++) {
+			block = MainHex.blocks[i][j];
+			MainHex.doesBlockCollide(block, j, MainHex.blocks[i]);
 
-			if (!MainClock.blocks[i][j].settled) {
-				MainClock.blocks[i][j].distFromHex -= block.iter * settings.scale;
+			if (!MainHex.blocks[i][j].settled) {
+				MainHex.blocks[i][j].distFromHex -= block.iter * settings.scale;
 			}
 		}
 	}
@@ -78,6 +78,6 @@ function update() {
 			i--;
 		}
 	}
-        MainClock.ct++;
+        MainHex.ct++;
 	count++;
 }
