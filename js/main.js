@@ -104,8 +104,8 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		baseBlockHeight:20,
 		blockHeight:15,
 		rows:8,
-		speedModifier:0.8,
-		creationSpeedModifier:0.6,
+		speedModifier:0.65,
+		creationSpeedModifier:0.55,
 		comboTime:240
 	};
 }
