@@ -12,14 +12,14 @@ function blockDestroyed() {
 	}
 }
 
-function waveGen(clock) {
+function waveGen(hex) {
 	this.lastGen = 0;
 	this.last = 0;
 	this.nextGen = 2000; // - 1500; //delay before starting
 	this.start = 0;
 	this.colors = colors;
 	this.ct = 0;
-	this.clock = clock;
+	this.hex = hex;
 	this.difficulty = 1;
 	this.dt = 0;
 	this.update = function() {

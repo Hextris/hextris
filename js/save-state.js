@@ -3,7 +3,7 @@ function exportSaveState() {
 
 	if(gameState == 1 || gameState == -1 || (gameState === 0 && localStorage.getItem('saveState') !== undefined)) {
 		state = {
-			clock: $.extend(true, {}, MainHex),
+			hex: $.extend(true, {}, MainHex),
 			blocks: $.extend(true, [], blocks),
 			score: score,
 			wavegen: waveone,
@@ -12,7 +12,7 @@ function exportSaveState() {
 			comboMultiplier:comboMultiplier
 		};
 
-		state.clock.blocks.map(function(a){
+		state.hex.blocks.map(function(a){
 			for (var i = 0; i < a.length; i++) {
 				a[i] = $.extend(true, {}, a[i]);
 			}
