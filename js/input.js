@@ -65,7 +65,6 @@ keypress.register_combo({
     keys: "`",
     on_keydown: function() {
         if (devMode) {
-            alert('Developer mode: Off');
             devMode = 0;
         } else {
             alert('Developer mode: On.\n\nPress "`" again to disable developer mode.');
@@ -88,8 +87,12 @@ keypress.register_combo({
 
 $(document).ready(function(){
     $("#pauseBtn").on('touchstart mousedown', function() {
-        if (gameState != 1) {
+        if (gameState != 1 && gameState != -1) {
             return;
+        }
+
+        if ($('#helpScreen').is(":visible")) {
+            $('#helpScreen').fadeOut(150, "linear");
         }
 
         pause();
@@ -113,8 +116,14 @@ $(document).ready(function(){
     });
 }, false);
 
+
 function handleClickTap(x) {
-    if (!MainHex || gameState === 0 || gameState==2 || gameState==-1) {
+    if (gameState == 2 && canRestart) {
+        init(1);
+        return;
+    }
+
+    if (!MainHex || gameState === 0 || gameState==-1) {
         return;
     }
 

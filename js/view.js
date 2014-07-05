@@ -113,7 +113,7 @@ function showHighScores() {
     $('#highscores').html(function() {
         var str = '<li> High Scores: </li>';
         for (var i = 0; i < highscores.length; i++) {
-            str += '<li>' + highscores[i]+ '</li>';
+            str += '<li>' + highscores[i]+'</li>';
         }
         return str;
     });
@@ -128,14 +128,41 @@ function toggleClass(element, active) {
         $(element).addClass(active);
     }
 }
+
 var prevGameState;
 function showText(text){
     var messages = {
         'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div>",
         'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div>",
-        'start':"<div class='centeredHeader unselectable' style='line-height:80px;' >Press enter to start</div>",
-        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> <tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[0]+"</th> </tr> <tr> <td class='tg-031e'>2.</td> <th class='tg-031e'>"+highscores[1]+"</th> </tr> <tr> <td class='tg-031e'>3.</td> <th class='tg-031e'>"+highscores[2]+"</th> </tr> </table><br><div class='unselectable centeredSubHeader'>Press enter to restart</div>",
+        'start':"<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
+        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
     };
+    
+    if (text == 'gameover') {
+        var allZ = 1;
+        var i;
+        for (i = 0; i < 3; i++) {
+            if (highscores[i] != undefined && highscores[i] != 0) {
+                messages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
+            }
+        }
+    
+        var restartText;
+        if (settings.platform == 'mobile') {
+            restartText = 'Tap anywhere to restart!';
+        } else {
+            restartText = 'Press enter (or click anywhere!) to restart!';
+        }
+
+        messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
+    
+        if (allZ)
+        for (i = 0; i < highscores.length; i++) {
+            if (highscores[i] != 0) {
+                allZ = 0;
+            }
+        }
+    }
 
     var pt = document.getElementById("overlay");
     pt.className = 'unfaded';
@@ -159,8 +186,9 @@ function gameOverDisplay(){
 }
 
 function pause(o) {
-    var message;
+    debugger;
 
+    var message;
     if (o) {
         message = '';
     } else {
@@ -178,11 +206,10 @@ function pause(o) {
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
         c.className = "blur";
-        if (message != 'paused') {
-            message = '';
+        if (message == 'paused') {
+            showText(message);
         }
 
-        showText(message);
         prevGameState = gameState;
         gameState = -1;
     }

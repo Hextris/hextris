@@ -9,25 +9,24 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-            if(settings.platform == "mobile"){
-                document.body.addEventListener('touchstart', function(e) {
-                                handleClickTap(e.changedTouches[0].clientX);
-                }, false);
-            }
-            else{
-                document.body.addEventListener('mousedown', function(e) {
-                                handleClickTap(e.changedTouches[0].clientX);
-                }, false);
-
-            }
+			if(settings.platform == "mobile"){
+				document.body.addEventListener('touchstart', function(e) {
+					handleClickTap(e.changedTouches[0].clientX);
+				}, false);
+			}
+			else {
+				document.body.addEventListener('mousedown', function(e) {
+					handleClickTap(e.clientX);
+				}, false);
+			}
 		}, 1);
 	});
 });
 
 $(window).resize(scaleCanvas);
 $(window).unload(function(){
-        if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
-        else localStorage.clear();
+	if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+	else localStorage.clear();
 });
 
 function scaleCanvas() {
@@ -117,6 +116,8 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 		creationSpeedModifier:0.55,
 		comboTime:240
 	};
+
+	$("#inst_main_body").html("The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon<br><br>Either press the right and left arrow keys or tap the left and right sides of the screen to rotate the Hexagon<br><br>Clear blocks by making 3 or more blocks of the same color touch<br><br>Get points by clearing blocks<br><br>Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored<span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon<br><br>Pause by pressing <i class = 'fa fa-pause'></i> or the letter <b>p</b><br>Restart by pressing <i class = 'fa fa-refresh'></i> or <b>enter</b><br>Bring up this menu by pressing <i class = 'fa fa-info-circle'><br><br><a href = 'url'>Found a bug? Go here</a");
 }
 
 var framerate = 60;
@@ -161,6 +162,9 @@ function resumeGame() {
 	setTimeout(function(){
 		$('#helpText').fadeOut(150, "linear");
 	}, 7000);
+	if ($('#helpScreen').is(":visible")) {
+		$('#helpScreen').fadeOut(150, "linear");
+	}
 }
 
 function hideUIElements() {
@@ -173,6 +177,10 @@ function init(b) {
 	if (b) {
 		if (!$('#helpText').is(":visible")) {
 			$('#helpText').fadeIn(150, "linear");
+		}
+
+		if ($('#helpScreen').is(":visible")) {
+			$('#helpScreen').fadeOut(150, "linear");
 		}
 
 		setTimeout(function() {
@@ -307,9 +315,11 @@ function setStartScreen() {
 	if (isStateSaved()) {
 		init();
 		importing = 0;
+	} else {
+		importHistory(introJSON);
 	}
 	gameState = 0;
-		requestAnimFrame(animLoop);
+	requestAnimFrame(animLoop);
 }
 
 //t: current time, b: begInnIng value, c: change In value, d: duration
@@ -336,8 +346,12 @@ function animLoop() {
 			}
 			render();
 			if (checkGameOver() && !importing) {
-				$('#helpText').fadeIn(150, "linear");
+				$('#helpText').fadeIn(200, "linear");
 				gameState = 2;
+				setTimeout(function(){
+					enableRestart();
+				}, 200)
+				canRestart = 0;
 				clearSaveState();
 			}
 			break;
@@ -372,6 +386,10 @@ function animLoop() {
 			setStartScreen();
 			break;
 	}
+}
+
+function enableRestart() {
+	canRestart = 1;
 }
 
 function updateHighScore(){
