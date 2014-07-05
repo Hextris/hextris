@@ -172,10 +172,11 @@ function hideUIElements() {
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
 }
-function playTunes(){
-    var introAudio = document.getElementById("loop");
-    introAudio.play(); 
-
+function toggleAudio(){
+    var loopAudio = document.getElementById("loop");
+    if(loopAudio.paused) loopAudio.play(); 
+    else loopAudio.pause()
+    return loopAudio.paused
 }
 
 function init(b) {
