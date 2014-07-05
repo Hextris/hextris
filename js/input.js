@@ -65,7 +65,6 @@ keypress.register_combo({
     keys: "`",
     on_keydown: function() {
         if (devMode) {
-            alert('Developer mode: Off');
             devMode = 0;
         } else {
             alert('Developer mode: On.\n\nPress "`" again to disable developer mode.');
