@@ -13,6 +13,8 @@
 			<h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
 			<textarea id ='devtoolsText' style = 'height:300px;width:400px;'></textarea>
 		</div>
+		<div id="overlay" class="faded"></div>
+
 		<script type = 'text/javascript' src="vendor/hammer.min.js"></script>
 		<script type = 'text/javascript' src="vendor/jsonfn.min.js"></script>
 		<script type = 'text/javascript' src="vendor/keypress.min.js"></script>
@@ -20,6 +22,7 @@
 		<script type = 'text/javascript' src="js/save-state.js"></script>
 		<script type = 'text/javascript' src="js/view.js"></script>
 		<script type = 'text/javascript' src="js/wavegen.js"></script>
+		<script type = 'text/javascript' src="js/intro.js"></script>
 		<script type = 'text/javascript' src="js/math.js"></script>
 		<script type = 'text/javascript' src="js/Block.js"></script>
 		<script type = 'text/javascript' src="js/Hex.js"></script>
@@ -31,6 +34,7 @@
 		<script type = 'text/javascript' src="js/input.js"></script>
 		<script type = 'text/javascript' src="js/main.js"></script>
 		<script type = 'text/javascript' src="js/analytics.js"></script>
+
 		<div id='startBtn' style='position:absolute;left:40%;top:38%;height:25%;width:25%;z-index:99999999;cursor:pointer;'></div>
 		<div id="helpScreen" class = 'unselectable'>
 			<h1 class = 'instructions_body'>Instructions</h1>
@@ -61,7 +65,6 @@
 			</p>
 		</div>
 		<div onClick="showHelp()" id="openSideBar"><i class="fa fa-info-circle fa-lg"></i><span id ='helpText'> <i class="fa fa-arrow-left"><b>  Help</b></span></div>
-		<div id="overlay" class="faded"></div>
 		<div id = 'pauseBtn'><i class="fa fa-pause fa-2x"></i></div>
 		<div id = 'restartBtn'><i class="fa fa-refresh fa-2x"></i></div>
 	</body>
