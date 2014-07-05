@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
 	</head>
 	<body>
-		<div id="overlay" class="faded"></div>
 		<canvas id="canvas"></canvas> 
 		<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
 			<h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
@@ -35,27 +34,27 @@
 		<div id='startBtn' style='position:absolute;left:40%;top:38%;height:25%;width:25%;z-index:99999999;cursor:pointer;'></div>
 		<div id="helpScreen" class = 'unselectable'>
 			<h1 class = 'instructions_body'>Instructions</h1>
-			<p class = 'instructions_body'>
-				The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon.
+			<p class = 'instructions_body' id = 'inst_main_body'>
+				The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon
 				<br>
 				<br>
-				Tap the left and right sides of the screen to rotate the Hexagon.
+				Tap the left and right sides of the screen to rotate the Hexagon
 				<br>
 				<br>
 				Clear blocks by making 3 or more blocks of the same color touch
 				<br>
 				<br>
-				Get points by clearing blocks! More cleared blocks = more points!
+				Get points by clearing blocks
 				<br>
 				<br>
-				Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon.
+				Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon
 				<br>
 				<br>
-				Pause by pressing <i class = 'fa fa-pause'></i>.
+				Pause by pressing <i class = 'fa fa-pause'></i>
 				<br>
-				Restart by pressing <i class = 'fa fa-refresh'></i>.
+				Restart by pressing <i class = 'fa fa-refresh'></i>
 				<br>
-				Bring up this menu by pressing <i class = 'fa fa-info-circle'></i>.
+				Bring up this menu by pressing <i class = 'fa fa-info-circle'></i>
 				<br>
 				<br>
 				<a href = 'url'>Found a bug? Go here</a>
