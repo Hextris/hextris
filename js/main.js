@@ -9,25 +9,24 @@ $(document).ready(function(){
 		}
 
 		setTimeout(function(){
-            if(settings.platform == "mobile"){
-                document.body.addEventListener('touchstart', function(e) {
-                                handleClickTap(e.changedTouches[0].clientX);
-                }, false);
-            }
-            else{
-                document.body.addEventListener('mousedown', function(e) {
-                                handleClickTap(e.changedTouches[0].clientX);
-                }, false);
-
-            }
+			if(settings.platform == "mobile"){
+				document.body.addEventListener('touchstart', function(e) {
+					handleClickTap(e.changedTouches[0].clientX);
+				}, false);
+			}
+			else {
+				document.body.addEventListener('mousedown', function(e) {
+					handleClickTap(e.clientX);
+				}, false);
+			}
 		}, 1);
 	});
 });
 
 $(window).resize(scaleCanvas);
 $(window).unload(function(){
-        if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
-        else localStorage.clear();
+	if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+	else localStorage.clear();
 });
 
 function scaleCanvas() {
@@ -163,6 +162,9 @@ function resumeGame() {
 	setTimeout(function(){
 		$('#helpText').fadeOut(150, "linear");
 	}, 7000);
+	if ($('#helpScreen').is(":visible")) {
+		$('#helpScreen').fadeOut(150, "linear");
+	}
 }
 
 function hideUIElements() {
@@ -175,6 +177,10 @@ function init(b) {
 	if (b) {
 		if (!$('#helpText').is(":visible")) {
 			$('#helpText').fadeIn(150, "linear");
+		}
+
+		if ($('#helpScreen').is(":visible")) {
+			$('#helpScreen').fadeOut(150, "linear");
 		}
 
 		setTimeout(function() {
