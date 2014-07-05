@@ -1,4 +1,4 @@
-introJSON = {
+window.introJSON = {
   "120": {
     "block": {
       "blocklane": 2,
@@ -911,4 +911,4 @@ introJSON = {
   "6843": {
     "rotate": 1
   }
-}
+};

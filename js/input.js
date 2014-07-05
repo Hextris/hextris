@@ -113,8 +113,14 @@ $(document).ready(function(){
     });
 }, false);
 
+
 function handleClickTap(x) {
-    if (!MainHex || gameState === 0 || gameState==2 || gameState==-1) {
+    if (gameState == 2) {
+        init(1);
+        return;
+    }
+
+    if (!MainHex || gameState === 0 || gameState==-1) {
         return;
     }
 
