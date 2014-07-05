@@ -104,7 +104,7 @@ function Hex(sideLength) {
 	};
 
 	this.rotate = function(steps) {
-                if(Date.now()-this.lastRotate<75) return;
+                if(Date.now()-this.lastRotate<75 && !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) return;
 		if (!(gameState === 1 || gameState === 0)) return;
 		this.position += steps;
 		if (!history[count]) {
