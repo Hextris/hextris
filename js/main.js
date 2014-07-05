@@ -180,7 +180,7 @@ function init(b) {
 		}, 7000);
 		clearSaveState();
 	}
-
+        document.getElementById("intro").play();
 	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
