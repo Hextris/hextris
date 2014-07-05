@@ -119,7 +119,7 @@ $(document).ready(function(){
 
 
 function handleClickTap(x) {
-    if (gameState == 2) {
+    if (gameState == 2 && canRestart) {
         init(1);
         return;
     }

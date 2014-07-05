@@ -128,6 +128,7 @@ function toggleClass(element, active) {
         $(element).addClass(active);
     }
 }
+
 var prevGameState;
 function showText(text){
     var messages = {
@@ -137,26 +138,29 @@ function showText(text){
         'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
     };
     
-    var allZ = 1;
-    var i;
-    for (i = 0; i < 3; i++) {
-        if (highscores[i] != undefined && highscores[i] != 0) {
-            messages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
+    if (text == 'gameover') {
+        var allZ = 1;
+        var i;
+        for (i = 0; i < 3; i++) {
+            if (highscores[i] != undefined && highscores[i] != 0) {
+                messages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
+            }
         }
-    }
+    
+        var restartText;
+        if (settings.platform == 'mobile') {
+            restartText = 'Tap anywhere to restart!';
+        } else {
+            restartText = 'Press enter (or click anywhere!) to restart!';
+        }
 
-    var restartText;
-    if (settings.platform == 'mobile') {
-
-    } else {
-        restartText = 'Press enter to restart!';
-    }
-    messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
-
-    if (allZ)
-    for (i = 0; i < highscores.length; i++) {
-        if (highscores[i] != 0) {
-            allZ = 0;
+        messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
+    
+        if (allZ)
+        for (i = 0; i < highscores.length; i++) {
+            if (highscores[i] != 0) {
+                allZ = 0;
+            }
         }
     }
 

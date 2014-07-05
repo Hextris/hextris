@@ -346,8 +346,12 @@ function animLoop() {
 			}
 			render();
 			if (checkGameOver() && !importing) {
-				$('#helpText').fadeIn(150, "linear");
+				$('#helpText').fadeIn(200, "linear");
 				gameState = 2;
+				setTimeout(function(){
+					enableRestart();
+				}, 200)
+				canRestart = 0;
 				clearSaveState();
 			}
 			break;
@@ -382,6 +386,10 @@ function animLoop() {
 			setStartScreen();
 			break;
 	}
+}
+
+function enableRestart() {
+	canRestart = 1;
 }
 
 function updateHighScore(){
