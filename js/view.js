@@ -141,7 +141,7 @@ function showText(text){
     var i;
     for (i = 0; i < 3; i++) {
         if (highscores[i] != undefined && highscores[i] != 0) {
-            messsages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
+            messages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
         }
     }
 
@@ -151,7 +151,7 @@ function showText(text){
     } else {
         restartText = 'Press enter to restart!';
     }
-    messsages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
+    messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
 
     if (allZ)
     for (i = 0; i < highscores.length; i++) {
@@ -182,6 +182,8 @@ function gameOverDisplay(){
 }
 
 function pause(o) {
+    debugger;
+
     var message;
     if (o) {
         message = '';
