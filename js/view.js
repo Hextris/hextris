@@ -186,8 +186,6 @@ function gameOverDisplay(){
 }
 
 function pause(o) {
-    debugger;
-
     var message;
     if (o) {
         message = '';

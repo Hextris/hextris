@@ -65,7 +65,6 @@ function scaleCanvas() {
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var count = 0;
 var trueCanvas = {width:canvas.width,height:canvas.height};
 
 window.requestAnimFrame = (function() {
@@ -216,7 +215,6 @@ function init(b) {
 	}
 	MainHex.sideLength = settings.hexWidth;
 
-	count = 0;
 	var i;
 	var block;
 	if(saveState.blocks) {
@@ -266,21 +264,21 @@ function init(b) {
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
 	iter *= settings.speedModifier;
-	if (!history[count]) {
-		history[count] = {};
+	if (!history[MainHex.ct]) {
+		history[MainHex.ct] = {};
 	}
 
-	history[count].block = {
+	history[MainHex.ct].block = {
 		blocklane:blocklane,
 		color:color,
 		iter:iter
 	};
 
 	if (distFromHex) {
-		history[count].distFromHex = distFromHex;
+		history[MainHex.ct].distFromHex = distFromHex;
 	}
 	if (settled) {
-		blockHist[count].settled = settled;
+		blockHist[MainHex.ct].settled = settled;
 	}
 	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
 }

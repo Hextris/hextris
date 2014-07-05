@@ -107,15 +107,15 @@ function Hex(sideLength) {
                 if(Date.now()-this.lastRotate<75 && !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) return;
 		if (!(gameState === 1 || gameState === 0)) return;
 		this.position += steps;
-		if (!history[count]) {
-			history[count] = {};
+		if (!history[this.ct]) {
+			history[this.ct] = {};
 		}
 
-		if (!history[count].rotate) {
-			history[count].rotate = steps;
+		if (!history[this.ct].rotate) {
+			history[this.ct].rotate = steps;
 		}
 		else {
-			history[count].rotate += steps;
+			history[this.ct].rotate += steps;
 		}
 
 		while (this.position < 0) {

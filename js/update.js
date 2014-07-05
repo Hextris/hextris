@@ -2,13 +2,13 @@
 function update() {
 	var now = Date.now();
 	if (importing) {
-		if (importedHistory[count]) {
-			if (importedHistory[count].block) {
-				addNewBlock(importedHistory[count].block.blocklane, importedHistory[count].block.color, importedHistory[count].block.iter, importedHistory[count].block.distFromHex, importedHistory[count].block.settled);
+		if (importedHistory[MainHex.ct]) {
+			if (importedHistory[MainHex.ct].block) {
+				addNewBlock(importedHistory[MainHex.ct].block.blocklane, importedHistory[MainHex.ct].block.color, importedHistory[MainHex.ct].block.iter, importedHistory[MainHex.ct].block.distFromHex, importedHistory[MainHex.ct].block.settled);
 			}
 
-			if (importedHistory[count].rotate) {
-				MainHex.rotate(importedHistory[count].rotate);
+			if (importedHistory[MainHex.ct].rotate) {
+				MainHex.rotate(importedHistory[MainHex.ct].rotate);
 			}
 		}
 	}
@@ -78,6 +78,6 @@ function update() {
 			i--;
 		}
 	}
-        MainHex.ct++;
-	count++;
+	
+	MainHex.ct++;
 }
