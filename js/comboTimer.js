@@ -26,7 +26,7 @@ function drawSide(startVertex,endVertex,fraction,offset){
 	} else {
 		ctx.strokeStyle = MainHex.lastColorScored;
 	}
-	ctx.lineWidth =4;
+	ctx.lineWidth =4*settings.scale;
 	var radius = (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth + 2;
 	var halfRadius = radius/2;
 	var triHeight = radius *(Math.sqrt(3)/2);

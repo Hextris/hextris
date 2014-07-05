@@ -172,6 +172,11 @@ function hideUIElements() {
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
 }
+function playTunes(){
+    var introAudio = document.getElementById("loop");
+    introAudio.play(); 
+
+}
 
 function init(b) {
 	if (b) {
@@ -188,8 +193,7 @@ function init(b) {
 		}, 7000);
 		clearSaveState();
 	}
-        document.getElementById("intro").play();
-	hideUIElements();
+        	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
 	document.getElementById("canvas").className = "";
