@@ -39,5 +39,5 @@ function clearSaveState() {
 }
 
 function isStateSaved() {
-	return localStorage.getItem("saveState") != "{}" && !localStorage.getItem("saveState") == undefined;
+	return localStorage.getItem("saveState") != "{}" && localStorage.getItem("saveState") != undefined;
 }
