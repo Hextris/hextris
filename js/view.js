@@ -160,7 +160,6 @@ function gameOverDisplay(){
 
 function pause(o) {
     var message;
-
     if (o) {
         message = '';
     } else {
@@ -178,11 +177,10 @@ function pause(o) {
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
         c.className = "blur";
-        if (message != 'paused') {
-            message = '';
+        if (message == 'paused') {
+            showText(message);
         }
 
-        showText(message);
         prevGameState = gameState;
         gameState = -1;
     }

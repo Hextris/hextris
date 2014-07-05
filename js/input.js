@@ -88,8 +88,12 @@ keypress.register_combo({
 
 $(document).ready(function(){
     $("#pauseBtn").on('touchstart mousedown', function() {
-        if (gameState != 1) {
+        if (gameState != 1 && gameState != -1) {
             return;
+        }
+
+        if ($('#helpScreen').is(":visible")) {
+            $('#helpScreen').fadeOut(150, "linear");
         }
 
         pause();
