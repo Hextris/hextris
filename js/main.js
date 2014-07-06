@@ -171,11 +171,17 @@ function hideUIElements() {
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
 }
+function loadListeners(){
+        document.getElementById('intro').addEventListener('ended', function(){
+                this.pause();
+                toggleAudio();
+        }, false);
+}
 function toggleAudio(){
-    var loopAudio = document.getElementById("loop");
-    if(loopAudio.paused) loopAudio.play(); 
-    else loopAudio.pause()
-    return loopAudio.paused
+        var loopAudio = document.getElementById("loop");
+        if(loopAudio.paused) loopAudio.play(); 
+        else loopAudio.pause()
+        return loopAudio.paused
 }
 
 function init(b) {
