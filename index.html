@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
 	</head>
-	<body onload="toggleAudio()">
+        <body onload="loadListeners()">
 		<canvas id="canvas"></canvas> 
 		<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
 			<h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
@@ -64,11 +64,11 @@
 				<a href = 'url'>Found a bug? Go here</a>
 			</p>
 		</div>
-		<div onClick="showHelp()" id="openSideBar"><i class="fa fa-info-circle fa-lg"></i><span id ='helpText'> <i class="fa fa-arrow-left"><b>  Help</b></span></div>
-                <audio id="intro">
+		<div onClick="showHelp()" id="openSideBar"><i class="fa fa-info-circle fa-lg"></i><span id ='helpText'> <i class="fa fa-arrow-left"><b>  Help</b></i></span></div>
+                <audio id="intro" autoplay>
                         <source src="sounds/intro.ogg" type="audio/ogg">
                 </audio >
-                <audio id="loop" autoplay loop="loop">
+                <audio id="loop" loop >
                         <source src="sounds/loop.ogg" type="audio/ogg">
                 </audio>
 		<div id="overlay" class="faded"></div>
