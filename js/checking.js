@@ -64,10 +64,11 @@ function consolidateBlocks(hex,side,index){
 			deletedBlocks.push(hex.blocks[arr[0]][arr[1]]);
 		}
 	}
+
 	// add scores
 	var now = MainHex.ct;
 	if(now - hex.lastCombo < 240 ){
-		settings.comboTime = waveone.nextGen/16.6666667 * 4;
+		settings.comboTime = waveone.nextGen/16.6666667 * 3.95;
 		hex.comboMultiplier += 1;
 		hex.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
