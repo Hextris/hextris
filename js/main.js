@@ -21,6 +21,8 @@ $(document).ready(function(){
 			}
 		}, 1);
 	});
+
+	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 });
 
 $(window).resize(scaleCanvas);
