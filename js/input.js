@@ -105,15 +105,30 @@ $(document).ready(function(){
         return false;
     });
     
-    $("#restartBtn").on('touchstart mousedown', function() {
-        if (gameState==2 || gameState==1 || importing == 1) {
-            init(1);
-        }
-        if (gameState===0) {
-            resumeGame();
-        }
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$("#restartBtn").on('touchstart', function() {
+			if (gameState==2 || gameState==1 || importing == 1) {
+				init(1);
+				canRestart=false;
+			}
+			else if (gameState===0) {
+				resumeGame();
+			}
 
-    });
+		});
+	}
+	else {
+		$("#restartBtn").on('mousedown', function() {
+			if (gameState==2 || gameState==1 || importing == 1) {
+				init(1);
+				canRestart=false;
+			}
+			else if (gameState===0) {
+				resumeGame();
+			}
+
+		});
+	}
 }, false);
 
 
