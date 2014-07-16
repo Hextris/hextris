@@ -32,12 +32,6 @@ function easeOutCubic(t, b, c, d) {
 	return c*((t=t/d-1)*t*t + 1) + b;
 }
 
-var colorSounds =  {"#e74c3c": new Audio("../sounds/lowest.ogg"),
-"#f1c40f":new Audio("../sounds/highest.ogg"),
-"#3498db":new Audio("../sounds/middle.ogg"),
-	"#2ecc71":new Audio("../sounds/highest.ogg") //fix this later
-};
-
 function renderText(x, y, fontSize, color, text, font) {
     ctx.save();
     if (!font) {
