@@ -104,15 +104,7 @@ $(document).ready(function(){
 
         return false;
     });
-    $("#volumeBtn").on('touchstart mousedown', function() {
-        if (toggleAudio()) {
-            $("#volumeBtn").html('<i class="fa fa-volume-off fa-2x"></i>');
-        } else {
-            $("#volumeBtn").html('<i class="fa fa-volume-up fa-2x"></i>');
-        }
-
-        return false;
-    });
+    
     $("#restartBtn").on('touchstart mousedown', function() {
         if (gameState==2 || gameState==1 || importing == 1) {
             init(1);
