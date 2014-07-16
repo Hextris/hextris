@@ -1,4 +1,4 @@
-function drawTimer(){
+function drawTimer() {
         var leftVertexes = [];
         var rightVertexes = [];
 	if(MainHex.ct - MainHex.lastCombo < settings.comboTime){
@@ -15,8 +15,8 @@ function drawTimer(){
 			}
 		}
 	}
-        if(rightVertexes.length !=0) drawSide(rightVertexes);
-        if(leftVertexes.length !=0) drawSide(leftVertexes);
+        if(rightVertexes.length !== 0) drawSide(rightVertexes);
+        if(leftVertexes.length !== 0) drawSide(leftVertexes);
 }
 
 function calcSide(startVertex,endVertex,fraction,offset){
