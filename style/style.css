@@ -59,14 +59,7 @@ button:focus {
     color:#000;
     cursor:pointer;
 }
-#volumeBtn {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    z-index: 3000;
-    color:#000;
-    cursor:pointer;
-}
+
 #pauseBtn {
 	position: absolute;
 	margin-bottom: 3px;

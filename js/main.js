@@ -173,24 +173,6 @@ function hideUIElements() {
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
 }
-function loadListeners(){
-        document.getElementById('intro').play();
-        document.getElementById('intro').addEventListener('ended', function(){
-                this.pause();
-                toggleAudio();
-        }, false);
-        document.getElementById('loop').addEventListener('ended', function(){
-                this.currentTime = 0;
-                this.play();
-        }, false);
-
-}
-function toggleAudio(){
-        var loopAudio = document.getElementById("loop");
-        if(loopAudio.paused) loopAudio.play(); 
-        else loopAudio.pause()
-        return loopAudio.paused
-}
 
 function init(b) {
 	if (b) {
