@@ -161,7 +161,7 @@ function resumeGame() {
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function(){
-		$('#helpText').fadeOut(150, "linear");
+		$('.helpText').fadeOut(150, "linear");
 	}, 7000);
 	if ($('#helpScreen').is(":visible")) {
 		$('#helpScreen').fadeOut(150, "linear");
@@ -176,8 +176,8 @@ function hideUIElements() {
 
 function init(b) {
 	if (b) {
-		if (!$('#helpText').is(":visible")) {
-			$('#helpText').fadeIn(150, "linear");
+		if (!$('.helpText').is(":visible")) {
+			$('.helpText').fadeIn(150, "linear");
 		}
 
 		if ($('#helpScreen').is(":visible")) {
@@ -185,7 +185,7 @@ function init(b) {
 		}
 
 		setTimeout(function() {
-			$('#helpText').fadeOut(150, "linear");
+			$('.helpText').fadeOut(150, "linear");
 		}, 7000);
 		clearSaveState();
 	}
@@ -345,7 +345,7 @@ function animLoop() {
 			}
 			render();
 			if (checkGameOver() && !importing) {
-				$('#helpText').fadeIn(200, "linear");
+				$('.helpText').fadeIn(200, "linear");
 				gameState = 2;
 				setTimeout(function(){
 					enableRestart();
