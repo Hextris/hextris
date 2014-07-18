@@ -1,32 +1,3 @@
-var colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
-var hexColorsToTintedColors = {
-    "#e74c3c":"rgb(241,163,155)",
-    "#f1c40f":"rgb(246,223,133)",
-    "#3498db":"rgb(151,201,235)",
-    "#2ecc71":"rgb(150,227,183)"
-};
-
-//legacy support
-var rgbToHex = {
-    "rgb(231,76,60)":"#e74c3c",
-    "rgb(241,196,15)":"#f1c40f",
-    "rgb(52,152,219)":"#3498db",
-    "rgb(46,204,113)":"#2ecc71"
-};
-
-//legacy support
-var rgbColorsToTintedColors = {
-    "rgb(231,76,60)":"rgb(241,163,155)",
-    "rgb(241,196,15)":"rgb(246,223,133)",
-    "rgb(52,152,219)":"rgb(151,201,235)",
-    "rgb(46,204,113)":"rgb(150,227,183)"
-};
-
-var hexagonBackgroundColor = 'rgb(236, 240, 241)';
-var hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
-var centerBlue = 'rgb(44,62,80)'; //tumblr?
-var angularVelocityConst = 4;
-
 // t: current time, b: begInnIng value, c: change In value, d: duration
 function easeOutCubic(t, b, c, d) {
 	return c*((t=t/d-1)*t*t + 1) + b;
@@ -46,8 +17,6 @@ function renderText(x, y, fontSize, color, text, font) {
     ctx.restore();
 }
 
-scoreOpacity = 0;
-var textOpacity=0;
 function drawScoreboard() {
     if (scoreOpacity < 1) {
         scoreOpacity += 0.01;
@@ -123,7 +92,6 @@ function toggleClass(element, active) {
     }
 }
 
-var prevGameState;
 function showText(text){
     var messages = {
         'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div>",
@@ -206,5 +174,3 @@ function pause(o) {
         gameState = -1;
     }
 }
-
-

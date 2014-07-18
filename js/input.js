@@ -1,91 +1,92 @@
-keypress.register_combo({
-    keys: "left",
-    on_keydown: function() {
-        if (MainHex && gameState !== 0) {
-            MainHex.rotate(1);
+function addKeyListeners() {
+    keypress.register_combo({
+        keys: "left",
+        on_keydown: function() {
+            if (MainHex && gameState !== 0) {
+                MainHex.rotate(1);
+            }
         }
-    }
-});
+    });
 
-keypress.register_combo({
-    keys: "right",
-    on_keydown: function() {
-        if (MainHex && gameState !== 0){
-            MainHex.rotate(-1);
+    keypress.register_combo({
+        keys: "right",
+        on_keydown: function() {
+            if (MainHex && gameState !== 0){
+                MainHex.rotate(-1);
+            }
         }
-    }
-});
+    });
 
 
-keypress.register_combo({
-    keys: "a",
-    on_keydown: function() {
-        if (MainHex && gameState !== 0) {
-            MainHex.rotate(1);
+    keypress.register_combo({
+        keys: "a",
+        on_keydown: function() {
+            if (MainHex && gameState !== 0) {
+                MainHex.rotate(1);
+            }
         }
-    }
-});
+    });
 
-keypress.register_combo({
-    keys: "d",
-    on_keydown: function() {
-        if (MainHex && gameState !== 0){
-            MainHex.rotate(-1);
+    keypress.register_combo({
+        keys: "d",
+        on_keydown: function() {
+            if (MainHex && gameState !== 0){
+                MainHex.rotate(-1);
+            }
         }
-    }
-});
+    });
 
-keypress.register_combo({
-    keys: "p",
-    on_keydown: function(){pause();}
-});
+    keypress.register_combo({
+        keys: "p",
+        on_keydown: function(){pause();}
+    });
 
-keypress.register_combo({
-    keys: "q",
-    on_keydown: function() {
-        if (devMode) toggleDevTools();
-    }
-});
-
-keypress.register_combo({
-    keys: "e",
-    on_keydown: function() {
-        if (devMode) exportHistory();
-    }
-});
-
-keypress.register_combo({
-    keys: "i",
-    on_keydown: function() {
-        if (devMode) importHistory();
-    }
-});
-
-keypress.register_combo({
-    keys: "`",
-    on_keydown: function() {
-        if (devMode) {
-            devMode = 0;
-        } else {
-            alert('Developer mode: On.\n\nPress "`" again to disable developer mode.');
-            devMode = 1;
+    keypress.register_combo({
+        keys: "q",
+        on_keydown: function() {
+            if (devMode) toggleDevTools();
         }
-    }
-});
+    });
 
-keypress.register_combo({
-    keys: "enter",
-    on_keydown: function() {
-        if (gameState==2 || gameState==1 || importing == 1) {
-            init(1);
+    keypress.register_combo({
+        keys: "e",
+        on_keydown: function() {
+            if (devMode) exportHistory();
         }
-        if (gameState===0) {
-            resumeGame();
-        }
-    }
-});
+    });
 
-$(document).ready(function(){
+    keypress.register_combo({
+        keys: "i",
+        on_keydown: function() {
+            if (devMode) importHistory();
+        }
+    });
+
+    keypress.register_combo({
+        keys: "`",
+        on_keydown: function() {
+            if (devMode) {
+                devMode = 0;
+            } else {
+                alert('Developer mode: On.\n\nPress "`" again to disable developer mode.');
+                devMode = 1;
+            }
+        }
+    });
+
+    keypress.register_combo({
+        keys: "enter",
+        on_keydown: function() {
+            if (gameState==2 || gameState==1 || importing == 1) {
+                init(1);
+            }
+            if (gameState===0) {
+                resumeGame();
+            }
+        }
+    });
+
+
     $("#pauseBtn").on('touchstart mousedown', function() {
         if (gameState != 1 && gameState != -1) {
             return;
@@ -104,33 +105,32 @@ $(document).ready(function(){
 
         return false;
     });
-    
-	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		$("#restartBtn").on('touchstart', function() {
-			if (gameState==2 || gameState==1 || importing == 1) {
-				init(1);
-				canRestart=false;
-			}
-			else if (gameState===0) {
-				resumeGame();
-			}
 
-		});
-	}
-	else {
-		$("#restartBtn").on('mousedown', function() {
-			if (gameState==2 || gameState==1 || importing == 1) {
-				init(1);
-				canRestart=false;
-			}
-			else if (gameState===0) {
-				resumeGame();
-			}
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $("#restartBtn").on('touchstart', function() {
+            if (gameState==2 || gameState==1 || importing == 1) {
+                init(1);
+                canRestart = false;
+            }
+            else if (gameState===0) {
+                resumeGame();
+            }
 
-		});
-	}
-}, false);
+        });
+    }
+    else {
+        $("#restartBtn").on('mousedown', function() {
+            if (gameState==2 || gameState==1 || importing == 1) {
+                init(1);
+                canRestart=false;
+            }
+            else if (gameState===0) {
+                resumeGame();
+            }
 
+        });
+    }
+}
 
 function handleClickTap(x) {
     if (gameState == 2 && canRestart) {

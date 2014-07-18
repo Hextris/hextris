@@ -1,6 +1,3 @@
-op=0;
-var saveState = localStorage.getItem("saveState") || "{}";
-if(saveState !== "{}"){op=1;}
 function render() {
 	var grey = '#bdc3c7';
 	if (gameState === 0) {

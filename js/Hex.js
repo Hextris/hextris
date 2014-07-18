@@ -160,11 +160,10 @@ function Hex(sideLength) {
 			this.angle += this.angularVelocity;
 		}
  
-        drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');	
+        drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
 	};
 }
 
 function arrayToColor(arr){
-        return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
+    return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
 }
-

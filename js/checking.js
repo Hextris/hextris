@@ -7,6 +7,7 @@ function search(twoD,oneD){
 	}
 	return false;
 }
+
 function floodFill(hex, side, index, deleting) {
 	if (hex.blocks[side] === undefined || hex.blocks[side][index] === undefined) {
 		//just makin sure stuff exists
