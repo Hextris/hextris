@@ -1,36 +1,3 @@
-var textShown = false;
-$(document).ready(function(){
-	scaleCanvas();
-	$('#startBtn').on('touchstart mousedown', function(){
-		if (importing == 1) {
-			init(1);
-		} else {
-			resumeGame();
-		}
-
-		setTimeout(function(){
-			if(settings.platform == "mobile"){
-				document.body.addEventListener('touchstart', function(e) {
-					handleClickTap(e.changedTouches[0].clientX);
-				}, false);
-			}
-			else {
-				document.body.addEventListener('mousedown', function(e) {
-					handleClickTap(e.clientX);
-				}, false);
-			}
-		}, 1);
-	});
-
-	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-});
-
-$(window).resize(scaleCanvas);
-$(window).unload(function(){
-	if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
-	else localStorage.clear();
-});
-
 function scaleCanvas() {
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
@@ -65,93 +32,9 @@ function scaleCanvas() {
 	}
 }
 
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
-var trueCanvas = {width:canvas.width,height:canvas.height};
-
-window.requestAnimFrame = (function() {
-	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
-		window.setTimeout(callback, 1000 / framerate);
-	};
-})();
-
-$('#clickToExit').bind('click', toggleDevTools);
-
 function toggleDevTools() {
 	$('#devtools').toggle();
 }
-
-var settings;
-
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-	settings = {
-		platform:"mobile",
-		startDist:227,
-		creationDt:40,
-		baseScale:1.4,
-		scale:1,
-		prevScale:1,
-		baseHexWidth:87,
-		hexWidth:87,
-		baseBlockHeight:20,
-		blockHeight:20,
-		rows:6,
-		speedModifier:0.7,
-		creationSpeedModifier:0.7,
-		comboTime:240
-	};
-} else {
-	settings = {
-		platform:"nonmobile",
-		baseScale:1,
-		startDist:340,
-		creationDt:9,
-		scale:1,
-		prevScale:1,
-		hexWidth:65,
-		baseHexWidth:87,
-		baseBlockHeight:20,
-		blockHeight:15,
-		rows:8,
-		speedModifier:0.65,
-		creationSpeedModifier:0.55,
-		comboTime:240
-	};
-
-	$("#inst_main_body").html("The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon<br><br>Either press the right and left arrow keys or tap the left and right sides of the screen to rotate the Hexagon<br><br>Clear blocks by making 3 or more blocks of the same color touch<br><br>Get points by clearing blocks<br><br>Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored<span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon<br><br>Pause by pressing <i class = 'fa fa-pause'></i> or the letter <b>p</b><br>Restart by pressing <i class = 'fa fa-refresh'></i> or <b>enter</b><br>Bring up this menu by pressing <i class = 'fa fa-info-circle'><br><br><a href = 'url'>Found a bug? Go here</a");
-}
-
-var framerate = 60;
-var history = {};
-var score = 0;
-var isGameOver = 3;
-var scoreAdditionCoeff = 1;
-var prevScore = 0;
-var numHighScores = 3;
-
-var highscores = [0, 0, 0];
-if(localStorage.getItem('highscores'))
-	highscores = localStorage.getItem('highscores').split(',').map(Number);
-
-localStorage.setItem('highscores', highscores);
-
-var blocks = [];
-var MainHex;
-
-var gdx = 0;
-var gdy = 0;
-
-var devMode = 0;
-var lastGen;
-var prevTimeScored;
-var nextGen;
-var spawnLane = 0;
-var importing = 0;
-var importedHistory;
-var startTime;
-
-var gameState;
-setStartScreen();
 
 function resumeGame() {
 	gameState = 1;
@@ -189,7 +72,8 @@ function init(b) {
 		}, 7000);
 		clearSaveState();
 	}
-        	hideUIElements();
+	
+	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
 	document.getElementById("canvas").className = "";
@@ -284,26 +168,6 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
 }
 
-function importHistory(j) {
-	if (!j) {
-		try {
-			var ih = JSON.parse(prompt("Import JSON"));
-			if (ih) {
-				init(1);
-				importing = 1;
-				importedHistory = ih;
-			}
-		}
-		catch (e) {
-			alert("Error importing JSON");
-		}
-	} else {
-		init();
-		importing = 1;
-		importedHistory = j;
-	}
-}
-
 function exportHistory() {
 	$('#devtoolsText').html(JSON.stringify(history));
 	toggleDevTools();
@@ -311,12 +175,17 @@ function exportHistory() {
 
 function setStartScreen() {
 	$('#startBtn').show();
+	init();
 	if (isStateSaved()) {
-		init();
 		importing = 0;
 	} else {
-		importHistory(introJSON);
+		importing = 1;
 	}
+
+	$('#pauseBtn').show();
+	$('#restartBtn').show();
+	$('#startBtn').show();
+
 	gameState = 0;
 	requestAnimFrame(animLoop);
 }
@@ -349,7 +218,7 @@ function animLoop() {
 				gameState = 2;
 				setTimeout(function(){
 					enableRestart();
-				}, 200)
+				}, 200);
 				canRestart = 0;
 				clearSaveState();
 			}
@@ -431,11 +300,6 @@ function checkGameOver() {
 	return false;
 }
 
-window.onblur = function (e) {
-	if (gameState==1) {
-		pause();
-	}
-};
 function showHelp(){
 	if(gameState != 0){
 		pause(1);

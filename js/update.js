@@ -1,18 +1,7 @@
 //remember to update history function to show the respective iter speeds
 function update() {
 	var now = Date.now();
-	if (importing) {
-		if (importedHistory[MainHex.ct]) {
-			if (importedHistory[MainHex.ct].block) {
-				addNewBlock(importedHistory[MainHex.ct].block.blocklane, importedHistory[MainHex.ct].block.color, importedHistory[MainHex.ct].block.iter, importedHistory[MainHex.ct].block.distFromHex, importedHistory[MainHex.ct].block.settled);
-			}
-
-			if (importedHistory[MainHex.ct].rotate) {
-				MainHex.rotate(importedHistory[MainHex.ct].rotate);
-			}
-		}
-	}
-	else if (gameState == 1) {
+	if (gameState == 1) {
 		waveone.update();
 		if (now - waveone.prevTimeScored > 1000) {
 			waveone.prevTimeScored = now;
