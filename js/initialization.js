@@ -1,6 +1,6 @@
 $(document).ready(initialize);
 
-function initialize() {
+function initialize(a) {
 //view.js
 	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
 	window.hexColorsToTintedColors = {
@@ -116,58 +116,59 @@ function initialize() {
 	window.gdy = 0;
 
 	window.devMode = 0;
-	window.lastGen;
-	window.prevTimeScored;
-	window.nextGen;
+	window.lastGen = undefined;
+	window.prevTimeScored = undefined;
+	window.nextGen = undefined;
 	window.spawnLane = 0;
 	window.importing = 0;
-	window.importedHistory;
-	window.startTime;
+	window.importedHistory = undefined;
+	window.startTime = undefined;
 
 	window.gameState;
 	setStartScreen();
-
-	window.onblur = function (e) {
-		if (gameState==1) {
-			pause();
-		}
-	};
-
-	$('#startBtn').on('touchstart mousedown', function(){
-		if (importing == 1) {
-			init(1);
-		} else {
-			resumeGame();
-		}
-
-		setTimeout(function(){
-			if(settings.platform == "mobile"){
-				document.body.addEventListener('touchstart', function(e) {
-					handleClickTap(e.changedTouches[0].clientX);
-				}, false);
+	if (a != 1) {
+		window.onblur = function (e) {
+			if (gameState==1) {
+				pause();
 			}
-			else {
-				document.body.addEventListener('mousedown', function(e) {
-					handleClickTap(e.clientX);
-				}, false);
+		};
+
+		$('#startBtn').on('touchstart mousedown', function(){
+			if (importing == 1) {
+				init(1);
+			} else {
+				resumeGame();
 			}
-		}, 1);
-	});
+	
+			setTimeout(function(){
+				if(settings.platform == "mobile"){
+					document.body.addEventListener('touchstart', function(e) {
+						handleClickTap(e.changedTouches[0].clientX);
+					}, false);
+				}
+				else {
+					document.body.addEventListener('mousedown', function(e) {
+						handleClickTap(e.clientX);
+					}, false);
+				}
+			}, 1);
+		});
 
-	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-	$(window).resize(scaleCanvas);
-	$(window).unload(function(){
-		if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
-		else localStorage.clear();
-	});
+		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+		$(window).resize(scaleCanvas);
+		$(window).unload(function(){
+			if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+			else localStorage.clear();
+		});
 
-	addKeyListeners();
+		addKeyListeners();
 
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
-	ga('send', 'pageview');
+		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
+		ga('send', 'pageview');
+	}
 }

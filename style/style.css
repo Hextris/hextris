@@ -168,6 +168,11 @@ and (max-device-width : 480px) {
         text-align:center;
     }
 
+    .centeredSubSubHeader {
+        font-size:.7em; 
+        text-align:center;
+    }
+
     #overlay {
         margin-top: -20%;
     } 
@@ -177,6 +182,11 @@ and (max-device-width : 480px) {
 .centeredSubHeader {
    font-size:2em; 
    text-align:center;
+}
+
+.centeredSubSubHeader {
+    font-size:1.4em; 
+    text-align:center;
 }
 
 .blur {

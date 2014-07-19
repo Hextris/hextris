@@ -250,7 +250,13 @@ function animLoop() {
 			render();
 			break;
 
+		case 4:
+			setTimeout(function(){initialize(1)}, 1);
+			render();
+			return;
+
 		default:
+			initialize();
 			setStartScreen();
 			break;
 	}
