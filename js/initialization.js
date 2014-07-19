@@ -2,6 +2,11 @@ $(document).ready(initialize);
 
 function initialize(a) {
 //view.js
+	canRestart = 0;
+	setTimeout(function(){
+		canRestart = 1;
+	}, 100);
+
 	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
 	window.hexColorsToTintedColors = {
 		"#e74c3c":"rgb(241,163,155)",
@@ -133,8 +138,13 @@ function initialize(a) {
 				pause();
 			}
 		};
+
 		$('#startBtn').off();
 		$('#startBtn').on('touchstart mousedown', function(){
+			if (!canRestart) {
+				return;
+			}
+
 			if (importing == 1) {
 				init(1);
 			} else {
@@ -157,7 +167,7 @@ function initialize(a) {
 					} catch (e) {
 
 					}
-					
+
 					document.body.addEventListener('mousedown', handleClick, false);
 				}
 			}, 1);
@@ -179,6 +189,8 @@ function initialize(a) {
 
 		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
 		ga('send', 'pageview');
+	} else {
+		setTimeout(enableRestart, 100);
 	}
 }
 

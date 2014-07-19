@@ -169,15 +169,27 @@ function showText(text){
     if (text == 'paused') {
         $(".centeredSubSubHeader").on('mousedown', function() {
             localStorage.setItem("saveState", exportSaveState());
-            setTimeout(function(){gameState = 4;}, 2);
+            $('#restartBtn').hide();
+            canRestart = false;
+            setTimeout(setMainMenu, 2);
 
         });
     } else if (text == 'pausedMobile') {
         $(".centeredSubSubHeader").on('touchstart', function() {
             localStorage.setItem("saveState", exportSaveState());
-            setTimeout(function(){gameState = 4;}, 2);
-
+            $('#restartBtn').hide();
+            setTimeout(setMainMenu, 2);
+            canRestart = false;
         });
+    }
+}
+
+function setMainMenu() {
+    gameState = 4;$('#restartBtn').show();
+    if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
+        $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
+    } else {
+        $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
     }
 }
 
