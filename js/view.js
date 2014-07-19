@@ -185,7 +185,12 @@ function showText(text){
 }
 
 function setMainMenu() {
-    gameState = 4;$('#restartBtn').show();
+    gameState = 4;
+    canRestart = false;
+    setTimeout(function(){
+        canRestart = 's';
+    }, 500);
+    $('#restartBtn').show();
     if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
         $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
     } else {
