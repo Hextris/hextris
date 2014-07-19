@@ -170,7 +170,7 @@ function initialize(a) {
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 		$(window).resize(scaleCanvas);
 		$(window).unload(function(){
-			if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+			if(gameState ==1 || gameState ==-1 || gameState ==0) localStorage.setItem("saveState", exportSaveState());
 			else localStorage.clear();
 		});
 
