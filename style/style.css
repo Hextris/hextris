@@ -128,7 +128,6 @@ and (max-device-width : 480px) {
 }
 
 #overlay {
-    transition: all 0.3s ease;
     position:absolute;
     height:20%;
     width:100%;

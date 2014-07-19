@@ -133,7 +133,6 @@ function initialize() {
 		}
 	};
 
-	debugger;
 	$('#startBtn').on('touchstart mousedown', function(){
 		if (importing == 1) {
 			init(1);
