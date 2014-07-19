@@ -30,7 +30,7 @@ function render() {
 
 	MainHex.draw();
         if (gameState ==1 || gameState ==-1 || gameState === 0) {
-                drawScoreboard();
+            drawScoreboard();
         }
 
 	for (i = 0; i < MainHex.texts.length; i++) {
@@ -41,11 +41,18 @@ function render() {
 		}
 	}
 
+	if (gameState == -1) {
+		ctx.globalAlpha = 0.9;
+		ctx.fillStyle = 'rgb(236,240,241)';
+		ctx.fillRect(0, 0, trueCanvas.width, trueCanvas.height);
+		ctx.globalAlpha = 1;
+	}
+
 	settings.prevScale = settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 
-	if (MainHex.ct < 400 && (gameState != 0) && !MainHex.playThrough) {
+	if ((MainHex.ct < 400 && (gameState !== 0) && !MainHex.playThrough) || gameState == -1) {
 		if (MainHex.ct > 350) {
 			ctx.globalAlpha = (50 - (MainHex.ct - 350))/50;
 		}
@@ -54,21 +61,26 @@ function render() {
 			ctx.globalAlpha = (MainHex.ct)/50;
 		}
 
-		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 208 * settings.scale, 35, '#2c3e50', 'Controls', '35px Roboto');
-		renderText((trueCanvas.width)/2 - 85 * settings.scale, (trueCanvas.height)/2 - 169 * settings.scale, 20, '#2c3e50', 'Rotation:', '20px Roboto');
-		renderText((trueCanvas.width)/2 - 21 * settings.scale, (trueCanvas.height)/2 - 141 * settings.scale, 12, '#2c3e50', 'Left', '12px Roboto');
-		renderText((trueCanvas.width)/2 + 25 * settings.scale, (trueCanvas.height)/2 - 141 * settings.scale, 12, '#2c3e50', 'Right', '12px Roboto');
-		drawKey("right",(trueCanvas.width)/2 + 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 195 * settings.scale);
-		drawKey("left",(trueCanvas.width)/2 - 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 195 * settings.scale);
-		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 125 * settings.scale, 20, '#2c3e50', 'Rotate the Hexagon to make combos of 3+ touching blocks!', '20px Roboto');
-		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 105 * settings.scale, 20, '#2c3e50', 'Make combos in a row to receive a score multiplier!', '20px Roboto');
-		renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 85 * settings.scale, 20, '#2c3e50', 'Don\'t let the blocks stack outside of the gray Hexagon!', '20px Roboto');
+		renderBeginningText();
 		ctx.globalAlpha = 1;
 	}
 }
 
+function renderBeginningText() {
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 208 * settings.scale, 35, '#2c3e50', 'Controls', '35px Roboto');
+	renderText((trueCanvas.width)/2 - 85 * settings.scale, (trueCanvas.height)/2 - 169 * settings.scale, 20, '#2c3e50', 'Rotation:', '20px Roboto');
+	renderText((trueCanvas.width)/2 - 21 * settings.scale, (trueCanvas.height)/2 - 141 * settings.scale, 12, '#2c3e50', 'Left', '12px Roboto');
+	renderText((trueCanvas.width)/2 + 25 * settings.scale, (trueCanvas.height)/2 - 141 * settings.scale, 12, '#2c3e50', 'Right', '12px Roboto');
+	drawKey("right",(trueCanvas.width)/2 + 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 195 * settings.scale);
+	drawKey("left",(trueCanvas.width)/2 - 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 195 * settings.scale);
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 125 * settings.scale, 20, '#2c3e50', 'Rotate the Hexagon to make combos of 3+ touching blocks!', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 105 * settings.scale, 20, '#2c3e50', 'Make combos in a row to receive a score multiplier!', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 85 * settings.scale, 20, '#2c3e50', 'Don\'t let the blocks stack outside of the gray Hexagon!', '20px Roboto');
+}
+
 function drawKey(key, x, y) {
 	ctx.save();
+	ctx.beginPath();
 	ctx.fillStyle = '#2c3e50';
 	ctx.strokeStyle = '#2c3e50';
 	ctx.lineWidth = 4 * settings.scale;

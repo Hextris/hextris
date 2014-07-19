@@ -1,6 +1,6 @@
 // t: current time, b: begInnIng value, c: change In value, d: duration
 function easeOutCubic(t, b, c, d) {
-	return c*((t=t/d-1)*t*t + 1) + b;
+    return c*((t=t/d-1)*t*t + 1) + b;
 }
 
 function renderText(x, y, fontSize, color, text, font) {
@@ -118,19 +118,25 @@ function showText(text){
 
         messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
     
-        if (allZ)
-        for (i = 0; i < highscores.length; i++) {
-            if (highscores[i] != 0) {
-                allZ = 0;
+        if (allZ) {
+            for (i = 0; i < highscores.length; i++) {
+                if (highscores[i] != 0) {
+                    allZ = 0;
+                }
             }
         }
     }
 
     var pt = document.getElementById("overlay");
     pt.className = 'unfaded';
-
-    if (text == 'paused' && settings.platform == 'mobile') {
-        text = 'pausedMobile';
+    
+    if (text == 'paused') {
+        $(pt).css('margin-top','-5%');
+        if (settings.platform == 'mobile') {
+            text = 'pausedMobile';
+        }
+    } else {
+        $(pt).css('margin-top','-10%');
     }
 
     pt.innerHTML = messages[text];
@@ -158,14 +164,10 @@ function pause(o) {
     var c = document.getElementById("canvas");
     if (gameState == -1 ) {
         hideText();
-        c.className = '';
-        setTimeout(function(){
-            gameState = prevGameState;
-        }, 300);
+        gameState = prevGameState;
 
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
-        c.className = "blur";
         if (message == 'paused') {
             showText(message);
         }
