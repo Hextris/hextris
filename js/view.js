@@ -94,8 +94,8 @@ function toggleClass(element, active) {
 
 function showText(text){
     var messages = {
-        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div>",
-        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div>",
+        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'><div class = 'centeredSubSubHeader'>Click here for the menu!</div></div>",
+        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div><div style='height:100px;line-height:100px;cursor:pointer;'><div class = 'centeredSubSubHeader'>Tap here for the menu!</div></div>",
         'start':"<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
         'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
     };
@@ -140,6 +140,45 @@ function showText(text){
     }
 
     pt.innerHTML = messages[text];
+
+
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $("#restartBtn").on('touchstart', function() {
+            if (gameState==2 || gameState==1 || importing == 1) {
+                init(1);
+                canRestart = false;
+            }
+            else if (gameState===0) {
+                resumeGame();
+            }
+
+        });
+    }
+    else {
+        $("#restartBtn").on('mousedown', function() {
+            if (gameState==2 || gameState==1 || importing == 1) {
+                init(1);
+                canRestart = false;
+            }
+            else if (gameState===0) {
+                resumeGame();
+            }
+        });
+    }
+
+    if (text == 'paused') {
+        $(".centeredSubSubHeader").on('mousedown', function() {
+            pause();
+            setTimeout(function(){gameState = 4;}, 1);
+
+        });
+    } else if (text == 'pausedMobile') {
+        $(".centeredSubSubHeader").on('touchstart', function() {
+            pause();
+            setTimeout(function(){gameState = 4;}, 1);
+
+        });
+    }
 }
 
 function hideText(text){
