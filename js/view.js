@@ -104,7 +104,7 @@ function showText(text){
         var allZ = 1;
         var i;
         for (i = 0; i < 3; i++) {
-            if (highscores[i] != undefined && highscores[i] != 0) {
+            if (highscores[i] !== undefined && highscores[i] != 0) {
                 messages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
             }
         }
