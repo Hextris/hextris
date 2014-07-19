@@ -126,13 +126,14 @@ function initialize(a) {
 
 	window.gameState;
 	setStartScreen();
+
 	if (a != 1) {
 		window.onblur = function (e) {
 			if (gameState==1) {
 				pause();
 			}
 		};
-
+		$('#startBtn').off();
 		$('#startBtn').on('touchstart mousedown', function(){
 			if (importing == 1) {
 				init(1);
@@ -142,14 +143,22 @@ function initialize(a) {
 	
 			setTimeout(function(){
 				if(settings.platform == "mobile"){
-					document.body.addEventListener('touchstart', function(e) {
-						handleClickTap(e.changedTouches[0].clientX);
-					}, false);
+					try {
+						document.body.removeEventListener('touchstart', handleTap ,false);
+					} catch (e) {
+
+					}
+
+					document.body.addEventListener('touchstart', handleTap, false);
 				}
 				else {
-					document.body.addEventListener('mousedown', function(e) {
-						handleClickTap(e.clientX);
-					}, false);
+					try {
+						document.body.removeEventListener('mousedown', handleClick ,false);
+					} catch (e) {
+
+					}
+					
+					document.body.addEventListener('mousedown', handleClick, false);
 				}
 			}, 1);
 		});
@@ -171,4 +180,12 @@ function initialize(a) {
 		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
 		ga('send', 'pageview');
 	}
+}
+
+function handleTap(e) {
+	handleClickTap(e.changedTouches[0].clientX);
+}
+
+function handleClick(e) {
+	handleClickTap(e.clientX);
 }
