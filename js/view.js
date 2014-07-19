@@ -131,12 +131,9 @@ function showText(text){
     pt.className = 'unfaded';
     
     if (text == 'paused') {
-        $(pt).css('margin-top','-5%');
         if (settings.platform == 'mobile') {
             text = 'pausedMobile';
         }
-    } else {
-        $(pt).css('margin-top','-10%');
     }
 
     pt.innerHTML = messages[text];

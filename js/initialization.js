@@ -1,4 +1,7 @@
-$(document).ready(initialize);
+
+$(document).ready(function(){
+	initialize();
+});
 
 function initialize(a) {
 //view.js
@@ -183,6 +186,16 @@ function initialize(a) {
 
 		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
 		ga('send', 'pageview');
+
+		document.addEventListener("pause", handlePause, false);
+		document.addEventListener("backbutton", handlePause, false);
+		document.addEventListener("menubutton", handlePause, false); //menu button on android
+	}
+}
+
+function handlePause() {
+	if (gameState == 1 || gameState == 2) {
+		pause()
 	}
 }
 

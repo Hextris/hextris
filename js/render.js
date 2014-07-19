@@ -52,7 +52,7 @@ function render() {
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 
-	if ((MainHex.ct < 400 && (gameState !== 0) && !MainHex.playThrough) || gameState == -1) {
+	if ((MainHex.ct < 400 && (gameState !== 0) && !MainHex.playThrough)) {
 		if (MainHex.ct > 350) {
 			ctx.globalAlpha = (50 - (MainHex.ct - 350))/50;
 		}
