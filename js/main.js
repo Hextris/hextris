@@ -44,7 +44,9 @@ function resumeGame() {
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function(){
-		$('.helpText').fadeOut(150, "linear");
+		if (gameState == 1 || gameState == 2) {
+			$('.helpText').fadeOut(150, "linear");
+		}
 	}, 7000);
 	if ($('#helpScreen').is(":visible")) {
 		$('#helpScreen').fadeOut(150, "linear");
@@ -219,6 +221,11 @@ function animLoop() {
 				setTimeout(function(){
 					enableRestart();
 				}, 200);
+
+				if ($('#helpScreen').is(':visible')) {
+					$('#helpScreen').fadeOut(150, "linear");
+				}
+
 				canRestart = 0;
 				clearSaveState();
 			}
@@ -280,8 +287,8 @@ function updateHighScore(){
 	}
 
 	localStorage.setItem('highscores', highscores);
-
 }
+
 function isInfringing(hex){
 	for(var i=0;i<hex.sides;i++){
 		var subTotal=0;
@@ -307,7 +314,7 @@ function checkGameOver() {
 }
 
 function showHelp(){
-	if(gameState != 0){
+	if (gameState == 1 || gameState == 2) {
 		pause(1);
 	}
 
