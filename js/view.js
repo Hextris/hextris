@@ -210,8 +210,20 @@ function gameOverDisplay(){
     showText('gameover');
 }
 
+function togglePlayIcon (){
+	if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
+		$("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
+	} else {
+		$("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
+	}
+
+	return false;
+}
+
+
 function pause(o) {
     var message;
+	togglePlayIcon();
     if (o) {
         message = '';
     } else {
