@@ -274,14 +274,11 @@ function enableRestart() {
 }
 
 function updateHighScore(){
-	if(localStorage.getItem('highscores')){
-		highscores = localStorage.getItem('highscores').split(',').map(Number);
-	}
-
-	for (var i = 0; i < numHighScores; i++) {
-		if (highscores[i] <= score) {
-			highscores.splice(i, 0, score);
-			highscores = highscores.slice(0,-1);
+	//debugger;
+	for(var i = 0; i<numHighScores;i++) {
+		if(highscores[i]<=score) {
+			highscores.splice(i,0,score);
+			highscores = highscores.slice(0,3);
 			break;
 		}
 	}
@@ -305,7 +302,6 @@ function isInfringing(hex){
 function checkGameOver() {
 	for (var i = 0; i < MainHex.sides; i++) {
 		if (isInfringing(MainHex)) {
-			updateHighScore();
 			gameOverDisplay();
 			return true;
 		}
