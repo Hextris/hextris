@@ -90,7 +90,7 @@ button:focus {
 #helpScreen {
 	height:480px;
 	width:320px;
-	z-index:2999;
+	z-index:3001;
 	position:fixed;
 	top:18px;
     margin:0;
@@ -138,6 +138,10 @@ and (max-device-width : 480px) {
     z-index:3000;
     color:#000;
     text-align:center;
+}
+
+.helpText {
+    z-index:3001;
 }
 
 .faded {
