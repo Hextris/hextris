@@ -85,26 +85,19 @@ function addKeyListeners() {
             }
         }
     });
+	$("#pauseBtn").on('touchstart mousedown', function() {
+		if (gameState != 1 && gameState != -1) {
+			return;
+		}
 
+		if ($('#helpScreen').is(":visible")) {
+			$('#helpScreen').fadeOut(150, "linear");
+		}
 
-    $("#pauseBtn").on('touchstart mousedown', function() {
-        if (gameState != 1 && gameState != -1) {
-            return;
-        }
+		pause();
+		return false;
+	});
 
-        if ($('#helpScreen').is(":visible")) {
-            $('#helpScreen').fadeOut(150, "linear");
-        }
-
-        pause();
-        if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
-            $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
-        } else {
-            $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
-        }
-
-        return false;
-    });
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         $("#restartBtn").on('touchstart', function() {
@@ -131,7 +124,6 @@ function addKeyListeners() {
         });
     }
 }
-
 function handleClickTap(x) {
     if (gameState == 2 && canRestart) {
         init(1);
