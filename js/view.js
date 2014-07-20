@@ -215,12 +215,18 @@ function pause(o) {
     }
 
     var c = document.getElementById("canvas");
-    if (gameState == -1 ) {
+    if (gameState == -1) {
+        if ($('#helpScreen').is(':visible')) {
+            $('#helpScreen').fadeOut(150, "linear");
+        }
+
+        $('.helpText').hide();
         hideText();
         gameState = prevGameState;
 
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
+        $('.helpText').show();
         if (message == 'paused') {
             showText(message);
         }

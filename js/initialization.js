@@ -141,7 +141,10 @@ function initialize(a) {
 		$('#startBtn').off();
 		$('#startBtn').on('touchstart mousedown', function(){
 			if (!canRestart) return false;
-			debugger;
+			if ($('#helpScreen').is(':visible')) {
+				$('#helpScreen').fadeOut(150, "linear");
+			}
+
 			if (importing == 1) {
 				init(1);
 			} else {
@@ -173,17 +176,14 @@ function initialize(a) {
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 		$(window).resize(scaleCanvas);
 		$(window).unload(function(){
-			if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
+		
+		if(gameState ==1 || gameState ==-1) localStorage.setItem("saveState", exportSaveState());
 			else localStorage.clear();
 		});
 
 		addKeyListeners();
 
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
 		ga('send', 'pageview');
 
@@ -195,7 +195,7 @@ function initialize(a) {
 
 function handlePause() {
 	if (gameState == 1 || gameState == 2) {
-		pause()
+		pause();
 	}
 }
 
