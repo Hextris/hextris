@@ -184,7 +184,7 @@ function setStartScreen() {
 		importing = 1;
 	}
 
-	$('#pauseBtn').show();
+	$('#pauseBtn').hide();
 	$('#restartBtn').show();
 	$('#startBtn').show();
 
