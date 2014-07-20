@@ -103,9 +103,10 @@ function showText(text){
     if (text == 'gameover') {
         var allZ = 1;
         var i;
+		console.log(highscores);
         for (i = 0; i < 3; i++) {
             if (highscores[i] !== undefined && highscores[i] != 0) {
-                messages['gameover'] += "<tr> <th class='tg-031e'>1.</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
+                messages['gameover'] += "<tr> <th class='tg-031e'>"+(i+1)+".</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
             }
         }
     
@@ -204,6 +205,7 @@ function hideText(text){
     pt.innerHTML = '';
 }
 function gameOverDisplay(){
+	updateHighScore();
     var c = document.getElementById("canvas");
     c.className = "blur";
     showText('gameover');
