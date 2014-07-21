@@ -1,0 +1,7 @@
+Default-568h@2x~iphone.png (640x1136 pixels)
+Default-Landscape@2x~ipad.png (2048x1496 pixels)
+Default-Landscape~ipad.png (1024x748 pixels)
+Default-Portrait@2x~ipad.png (1536x2008 pixels)
+Default-Portrait~ipad.png (768x1004 pixels)
+Default@2x~iphone.png (640x960 pixels)
+Default~iphone.png (320x480 pixels)
