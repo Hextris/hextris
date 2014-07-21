@@ -73,7 +73,6 @@ function initialize(a) {
 			comboTime:240
 		};
 	} else {
-		$('body').append('<iframe style="z-index:40000; position:absolute; left:calc( 50% - 24px ); bottom:5px;"src="http://ghbtns.com/github-btn.html?user=Hextris&repo=Hextris&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>');
 		settings = {
 			platform:"nonmobile",
 			baseScale:1,
