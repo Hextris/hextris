@@ -252,3 +252,12 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+#bottombar {
+	padding:0;
+	position:absolute;
+	width:40%;
+	text-align:center;
+	left:30%;
+	bottom:10px;
+	z-index:400000;
+}
