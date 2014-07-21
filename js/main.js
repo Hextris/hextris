@@ -58,6 +58,7 @@ function hideUIElements() {
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
 	$("#attributions").hide();
+	$("#bottombar").hide();
 }
 
 function init(b) {
@@ -189,6 +190,7 @@ function setStartScreen() {
 	$('#restartBtn').show();
 	$('#startBtn').show();
 	$('#attributions').show();
+	$("#bottombar").show();
 
 	gameState = 0;
 	requestAnimFrame(animLoop);
