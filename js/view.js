@@ -94,8 +94,8 @@ function toggleClass(element, active) {
 
 function showText(text){
     var messages = {
-        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'><div class = 'centeredSubSubHeader'>Click here for the main menu!</div></div>",
-        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div><div style='height:100px;line-height:100px;cursor:pointer;'><div class = 'centeredSubSubHeader'>Tap here for the main menu!</div></div>",
+        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
+        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
         'start':"<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
         'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
     };
@@ -164,22 +164,6 @@ function showText(text){
         });
     }
 
-    if (text == 'paused') {
-        $(".centeredSubSubHeader").on('mousedown', function() {
-            localStorage.setItem("saveState", exportSaveState());
-            $('#restartBtn').hide();
-            canRestart = false;
-            setTimeout(setMainMenu, 2);
-
-        });
-    } else if (text == 'pausedMobile') {
-        $(".centeredSubSubHeader").on('touchstart', function() {
-            localStorage.setItem("saveState", exportSaveState());
-            $('#restartBtn').hide();
-            setTimeout(setMainMenu, 2);
-            canRestart = false;
-        });
-    }
 }
 
 function setMainMenu() {
@@ -203,6 +187,7 @@ function hideText(text){
 }
 function gameOverDisplay(){
 	updateHighScore();
+	$("#attributions").show();
     var c = document.getElementById("canvas");
     c.className = "blur";
     showText('gameover');
