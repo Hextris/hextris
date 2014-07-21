@@ -49,32 +49,6 @@ function addKeyListeners() {
     });
 
     keypress.register_combo({
-        keys: "e",
-        on_keydown: function() {
-            if (devMode) exportHistory();
-        }
-    });
-
-    keypress.register_combo({
-        keys: "i",
-        on_keydown: function() {
-            if (devMode) importHistory();
-        }
-    });
-
-    keypress.register_combo({
-        keys: "`",
-        on_keydown: function() {
-            if (devMode) {
-                devMode = 0;
-            } else {
-                alert('Developer mode: On.\n\nPress "`" again to disable developer mode.');
-                devMode = 1;
-            }
-        }
-    });
-
-    keypress.register_combo({
         keys: "enter",
         on_keydown: function() {
             if (gameState==2 || gameState==1 || importing == 1) {
