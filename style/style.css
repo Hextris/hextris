@@ -260,19 +260,19 @@ body {
 #bottombar {
 	padding:0;
 	position:absolute;
-	width:60%;
+	width:100%;
 	text-align:center;
-	left:20%;
+	left:0%;
 	bottom:10px;
-	z-index:400000;
+	z-index:98;
 }
 #attributions {
 	color:#000;
 	position:absolute;
-	width:50%;
-	left: 25%;
+	width:100%;
+	left: 0%;
 	top: 70%;
 	text-align:center;
 	font-size:3vmin;
-	z-index:400000;
+	z-index:98;
 }
