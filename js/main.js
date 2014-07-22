@@ -44,7 +44,7 @@ function resumeGame() {
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function(){
-		if (gameState == 1 || gameState == 2) {
+		if ((gameState == 1 || gameState == 2) && !$('#helpScreen').is(':visible')) {
 			$('.helpText').fadeOut(150, "linear");
 		}
 	}, 7000);
