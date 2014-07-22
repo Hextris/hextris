@@ -63,6 +63,7 @@ function hideUIElements() {
 
 function init(b) {
 	if (b) {
+		hidebottombar();
 		if (!$('.helpText').is(":visible")) {
 			$('.helpText').fadeIn(150, "linear");
 		}
@@ -229,7 +230,7 @@ function animLoop() {
 				if ($('#helpScreen').is(':visible')) {
 					$('#helpScreen').fadeOut(150, "linear");
 				}
-
+				showbottombar();
 				canRestart = 0;
 				clearSaveState();
 			}
