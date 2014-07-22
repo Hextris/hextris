@@ -44,7 +44,7 @@ function resumeGame() {
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function(){
-		if (gameState == 1 || gameState == 2) {
+		if ((gameState == 1 || gameState == 2) && !$('#helpScreen').is(':visible')) {
 			$('.helpText').fadeOut(150, "linear");
 		}
 	}, 7000);
@@ -235,7 +235,6 @@ function animLoop() {
 					$('#helpScreen').fadeOut(150, "linear");
 				}
 
-				if ($('.helpText').is(":visible")) $('.helpText').fadeOut(150, "linear");
 				if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
 				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 
@@ -325,7 +324,7 @@ function checkGameOver() {
 
 function showHelp(){
 	if (gameState == 1 || gameState == 2) {
-		pause(1);
+		pause();
 	}
 
 	$('#helpScreen').fadeToggle(150, "linear");
