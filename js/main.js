@@ -235,7 +235,6 @@ function animLoop() {
 					$('#helpScreen').fadeOut(150, "linear");
 				}
 
-				if ($('.helpText').is(":visible")) $('.helpText').fadeOut(150, "linear");
 				if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
 				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 

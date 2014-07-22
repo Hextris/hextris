@@ -157,39 +157,14 @@ function initialize(a) {
 		};
 
 		$('#startBtn').off();
-		$('#startBtn').on('touchstart mousedown', function(){
-			if (!canRestart) return false;
-			if ($('#helpScreen').is(':visible')) {
-				$('#helpScreen').fadeOut(150, "linear");
-			}
 
-			if (importing == 1) {
-				init(1);
-			} else {
-				resumeGame();
-			}
-	
-			setTimeout(function(){
-				if(settings.platform == "mobile"){
-					try {
-						document.body.removeEventListener('touchstart', handleTap ,false);
-					} catch (e) {
-
-					}
-
-					document.body.addEventListener('touchstart', handleTap, false);
-				}
-				else {
-					try {
-						document.body.removeEventListener('mousedown', handleClick ,false);
-					} catch (e) {
-
-					}
-
-					document.body.addEventListener('mousedown', handleClick, false);
-				}
-			}, 1);
-		});
+		if (settings.platform == 'mobile') {
+			$('#startBtn').on('touchstart',startBtnHandler);
+			$('.helpText').on('touchstart',showHelp);
+		} else {
+			$('#startBtn').on('mousedown',startBtnHandler);
+			$('.helpText').on('mousedown',showHelp);
+		}
 
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 		$(window).resize(scaleCanvas);
@@ -208,6 +183,41 @@ function initialize(a) {
 		document.addEventListener("backbutton", handlePause, false);
 		document.addEventListener("menubutton", handlePause, false); //menu button on android
 	}
+}
+
+function startBtnHandler() {
+	if (!canRestart) return false;
+	
+	if ($('#helpScreen').is(':visible')) {
+		$('#helpScreen').fadeOut(150, "linear");
+	}
+
+	if (importing == 1) {
+		init(1);
+	} else {
+		resumeGame();
+	}
+
+	setTimeout(function(){
+		if(settings.platform == "mobile"){
+			try {
+				document.body.removeEventListener('touchstart', handleTap ,false);
+			} catch (e) {
+
+			}
+
+			document.body.addEventListener('touchstart', handleTap, false);
+		}
+		else {
+			try {
+				document.body.removeEventListener('mousedown', handleClick ,false);
+			} catch (e) {
+
+			}
+
+			document.body.addEventListener('mousedown', handleClick, false);
+		}
+	}, 1);
 }
 
 function handlePause() {
