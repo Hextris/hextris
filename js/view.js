@@ -127,17 +127,14 @@ function showText(text){
             }
         }
     }
-
-    var pt = document.getElementById("overlay");
-    pt.className = 'unfaded';
-    
+	$("#overlay").html(messages[text]);
+	$("#overlay").fadeIn("1000","swing")
     if (text == 'paused') {
         if (settings.platform == 'mobile') {
             text = 'pausedMobile';
         }
     }
 
-    pt.innerHTML = messages[text];
 
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -181,9 +178,8 @@ function setMainMenu() {
 }
 
 function hideText(text){
-    var pt = document.getElementById("overlay");
-    pt.className = 'faded';
-    pt.innerHTML = '';
+	$("#overlay").fadeOut("1000",function(){$("#overlay").html("");})
+
 }
 function gameOverDisplay(){
 	updateHighScore();
@@ -229,6 +225,7 @@ function pause(o) {
         $('.helpText').show();
         showbottombar();
         if (message == 'paused') {
+			console.log("sup");
             showText(message);
         }
 
