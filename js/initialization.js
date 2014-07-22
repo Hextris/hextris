@@ -1,7 +1,16 @@
 
 $(document).ready(function(){
 	initialize();
+	hidebottombar();
 });
+
+function showbottombar() {
+	$('#bottombar').show();
+}
+
+function hidebottombar() {
+	$('#bottombar').hide();
+}
 
 function initialize(a) {
 //view.js

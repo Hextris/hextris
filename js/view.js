@@ -221,11 +221,13 @@ function pause(o) {
 
         $('.helpText').hide();
         hideText();
+        hidebottombar();
         gameState = prevGameState;
 
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
         $('.helpText').show();
+        showbottombar();
         if (message == 'paused') {
             showText(message);
         }
