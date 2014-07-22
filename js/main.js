@@ -1,4 +1,4 @@
-function scaleCanvas() {
+	function scaleCanvas() {
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
 
@@ -48,9 +48,14 @@ function resumeGame() {
 			$('.helpText').fadeOut(150, "linear");
 		}
 	}, 7000);
-	if ($('#helpScreen').is(":visible")) {
-		$('#helpScreen').fadeOut(150, "linear");
-	}
+	
+	checkVisualElements();
+}
+
+function checkVisualElements() {
+	if (!$('.helpText').is(":visible")) $('.helpText').fadeIn(150, "linear");
+	if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
+	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeIn(150, "linear");
 }
 
 function hideUIElements() {
@@ -64,13 +69,13 @@ function hideUIElements() {
 function init(b) {
 	if (b) {
 		hidebottombar();
-		if (!$('.helpText').is(":visible")) {
-			$('.helpText').fadeIn(150, "linear");
-		}
+		
 
 		if ($('#helpScreen').is(":visible")) {
 			$('#helpScreen').fadeOut(150, "linear");
 		}
+		
+		checkVisualElements();
 
 		setTimeout(function() {
 			$('.helpText').fadeOut(150, "linear");
@@ -191,7 +196,7 @@ function setStartScreen() {
 	$('#restartBtn').show();
 	$('#startBtn').show();
 	$('#attributions').show();
-	$("#bottombar").show();
+	showbottombar()
 
 	gameState = 0;
 	requestAnimFrame(animLoop);
@@ -221,15 +226,19 @@ function animLoop() {
 			}
 			render();
 			if (checkGameOver() && !importing) {
-				$('.helpText').fadeIn(200, "linear");
 				gameState = 2;
 				setTimeout(function(){
 					enableRestart();
-				}, 200);
+				}, 150);
 
 				if ($('#helpScreen').is(':visible')) {
 					$('#helpScreen').fadeOut(150, "linear");
 				}
+
+				if ($('.helpText').is(":visible")) $('.helpText').fadeOut(150, "linear");
+				if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
+				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
+
 				showbottombar();
 				canRestart = 0;
 				clearSaveState();

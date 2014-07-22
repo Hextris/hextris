@@ -1,19 +1,28 @@
-
 $(document).ready(function(){
 	initialize();
-	hidebottombar();
+	$('#bottombar').hide();
 });
 
 function showbottombar() {
-	$('#bottombar').show();
+	var isOffline = 'onLine' in navigator && !navigator.onLine;
+	if (isOffline) {
+		alert('offline!');
+		setTimeout(showbottombar, 1000);
+	} else {
+		window.iframeHasLoaded = true;
+		if (!(gameState == 1 || gameState == 2)) {
+			$('#bottombar').fadeIn(150, 'linear');
+		}
+	}
 }
 
 function hidebottombar() {
-	$('#bottombar').hide();
+	$('#bottombar').fadeOut(150, 'linear');
 }
 
 function initialize(a) {
 //view.js
+	window.iframHasLoaded = false;
 	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
 	window.hexColorsToTintedColors = {
 		"#e74c3c":"rgb(241,163,155)",
