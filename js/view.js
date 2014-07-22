@@ -74,7 +74,7 @@ function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor
 
 function showHighScores() {
     $('#highscores').html(function() {
-        var str = '<li> High Scores: </li>';
+        var str = '<li> High Scores: </li><br><br>';
         for (var i = 0; i < highscores.length; i++) {
             str += '<li>' + highscores[i]+'</li>';
         }
