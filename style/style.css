@@ -9,6 +9,12 @@
 	margin:0;
 }
 
+a {
+    color:#232323;
+}
+
+.twitter-share-button { width: 80px !important; }
+
 
 .navbar {
 	width: 80%;
@@ -59,8 +65,8 @@ button:focus {
     position: absolute;
     top: 2px;
     left: 4px;
-    z-index: 3000;
-    color:#000;
+    z-index: 3002;
+    color:#232323;
     cursor:pointer;
 }
 
@@ -69,7 +75,7 @@ button:focus {
 	margin-bottom: 3px;
 	margin-right: 7px;
 	z-index: 3000;
-	color:#000;
+	color:#232323;
 	cursor:pointer;
     position:absolute;
     right:0;
@@ -87,7 +93,7 @@ button:focus {
 	margin-bottom: 3px;
 	margin-left: 7px;
 	z-index:99;
-	color:#000;
+	color:#232323;
 	cursor:pointer;
 }
 
@@ -101,7 +107,7 @@ button:focus {
     font-size:15px;
     text-align:center;
 	display:none;
-	color:#000;
+	color:#232323;
 	background-color:rgba(236,240,241,.7);
 }
 
@@ -140,7 +146,7 @@ and (max-device-width : 480px) {
     margin-left:-50%;
     margin-top:-10%;
     z-index:3000;
-    color:#000;
+    color:#232323;
     text-align:center;
 }
 
@@ -162,9 +168,6 @@ and (max-device-width : 480px) {
    line-height:1em;
 }
 
-
-
-
 .centeredSubHeader {
    font-size:2em; 
    text-align:center;
@@ -174,14 +177,29 @@ and (max-device-width : 480px) {
     font-size:1.4em; 
     text-align:center;
 }
+#attributions {
+    color:#232323;
+    position:absolute;
+    width:100%;
+    left: 0%;
+    top: 70%;
+    text-align:center;
+    font-size:1.25em;
+    z-index:98;
+}
 @media only screen 
 and (min-device-width : 320px) 
-and (max-device-width : 480px) {
+and (max-device-width : 580px) {
     .centeredHeader {
         font-size:2em; 
         text-align:center;
         line-height:0.6em;
     }
+
+    #attributions {
+        font-size:.6em;
+    }
+
 
     .centeredSubHeader {
         font-size:1em; 
@@ -251,22 +269,14 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
 #bottombar {
 	padding:0;
-	position:absolute;
-	width:100%;
+	position:fixed;
+	width:1000px;
 	text-align:center;
-	left:0%;
+	left:50%;
+    margin-left:-500px;
 	bottom:10px;
-	z-index:98;
-}
-#attributions {
-	color:#000;
-	position:absolute;
-	width:100%;
-	left: 0%;
-	top: 70%;
-	text-align:center;
-	font-size:3vmin;
 	z-index:98;
 }
