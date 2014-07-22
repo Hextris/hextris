@@ -168,6 +168,15 @@ and (max-device-width : 480px) {
    line-height:1em;
 }
 
+.centeredSubHeader {
+   font-size:2em; 
+   text-align:center;
+}
+
+.centeredSubSubHeader {
+    font-size:1.4em; 
+    text-align:center;
+}
 #attributions {
     color:#232323;
     position:absolute;
@@ -178,8 +187,6 @@ and (max-device-width : 480px) {
     font-size:1.25em;
     z-index:98;
 }
-
-
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 580px) {
@@ -198,27 +205,10 @@ and (max-device-width : 580px) {
         text-align:center;
     }
 
-    .centeredSubSubHeader {
-        font-size:.7em; 
-        text-align:center;
-    }
-
     #overlay {
         margin-top: -20%;
     } 
 }
-
-
-.centeredSubHeader {
-   font-size:2em; 
-   text-align:center;
-}
-
-.centeredSubSubHeader {
-    font-size:1.4em; 
-    text-align:center;
-}
-
 .blur {
     opacity:0.1;
 }
