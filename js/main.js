@@ -324,7 +324,7 @@ function checkGameOver() {
 
 function showHelp(){
 	if (gameState == 1 || gameState == 2) {
-		pause(1);
+		pause();
 	}
 
 	$('#helpScreen').fadeToggle(150, "linear");
