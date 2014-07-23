@@ -179,6 +179,7 @@ and (max-device-width : 480px) {
     font-size:1.25em;
     z-index:98;
 }
+
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 580px) {
@@ -199,7 +200,7 @@ and (max-device-width : 580px) {
 
     #overlay {
         margin-top: -20%;
-    } 
+    }
 }
 .blur {
     opacity:0.1;

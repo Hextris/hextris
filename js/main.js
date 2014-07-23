@@ -1,4 +1,4 @@
-	function scaleCanvas() {
+function scaleCanvas() {
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
 
@@ -286,7 +286,6 @@ function enableRestart() {
 }
 
 function updateHighScore(){
-	//debugger;
 	for(var i = 0; i<numHighScores;i++) {
 		if(highscores[i]<=score) {
 			highscores.splice(i,0,score);
@@ -302,8 +301,9 @@ function isInfringing(hex){
 	for(var i=0;i<hex.sides;i++){
 		var subTotal=0;
 		for (var j=0;j<hex.blocks[i].length;j++){
-			subTotal+=hex.blocks[i][j].deleted ;
+			subTotal+=hex.blocks[i][j].deleted;
 		}
+
 		if (hex.blocks[i].length- subTotal>settings.rows){
 			return true;
 		}
