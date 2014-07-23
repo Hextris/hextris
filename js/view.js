@@ -103,7 +103,6 @@ function showText(text){
     if (text == 'gameover') {
         var allZ = 1;
         var i;
-		console.log(highscores);
         for (i = 0; i < 3; i++) {
             if (highscores[i] !== undefined && (highscores[i] != 0 || (highscores[0] == 0 && i==0))) {
                 messages['gameover'] += "<tr> <th class='tg-031e'>"+(i+1)+".</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
@@ -139,31 +138,11 @@ function showText(text){
 
     pt.innerHTML = messages[text];
 
-
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        $("#restartBtn").on('touchstart', function() {
-            if (gameState==2 || gameState==1 || importing == 1) {
-                init(1);
-                canRestart = false;
-            }
-            else if (gameState===0) {
-                resumeGame();
-            }
-
-        });
+    if (text == 'gameover') {
+        if (settings.platform == 'mobile') {
+            $('.tg').css('margin-top', '4px');
+        }
     }
-    else {
-        $("#restartBtn").on('mousedown', function() {
-            if (gameState==2 || gameState==1 || importing == 1) {
-                init(1);
-                canRestart = false;
-            }
-            else if (gameState===0) {
-                resumeGame();
-            }
-        });
-    }
-
 }
 
 function setMainMenu() {

@@ -75,26 +75,25 @@ function addKeyListeners() {
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         $("#restartBtn").on('touchstart', function() {
-            if (gameState==2 || gameState == -1 || gameState==1 || importing == 1) {
+            if (gameState==2 || gameState==1 || importing == 1) {
                 init(1);
                 canRestart = false;
             }
             else if (gameState===0) {
-                init(1)();
+                resumeGame();
             }
 
         });
     }
     else {
         $("#restartBtn").on('mousedown', function() {
-            if (gameState==2 || gameState == -1 ||  gameState==1 || importing == 1) {
+            if (gameState==2 || gameState==1 || importing == 1) {
                 init(1);
-                canRestart=false;
+                canRestart = false;
             }
             else if (gameState===0) {
                 resumeGame();
             }
-
         });
     }
 }
