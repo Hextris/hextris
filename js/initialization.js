@@ -6,7 +6,6 @@ $(document).ready(function(){
 function showbottombar() {
 	var isOffline = 'onLine' in navigator && !navigator.onLine;
 	if (isOffline) {
-		alert('offline!');
 		setTimeout(showbottombar, 1000);
 	} else {
 		window.iframeHasLoaded = true;
