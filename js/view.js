@@ -166,6 +166,7 @@ function gameOverDisplay(){
     var c = document.getElementById("canvas");
     c.className = "blur";
     showText('gameover');
+	showbottombar();
 }
 
 function togglePlayIcon (){
