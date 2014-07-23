@@ -10,7 +10,7 @@ function showbottombar() {
 		setTimeout(showbottombar, 1000);
 	} else {
 		window.iframeHasLoaded = true;
-		if (!(gameState == 1 || gameState == 2)) {
+		if (gameState != 1) {
 			$('#bottombar').fadeIn(150, 'linear');
 		}
 	}
