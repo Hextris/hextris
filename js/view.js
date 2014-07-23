@@ -219,7 +219,9 @@ function pause(o) {
         $('.helpText').hide();
         hideText();
         hidebottombar();
-        gameState = prevGameState;
+		setTimeout(function () {
+        	gameState = prevGameState;
+		},200)
 
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {

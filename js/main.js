@@ -101,7 +101,6 @@ function init(b) {
 	$("#pauseBtn").show();
 	if(saveState.hex !== undefined) gameState = 1;
 
-	scaleCanvas();
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
 	MainHex = saveState.hex || new Hex(settings.hexWidth);
