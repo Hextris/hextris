@@ -154,14 +154,6 @@ and (max-device-width : 480px) {
     z-index:3001;
 }
 
-.faded {
-    opacity:0;
-}
-
-.unfaded {
-    opacity:1;
-}
-
 .centeredHeader {
    font-size:5em; 
    text-align:center;
