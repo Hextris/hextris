@@ -185,7 +185,13 @@ function initialize(a) {
 		setTimeout(function(){
 			if(settings.platform == "mobile"){
 				try {
-					document.body.removeEventListener('touchstart', handleTap ,false);
+					document.body.removeEventListener('touchstart', handleTapBefore ,false);
+				} catch (e) {
+
+				}
+
+				try {
+					document.body.removeEventListener('touchstart', handleTapBefore ,false);
 				} catch (e) {
 
 				}
@@ -194,18 +200,57 @@ function initialize(a) {
 			}
 			else {
 				try {
+					document.body.removeEventListener('mousedown', handleClickBefore ,false);
+				} catch (e) {
+
+				}
+
+				try {
 					document.body.removeEventListener('mousedown', handleClick ,false);
 				} catch (e) {
 
 				}
 
-				document.body.addEventListener('mousedown', handleClick, false);
+				document.body.addEventListener('mousedown', handleClickBefore, false);
 			}
 		}, 1);
 	}
 }
 
 function startBtnHandler() {
+
+	setTimeout(function(){
+		if(settings.platform == "mobile"){
+			try {
+				document.body.removeEventListener('touchstart', handleTapBefore ,false);
+			} catch (e) {
+
+			}
+
+			try {
+				document.body.removeEventListener('touchstart', handleTapBefore ,false);
+			} catch (e) {
+
+			}
+
+			document.body.addEventListener('touchstart', handleTap, false);
+		}
+		else {
+			try {
+				document.body.removeEventListener('mousedown', handleClickBefore ,false);
+			} catch (e) {
+
+			}
+
+			try {
+				document.body.removeEventListener('mousedown', handleClick ,false);
+			} catch (e) {
+
+			}
+
+			document.body.addEventListener('mousedown', handleClickBefore, false);
+		}
+	}, 5)
 	if (!canRestart) return false;
 	
 	if ($('#helpScreen').is(':visible')) {
@@ -231,4 +276,26 @@ function handleTap(e) {
 
 function handleClick(e) {
 	handleClickTap(e.clientX, e.clientY);
+}
+
+function handleTapBefore(e) {
+	// handleClickTap(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+	var x = e.changedTouches[0].clientX;
+	var y = e.changedTouches[0].clientY;
+
+	if (x < 120 && y < 50 && $('.helpText').is(':visible')) {
+        showHelp();
+        return;
+    }
+}
+
+function handleClickBefore(e) {
+	// handleClickTap(e.clientX, e.clientY);
+	var x = e.clientX;
+	var y = e.clientY;
+
+	if (x < 120 && y < 50 && $('.helpText').is(':visible')) {
+        showHelp();
+        return;
+    }
 }

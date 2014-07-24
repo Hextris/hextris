@@ -101,6 +101,7 @@ function showText(text){
     };
     
     if (text == 'gameover') {
+        debugger;
         var allZ = 1;
         var i;
         for (i = 0; i < 3; i++) {
