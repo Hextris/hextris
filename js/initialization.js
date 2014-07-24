@@ -251,6 +251,7 @@ function startBtnHandler() {
 			document.body.addEventListener('mousedown', handleClickBefore, false);
 		}
 	}, 5)
+	
 	if (!canRestart) return false;
 	
 	if ($('#helpScreen').is(':visible')) {
@@ -279,7 +280,6 @@ function handleClick(e) {
 }
 
 function handleTapBefore(e) {
-	// handleClickTap(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
 	var x = e.changedTouches[0].clientX;
 	var y = e.changedTouches[0].clientY;
 
@@ -290,7 +290,6 @@ function handleTapBefore(e) {
 }
 
 function handleClickBefore(e) {
-	// handleClickTap(e.clientX, e.clientY);
 	var x = e.clientX;
 	var y = e.clientY;
 
