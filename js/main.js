@@ -213,6 +213,9 @@ function animLoop() {
 			render();
 			if (checkGameOver() && !importing) {
 				gameState = 2;
+				highscores.push(score);
+				localStorage.setItem('highscores', JSON.stringify(highscores));
+
 				setTimeout(function(){
 					enableRestart();
 				}, 150);
@@ -271,18 +274,6 @@ function animLoop() {
 
 function enableRestart() {
 	canRestart = 1;
-}
-
-function updateHighScore(){
-	for(var i = 0; i<numHighScores;i++) {
-		if(highscores[i]<=score) {
-			highscores.splice(i,0,score);
-			highscores = highscores.slice(0,3);
-			break;
-		}
-	}
-
-	localStorage.setItem('highscores', highscores);
 }
 
 function isInfringing(hex){

@@ -27,6 +27,8 @@ function exportSaveState() {
 		state.blocks.map(descaleBlock);
 	}
 
+	localStorage.setItem('highscores', JSON.stringify(highscores));
+
 	return JSONfn.stringify(state);
 }
 

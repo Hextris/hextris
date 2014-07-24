@@ -20,7 +20,6 @@ function hidebottombar() {
 }
 
 function initialize(a) {
-//view.js
 	window.iframHasLoaded = false;
 	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
 	window.hexColorsToTintedColors = {
@@ -46,7 +45,7 @@ function initialize(a) {
 
 	window.hexagonBackgroundColor = 'rgb(236, 240, 241)';
 	window.hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
-	window.centerBlue = 'rgb(44,62,80)'; //tumblr?
+	window.centerBlue = 'rgb(44,62,80)'; 
 	window.angularVelocityConst = 4;
 	window.scoreOpacity = 0;
 	window.textOpacity = 0;
@@ -123,11 +122,11 @@ function initialize(a) {
 	window.prevScore = 0;
 	window.numHighScores = 3;
 
-	window.highscores = [0, 0, 0];
+	window.highscores = [];
 	if(localStorage.getItem('highscores'))
-		highscores = localStorage.getItem('highscores').split(',').map(Number);
+		highscores = JSON.parse(JSON.parse(localStorage.getItem('highscores')));
 
-	localStorage.setItem('highscores', highscores);
+	localStorage.setItem('highscores', JSON.stringify(highscores));
 
 	window.blocks = [];
 	window.MainHex;
