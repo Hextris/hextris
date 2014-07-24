@@ -159,10 +159,10 @@ function initialize(a) {
 
 		if (settings.platform == 'mobile') {
 			$('#startBtn').on('touchstart',startBtnHandler);
-			$('.helpText').on('touchstart',showHelp);
+			// $('.helpText').on('touchstart',function(){if (gameState != 2) showHelp});
 		} else {
 			$('#startBtn').on('mousedown',startBtnHandler);
-			$('.helpText').on('mousedown',showHelp);
+			// $('.helpText').on('mousedown',function(){if (gameState != 2) showHelp});
 		}
 
 		document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
@@ -181,6 +181,27 @@ function initialize(a) {
 		document.addEventListener("pause", handlePause, false);
 		document.addEventListener("backbutton", handlePause, false);
 		document.addEventListener("menubutton", handlePause, false); //menu button on android
+
+		setTimeout(function(){
+			if(settings.platform == "mobile"){
+				try {
+					document.body.removeEventListener('touchstart', handleTap ,false);
+				} catch (e) {
+
+				}
+
+				document.body.addEventListener('touchstart', handleTap, false);
+			}
+			else {
+				try {
+					document.body.removeEventListener('mousedown', handleClick ,false);
+				} catch (e) {
+
+				}
+
+				document.body.addEventListener('mousedown', handleClick, false);
+			}
+		}, 1);
 	}
 }
 
@@ -196,27 +217,6 @@ function startBtnHandler() {
 	} else {
 		resumeGame();
 	}
-
-	setTimeout(function(){
-		if(settings.platform == "mobile"){
-			try {
-				document.body.removeEventListener('touchstart', handleTap ,false);
-			} catch (e) {
-
-			}
-
-			document.body.addEventListener('touchstart', handleTap, false);
-		}
-		else {
-			try {
-				document.body.removeEventListener('mousedown', handleClick ,false);
-			} catch (e) {
-
-			}
-
-			document.body.addEventListener('mousedown', handleClick, false);
-		}
-	}, 1);
 }
 
 function handlePause() {
@@ -226,9 +226,9 @@ function handlePause() {
 }
 
 function handleTap(e) {
-	handleClickTap(e.changedTouches[0].clientX);
+	handleClickTap(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
 }
 
 function handleClick(e) {
-	handleClickTap(e.clientX);
+	handleClickTap(e.clientX, e.clientY);
 }
