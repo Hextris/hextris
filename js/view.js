@@ -72,17 +72,6 @@ function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor
     ctx.strokeStyle = 'rgba(0,0,0,0)';
 }
 
-function showHighScores() {
-    $('#highscores').html(function() {
-        var str = '<li> High Scores: </li><br><br>';
-        for (var i = 0; i < highscores.length; i++) {
-            str += '<li>' + highscores[i]+'</li>';
-        }
-        return str;
-    });
-    toggleClass('#highscores', 'not-visible');
-}
-
 function toggleClass(element, active) {
     if ($(element).hasClass(active)) {
         $(element).removeClass(active);
@@ -104,8 +93,11 @@ function showText(text){
         debugger;
         var allZ = 1;
         var i;
+        highscores.sort(function(a,b){a = parseInt(a, 10); b = parseInt(b, 10); if (a < b) {return 1;} else if (a > b) {return -1;}else {return 0;}});
+        localStorage.setItem('highscores', JSON.stringify(highscores));
+        debugger;
         for (i = 0; i < 3; i++) {
-            if (highscores[i] !== undefined && (highscores[i] != 0 || (highscores[0] == 0 && i==0))) {
+            if (highscores.length > i) {
                 messages['gameover'] += "<tr> <th class='tg-031e'>"+(i+1)+".</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
             }
         }
@@ -121,14 +113,14 @@ function showText(text){
     
         if (allZ) {
             for (i = 0; i < highscores.length; i++) {
-                if (highscores[i] != 0) {
+                if (highscores[i] !== 0) {
                     allZ = 0;
                 }
             }
         }
     }
 	$("#overlay").html(messages[text]);
-	$("#overlay").fadeIn("1000","swing")
+	$("#overlay").fadeIn("1000","swing");
     if (text == 'paused') {
         if (settings.platform == 'mobile') {
             text = 'pausedMobile';
@@ -157,12 +149,11 @@ function setMainMenu() {
     }
 }
 
-function hideText(text){
+function hideText() {
 	$("#overlay").fadeOut("1000",function(){$("#overlay").html("");})
-
 }
+
 function gameOverDisplay(){
-	updateHighScore();
 	$("#attributions").show();
     var c = document.getElementById("canvas");
     c.className = "blur";
@@ -182,6 +173,7 @@ function togglePlayIcon (){
 
 
 function pause(o) {
+    localStorage.setItem('highscores', JSON.stringify(highscores));
     var message;
 	togglePlayIcon();
     if (o) {
