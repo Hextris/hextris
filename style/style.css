@@ -174,7 +174,7 @@ and (max-device-width : 480px) {
     position:absolute;
     width:100%;
     left: 0%;
-    top: 70%;
+    top: 72%;
     text-align:center;
     font-size:1.25em;
     z-index:98;
@@ -190,7 +190,7 @@ and (max-device-width : 580px) {
     }
 
     #attributions {
-        font-size:.6em;
+        font-size:.7em;
     }
 
     .centeredSubHeader {

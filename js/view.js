@@ -195,14 +195,14 @@ function pause(o) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
-        $('.helpText').hide();
+        $('.helpText').fadeOut(200, 'linear');
         hideText();
         hidebottombar();
         gameState = prevGameState;
 
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
-        $('.helpText').show();
+        $('.helpText').fadeIn(200, 'linear');
         showbottombar();
         if (message == 'paused') {
 			console.log("sup");

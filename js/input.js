@@ -73,7 +73,7 @@ function addKeyListeners() {
 	});
 
 
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         $("#restartBtn").on('touchstart', function() {
             init(1);
             canRestart = false;
@@ -86,7 +86,13 @@ function addKeyListeners() {
         });
     }
 }
-function handleClickTap(x) {
+
+function handleClickTap(x,y) {
+    if (x < 120 && y < 50 && $('.helpText').is(':visible')) {
+        showHelp();
+        return;
+    }
+
     if (gameState == 2 && canRestart) {
         init(1);
         return;

@@ -223,6 +223,7 @@ function animLoop() {
 
 				if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
 				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
+				if (!$('.helpText').is(':visible')) $('.helpText').fadeIn(150, "linear");
 
 				showbottombar();
 				canRestart = 0;
@@ -309,7 +310,7 @@ function checkGameOver() {
 }
 
 function showHelp(){
-	if (gameState == 1 || gameState == 2) {
+	if (gameState == 1) {
 		pause();
 	}
 
