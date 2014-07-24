@@ -205,7 +205,6 @@ function pause(o) {
         $('.helpText').fadeIn(200, 'linear');
         showbottombar();
         if (message == 'paused') {
-			console.log("sup");
             showText(message);
         }
 
