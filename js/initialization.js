@@ -124,7 +124,7 @@ function initialize(a) {
 
 	window.highscores = [];
 	if(localStorage.getItem('highscores'))
-		highscores = JSON.parse(JSON.parse(localStorage.getItem('highscores')));
+		highscores = JSON.parse(localStorage.getItem('highscores'));
 
 	localStorage.setItem('highscores', JSON.stringify(highscores));
 
