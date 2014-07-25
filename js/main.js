@@ -212,9 +212,10 @@ function animLoop() {
 			}
 			render();
 			if (checkGameOver() && !importing) {
+				
+				var saveState = localStorage.getItem("saveState") || "{}";
+				saveState = JSONfn.parse(saveState);
 				gameState = 2;
-				highscores.push(score);
-				localStorage.setItem('highscores', JSON.stringify(highscores));
 
 				setTimeout(function(){
 					enableRestart();
@@ -293,6 +294,8 @@ function isInfringing(hex){
 function checkGameOver() {
 	for (var i = 0; i < MainHex.sides; i++) {
 		if (isInfringing(MainHex)) {
+			highscores.push(score);
+			localStorage.setItem('highscores', JSON.stringify(highscores));
 			gameOverDisplay();
 			return true;
 		}
