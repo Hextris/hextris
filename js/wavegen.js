@@ -15,7 +15,7 @@ function blockDestroyed() {
 function waveGen(hex) {
 	this.lastGen = 0;
 	this.last = 0;
-	this.nextGen = 2000; // - 1500; //delay before starting
+	this.nextGen = 3000;
 	this.start = 0;
 	this.colors = colors;
 	this.ct = 0;
@@ -26,9 +26,9 @@ function waveGen(hex) {
 		this.currentFunction();
 		this.dt += 16.6666667;
 		this.computeDifficulty();
-		if (this.dt - this.lastGen * (1/settings.creationSpeedModifier) > this.nextGen) {
-			if (this.nextGen > 1000) {
-				this.nextGen -=  (0.7 * (this.nextGen/1300)) * settings.creationSpeedModifier;
+		if ((this.dt - this.lastGen) > this.nextGen) {
+			if (this.nextGen > 900) {
+				this.nextGen -=  4.5 * ((this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
 	};
@@ -40,21 +40,24 @@ function waveGen(hex) {
 			var fv = randInt(0, MainHex.sides);
 			addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty/15) * 3);
 			if (this.ct > 7) {
-				var nextPattern = randInt(0, 20 + 4);
-				if (nextPattern > 4 + 17) {
-					this.ct = 0;
-					this.currentFunction = this.doubleGeneration;
-				} else if (nextPattern > 4 + 14) {
-					this.ct = 0;
-					this.currentFunction = this.crosswiseGeneration;
-				} else if (nextPattern > 4 + 11) {
-					this.ct = 0;
-					this.currentFunction = this.spiralGeneration;
-				}
-				else if (nextPattern > 4 + 8) {
-					this.ct = 0;
-					this.currentFunction = this.circleGeneration;
-				}
+				// var nextPattern = randInt(0, 20 + 8);
+				// if (nextPattern > 8 + 17) {
+				// 	this.ct = 0;
+				// 	this.currentFunction = this.doubleGeneration;
+				// } else if (nextPattern > 8 + 14) {
+				// 	this.ct = 0;
+				// 	this.currentFunction = this.crosswiseGeneration;
+				// } else if (nextPattern > 8 + 11) {
+				// 	this.ct = 0;
+				// 	this.currentFunction = this.spiralGeneration;
+				// } else if (nextPattern > 8 + 8) {
+				// 	this.ct = 0;
+				// 	this.currentFunction = this.circleGeneration;
+				// } else if (nextPattern > 8 + 5) {
+				// 	this.ct = 0;
+					this.currentFunction = this.halfCircleGeneration;
+					this.ct = 0
+				// }
 			}
 
 		}
@@ -98,6 +101,26 @@ function waveGen(hex) {
 			this.ct += 15;
 			this.lastGen = this.dt;
 			this.shouldChangePattern(1);
+		}
+	};
+
+	this.halfCircleGeneration = function() {
+		if (this.dt - this.lastGen > (this.nextGen+500)/2) {
+			var numColors = randInt(1, 3);
+			var c = colors[randInt(0, colors.length)];
+			var colorList = [c, c, c];
+			if (numColors == 2) {
+				colorList = [c, colors[randInt(0, colors.length)],c];
+			}
+
+			var d = randInt(0,6);
+			for (var i = 0; i < 3; i++) {
+				addNewBlock((d+i) % 6, colorList[i], 1.5 + (this.difficulty/15) * 3);
+			}
+
+			this.ct += 5;
+			this.lastGen = this.dt;
+			this.shouldChangePattern();
 		}
 	};
 
