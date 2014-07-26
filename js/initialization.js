@@ -127,7 +127,7 @@ function initialize(a) {
 	if(localStorage.getItem('highscores'))
 		highscores = JSON.parse(localStorage.getItem('highscores'));
 
-	localStorage.setItem('highscores', JSON.stringify(highscores));
+	writeHighScores();
 
 	window.blocks = [];
 	window.MainHex;

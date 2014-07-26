@@ -90,12 +90,10 @@ function showText(text){
     };
     
     if (text == 'gameover') {
-        debugger;
         var allZ = 1;
         var i;
         highscores.sort(function(a,b){a = parseInt(a, 10); b = parseInt(b, 10); if (a < b) {return 1;} else if (a > b) {return -1;}else {return 0;}});
-        localStorage.setItem('highscores', JSON.stringify(highscores));
-        debugger;
+        writeHighScores();
         for (i = 0; i < 3; i++) {
             if (highscores.length > i) {
                 messages['gameover'] += "<tr> <th class='tg-031e'>"+(i+1)+".</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
@@ -119,8 +117,8 @@ function showText(text){
             }
         }
     }
-	$("#overlay").html(messages[text]);
-	$("#overlay").fadeIn("1000","swing");
+    $("#overlay").html(messages[text]);
+    $("#overlay").fadeIn("1000","swing");
     if (text == 'paused') {
         if (settings.platform == 'mobile') {
             text = 'pausedMobile';
@@ -150,19 +148,19 @@ function setMainMenu() {
 }
 
 function hideText() {
-	$("#overlay").fadeOut("1000",function(){$("#overlay").html("");})
+    $("#overlay").fadeOut("1000",function(){$("#overlay").html("");})
 }
 
 function gameOverDisplay(){
-	$("#attributions").show();
+    $("#attributions").show();
     var c = document.getElementById("canvas");
     c.className = "blur";
     showText('gameover');
-	showbottombar();
+    showbottombar();
 }
 
 function pause(o) {
-    localStorage.setItem('highscores', JSON.stringify(highscores));
+    writeHighScores();
     var message;
     if (o) {
         message = '';
@@ -172,17 +170,17 @@ function pause(o) {
 
     var c = document.getElementById("canvas");
     if (gameState == -1) {
-        $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
         if ($('#helpScreen').is(':visible')) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
+        $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
         $('.helpText').fadeOut(200, 'linear');
         hideText();
         hidebottombar();
-		setTimeout(function () {
-        	gameState = prevGameState;
-		},200)
+        setTimeout(function () {
+            gameState = prevGameState;
+        },200)
 
     }
     else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
@@ -191,7 +189,8 @@ function pause(o) {
         if (message == 'paused') {
             showText(message);
         }
-        $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
+        
+        $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
         prevGameState = gameState;
         gameState = -1;
     }

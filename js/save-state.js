@@ -36,6 +36,14 @@ function descaleBlock(b) {
 	b.distFromHex /= settings.scale;
 }
 
+function writeHighScores() {
+	if (Object.prototype.toString.call(highscores) === '[object Array]') {
+		localStorage.setItem("highscores", JSON.stringify(highscores));
+	} else {
+		debugger;
+	}
+}
+
 function clearSaveState() {
 	localStorage.setItem("saveState", "{}");
 }
