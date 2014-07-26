@@ -26,7 +26,7 @@ function waveGen(hex) {
 		this.currentFunction();
 		this.dt += 16.6666667;
 		this.computeDifficulty();
-		if ((this.dt - this.lastGen) > this.nextGen) {
+		if ((this.dt - this.lastGen)*settings.creationSpeedModifier > this.nextGen) {
 			if (this.nextGen > 1000) {
 				this.nextGen -=  4.5 * ((this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
