@@ -295,7 +295,7 @@ function checkGameOver() {
 	for (var i = 0; i < MainHex.sides; i++) {
 		if (isInfringing(MainHex)) {
 			highscores.push(score);
-			localStorage.setItem('highscores', JSON.stringify(highscores));
+			writeHighScores();
 			gameOverDisplay();
 			return true;
 		}
