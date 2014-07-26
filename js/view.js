@@ -164,7 +164,6 @@ function gameOverDisplay(){
 function pause(o) {
     localStorage.setItem('highscores', JSON.stringify(highscores));
     var message;
-	togglePlayIcon();
     if (o) {
         message = '';
     } else {
