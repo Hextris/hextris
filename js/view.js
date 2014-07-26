@@ -161,17 +161,6 @@ function gameOverDisplay(){
 	showbottombar();
 }
 
-function togglePlayIcon (){
-	if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
-		$("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
-	} else {
-		$("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
-	}
-
-	return false;
-}
-
-
 function pause(o) {
     localStorage.setItem('highscores', JSON.stringify(highscores));
     var message;
@@ -184,6 +173,7 @@ function pause(o) {
 
     var c = document.getElementById("canvas");
     if (gameState == -1) {
+        $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
         if ($('#helpScreen').is(':visible')) {
             $('#helpScreen').fadeOut(150, "linear");
         }
@@ -202,7 +192,7 @@ function pause(o) {
         if (message == 'paused') {
             showText(message);
         }
-
+        $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
         prevGameState = gameState;
         gameState = -1;
     }
