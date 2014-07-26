@@ -101,8 +101,8 @@ function initialize(a) {
 			baseBlockHeight:20,
 			blockHeight:15,
 			rows:8,
-			speedModifier:0.65,
-			creationSpeedModifier:0.65,
+			speedModifier:0.5,
+			creationSpeedModifier:0.5,
 			comboTime:240
 		};
 
