@@ -191,12 +191,12 @@ function initialize(a) {
 				}
 
 				try {
-					document.body.removeEventListener('touchstart', handleTapBefore ,false);
+					document.body.removeEventListener('touchstart', handleTap ,false);
 				} catch (e) {
 
 				}
 
-				document.body.addEventListener('touchstart', handleTap, false);
+				document.body.addEventListener('touchstart', handleTapBefore, false);
 			}
 			else {
 				try {
@@ -218,7 +218,6 @@ function initialize(a) {
 }
 
 function startBtnHandler() {
-
 	setTimeout(function(){
 		if(settings.platform == "mobile"){
 			try {
@@ -228,7 +227,7 @@ function startBtnHandler() {
 			}
 
 			try {
-				document.body.removeEventListener('touchstart', handleTapBefore ,false);
+				document.body.removeEventListener('touchstart', handleTap ,false);
 			} catch (e) {
 
 			}
@@ -248,9 +247,9 @@ function startBtnHandler() {
 
 			}
 
-			document.body.addEventListener('mousedown', handleClickBefore, false);
+			document.body.addEventListener('mousedown', handleClick, false);
 		}
-	}, 5)
+	}, 5);
 	
 	if (!canRestart) return false;
 	
