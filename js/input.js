@@ -59,6 +59,7 @@ function addKeyListeners() {
             }
         }
     });
+
 	$("#pauseBtn").on('touchstart mousedown', function() {
 		if (gameState != 1 && gameState != -1) {
 			return;

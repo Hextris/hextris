@@ -123,6 +123,7 @@ function initialize(a) {
 	window.numHighScores = 3;
 
 	window.highscores = [];
+	debugger;
 	if(localStorage.getItem('highscores'))
 		highscores = JSON.parse(localStorage.getItem('highscores'));
 
