@@ -68,14 +68,15 @@ function consolidateBlocks(hex,side,index){
 
 	// add scores
 	var now = MainHex.ct;
-	if(now - hex.lastCombo < 240 ){
-		settings.comboTime = waveone.nextGen/16.6666667 * 3.95;
+	if(now - hex.lastCombo < settings.comboTime ){
+		settings.comboTime = waveone.nextGen/16* 2;
 		hex.comboMultiplier += 1;
 		hex.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);
 		hex.texts.push(new Text(coords['x'],coords['y'],"x "+hex.comboMultiplier.toString(),"bold Q","#fff",fadeUpAndOut));
 	}
 	else{
+		settings.comboTime = 240;
 		hex.lastCombo = now;
 		hex.comboMultiplier = 1;
 	}

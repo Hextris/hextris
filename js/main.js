@@ -149,7 +149,7 @@ function init(b) {
 	MainHex.y = -100;
 
 	startTime = Date.now();
-	waveone = saveState.wavegen || new waveGen(MainHex,Date.now(),[1,1,0],[1,1],[1,1]);
+	waveone = saveState.wavegen || new waveGen(MainHex);
 	
 	MainHex.texts = []; //clear texts
 	MainHex.delay = 15;
