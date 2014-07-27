@@ -1,6 +1,22 @@
 $(document).ready(function(){
 	initialize();
 	$('#bottombar').hide();
+
+	$('a').each(function(i,o){
+		$(o).on('click',function(e){
+			debugger;
+			window.open(this.href, target='_system');
+			e.preventDefault();
+			return false;
+		});
+	});
+
+	$('#ghl').on('click mousedown touchstart',function(e){
+		debugger;
+		window.open('http://hextris.github.io/', target='_system');
+		e.preventDefault();
+		return false;
+	});
 });
 
 function showbottombar() {
