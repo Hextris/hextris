@@ -123,9 +123,13 @@ function initialize(a) {
 	window.numHighScores = 3;
 
 	window.highscores = [];
-	debugger;
-	if(localStorage.getItem('highscores'))
-		highscores = JSON.parse(localStorage.getItem('highscores'));
+	if(localStorage.getItem('highscores')) {
+		try {
+			highscores = JSON.parse(localStorage.getItem('highscores'));
+		} catch (e) {
+			highscores = [];
+		}
+	}
 
 	writeHighScores();
 
