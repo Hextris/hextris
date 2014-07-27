@@ -15,7 +15,7 @@ function blockDestroyed() {
 function waveGen(hex) {
 	this.lastGen = 0;
 	this.last = 0;
-	this.nextGen = 2300;
+	this.nextGen = 2800;
 	this.start = 0;
 	this.colors = colors;
 	this.ct = 0;
@@ -28,7 +28,7 @@ function waveGen(hex) {
 		this.computeDifficulty();
 		if ((this.dt - this.lastGen)*settings.creationSpeedModifier > this.nextGen) {
 			if (this.nextGen > 1000) {
-				this.nextGen -=  4.5 * ((this.nextGen/1300)) * settings.creationSpeedModifier;
+				this.nextGen -=  5 * ((this.nextGen/1300)) * settings.creationSpeedModifier;
 			}
 		}
 	};
