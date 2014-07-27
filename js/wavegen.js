@@ -39,27 +39,26 @@ function waveGen(hex) {
 			this.lastGen = this.dt;
 			var fv = randInt(0, MainHex.sides);
 			addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty/15) * 3);
-			if (this.ct > 7) {
-				var nextPattern = randInt(0, 20 + 8);
-				if (nextPattern > 8 + 17) {
+			var lim = randInt(1, 7);
+			if (this.ct > lim) {
+				var nextPattern = randInt(0, 3 + 21);
+				if (nextPattern > 3 + 17) {
 					this.ct = 0;
 					this.currentFunction = this.doubleGeneration;
-				} else if (nextPattern > 8 + 14) {
+				} else if (nextPattern > 3 + 14) {
 					this.ct = 0;
 					this.currentFunction = this.crosswiseGeneration;
-				} else if (nextPattern > 8 + 11) {
+				} else if (nextPattern > 3 + 11) {
 					this.ct = 0;
 					this.currentFunction = this.spiralGeneration;
-				} else if (nextPattern > 8 + 8) {
+				} else if (nextPattern > 3 + 8) {
 					this.ct = 0;
 					this.currentFunction = this.circleGeneration;
-				} else if (nextPattern > 8 + 5) {
+				} else if (nextPattern > 3 + 5) {
 					this.ct = 0;
 					this.currentFunction = this.halfCircleGeneration;
-					this.ct = 0
 				}
 			}
-
 		}
 	};
 
