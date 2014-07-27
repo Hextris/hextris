@@ -94,7 +94,8 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		}
         
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
-		this.widthWide = this.width + this.height + 3;
+		this.widthWide = 2 * (this.distFromHex + this.height) / Math.sqrt(3);
+		//this.widthWide = this.width + this.height + 3;
 		var p1;
 		var p2;
 		var p3;
@@ -137,7 +138,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		ctx.lineTo(baseX + p2.x, baseY + p2.y);
 		ctx.lineTo(baseX + p3.x, baseY + p3.y);
 		ctx.lineTo(baseX + p4.x, baseY + p4.y);
-		ctx.lineTo(baseX + p1.x, baseY + p1.y);
+		//ctx.lineTo(baseX + p1.x, baseY + p1.y);
 		ctx.closePath();
 		ctx.fill();
 
