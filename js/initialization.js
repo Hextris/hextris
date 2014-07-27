@@ -84,8 +84,8 @@ function initialize(a) {
 			baseBlockHeight:20,
 			blockHeight:20,
 			rows:6,
-			speedModifier:0.7,
-			creationSpeedModifier:0.7,
+			speedModifier:0.73,
+			creationSpeedModifier:0.73,
 			comboTime:240
 		};
 	} else {
@@ -101,8 +101,8 @@ function initialize(a) {
 			baseBlockHeight:20,
 			blockHeight:15,
 			rows:8,
-			speedModifier:0.55,
-			creationSpeedModifier:0.55,
+			speedModifier:0.62,
+			creationSpeedModifier:0.62,
 			comboTime:240
 		};
 
@@ -123,9 +123,13 @@ function initialize(a) {
 	window.numHighScores = 3;
 
 	window.highscores = [];
-	debugger;
-	if(localStorage.getItem('highscores'))
-		highscores = JSON.parse(localStorage.getItem('highscores'));
+	if(localStorage.getItem('highscores')) {
+		try {
+			highscores = JSON.parse(localStorage.getItem('highscores'));
+		} catch (e) {
+			highscores = [];
+		}
+	}
 
 	writeHighScores();
 

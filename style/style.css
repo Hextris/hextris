@@ -73,6 +73,8 @@ button:focus {
 #pauseBtn {
 	position: absolute;
 	margin-bottom: 3px;
+    width:60px;
+    height:60px;
 	margin-right: 7px;
 	z-index: 3000;
 	color:#232323;
@@ -81,12 +83,22 @@ button:focus {
     right:0;
     bottom:0;
     z-index:99;
+}
 
+#pauseBtnInner {
+    margin-left:35px;
+    margin-top:28px;
+}
+
+#restartBtnInner {
+    margin-top:28px;
 }
 
 #restartBtn {
     position:absolute;
     left:0;
+    width:60px;
+    height:60px;
     bottom:0;
     z-index:99;
 	position: absolute;

@@ -39,8 +39,6 @@ function descaleBlock(b) {
 function writeHighScores() {
 	if (Object.prototype.toString.call(highscores) === '[object Array]') {
 		localStorage.setItem("highscores", JSON.stringify(highscores));
-	} else {
-		debugger;
 	}
 }
 
