@@ -84,10 +84,16 @@ function toggleClass(element, active) {
 function showText(text){
     var messages = {
         'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
-        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
+        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press <i class='fa fa-play'></i> to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
         'start':"<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
         'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
     };
+
+    if (text == 'paused') {
+        if (settings.platform == 'mobile') {
+            text = 'pausedMobile';
+        }
+    }
     
     if (text == 'gameover') {
         var allZ = 1;
@@ -119,12 +125,6 @@ function showText(text){
     }
     $("#overlay").html(messages[text]);
     $("#overlay").fadeIn("1000","swing");
-    if (text == 'paused') {
-        if (settings.platform == 'mobile') {
-            text = 'pausedMobile';
-        }
-    }
-
 
     if (text == 'gameover') {
         if (settings.platform == 'mobile') {
@@ -141,9 +141,9 @@ function setMainMenu() {
     }, 500);
     $('#restartBtn').show();
     if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
-        $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
+        $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
     } else {
-        $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
+        $("#pauseBtnInner").html('<i class="fa fa-play fa-2x"></i>');
     }
 }
 
@@ -174,7 +174,7 @@ function pause(o) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
-        $("#pauseBtn").html('<i class="fa fa-pause fa-2x"></i>');
+        $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
         $('.helpText').fadeOut(200, 'linear');
         hideText();
         hidebottombar();
@@ -190,7 +190,7 @@ function pause(o) {
             showText(message);
         }
         
-        $("#pauseBtn").html('<i class="fa fa-play fa-2x"></i>');
+        $("#pauseBtnInner").html('<i class="fa fa-play fa-2x"></i>');
         prevGameState = gameState;
         gameState = -1;
     }
