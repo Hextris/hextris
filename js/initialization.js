@@ -1,20 +1,6 @@
 $(document).ready(function(){
 	initialize();
 	$('#bottombar').hide();
-
-	$('a').each(function(i,o){
-		$(o).on('click',function(e){
-			window.open("http://www.google.com", '_system', 'location=no');
-			e.preventDefault();
-			return false;
-		});
-	});
-
-	$('#ghl').on('click mousedown touchstart',function(e){
-		window.open('http://hextris.github.io/', target='_system');
-		e.preventDefault();
-		return false;
-	});
 });
 
 function showbottombar() {
