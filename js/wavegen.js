@@ -39,7 +39,7 @@ function waveGen(hex) {
 			this.lastGen = this.dt;
 			var fv = randInt(0, MainHex.sides);
 			addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty/15) * 3);
-			var lim = randInt(5, 7);
+			var lim = 5;
 			if (this.ct > lim) {
 				var nextPattern = randInt(0, 3 + 21);
 				if (nextPattern > 15) {
