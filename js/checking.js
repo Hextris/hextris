@@ -69,7 +69,7 @@ function consolidateBlocks(hex,side,index){
 	// add scores
 	var now = MainHex.ct;
 	if(now - hex.lastCombo < settings.comboTime ){
-		settings.comboTime = waveone.nextGen/16* 2;
+		settings.comboTime = waveone.nextGen/16 * 2;
 		hex.comboMultiplier += 1;
 		hex.lastCombo = now;
 		var coords = findCenterOfBlocks(deletedBlocks);

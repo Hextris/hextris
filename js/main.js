@@ -14,7 +14,6 @@ function scaleCanvas() {
 	};
 
 	if (window.devicePixelRatio) {
-		//from https://gist.github.com/joubertnel/870190
 		var cw = $("#canvas").attr('width');
 		var ch = $("#canvas").attr('height');
 	
@@ -195,7 +194,7 @@ function setStartScreen() {
 	$('#restartBtn').show();
 	$('#startBtn').show();
 	$('#attributions').show();
-	showbottombar()
+	showbottombar();
 
 	gameState = 0;
 	requestAnimFrame(animLoop);
@@ -262,7 +261,7 @@ function animLoop() {
 			break;
 
 		case 4:
-			setTimeout(function(){initialize(1)}, 1);
+			setTimeout(function(){initialize(1);}, 1);
 			render();
 			return;
 
