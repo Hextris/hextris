@@ -98,7 +98,20 @@ function showText(text){
     if (text == 'gameover') {
         var allZ = 1;
         var i;
-        highscores.sort(function(a,b){a = parseInt(a, 10); b = parseInt(b, 10); if (a < b) {return 1;} else if (a > b) {return -1;}else {return 0;}});
+        highscores.sort(
+			function(a,b){
+				a = parseInt(a, 10);
+				b = parseInt(b, 10);
+				if (a < b) {
+					return 1;
+				} else if (a > b) {
+					return -1;
+				}else {
+					return 0;
+				}
+			}
+		);
+		highscores = highscores.slice(0,3);
         writeHighScores();
         for (i = 0; i < 3; i++) {
             if (highscores.length > i) {
