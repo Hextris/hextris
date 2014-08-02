@@ -127,7 +127,7 @@ function initialize(a) {
     window.prevScore = 0;
     window.numHighScores = 3;
 
-    window.highscores = [];
+    highscores = [];
     if (localStorage.getItem('highscores')) {
         try {
             highscores = JSON.parse(localStorage.getItem('highscores'));
@@ -136,7 +136,6 @@ function initialize(a) {
         }
     }
 
-    writeHighScores();
 
     window.blocks = [];
     window.MainHex;
