@@ -1,6 +1,6 @@
 // t: current time, b: begInnIng value, c: change In value, d: duration
 function easeOutCubic(t, b, c, d) {
-    return c*((t=t/d-1)*t*t + 1) + b;
+    return c * ((t = t / d - 1) * t * t + 1) + b;
 }
 
 function renderText(x, y, fontSize, color, text, font) {
@@ -24,22 +24,32 @@ function drawScoreboard() {
     }
 
     ctx.globalAlpha = textOpacity;
+    var scoreSize = 50;
+    var scoreString = String(score);
+    if (scoreString.length == 6) {
+        scoreSize = 43;
+    } else if (scoreString.length == 7) {
+        scoreSize = 35;
+    } else if (scoreString.length == 8) {
+        scoreSize = 31;
+    } else if (scoreString.length == 9) {
+        scoreSize = 27;
+    }
+
     if (gameState === 0) {
-        renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
-        renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
-        renderText(trueCanvas.width/2+ gdx + 5 * settings.scale, trueCanvas.height/2+ gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
-    }
-    else if(gameState!=0 && textOpacity>0){
+        renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
+        renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
+        renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
+    } else if (gameState != 0 && textOpacity > 0) {
         textOpacity -= 0.05;
-        renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
-        renderText(trueCanvas.width/2+ gdx + 6 * settings.scale, trueCanvas.height/2+ gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
-        renderText(trueCanvas.width/2+ gdx + 5 * settings.scale, trueCanvas.height/2+ gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
+        renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
+        renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
+        renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
         ctx.globalAlpha = scoreOpacity;
-        renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "rgb(236, 240, 241)", score);
-    }
-    else {
+        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, "rgb(236, 240, 241)", score);
+    } else {
         ctx.globalAlpha = scoreOpacity;
-        renderText(trueCanvas.width/2+ gdx, trueCanvas.height/2+ gdy, 50, "rgb(236, 240, 241)", score);
+        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, "rgb(236, 240, 241)", score);
     }
 
     ctx.globalAlpha = 1;
@@ -53,7 +63,7 @@ function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor
     ctx.fillStyle = fillColor;
     ctx.lineWidth = lineWidth;
     ctx.strokeStyle = lineColor;
-    
+
     ctx.beginPath();
     var coords = rotatePoint(0, radius, theta);
     ctx.moveTo(coords.x + x, coords.y + y);
@@ -75,18 +85,17 @@ function drawPolygon(x, y, sides, radius, theta, fillColor, lineWidth, lineColor
 function toggleClass(element, active) {
     if ($(element).hasClass(active)) {
         $(element).removeClass(active);
-    }
-    else {
+    } else {
         $(element).addClass(active);
     }
 }
 
-function showText(text){
+function showText(text) {
     var messages = {
-        'paused':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
-        'pausedMobile':"<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press <i class='fa fa-play'></i> to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
-        'start':"<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
-        'gameover':"<div class='centeredHeader unselectable'> Game Over: "+score+" pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
+        'paused': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
+        'pausedMobile': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press <i class='fa fa-play'></i> to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
+        'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
+        'gameover': "<div class='centeredHeader unselectable'> Game Over: " + score + " pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
     };
 
     if (text == 'paused') {
@@ -94,31 +103,31 @@ function showText(text){
             text = 'pausedMobile';
         }
     }
-    
+
     if (text == 'gameover') {
         var allZ = 1;
         var i;
         highscores.sort(
-			function(a,b){
-				a = parseInt(a, 10);
-				b = parseInt(b, 10);
-				if (a < b) {
-					return 1;
-				} else if (a > b) {
-					return -1;
-				}else {
-					return 0;
-				}
-			}
-		);
-		highscores = highscores.slice(0,3);
+            function(a, b) {
+                a = parseInt(a, 10);
+                b = parseInt(b, 10);
+                if (a < b) {
+                    return 1;
+                } else if (a > b) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        );
+        highscores = highscores.slice(0, 3);
         writeHighScores();
         for (i = 0; i < 3; i++) {
             if (highscores.length > i) {
-                messages['gameover'] += "<tr> <th class='tg-031e'>"+(i+1)+".</th> <th class='tg-031e'>"+highscores[i] + " pts</th> </tr>";
+                messages['gameover'] += "<tr> <th class='tg-031e'>" + (i + 1) + ".</th> <th class='tg-031e'>" + highscores[i] + " pts</th> </tr>";
             }
         }
-    
+
         var restartText;
         if (settings.platform == 'mobile') {
             restartText = 'Tap anywhere to restart!';
@@ -127,7 +136,7 @@ function showText(text){
         }
 
         messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
-    
+
         if (allZ) {
             for (i = 0; i < highscores.length; i++) {
                 if (highscores[i] !== 0) {
@@ -137,7 +146,7 @@ function showText(text){
         }
     }
     $("#overlay").html(messages[text]);
-    $("#overlay").fadeIn("1000","swing");
+    $("#overlay").fadeIn("1000", "swing");
 
     if (text == 'gameover') {
         if (settings.platform == 'mobile') {
@@ -149,7 +158,7 @@ function showText(text){
 function setMainMenu() {
     gameState = 4;
     canRestart = false;
-    setTimeout(function(){
+    setTimeout(function() {
         canRestart = 's';
     }, 500);
     $('#restartBtn').show();
@@ -161,10 +170,12 @@ function setMainMenu() {
 }
 
 function hideText() {
-    $("#overlay").fadeOut("1000",function(){$("#overlay").html("");})
+    $("#overlay").fadeOut("1000", function() {
+        $("#overlay").html("");
+    })
 }
 
-function gameOverDisplay(){
+function gameOverDisplay() {
     $("#attributions").show();
     var c = document.getElementById("canvas");
     c.className = "blur";
@@ -191,18 +202,17 @@ function pause(o) {
         $('.helpText').fadeOut(200, 'linear');
         hideText();
         hidebottombar();
-        setTimeout(function () {
+        setTimeout(function() {
             gameState = prevGameState;
-        },200)
+        }, 200)
 
-    }
-    else if(gameState != -2 && gameState !== 0 && gameState !== 2) {
+    } else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
         $('.helpText').fadeIn(200, 'linear');
         showbottombar();
         if (message == 'paused') {
             showText(message);
         }
-        
+
         $("#pauseBtnInner").html('<i class="fa fa-play fa-2x"></i>');
         prevGameState = gameState;
         gameState = -1;
