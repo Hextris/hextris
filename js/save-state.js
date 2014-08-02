@@ -37,9 +37,22 @@ function descaleBlock(b) {
 }
 
 function writeHighScores() {
-	if (Object.prototype.toString.call(highscores) === '[object Array]') {
-		localStorage.setItem("highscores", JSON.stringify(highscores));
-	}
+        debugger;
+        highscores.sort(
+		function(a,b){
+			a = parseInt(a, 10);
+			b = parseInt(b, 10);
+			if (a < b) {
+				return 1;
+			} else if (a > b) {
+				return -1;
+			}else {
+				return 0;
+			}
+		}
+	);
+	highscores = highscores.slice(0,3);
+	localStorage.setItem("highscores", JSON.stringify(highscores));
 }
 
 function clearSaveState() {
