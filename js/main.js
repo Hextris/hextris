@@ -74,7 +74,6 @@ function init(b) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
-        checkVisualElements();
 
         setTimeout(function() {
             $('.helpText').fadeOut(150, "linear");
@@ -82,6 +81,7 @@ function init(b) {
         clearSaveState();
     }
 
+    $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
     hideUIElements();
     var saveState = localStorage.getItem("saveState") || "{}";
     saveState = JSONfn.parse(saveState);
