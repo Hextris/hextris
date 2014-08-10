@@ -178,7 +178,7 @@ function initialize(a) {
         $(window).unload(function() {
 
             if (gameState == 1 || gameState == -1 || gameState === 0) localStorage.setItem("saveState", exportSaveState());
-            else localStorage.clear();
+            else localStorage.setItem("saveState", "{}");
         });
 
         addKeyListeners();
