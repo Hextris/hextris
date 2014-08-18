@@ -39,7 +39,7 @@ function resumeGame() {
     gameState = 1;
     hideUIElements();
     $('#pauseBtn').show();
-    $('#restartBtn').show();
+    $('#restartBtn').hide();
     importing = 0;
     startTime = Date.now();
     setTimeout(function() {
@@ -54,7 +54,7 @@ function resumeGame() {
 function checkVisualElements() {
     if (!$('.helpText').is(":visible")) $('.helpText').fadeIn(150, "linear");
     if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
-    if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeIn(150, "linear");
+    if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 }
 
 function hideUIElements() {
@@ -96,7 +96,7 @@ function init(b) {
     op = 0;
     scoreOpacity = 0;
     gameState = 1;
-    $("#restartBtn").show();
+    $("#restartBtn").hide();
     $("#pauseBtn").show();
     if (saveState.hex !== undefined) gameState = 1;
 
@@ -190,7 +190,7 @@ function setStartScreen() {
     }
 
     $('#pauseBtn').hide();
-    $('#restartBtn').show();
+    $('#restartBtn').hide();
     $('#startBtn').show();
     $('#attributions').show();
     showbottombar();
