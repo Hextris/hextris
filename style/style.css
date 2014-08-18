@@ -9,12 +9,12 @@
 	margin:0;
 }
 
+
 a {
     color:#232323;
 }
 
 .twitter-share-button { width: 90px !important; }
-
 
 .navbar {
 	width: 80%;
@@ -280,7 +280,7 @@ body {
 	width:1000px;
 	text-align:center;
 	left:50%;
-    margin-left:-500px;
+        margin-left:-510px;
 	bottom:10px;
 	z-index:98;
 }
