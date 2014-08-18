@@ -1,6 +1,6 @@
 function blockDestroyed() {
     if (waveone.nextGen > 1350) {
-        waveone.nextGen -= 30 * settings.creationSpeedModifier;
+        waveone.nextGen -= 37 * settings.creationSpeedModifier;
     } else if (waveone.nextGen > 600) {
         waveone.nextGen -= 15 * settings.creationSpeedModifier;
     } else {
@@ -8,7 +8,7 @@ function blockDestroyed() {
     }
 
     if (waveone.difficulty < 35) {
-        waveone.difficulty += 0.13 * settings.speedModifier;
+        waveone.difficulty += 0.17 * settings.speedModifier;
     } else {
         waveone.difficulty = 35;
     }
@@ -26,7 +26,7 @@ function waveGen(hex) {
     this.dt = 0;
     this.update = function() {
         this.currentFunction();
-        this.dt = MainHex.dt * 17;
+        this.dt = MainHex.ct * 16.6666667;
         this.computeDifficulty();
         if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
             if (this.nextGen > 600) {
