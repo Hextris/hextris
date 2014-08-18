@@ -95,7 +95,8 @@ function showText(text) {
         'paused': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
         'pausedMobile': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press <i class='fa fa-play'></i> to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
         'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
-        'gameover': "<div class='centeredHeader unselectable'> Game Over: " + score + " pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'>"
+        'gameover': "<div class='centeredHeader unselectable'> Game Over: " + score + " pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
+         
     };
 
     if (text == 'paused') {
@@ -131,10 +132,12 @@ function showText(text) {
             }
         }
     }
+    messages['gameover'] += "<div class='fltrt' id='tweetStuff'><a class='tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points in  &url=http://hextris.github.io/hextris&button_hashtag=hextris' data-lang='en' data-related='hextris:hextris'>Share Your Score on Twitter!!!</a></div>"
     $("#overlay").html(messages[text]);
     $("#overlay").fadeIn("1000", "swing");
 
     if (text == 'gameover') {
+
         if (settings.platform == 'mobile') {
             $('.tg').css('margin-top', '4px');
         }
