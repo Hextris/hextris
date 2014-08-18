@@ -123,6 +123,18 @@ button:focus {
 	background-color:rgba(236,240,241,.7);
 }
 
+#colorBlindBtn {
+	position:absolute;
+	width:120px;
+	height:20px;
+	z-index:9999;
+	left: 47%;
+	top:65%;
+	font-size:15px;
+	text-align:center;
+	color:#232323;
+	cursor:pointer;
+}
 .instructions_body {
     margin-left:3px;
     width:calc(100% - 12px) ! important;
