@@ -72,6 +72,31 @@ function addKeyListeners() {
 		pause();
 		return false;
 	});
+	
+	$("#colorBlindBtn").on('touchstart mousedown', function() {
+	window.colors = ["#8e44ad", "#f1c40f", "#3498db", "#d35400"];
+	
+    window.hexColorsToTintedColors = {
+        "#8e44ad": "rgb(229,152,102)",
+        "#f1c40f": "rgb(246,223,133)",
+        "#3498db": "rgb(151,201,235)",
+        "#d35400": "rgb(210,180,222)"
+    };
+
+    window.rgbToHex = {
+        "rgb(142,68,173)": "#8e44ad",
+        "rgb(241,196,15)": "#f1c40f",
+        "rgb(52,152,219)": "#3498db",
+        "rgb(211,84,0)": "#d35400"
+    };
+
+    window.rgbColorsToTintedColors = {
+        "rgb(142,68,173)": "rgb(229,152,102)",
+        "rgb(241,196,15)": "rgb(246,223,133)",
+        "rgb(52,152,219)": "rgb(151,201,235)",
+        "rgb(46,204,113)": "rgb(210,180,222)"
+	};
+	});
 
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
