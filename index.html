@@ -18,25 +18,25 @@
 		<link rel="icon" type="image/png" href="favicon.ico">
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
-		<script type = 'text/javascript' src="vendor_prod_v4/hammer.min.js"></script>
-		<script type = 'text/javascript' src="vendor_prod_v4/jsonfn.min.js"></script>
-		<script type = 'text/javascript' src="vendor_prod_v4/keypress.min.js"></script>
-		<script type = 'text/javascript' src="vendor_prod_v4/jquery.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/save-state.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/view.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/wavegen.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/math.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/Block.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/Hex.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/Text.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/comboTimer.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/checking.js"></script>
-		<script type = 'text/javascript' src='js_prod_v4/update.js'></script>
-		<script type = 'text/javascript' src='js_prod_v4/render.js'></script>
-		<script type = 'text/javascript' src="js_prod_v4/input.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/main.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/initialization.js"></script>
-		<script type = 'text/javascript' charset = 'utf-8' src = 'cordova.js'></script>
+		<script src="vendor_prod_v4/hammer.min.js"></script>
+		<script src="vendor_prod_v4/jsonfn.min.js"></script>
+		<script src="vendor_prod_v4/keypress.min.js"></script>
+		<script src="vendor_prod_v4/jquery.js"></script>
+		<script src="js_prod_v4/save-state.js"></script>
+		<script src="js_prod_v4/view.js"></script>
+		<script src="js_prod_v4/wavegen.js"></script>
+		<script src="js_prod_v4/math.js"></script>
+		<script src="js_prod_v4/Block.js"></script>
+		<script src="js_prod_v4/Hex.js"></script>
+		<script src="js_prod_v4/Text.js"></script>
+		<script src="js_prod_v4/comboTimer.js"></script>
+		<script src="js_prod_v4/checking.js"></script>
+		<script src='js_prod_v4/update.js'></script>
+		<script src='js_prod_v4/render.js'></script>
+		<script src="js_prod_v4/input.js"></script>
+		<script src="js_prod_v4/main.js"></script>
+		<script src="js_prod_v4/initialization.js"></script>
+		<script charset="utf-8" src="cordova.js"></script>
 	</head>
 	<body>
                 <div id="fb-root"></div>
@@ -46,21 +46,21 @@
                   js = d.createElement(s); js.id = id;
                   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
                   fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script> 
+                }(document, 'script', 'facebook-jssdk'));</script>
 		<canvas id="canvas"></canvas>
 		<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
-			<h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
-			<textarea id ='devtoolsText' style = 'height:300px;width:400px;'></textarea>
+			<h2 id='clickToExit' style='background-color:#fff;color:#000'>Click to exit</h2>
+			<textarea id='devtoolsText' style='height:300px;width:400px;'></textarea>
 		</div>
 		<div id="overlay" class="faded"></div>
-		<div id="attributions">Started by <a href="http://github.com/teamsnowman" target="_blank">@teamsnowman</a> at <a href= 'http://www.hackexeter.com/' target="_blank">HackExeter</a><br>
+		<div id="attributions">Started by <a href="http://github.com/teamsnowman" target="_blank">@teamsnowman</a> at <a href='http://www.hackexeter.com/' target="_blank">HackExeter</a><br>
 			Finished by <a href="http://github.com/meadowstream" target="_blank">Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target="_blank">Garrett Finucane</a> on <a href = 'http://github.com/hextris/hextris' target="_blank">GitHub</a><br>
-			<a href = 'https://itunes.apple.com/us/app/id903769553?mt=8'>iOS</a> & <a href ='https://play.google.com/store/apps/details?id=com.hextris.hextris'>Android</a> apps + <a href ='http://hextris.github.io/presskit/info.html'>press kit</a> @ <a href='http://hextris.github.io/'>http://hextris.github.io/</a>
+			<a href='https://itunes.apple.com/us/app/id903769553?mt=8'>iOS</a> & <a href='https://play.google.com/store/apps/details?id=com.hextris.hextris'>Android</a> apps + <a href='http://hextris.github.io/presskit/info.html'>press kit</a> @ <a href='http://hextris.github.io/'>http://hextris.github.io/</a>
 		</div>
 		<div id='startBtn' style='position:absolute;left:40%;top:38%;height:25%;width:25%;z-index:99999999;cursor:pointer;'></div>
-		<div id="helpScreen" class = 'unselectable'>
-			<h1 class = 'instructions_body'>Instructions</h1>
-			<p class = 'instructions_body' id = 'inst_main_body'>
+		<div id="helpScreen" class='unselectable'>
+			<h1 class='instructions_body'>Instructions</h1>
+			<p class='instructions_body' id='inst_main_body'>
 				The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon
 				<br>
 				<br>
@@ -76,26 +76,26 @@
 				Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span><span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon
 				<br>
 				<br>
-				Pause by pressing <i class = 'fa fa-pause'></i>
+				Pause by pressing <i class='fa fa-pause'></i>
 				<br>
-				Restart by pressing <i class = 'fa fa-refresh'></i>
+				Restart by pressing <i class='fa fa-refresh'></i>
 				<br>
-				Bring up this menu by pressing <i class = 'fa fa-info-circle'></i>
+				Bring up this menu by pressing <i class='fa fa-info-circle'></i>
 				<br>
 				<br>
 				<span>Comments? Email <a href='mailto:hextrisgame@gmail.com'>hextrisgame@gmail.com</a></span>
 			</p>
 		</div>
-		<div id="openSideBar" class = 'helpText'><i class="fa fa-info-circle fa-lg"></i> <i class="fa fa-arrow-left"><b>  Help</b></i></div>
+		<div id="openSideBar" class="helpText"><i class="fa fa-info-circle fa-lg"></i> <i class="fa fa-arrow-left"><b>  Help</b></i></div>
 		<div id="overlay" class="faded"></div>
-		<div id = 'pauseBtn'><div id = 'pauseBtnInner'><i class="fa fa-pause fa-2x"></div></i></div>
-		<div id = 'restartBtn'><div id = 'restartBtnInner'><i class="fa fa-refresh fa-2x"></i></div></div>
+		<div id="pauseBtn"><div id="pauseBtnInner"><i class="fa fa-pause fa-2x"></div></i></div>
+		<div id="restartBtn"><div id="restartBtnInner"><i class="fa fa-refresh fa-2x"></i></div></div>
 		<div id="bottombar">
                         <div style="bottom:4px; padding-right:4px;" class="fb-like" data-href="http://hextris.github.io/hextris" data-width="20" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
 			<a href="https://twitter.com/intent/tweet?hashtags=hextris&original_referer=http%3A%2F%2F0.0.0.0%3A8080%2F&text=Play%20Hextris!%20-&tw_p=tweetbutton&url=http%3A%2F%2Fhextris.github.io%2F" class="twitter-share-button" data-url="http://hextris.github.io/" data-text="Play Hextris! -" data-hashtags="hextris">Tweet</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-			<iframe id = 'ghl' src="http://ghbtns.com/github-btn.html?user=Hextris&repo=Hextris&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="20" onload='showbottombar()'></iframe>
+			<iframe id="ghl" src="http://ghbtns.com/github-btn.html?user=Hextris&repo=Hextris&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="20" onload='showbottombar()'></iframe>
 		</div>
-        <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview'); </script>
-    </body>
+		<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');</script>
+	</body>
 </html>
