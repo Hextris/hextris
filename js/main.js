@@ -198,16 +198,22 @@ function setStartScreen() {
     gameState = 0;
     requestAnimFrame(animLoop);
 }
+setInterval(function(){
+        if(gameState == 1 ){
+                if(!MainHex.delay) {
+                        update();
+                }
+                else{
+                        MainHex.delay--;
+                }
+        }
+}, 17);
+
 
 function animLoop() {
     switch (gameState) {
         case 1:
             requestAnimFrame(animLoop);
-            if (!MainHex.delay) {
-                update();
-            } else {
-                MainHex.delay--;
-            }
             render();
             if (checkGameOver() && !importing) {
 

@@ -67,7 +67,5 @@ function update() {
 			i--;
 		}
 	}
-        if(Date.now()-MainHex.lastUpdate>=17){  	
-	        MainHex.ct++;
-        }
+        MainHex.ct++;
 }
