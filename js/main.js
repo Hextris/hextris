@@ -1,6 +1,6 @@
 function scaleCanvas() {
-    canvas.width = $(window).width();
-    canvas.height = $(window).height();
+    canvas.width = $("#overallContainer").width();
+    canvas.height = $("#overallContainer").height();
 
     if (canvas.height > canvas.width) {
         settings.scale = (canvas.width / 800) * settings.baseScale;
