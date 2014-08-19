@@ -13,6 +13,13 @@
         font-size:2em;
         color:#4099FF;
 }
+@media only screen
+and (min-device-width : 320px)
+    and (max-device-width : 480px) {
+        .tweet{
+                font-size:1em;
+        }
+}
 
 a {
     color:#232323;
