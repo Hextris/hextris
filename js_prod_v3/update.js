@@ -67,6 +67,5 @@ function update() {
 			i--;
 		}
 	}
-	
-	MainHex.ct++;
+        MainHex.ct++;
 }
