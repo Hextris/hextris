@@ -9,6 +9,10 @@
 	margin:0;
 }
 
+.tweet {
+        font-size:2em;
+        color:#4099FF;
+}
 
 a {
     color:#232323;
