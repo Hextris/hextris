@@ -67,6 +67,7 @@ function hideUIElements() {
 
 function init(b) {
     if (b) {
+        mixpanel.track("Restart");
         hidebottombar();
 
 
@@ -80,6 +81,10 @@ function init(b) {
         }, 7000);
         clearSaveState();
     }
+    else{
+        mixpanel.track("Game Started");
+    }
+
 
     $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
     hideUIElements();
