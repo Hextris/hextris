@@ -37,7 +37,6 @@ function descaleBlock(b) {
 }
 
 function writeHighScores() {
-        debugger;
         highscores.sort(
 		function(a,b){
 			a = parseInt(a, 10);
