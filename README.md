@@ -12,7 +12,7 @@ Built by @teamsnowman (@meadowstream, @garrettdreyfus, @nmoroze, and @themichael
 
 ## Press kit
 
-hextris.github.io/presskit/info.html
+https://hextris.github.io/presskit/info.html
 
 ## License
 
