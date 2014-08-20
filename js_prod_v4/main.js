@@ -318,7 +318,7 @@ function checkGameOver() {
 }
 
 function showHelp() {
-    if($($("#pauseBtnInner").children()[0]).hasClass("fa-pause")) {
+    if($($("#pauseBtnInner").children()[0]).hasClass("fa-pause") && gameState != 0) {
         return;
     }
     $("#openSideBar").fadeIn(150,"linear");
