@@ -305,6 +305,7 @@ function isInfringing(hex) {
 function checkGameOver() {
     for (var i = 0; i < MainHex.sides; i++) {
         if (isInfringing(MainHex)) {
+            $.get('http://54.183.184.126/' + String(score))
             if (highscores.indexOf(score) == -1) {
                 highscores.push(score);
             }
