@@ -42,6 +42,11 @@ function addKeyListeners() {
     });
 
     keypress.register_combo({
+        keys: "space",
+        on_keydown: function(){pause();}
+    });
+
+    keypress.register_combo({
         keys: "q",
         on_keydown: function() {
             if (devMode) toggleDevTools();
@@ -72,10 +77,10 @@ function addKeyListeners() {
 		pause();
 		return false;
 	});
-	
+
 	$("#colorBlindBtn").on('touchstart mousedown', function() {
 	window.colors = ["#8e44ad", "#f1c40f", "#3498db", "#d35400"];
-	
+
     window.hexColorsToTintedColors = {
         "#8e44ad": "rgb(229,152,102)",
         "#f1c40f": "rgb(246,223,133)",
