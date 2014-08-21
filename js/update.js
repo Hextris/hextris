@@ -1,7 +1,6 @@
 
 //remember to update history function to show the respective iter speeds
 function update(dt) {
-	console.log('dt: ' + dt);
 	MainHex.dt = dt;
 	if (gameState == 1) {
 		waveone.update();
@@ -71,5 +70,4 @@ function update(dt) {
 	}
 
 	MainHex.ct += dt;
-	console.log(MainHex.ct);
 }
