@@ -283,6 +283,10 @@ function animLoop() {
             setStartScreen();
             break;
     }
+
+    if (!(gameState == 1 || gameState == 2)) {
+        lastTime = Date.now();
+    }
 }
 
 function enableRestart() {
