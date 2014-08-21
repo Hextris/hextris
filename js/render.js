@@ -1,4 +1,7 @@
 function render() {
+	for (var i = 0; i < 100000; i ++) {
+		ctx.fillRect(20, 20, 20, 20);
+	}
 	var grey = '#bdc3c7';
 	if (gameState === 0) {
 		grey = "rgb(220, 223, 225)";
