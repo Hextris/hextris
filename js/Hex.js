@@ -1,7 +1,7 @@
 function Hex(sideLength) {
 	this.playThrough = 0;
 	this.fillColor = [44,62,80];
-    this.tempColor = [44,62,80];
+	this.tempColor = [44,62,80];
 	this.angularVelocity = 0;
 	this.position = 0;
 	this.dy = 0;
@@ -32,7 +32,7 @@ function Hex(sideLength) {
 		var dy = Math.sin(angle) * obj.magnitude;
 		gdx -= dx;
 		gdy += dy;
-		obj.magnitude /= 2;
+		obj.magnitude /= 2 * this.dt;
 		if (obj.magnitude < 1) {
 			for (var i = 0; i < this.shakes.length; i++) {
 				if (this.shakes[i] == obj) {
