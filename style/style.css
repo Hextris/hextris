@@ -210,7 +210,7 @@ and (max-device-width : 480px) {
     position:absolute;
     width:100%;
     left: 0%;
-    top: 72%;
+    top: 80%;
     text-align:center;
     font-size:1.25rem;
     z-index:98;
