@@ -203,25 +203,27 @@ function setStartScreen() {
     gameState = 0;
     requestAnimFrame(animLoop);
 }
-setInterval(function(){
-        if(gameState == 1 ){
-                if(!MainHex.delay) {
-                        update();
-                }
-                else{
-                        MainHex.delay--;
-                }
-        }
-}, 17);
-
 
 function animLoop() {
     switch (gameState) {
         case 1:
             requestAnimFrame(animLoop);
             render();
-            if (checkGameOver() && !importing) {
+            var now = Date.now();
+            var dt = (now - lastTime)/16.666;
 
+            if(gameState == 1 ){
+                if(!MainHex.delay) {
+                    update(dt);
+                }
+                else{
+                    MainHex.delay--;
+                }
+            }
+
+            lastTime = now;
+
+            if (checkGameOver() && !importing) {
                 var saveState = localStorage.getItem("saveState") || "{}";
                 saveState = JSONfn.parse(saveState);
                 gameState = 2;
@@ -246,10 +248,6 @@ function animLoop() {
 
         case 0:
             requestAnimFrame(animLoop);
-            if (importing) {
-                update();
-            }
-
             render();
             break;
 
@@ -259,9 +257,12 @@ function animLoop() {
             break;
 
         case 2:
+            var now = Date.now();
+            var dt = (now - lastTime)/16.666;
             requestAnimFrame(animLoop);
-            update();
+            update(dt);
             render();
+            lastTime = now;
             break;
 
         case 3:
@@ -281,6 +282,10 @@ function animLoop() {
             initialize();
             setStartScreen();
             break;
+    }
+
+    if (!(gameState == 1 || gameState == 2)) {
+        lastTime = Date.now();
     }
 }
 

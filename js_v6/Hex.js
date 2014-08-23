@@ -1,10 +1,11 @@
 function Hex(sideLength) {
 	this.playThrough = 0;
 	this.fillColor = [44,62,80];
-    this.tempColor = [44,62,80];
+	this.tempColor = [44,62,80];
 	this.angularVelocity = 0;
 	this.position = 0;
 	this.dy = 0;
+	this.dt = 1;
 	this.sides = 6;
 	this.blocks = [];
 	this.angle = 180 / this.sides;
@@ -31,7 +32,7 @@ function Hex(sideLength) {
 		var dy = Math.sin(angle) * obj.magnitude;
 		gdx -= dx;
 		gdy += dy;
-		obj.magnitude /= 2;
+		obj.magnitude /= 2 * this.dt;
 		if (obj.magnitude < 1) {
 			for (var i = 0; i < this.shakes.length; i++) {
 				if (this.shakes[i] == obj) {
@@ -63,7 +64,7 @@ function Hex(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				if (block.distFromHex - block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex - block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
                     block.checked = 1;
@@ -72,7 +73,7 @@ function Hex(sideLength) {
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
 			} else {
-				if (arr[position - 1].settled && block.distFromHex - block.iter * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+				if (arr[position - 1].settled && block.distFromHex - block.iter * this.dt * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					block.checked = 1;
@@ -90,12 +91,12 @@ function Hex(sideLength) {
 			var arr = this.blocks[lane];
 
 			if (arr.length > 0) {
-				if (block.distFromHex + block.iter * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				if (block.distFromHex + block.iter * this.dt * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
 			} else {
-				if (block.distFromHex + block.iter * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex + block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
 				}
@@ -146,10 +147,10 @@ function Hex(sideLength) {
 			this.shake(this.shakes[i]);
 		}
 		if (this.angle > this.targetAngle) {
-			this.angularVelocity -= angularVelocityConst;
+			this.angularVelocity -= angularVelocityConst * this.dt;
 		}
 		else if(this.angle < this.targetAngle) {
-			this.angularVelocity += angularVelocityConst;
+			this.angularVelocity += angularVelocityConst * this.dt;
 		}
 
 		if (Math.abs(this.angle - this.targetAngle + this.angularVelocity) <= Math.abs(this.angularVelocity)) { //do better soon
@@ -160,7 +161,7 @@ function Hex(sideLength) {
 			this.angle += this.angularVelocity;
 		}
  
-        drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
+		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
 	};
 }
 

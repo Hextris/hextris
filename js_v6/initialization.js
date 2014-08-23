@@ -20,6 +20,7 @@ function hidebottombar() {
 }
 
 function initialize(a) {
+    window.lastTime = Date.now();
     window.iframHasLoaded = false;
     window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
     window.hexColorsToTintedColors = {

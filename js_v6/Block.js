@@ -46,7 +46,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 				MainHex.shakes.push({lane:tLane, magnitude:3 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
 			}
 			//fade out the opacity
-			this.opacity = this.opacity - 0.075;
+			this.opacity = this.opacity - 0.075 * MainHex.dt;
 			if (this.opacity <= 0) {
 				//slate for final deletion
 				this.opacity = 0;
@@ -79,10 +79,10 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 			attached = false;
 
 		if(this.angle > this.targetAngle) {
-			this.angularVelocity -= angularVelocityConst;
+			this.angularVelocity -= angularVelocityConst * MainHex.dt;
 		}
 		else if(this.angle < this.targetAngle) {
-			this.angularVelocity += angularVelocityConst;
+			this.angularVelocity += angularVelocityConst * MainHex.dt;
 		}
 
 		if (Math.abs(this.angle - this.targetAngle + this.angularVelocity) <= Math.abs(this.angularVelocity)) { //do better soon
@@ -102,6 +102,9 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		var p4;
 		if (this.initializing) {
 			var rat = ((MainHex.ct - this.ict)/this.initLen);
+			if (rat > 1) {
+				rat = 1;
+			}
 			p1 = rotatePoint((-this.width / 2) * rat, this.height / 2, this.angle);
 			p2 = rotatePoint((this.width / 2) * rat, this.height / 2, this.angle);
 			p3 = rotatePoint((this.widthWide / 2) * rat, -this.height / 2, this.angle);
@@ -162,7 +165,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 			ctx.lineTo(baseX + p1.x, baseY + p1.y);
 			ctx.closePath();
 			ctx.fill();
-			this.tint -= 0.02;
+			this.tint -= 0.02 * MainHex.dt;
 			if (this.tint < 0) {
 				this.tint = 0;
 			}
