@@ -125,13 +125,15 @@ function handleClickTap(x,y) {
     }
 
     if (gameState == 2 && canRestart) {
-        setTimeout(function(){
+        setTimeout(function() {
             if(tweetblock) {
                 tweetblock = false;
                 return;
             }
             else{
-                init(1);
+                if (gameState != 1) {
+                    init(1);
+                }
             }
             return;
         }, 1000);
