@@ -15,38 +15,50 @@
 		<meta property="og:image" content="http://hextris.github.io/hextris/images/facebook-opengraph.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="twitter:card" content="summary" />
+		<meta property="twitter:site" content="@hextris" />
+		<meta property="twitter:site:id" content="2742209678" />
+		<meta property="twitter:creator" content="@hextris" />
+		<meta property="twitter:creator:id" content="2742209678" />
+		<meta property="twitter:domain" content="http://hextris.github.io" />
+		<meta property="twitter:title" content="Hextris" />
+		<meta property="twitter:description" content="An addictive puzzle game inspired by Tetris." />
+		<meta property="twitter:image:src" content="http://hextris.github.io/hextris/images/twitter-opengraph.png" />
+		<meta property="twitter:image:width" content="512" />
+		<meta property="twitter:image:height" content="512" />
 		<link rel="icon" type="image/png" href="favicon.ico">
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
-		<script type = 'text/javascript' src="vendor_prod_v4/hammer.min.js"></script>
-		<script type = 'text/javascript' src="vendor_prod_v4/jsonfn.min.js"></script>
-		<script type = 'text/javascript' src="vendor_prod_v4/keypress.min.js"></script>
-		<script type = 'text/javascript' src="vendor_prod_v4/jquery.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/save-state.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/view.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/wavegen.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/math.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/Block.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/Hex.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/Text.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/comboTimer.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/checking.js"></script>
-		<script type = 'text/javascript' src='js_prod_v4/update.js'></script>
-		<script type = 'text/javascript' src='js_prod_v4/render.js'></script>
-		<script type = 'text/javascript' src="js_prod_v4/input.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/main.js"></script>
-		<script type = 'text/javascript' src="js_prod_v4/initialization.js"></script>
+		<script type = 'text/javascript' src="vendor_v6/hammer.min.js"></script>
+		<script type = 'text/javascript' src="vendor_v6/jsonfn.min.js"></script>
+		<script type = 'text/javascript' src="vendor_v6/keypress.min.js"></script>
+		<script type = 'text/javascript' src="vendor_v6/jquery.js"></script>
+		<script type = 'text/javascript' src="js_v6/save-state.js"></script>
+		<script type = 'text/javascript' src="js_v6/view.js"></script>
+		<script type = 'text/javascript' src="js_v6/wavegen.js"></script>
+		<script type = 'text/javascript' src="js_v6/math.js"></script>
+		<script type = 'text/javascript' src="js_v6/Block.js"></script>
+		<script type = 'text/javascript' src="js_v6/Hex.js"></script>
+		<script type = 'text/javascript' src="js_v6/Text.js"></script>
+		<script type = 'text/javascript' src="js_v6/comboTimer.js"></script>
+		<script type = 'text/javascript' src="js_v6/checking.js"></script>
+		<script type = 'text/javascript' src='js_v6/update.js'></script>
+		<script type = 'text/javascript' src='js_v6/render.js'></script>
+		<script type = 'text/javascript' src="js_v6/input.js"></script>
+		<script type = 'text/javascript' src="js_v6/main.js"></script>
+		<script type = 'text/javascript' src="js_v6/initialization.js"></script>
 		<script type = 'text/javascript' charset = 'utf-8' src = 'cordova.js'></script>
 	</head>
 	<body>
-                <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script> 
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 		<canvas id="canvas"></canvas>
 		<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
 			<h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>

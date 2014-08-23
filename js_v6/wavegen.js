@@ -1,6 +1,6 @@
 function blockDestroyed() {
     if (waveone.nextGen > 1350) {
-        waveone.nextGen -= 24 * settings.creationSpeedModifier;
+        waveone.nextGen -= 20 * settings.creationSpeedModifier;
     } else if (waveone.nextGen > 600) {
         waveone.nextGen -= 10 * settings.creationSpeedModifier;
     } else {
@@ -8,7 +8,7 @@ function blockDestroyed() {
     }
 
     if (waveone.difficulty < 35) {
-        waveone.difficulty += 0.17 * settings.speedModifier;
+        waveone.difficulty += 0.11 * settings.speedModifier;
     } else {
         waveone.difficulty = 35;
     }
@@ -26,11 +26,11 @@ function waveGen(hex) {
     this.dt = 0;
     this.update = function() {
         this.currentFunction();
-        this.dt = MainHex.ct * 16.6666667;
+        this.dt = (settings.platform == 'mobile' ? 10.0 : 15) * MainHex.ct;
         this.computeDifficulty();
         if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
             if (this.nextGen > 600) {
-                this.nextGen -= 10 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
+                this.nextGen -= 14 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
             }
         }
     };
@@ -67,11 +67,11 @@ function waveGen(hex) {
     this.computeDifficulty = function() {
         if (this.difficulty < 35) {
             if (this.difficulty < 8) {
-                this.difficulty += (this.dt - this.last) / (2566667) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (2066667) * settings.speedModifier;
             } else if (this.difficulty < 15) {
-                this.difficulty += (this.dt - this.last) / (53333333) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (43333333) * settings.speedModifier;
             } else {
-                this.difficulty += (this.dt - this.last) / (120000000) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (90000000) * settings.speedModifier;
             }
         }
     };

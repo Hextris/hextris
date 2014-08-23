@@ -9,7 +9,7 @@ function Text(x,y,text,font,color,incrementFunction){
 	this.draw = function(){
 		if (this.alive>0) {
 			ctx.globalAlpha = this.opacity;
-            renderText((this.x + gdx), (this.y + gdy),50,this.color,this.text);
+			renderText((this.x + gdx), (this.y + gdy),50,this.color,this.text);
 			ctx.globalAlpha =1;
 			incrementFunction(this);
 			return true;
@@ -21,7 +21,7 @@ function Text(x,y,text,font,color,incrementFunction){
 }
 
 function fadeUpAndOut(text){
-	text.opacity -=  Math.pow(Math.pow((1-text.opacity), 1/3)+1,3)/100;
+	text.opacity -= MainHex.dt * Math.pow(Math.pow((1-text.opacity), 1/3)+1,3)/100;
 	text.alive = text.opacity;
-	text.y-=3;
+	text.y -= 3 * MainHex.dt;
 }

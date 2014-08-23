@@ -10,14 +10,14 @@
 }
 
 .tweet {
-        font-size:2em;
+        font-size:2rem;
         color:#4099FF;
 }
 @media only screen
 and (min-device-width : 320px)
     and (max-device-width : 480px) {
         .tweet{
-                font-size:1em;
+                font-size:1rem;
         }
 }
 
@@ -190,18 +190,19 @@ and (max-device-width : 480px) {
 }
 
 .centeredHeader {
-   font-size:5em; 
+   font-size:5vw; 
    text-align:center;
-   line-height:1em;
+   line-height:4rem;
 }
 
 .centeredSubHeader {
-   font-size:2em; 
+   font-size:2.2rem; 
+   line-height:1em;
    text-align:center;
 }
 
 .centeredSubSubHeader {
-    font-size:1.4em; 
+    font-size:1.4rem; 
     text-align:center;
 }
 #attributions {
@@ -211,7 +212,7 @@ and (max-device-width : 480px) {
     left: 0%;
     top: 72%;
     text-align:center;
-    font-size:1.25em;
+    font-size:1.25rem;
     z-index:98;
 }
 
@@ -219,17 +220,17 @@ and (max-device-width : 480px) {
 and (min-device-width : 320px) 
 and (max-device-width : 580px) {
     .centeredHeader {
-        font-size:2em; 
+        font-size:2rem; 
         text-align:center;
-        line-height:0.6em;
+        line-height:0.6rem;
     }
 
     #attributions {
-        font-size:.7em;
+        font-size:.7rem;
     }
 
     .centeredSubHeader {
-        font-size:1em; 
+        font-size:1rem; 
         text-align:center;
     }
 
