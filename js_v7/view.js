@@ -122,7 +122,7 @@ function showText(text) {
             restartText = 'Press enter (or click anywhere!) to restart!';
         }
 
-        messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader'>" + restartText + "</div>";
+        messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>";
 
         if (allZ) {
             for (i = 0; i < highscores.length; i++) {
@@ -139,7 +139,8 @@ function showText(text) {
     if (text == 'gameover') {
 
         if (settings.platform == 'mobile') {
-            $('.tg').css('margin-top', '4px');
+            $('.tg').css('margin-top', '6px');
+            $("#tapToRestart").css('margin-top','-19px')
         }
     }
 }
