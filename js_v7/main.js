@@ -320,9 +320,14 @@ function checkGameOver() {
 }
 
 function showHelp() {
+    if (gameState == 1) {
+        pause();
+    }
+
     if($($("#pauseBtnInner").children()[0]).hasClass("fa-pause") && gameState != 0 && !infobuttonfading) {
         return;
     }
+
     $("#openSideBar").fadeIn(150,"linear");
     $('#helpScreen').fadeToggle(150, "linear");
 }
