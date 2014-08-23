@@ -74,13 +74,14 @@ function init(b) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
-
         setTimeout(function() {
             $('.helpText').fadeOut(150, "linear");
+                infobuttonfading = false;
         }, 7000);
         clearSaveState();
     }
 
+    infobuttonfading = true;
     $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
     hideUIElements();
     var saveState = localStorage.getItem("saveState") || "{}";
@@ -319,7 +320,7 @@ function checkGameOver() {
 }
 
 function showHelp() {
-    if($($("#pauseBtnInner").children()[0]).hasClass("fa-pause") && gameState != 0) {
+    if($($("#pauseBtnInner").children()[0]).hasClass("fa-pause") && gameState != 0 && !infobuttonfading) {
         return;
     }
     $("#openSideBar").fadeIn(150,"linear");
