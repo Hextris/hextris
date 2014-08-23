@@ -123,7 +123,6 @@ function showText(text) {
         }
 
         messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>";
-
         if (allZ) {
             for (i = 0; i < highscores.length; i++) {
                 if (highscores[i] !== 0) {
@@ -137,7 +136,6 @@ function showText(text) {
     $("#overlay").fadeIn("1000", "swing");
 
     if (text == 'gameover') {
-
         if (settings.platform == 'mobile') {
             $('.tg').css('margin-top', '6px');
             $("#tapToRestart").css('margin-top','-19px')
