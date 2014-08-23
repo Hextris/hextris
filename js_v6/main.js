@@ -99,6 +99,7 @@ function init(b) {
     prevScore = 0;
     spawnLane = 0;
     op = 0;
+    tweetblock=false;
     scoreOpacity = 0;
     gameState = 1;
     $("#restartBtn").hide();
