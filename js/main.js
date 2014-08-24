@@ -207,7 +207,7 @@ function animLoop() {
             requestAnimFrame(animLoop);
             render();
             var now = Date.now();
-            var dt = (now - lastTime)/16.666;
+            var dt = (now - lastTime)/16.666 * rush;
 
             if(gameState == 1 ){
                 if(!MainHex.delay) {
@@ -255,7 +255,7 @@ function animLoop() {
 
         case 2:
             var now = Date.now();
-            var dt = (now - lastTime)/16.666;
+            var dt = (now - lastTime)/16.666 * rush;
             requestAnimFrame(animLoop);
             update(dt);
             render();
