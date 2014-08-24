@@ -39,7 +39,7 @@ function drawScoreboard() {
         var color = "rgb(236, 240, 241)";
     }
     else{
-        var color = "#e67e22";
+        var color = "#e74c3c";
     }
     if (gameState === 0) {
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
