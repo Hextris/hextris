@@ -19,10 +19,12 @@ function addKeyListeners() {
     keypress.register_combo({
         keys: "down",
         on_keydown: function() {
-                if(gameState==1){
-                        toggleRush();
-                }
+                rush=2;
+        },
+        on_release: function() {
+                rush=1;
         }
+
     });
 
     keypress.register_combo({
