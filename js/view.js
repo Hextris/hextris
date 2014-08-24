@@ -35,7 +35,12 @@ function drawScoreboard() {
     } else if (scoreString.length == 9) {
         scoreSize = 27;
     }
-
+    if (rush ==1){
+        var color = "rgb(236, 240, 241)";
+    }
+    else{
+        var color = "#e67e22";
+    }
     if (gameState === 0) {
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
@@ -46,10 +51,10 @@ function drawScoreboard() {
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
         renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
         ctx.globalAlpha = scoreOpacity;
-        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, "rgb(236, 240, 241)", score);
+        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, color, score);
     } else {
         ctx.globalAlpha = scoreOpacity;
-        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, "rgb(236, 240, 241)", score);
+        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, color, score);
     }
 
     ctx.globalAlpha = 1;

@@ -154,7 +154,7 @@ function handleClickTap(x,y) {
     Vertexes = Vertexes.map(function(coord){ 
         return [coord[0] + trueCanvas.width/2, coord[1] + trueCanvas.height/2]});
     if (gameState == 1 && inside([x,y],Vertexes)){
-        //SET SPEED FAST
+        toggleRush();
         return;
     }
     if (gameState == 2 && canRestart) {
@@ -202,6 +202,9 @@ function handleClickTap(x,y) {
     }
 }
 
+function toggleRush(){
+    rush = ((rush)%2)+1;
+}
 function setRush() {
     rush = 2;
 }
