@@ -201,3 +201,11 @@ function handleClickTap(x,y) {
         MainHex.rotate(-1);
     }
 }
+
+function setRush() {
+    rush = 2;
+}
+
+function removeRush() {
+    rush = 1;
+}
