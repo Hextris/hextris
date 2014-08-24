@@ -16,7 +16,14 @@ function addKeyListeners() {
             }
         }
     });
-
+    keypress.register_combo({
+        keys: "down",
+        on_keydown: function() {
+                if(gameState==1){
+                        toggleRush();
+                }
+        }
+    });
 
     keypress.register_combo({
         keys: "a",
