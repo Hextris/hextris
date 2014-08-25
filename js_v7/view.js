@@ -97,10 +97,10 @@ function showText(text) {
         'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
         'gameover': "<div class='modal fade' id='gameOver'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'>"+
             "<button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>" +
-            "<h3 class='centeredHeader unselectable'> Game Over </h3></div>" +
+            "<h2 class='centeredHeader unselectable'> Game Over </h2></div>" +
             "<div class='modal-body'>" +
             "<span class = 'label label-success' style = 'font-size:2.5rem;'>" + score + " pts</span>" +
-            "<br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
+            "<div style='font-size:2rem; margin-top: 2rem' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
 
     };
 
@@ -136,8 +136,8 @@ function showText(text) {
             }
         }
     }
-    messages['gameover'] += "<div class='modal-footer'>" +
-                                "<a class='btn btn-primary tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
+    messages['gameover'] += "<div class='modal-footer' id='tweetStuff'>" +
+                                "<a class='btn btn-primary' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
                                 "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
                             "</div>" +
                             "</div><!-- /.modal-content -->" +
@@ -169,9 +169,10 @@ function setMainMenu() {
 }
 
 function hideText() {
+    $('#gameOver').modal('hide');
     $("#overlay").fadeOut("1000", function() {
         $("#overlay").html("");
-    })
+    });
 }
 
 function gameOverDisplay() {
