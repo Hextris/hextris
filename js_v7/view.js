@@ -136,9 +136,8 @@ function showText(text) {
         }
     }
     messages['gameover'] += "<div class='modal-footer'>" +
-                                "<div class='fltrt' id='tweetStuff'><a class='tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter!!!</a></div>" +
+                                "<a class='btn btn-primary tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
                                 "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
-                                "<button type='button' class='btn btn-primary'>Save changes</button>" +
                             "</div>" +
                             "</div><!-- /.modal-content -->" +
                             "</div><!-- /.modal-dialog -->" +
