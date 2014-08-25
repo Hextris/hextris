@@ -95,10 +95,11 @@ function showText(text) {
         'paused': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
         'pausedMobile': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press <i class='fa fa-play'></i> to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
         'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
-        //'gameover': "<div class='centeredHeader unselectable'> Game Over: " + score + " pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
-        'gameover': "<div class='modal fade' id='gameOver'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>" +
-            "<div class='centeredHeader unselectable'> Game Over: " + score + " pts</div></div>" +
+        'gameover': "<div class='modal fade' id='gameOver'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'>"+
+            "<button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>" +
+            "<h3 class='centeredHeader unselectable'> Game Over </h3></div>" +
             "<div class='modal-body'>" +
+            "<span class = 'label label-success' style = 'font-size:2.5rem;'>" + score + " pts</span>" +
             "<br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
 
     };
