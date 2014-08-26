@@ -79,7 +79,7 @@ function initialize(a) {
         settings = {
             platform: "mobile",
             startDist: 227,
-            creationDt: 40,
+            creationDt: 60,
             baseScale: 1.4,
             scale: 1,
             prevScale: 1,
