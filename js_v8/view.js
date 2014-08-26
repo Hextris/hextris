@@ -106,7 +106,6 @@ function showText(text) {
             "<h2 class='centeredHeader unselectable'> Game Over </h2></div>" +
             "<div class='modal-body'>" +
             "<span class = 'label label-success' style = 'font-size:2.5rem'>" + score + " pts</span>"
-//            "<div style='font-size:2rem; margin-top: 2rem' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
     };
 
     if (text == 'paused') {
@@ -122,7 +121,6 @@ function showText(text) {
         if (settings.platform == 'mobile') {
             $('#overlay').css('margin-top', '-10rem');
             messages['gameover'] = "<div class='centeredHeader unselectable label label-danger' style = 'font-size: 2rem;margin-top: -2rem'> Game Over <span class = 'label label-success' style = 'font-size:3rem;margin-top: -2rem'>" + score + " pts</span></div>";
-//                "<br><div style='font-size:2rem;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> ";
         }
 
         messages['gameover'] += "" +
@@ -151,13 +149,6 @@ function showText(text) {
                 "</div>" +
             "</div>";
 
-//        for (i = 0; i < 3; i++) {
-//            if (highscores.length > i) {
-//                messages['gameover'] += "<tr> <th class='tg-031e'>" + (i + 1) + "</th> <th class='tg-031e label label-info'>" + highscores[i] + " pts</th> </tr>";
-//            }
-//        }
-
-
         var restartText;
         if (settings.platform == 'mobile') {
             restartText = 'Tap anywhere to restart!';
@@ -170,15 +161,15 @@ function showText(text) {
 
 
             messages['gameover'] += "" +
-//                                    "</table>" +
                                         "<br>" +
                                         "<div class='fltrt' id='tweetStuff' style='margin-top: -2rem'>" +
                                           "<a class='btn btn-primary btn-lg tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris'>Share Your Score on Twitter</a autofocus>" +
                                         "</div>";
         } else {
             messages['gameover'] += "" +
-//                                    "</table>" +
-//                                    "<br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" +
+                                    "<br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" +
+//                                        restartText +
+                                    "</div>" +
                                     "</div> <!--modal-body-->";
         }
         if (allZ) {
