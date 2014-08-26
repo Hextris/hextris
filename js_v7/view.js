@@ -124,10 +124,23 @@ function showText(text) {
         if (settings.platform == 'mobile') {
             restartText = 'Tap anywhere to restart!';
         } else {
-            restartText = 'Press enter (or click anywhere!) to restart!';
+            restartText = 'Close to restart!';
         }
 
-        messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" +"</div>";
+
+        if (settings.platform == 'mobile') {
+
+
+            messages['gameover'] += "</table>" +
+                                        "<br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" +
+                                        "<br>" +
+                                        "<div class='fltrt' id='tweetStuff'>" +
+                                          "<a class='btn btn-primary tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
+                                        "</div>" +
+                                    "</div>";
+        } else {
+            messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" + "</div>";
+        }
         if (allZ) {
             for (i = 0; i < highscores.length; i++) {
                 if (highscores[i] !== 0) {
@@ -136,13 +149,20 @@ function showText(text) {
             }
         }
     }
-    messages['gameover'] += "<div class='modal-footer' id='tweetStuff'>" +
-                                "<a class='btn btn-primary' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
-                                "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
-                            "</div>" +
-                            "</div><!-- /.modal-content -->" +
+
+    if (settings.platform != 'mobile') {
+        messages['gameover'] += "<div class='modal-footer' id='tweetStuff'>" +
+                                    "<a class='btn btn-primary' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
+                                    "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
+                                "</div>";
+
+    }
+
+    messages['gameover'] += "</div><!-- /.modal-content -->" +
                             "</div><!-- /.modal-dialog -->" +
                             "</div><!-- /.modal -->";
+
+
     $("#overlay").html(messages[text]);
     $("#overlay").fadeIn("1000", "swing");
 
@@ -169,6 +189,7 @@ function setMainMenu() {
 }
 
 function hideText() {
+    canTap = true;
     $('#gameOver').modal('hide');
     $("#overlay").fadeOut("1000", function() {
         $("#overlay").html("");
