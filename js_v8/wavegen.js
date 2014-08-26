@@ -26,7 +26,7 @@ function waveGen(hex) {
     this.dt = 0;
     this.update = function() {
         this.currentFunction();
-        this.dt = (settings.platform == 'mobile' ? 12.5 : 16.6667) * MainHex.ct;
+        this.dt = (settings.platform == 'mobile' ? 14 : 16.6667) * MainHex.ct;
         this.computeDifficulty();
         if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
             if (this.nextGen > 600) {
