@@ -140,7 +140,7 @@ function showText(text) {
             messages['gameover'] += "</table>" +
                                         "<br>" +
                                         "<div class='fltrt' id='tweetStuff'>" +
-                                          "<a class='btn btn-primary tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a autofocus>" +
+                                          "<a class='btn btn-primary btn-lg tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a autofocus>" +
                                         "</div>" +
                                     "</div> <!--modal-body-->";
         } else {
