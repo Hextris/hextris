@@ -120,6 +120,7 @@ function showText(text) {
         var i;
 
         if (settings.platform == 'mobile') {
+            $('#overlay').css('margin-top', '-10rem');
             messages['gameover'] = "<div class='centeredHeader unselectable label label-danger' style = 'font-size: 2rem;margin-top: -2rem'> Game Over <span class = 'label label-success' style = 'font-size:3rem;margin-top: -2rem'>" + score + " pts</span></div>";
 //                "<br><div style='font-size:2rem;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> ";
         }
