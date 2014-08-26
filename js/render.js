@@ -41,9 +41,9 @@ function render() {
 		}
 	}
 
-	if ((MainHex.ct < 400 && (gameState !== 0) && !MainHex.playThrough)) {
-		if (MainHex.ct > 350) {
-			ctx.globalAlpha = (50 - (MainHex.ct - 350))/50;
+	if ((MainHex.ct < 650 && (gameState !== 0) && !MainHex.playThrough)) {
+		if (MainHex.ct > (650 - 50)) {
+			ctx.globalAlpha = (50 - (MainHex.ct - (650 - 50)))/50;
 		}
 
 		if (MainHex.ct < 50) {
@@ -76,7 +76,7 @@ function renderBeginningText() {
 	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 125 * settings.scale, 20, '#2c3e50', 'Rotate the Hexagon to make combos of 3+ touching blocks!', '20px Roboto');
 	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 105 * settings.scale, 20, '#2c3e50', 'Make combos in a row to receive a score multiplier!', '20px Roboto');
 	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 85 * settings.scale, 20, '#2c3e50', 'Don\'t let the blocks stack outside of the gray Hexagon!', '20px Roboto');
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', 'To speed things up a bit tap the inner hexagon on mobile, or hold the down arrow on the desktop!', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Roboto');
 }
 
 function drawKey(key, x, y) {
