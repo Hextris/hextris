@@ -120,6 +120,10 @@ function showText(text) {
         var allZ = 1;
         var i;
 
+        if (settings.platform == 'mobile') {
+            messages['gameover'] = "<div class='centeredHeader unselectable'> Game Over: <span class = 'label label-success' style = 'font-size:2.5rem;'>" + score + " pts</span></div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> ";
+        }
+
         for (i = 0; i < 3; i++) {
             if (highscores.length > i) {
                 messages['gameover'] += "<tr> <th class='tg-031e'>" + (i + 1) + ".</th> <th class='tg-031e'>" + highscores[i] + " pts</th> </tr>";
@@ -140,9 +144,8 @@ function showText(text) {
             messages['gameover'] += "</table>" +
                                         "<br>" +
                                         "<div class='fltrt' id='tweetStuff'>" +
-                                          "<a class='btn btn-primary btn-lg tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a autofocus>" +
-                                        "</div>" +
-                                    "</div> <!--modal-body-->";
+                                          "<a class='btn btn-primary btn-lg tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris'>Share Your Score on Twitter</a autofocus>" +
+                                        "</div>";
         } else {
             messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" +
                                     "</div> <!--modal-body-->";
@@ -160,13 +163,12 @@ function showText(text) {
         messages['gameover'] += "<div class='modal-footer' id='tweetStuff'>" +
                                     "<a class='btn btn-primary' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
                                     "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>" +
-                                "</div>";
+                                "</div>" +
+                                "</div><!-- /.modal-content -->" +
+                                "</div><!-- /.modal-dialog -->" +
+                                "</div><!-- /.modal -->";
 
     }
-
-    messages['gameover'] += "</div><!-- /.modal-content -->" +
-                            "</div><!-- /.modal-dialog -->" +
-                            "</div><!-- /.modal -->";
 
 
     $("#overlay").html(messages[text]);
