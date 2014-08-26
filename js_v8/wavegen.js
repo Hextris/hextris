@@ -1,14 +1,14 @@
 function blockDestroyed() {
     if (waveone.nextGen > 1350) {
-        waveone.nextGen -= 19 * settings.creationSpeedModifier;
-    } else if (waveone.nextGen > 700) {
-        waveone.nextGen -= 13 * settings.creationSpeedModifier;
+        waveone.nextGen -= 32 * settings.creationSpeedModifier;
+    } else if (waveone.nextGen > 600) {
+        waveone.nextGen -= 10 * settings.creationSpeedModifier;
     } else {
         waveone.nextGen = 600;
     }
 
     if (waveone.difficulty < 35) {
-        waveone.difficulty += 0.09 * settings.speedModifier;
+        waveone.difficulty += 0.085 * settings.speedModifier;
     } else {
         waveone.difficulty = 35;
     }
@@ -26,11 +26,11 @@ function waveGen(hex) {
     this.dt = 0;
     this.update = function() {
         this.currentFunction();
-        this.dt = (settings.platform == 'mobile' ? 14.5 : 16.6667) * MainHex.ct;
+        this.dt = (settings.platform == 'mobile' ? 13 : 16.6667) * MainHex.ct;
         this.computeDifficulty();
         if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
             if (this.nextGen > 600) {
-                this.nextGen -= 11.5 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
+                this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
             }
         }
     };
@@ -69,7 +69,7 @@ function waveGen(hex) {
             if (this.difficulty < 8) {
                 this.difficulty += (this.dt - this.last) / (4166667) * settings.speedModifier;
             } else if (this.difficulty < 15) {
-                this.difficulty += (this.dt - this.last) / (52333333) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (62333333) * settings.speedModifier;
             } else {
                 this.difficulty += (this.dt - this.last) / (90000000) * settings.speedModifier;
             }
