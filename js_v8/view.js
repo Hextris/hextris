@@ -35,7 +35,12 @@ function drawScoreboard() {
     } else if (scoreString.length == 9) {
         scoreSize = 27;
     }
-
+    if (rush ==1){
+        var color = "rgb(236, 240, 241)";
+    }
+    else{
+        var color = "#e74c3c";
+    }
     if (gameState === 0) {
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
@@ -46,10 +51,10 @@ function drawScoreboard() {
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
         renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
         ctx.globalAlpha = scoreOpacity;
-        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, "rgb(236, 240, 241)", score);
+        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, color, score);
     } else {
         ctx.globalAlpha = scoreOpacity;
-        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, "rgb(236, 240, 241)", score);
+        renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, color, score);
     }
 
     ctx.globalAlpha = 1;
@@ -89,6 +94,7 @@ function toggleClass(element, active) {
         $(element).addClass(active);
     }
 }
+
 
 function showText(text) {
     var messages = {
@@ -132,14 +138,14 @@ function showText(text) {
 
 
             messages['gameover'] += "</table>" +
-                                        "<br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" +
                                         "<br>" +
                                         "<div class='fltrt' id='tweetStuff'>" +
                                           "<a class='btn btn-primary tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter</a>" +
                                         "</div>" +
-                                    "</div>";
+                                    "</div> <!--modal-body-->";
         } else {
-            messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" + "</div>";
+            messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>" +
+                                    "</div> <!--modal-body-->";
         }
         if (allZ) {
             for (i = 0; i < highscores.length; i++) {
@@ -189,7 +195,6 @@ function setMainMenu() {
 }
 
 function hideText() {
-    canTap = true;
     $('#gameOver').modal('hide');
     $("#overlay").fadeOut("1000", function() {
         $("#overlay").html("");

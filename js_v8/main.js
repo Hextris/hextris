@@ -207,7 +207,7 @@ function animLoop() {
             requestAnimFrame(animLoop);
             render();
             var now = Date.now();
-            var dt = (now - lastTime)/16.666;
+            var dt = (now - lastTime)/16.666 * rush;
 
             if(gameState == 1 ){
                 if(!MainHex.delay) {
@@ -255,7 +255,7 @@ function animLoop() {
 
         case 2:
             var now = Date.now();
-            var dt = (now - lastTime)/16.666;
+            var dt = (now - lastTime)/16.666 * rush;
             requestAnimFrame(animLoop);
             update(dt);
             render();
@@ -320,6 +320,7 @@ function checkGameOver() {
 }
 
 function showHelp() {
+    $("#inst_main_body").html("The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon<br><br>" + (settings.platform != 'mobile' ? 'Press the right and left arrow keys' : 'tap the left and right sides of the screen') + "  to rotate the Hexagon<br><br>Clear blocks and get points by making 3 or more blocks of the same color touch<br><br>Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon<br><br> " + (settings.platform == 'mobile' ? 'Toggle speeding up the game by tapping the inner hexagon' : "Speed up the game 2x by holding the down arrow"));
     if (gameState == 1) {
         pause();
     }

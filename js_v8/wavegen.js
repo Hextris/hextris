@@ -1,14 +1,14 @@
 function blockDestroyed() {
     if (waveone.nextGen > 1350) {
-        waveone.nextGen -= 26 * settings.creationSpeedModifier;
-    } else if (waveone.nextGen > 600) {
+        waveone.nextGen -= 19 * settings.creationSpeedModifier;
+    } else if (waveone.nextGen > 700) {
         waveone.nextGen -= 13 * settings.creationSpeedModifier;
     } else {
         waveone.nextGen = 600;
     }
 
     if (waveone.difficulty < 35) {
-        waveone.difficulty += 0.145 * settings.speedModifier;
+        waveone.difficulty += 0.09 * settings.speedModifier;
     } else {
         waveone.difficulty = 35;
     }
@@ -17,7 +17,7 @@ function blockDestroyed() {
 function waveGen(hex) {
     this.lastGen = 0;
     this.last = 0;
-    this.nextGen = 2200;
+    this.nextGen = 2700;
     this.start = 0;
     this.colors = colors;
     this.ct = 0;
@@ -26,11 +26,11 @@ function waveGen(hex) {
     this.dt = 0;
     this.update = function() {
         this.currentFunction();
-        this.dt = (16.6667) * MainHex.ct;
+        this.dt = (settings.platform == 'mobile' ? 14.5 : 16.6667) * MainHex.ct;
         this.computeDifficulty();
         if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
             if (this.nextGen > 600) {
-                this.nextGen -= 14 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
+                this.nextGen -= 11.5 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
             }
         }
     };
@@ -67,9 +67,9 @@ function waveGen(hex) {
     this.computeDifficulty = function() {
         if (this.difficulty < 35) {
             if (this.difficulty < 8) {
-                this.difficulty += (this.dt - this.last) / (2066667) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (4166667) * settings.speedModifier;
             } else if (this.difficulty < 15) {
-                this.difficulty += (this.dt - this.last) / (43333333) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (52333333) * settings.speedModifier;
             } else {
                 this.difficulty += (this.dt - this.last) / (90000000) * settings.speedModifier;
             }
