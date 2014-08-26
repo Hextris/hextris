@@ -71,7 +71,7 @@ function waveGen(hex) {
             } else if (this.difficulty < 15) {
                 this.difficulty += (this.dt - this.last) / (43333333) * settings.speedModifier;
             } else {
-                this.difficulty += (this.dt - this.last) / (130000000) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (90000000) * settings.speedModifier;
             }
         }
     };
