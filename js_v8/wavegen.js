@@ -1,14 +1,14 @@
 function blockDestroyed() {
     if (waveone.nextGen > 1350) {
-        waveone.nextGen -= 19 * settings.creationSpeedModifier;
-    } else if (waveone.nextGen > 600) {
+        waveone.nextGen -= 20 * settings.creationSpeedModifier;
+    } else if (waveone.nextGen > 700) {
         waveone.nextGen -= 9 * settings.creationSpeedModifier;
     } else {
         waveone.nextGen = 600;
     }
 
     if (waveone.difficulty < 35) {
-        waveone.difficulty += 0.09 * settings.speedModifier;
+        waveone.difficulty += 0.11 * settings.speedModifier;
     } else {
         waveone.difficulty = 35;
     }
@@ -30,7 +30,7 @@ function waveGen(hex) {
         this.computeDifficulty();
         if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
             if (this.nextGen > 600) {
-                this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
+                this.nextGen -= 10 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
             }
         }
     };
@@ -67,11 +67,11 @@ function waveGen(hex) {
     this.computeDifficulty = function() {
         if (this.difficulty < 35) {
             if (this.difficulty < 8) {
-                this.difficulty += (this.dt - this.last) / (30066667) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (3666667) * settings.speedModifier;
             } else if (this.difficulty < 15) {
                 this.difficulty += (this.dt - this.last) / (43333333) * settings.speedModifier;
             } else {
-                this.difficulty += (this.dt - this.last) / (90000000) * settings.speedModifier;
+                this.difficulty += (this.dt - this.last) / (130000000) * settings.speedModifier;
             }
         }
     };
