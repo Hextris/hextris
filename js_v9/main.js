@@ -257,7 +257,6 @@ function animLoop() {
             var now = Date.now();
             var dt = (now - lastTime)/16.666 * rush;
             requestAnimFrame(animLoop);
-            update(dt);
             render();
             lastTime = now;
             break;
