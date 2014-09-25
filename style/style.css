@@ -172,7 +172,7 @@ and (max-device-width : 480px) {
     }
 }
 
-#overlay {
+.overlay {
     position:absolute;
     height:20%;
     width:100%;
@@ -234,7 +234,7 @@ and (max-device-width : 580px) {
         text-align:center;
     }
 
-    #overlay {
+    .overlay {
         margin-top: -20%;
     }
 }
@@ -304,7 +304,7 @@ body {
 	width:1000px;
 	text-align:center;
 	left:50%;
-        margin-left:-510px;
+        margin-left:-500px;
 	bottom:10px;
 	z-index:98;
 }

@@ -136,8 +136,8 @@ function showText(text) {
         }
     }
     messages['gameover'] += "<div class='fltrt' id='tweetStuff'><a class='tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter!!!</a></div>"
-    $("#overlay").html(messages[text]);
-    $("#overlay").fadeIn("1000", "swing");
+    $(".overlay").html(messages[text]);
+    $(".overlay").fadeIn("1000", "swing");
 
     if (text == 'gameover') {
         if (settings.platform == 'mobile') {
@@ -162,8 +162,8 @@ function setMainMenu() {
 }
 
 function hideText() {
-    $("#overlay").fadeOut("1000", function() {
-        $("#overlay").html("");
+    $(".overlay").fadeOut("1000", function() {
+        $(".overlay").html("");
     })
 }
 
