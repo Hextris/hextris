@@ -1,7 +1,11 @@
 Hextris
 ==========
 
-Built by @teamsnowman (@meadowstream, @garrettdreyfus, @nmoroze, and @themichaelyang) for HackExeter 2014
+Contributors:
+ - Logan Engstrom (@meadowstream)
+ - Garrett Finucane (@garrettdreyfus)
+ - Noah Moroze (@nmoroze)
+ - Michael Yang (@themichaelyang)
 
 # Releases
 #### iOS: https://itunes.apple.com/us/app/hextris/id903769553?mt=8
