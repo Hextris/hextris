@@ -63,6 +63,14 @@
 			fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
+		<script>
+		    (function(C,l,a,y,_,i,o){C[_]=C[_]||function(){
+		    (C[_].q=C[_].q||[]).push(arguments)},C[_].l=1*new Date();i=l.createElement(a),
+		    o=l.getElementsByTagName(a)[0];i.async=1;i.src=y;o.parentNode.insertBefore(i,o)
+		    })(window,document,'script','//cdn.wtf/sdk/v1/clay_sdk.js','Clay');
+
+		    Clay('init', {gameId: '6975'})
+		    </script>
 		<canvas id="canvas"></canvas>
 		<div id='devtools' style='z-index:3;display:none;position:absolute;left:50%;width:400px;height:400px;top:50%;margin-top:-200px;margin-left:-200px;'>
 			<h2 id = 'clickToExit' style = 'background-color:#fff;color:#000'>Click to exit</h2>
