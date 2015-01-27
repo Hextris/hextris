@@ -110,6 +110,7 @@ function showText(text) {
     }
 
     if (text == 'gameover') {
+       Clay('client.share.any', {text: 'Think you can beat my score of '+ score + ' in Super Cool Game?'})
         var allZ = 1;
         var i;
 
