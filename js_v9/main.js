@@ -66,19 +66,20 @@ function hideUIElements() {
 }
 
 function init(b) {
+    if(settings.ending_block==true && b == 1){return;}
     if (b) {
-        hidebottombar();
+            hidebottombar();
 
 
-        if ($('#helpScreen').is(":visible")) {
-            $('#helpScreen').fadeOut(150, "linear");
-        }
+            if ($('#helpScreen').is(":visible")) {
+                $('#helpScreen').fadeOut(150, "linear");
+            }
 
-        setTimeout(function() {
-            $('.helpText').fadeOut(150, "linear");
-                infobuttonfading = false;
-        }, 7000);
-        clearSaveState();
+            setTimeout(function() {
+                $('.helpText').fadeOut(150, "linear");
+                    infobuttonfading = false;
+            }, 7000);
+            clearSaveState();
     }
 
     infobuttonfading = true;
