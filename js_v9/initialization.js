@@ -118,6 +118,10 @@ function initialize(a) {
         settings.os = "android";
     }
 
+    if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)){
+        settings.os="ios";
+    }
+
     window.canvas = document.getElementById('canvas');
     window.ctx = canvas.getContext('2d');
     window.trueCanvas = {

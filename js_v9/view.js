@@ -169,6 +169,44 @@ function hideText() {
 }
 
 function gameOverDisplay() {
+    if( localStorage.getItem("been_mobile") != "true" || true){
+        settings.ending_block=true;
+        if(settings.os == "android"){
+            sweetAlert({
+                title: "Hey we'll only bother you once ",
+                text:"We do have an Android app!",
+                showCancelButton: true,
+                closeOnCancel: true ,
+                confirmButtonText: "Take me to it!",
+                },function(isConfirm){
+                    if(isConfirm){
+                        window.location.href="https://play.google.com/store/apps/details?id=com.hextris.hextris"
+                    }
+                    else{
+                        settings.end_block=false;
+                    }
+                
+                });
+        }
+        if(settings.os == "ios"){
+            sweetAlert({
+                title: "Hey we'll only bother you once ",
+                text:"We do have an IOS app!",
+                showCancelButton: true,
+                closeOnCancel: true ,
+                confirmButtonText: "Take me to it!",
+                },function(isConfirm){
+                    if(isConfirm){
+                        window.location.href="https://itunes.apple.com/us/app/hextris/id903769553?mt=8";
+                    }
+                    else{
+                        settings.end_block=false;
+                    }
+                });
+        }
+
+    }
+    localStorage.setItem("been_mobile", "true");
     $("#attributions").show();
     var c = document.getElementById("canvas");
     c.className = "blur";
