@@ -83,10 +83,10 @@ button:focus {
 
 #pauseBtn {
 	position: absolute;
-	margin-bottom: 3px;
+	margin-bottom: 20px;
     width:60px;
     height:60px;
-	margin-right: 7px;
+	margin-right: 25px;
 	z-index: 3000;
 	color:#232323;
 	cursor:pointer;
@@ -94,11 +94,6 @@ button:focus {
     right:0;
     bottom:0;
     z-index:99;
-}
-
-#pauseBtnInner {
-    margin-left:35px;
-    margin-top:28px;
 }
 
 #restartBtnInner {
