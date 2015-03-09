@@ -66,7 +66,7 @@ function addKeyListeners() {
         keys: "enter",
         on_keydown: function() {
             if (gameState==2 || gameState==1 || importing == 1) {
-                init(1);
+                init();
             }
             if (gameState===0) {
                 resumeGame();
@@ -115,13 +115,13 @@ function addKeyListeners() {
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         $("#restartBtn").on('touchstart', function() {
-            init(1);
+            init();
             canRestart = false;
         });
     }
     else {
         $("#restartBtn").on('mousedown', function() {
-            init(1);
+            init();
             canRestart = false;
         });
     }
@@ -174,7 +174,7 @@ function handleClickTap(x,y) {
             }
             else{
                 if (gameState != 1) {
-                    init(1);
+                    init();
                 }
             }
             return;
@@ -192,7 +192,7 @@ function handleClickTap(x,y) {
                 resumeGame();
             }
             else {
-                init(1);
+                init();
             }
         }
 
@@ -204,7 +204,7 @@ function handleClickTap(x,y) {
                 resumeGame();
             }
             else {
-                init(1);
+                init();
             }
         }
         MainHex.rotate(-1);

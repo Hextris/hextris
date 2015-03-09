@@ -66,7 +66,7 @@ function hideUIElements() {
 }
 
 function init(b) {
-    if(settings.ending_block==true && b == 1){return;}
+    if(settings.ending_block && b == 1){return;}
     if (b) {
             hidebottombar();
 
@@ -83,7 +83,7 @@ function init(b) {
     }
 
     infobuttonfading = true;
-    $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
+    $("#pauseBtnInner").html('<img src="./images/btn_pause.svg">');
     hideUIElements();
     var saveState = localStorage.getItem("saveState") || "{}";
     saveState = JSONfn.parse(saveState);
@@ -331,7 +331,7 @@ function showHelp() {
         pause();
     }
 
-    if($($("#pauseBtnInner").children()[0]).hasClass("fa-pause") && gameState != 0 && !infobuttonfading) {
+    if($("#pauseBtnInner").children()[0].src.replace(/^.*[\\\/]/, '') == "btn_pause.svg" && gameState != 0 && !infobuttonfading) {
         return;
     }
 

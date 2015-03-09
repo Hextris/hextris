@@ -110,7 +110,7 @@ function showText(text) {
     }
 
     if (text == 'gameover') {
-       Clay('client.share.any', {text: 'Think you can beat my score of '+ score + ' in Super Cool Game?'})
+       //Clay('client.share.any', {text: 'Think you can beat my score of '+ score + ' in Super Cool Game?'})
         var allZ = 1;
         var i;
 
@@ -155,10 +155,10 @@ function setMainMenu() {
         canRestart = 's';
     }, 500);
     $('#restartBtn').hide();
-    if ($($("#pauseBtn").children()[0]).attr('class').indexOf('pause') == -1) {
-        $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
+    if ($($("#pauseBtn").children()[0]).replace(/^.*[\\\/]/, '') == "btn_pause.svg") {
+        $("#pauseBtnInner").html('<img src="./images/btn_pause.svg" />');
     } else {
-        $("#pauseBtnInner").html('<i class="fa fa-play fa-2x"></i>');
+        $("#pauseBtnInner").html('<img src="./images/btn_resume.svg" />');
     }
 }
 
@@ -230,7 +230,7 @@ function pause(o) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
-        $("#pauseBtnInner").html('<i class="fa fa-pause fa-2x"></i>');
+        $("#pauseBtnInner").html('<img src="./images/btn_resume.svg" />');
         $('.helpText').fadeOut(200, 'linear');
         hideText();
         hidebottombar();
@@ -245,7 +245,7 @@ function pause(o) {
             showText(message);
         }
 
-        $("#pauseBtnInner").html('<i class="fa fa-play fa-2x"></i>');
+        $("#pauseBtnInner").html('<img src="./images/btn_resume.svg" />');
         prevGameState = gameState;
         gameState = -1;
     }
