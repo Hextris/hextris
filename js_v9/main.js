@@ -83,7 +83,7 @@ function init(b) {
     }
 
     infobuttonfading = true;
-    $("#pauseBtnInner").html('<img src="./images/btn_pause.svg">');
+    $("#pauseBtn").html('<img src="./images/btn_pause.svg">');
     hideUIElements();
     var saveState = localStorage.getItem("saveState") || "{}";
     saveState = JSONfn.parse(saveState);
@@ -331,7 +331,7 @@ function showHelp() {
         pause();
     }
 
-    if($("#pauseBtnInner").children()[0].src.replace(/^.*[\\\/]/, '') == "btn_pause.svg" && gameState != 0 && !infobuttonfading) {
+    if($("#pauseBtn").children()[0].src.replace(/^.*[\\\/]/, '') == "btn_pause.svg" && gameState != 0 && !infobuttonfading) {
         return;
     }
 

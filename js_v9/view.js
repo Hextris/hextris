@@ -155,10 +155,10 @@ function setMainMenu() {
         canRestart = 's';
     }, 500);
     $('#restartBtn').hide();
-    if ($($("#pauseBtn").children()[0]).replace(/^.*[\\\/]/, '') == "btn_pause.svg") {
-        $("#pauseBtnInner").html('<img src="./images/btn_pause.svg" />');
+    if ($("#pauseBtn").replace(/^.*[\\\/]/, '') == "btn_pause.svg") {
+        $("#pauseBtn").attr("src","./images/btn_resume.svg");
     } else {
-        $("#pauseBtnInner").html('<img src="./images/btn_resume.svg" />');
+        $("#pauseBtn").attr("src","./images/btn_pause.svg");
     }
 }
 
@@ -230,7 +230,7 @@ function pause(o) {
             $('#helpScreen').fadeOut(150, "linear");
         }
 
-        $("#pauseBtnInner").html('<img src="./images/btn_resume.svg" />');
+        $("#pauseBtn").attr("src", "./images/btn_pause.svg");
         $('.helpText').fadeOut(200, 'linear');
         hideText();
         hidebottombar();
@@ -245,7 +245,7 @@ function pause(o) {
             showText(message);
         }
 
-        $("#pauseBtnInner").html('<img src="./images/btn_resume.svg" />');
+        $("#pauseBtn").attr("src","./images/btn_resume.svg");
         prevGameState = gameState;
         gameState = -1;
     }
