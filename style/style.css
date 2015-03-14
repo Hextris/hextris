@@ -88,44 +88,45 @@ button:focus {
 }
 
 #openSideBar {
-	position: absolute;
-	width:60px;
-	height:60px;
-	top: 2px;
-	left: 4px;
-	z-index: 3002;
-	color:#232323;
-	cursor:pointer;
-}
-
-#pauseBtn {
-	position: absolute;
-	margin-bottom: 20px;
-	width:60px;
-	height:60px;
-	margin-right: 25px;
+	position: fixed;
+	margin-top: 10px;
+	width:72px;
+	height:72px;
+	margin-left: 15px;
 	z-index: 3000;
 	color:#232323;
 	cursor:pointer;
-	position:absolute;
+	top:0;
+	left:0;
+	z-index:99;
+
+}
+
+#pauseBtn {
+	position: fixed;
+	margin-bottom: 10px;
+	width:72px;
+	height:72px;
+	margin-right: 15px;
+	z-index: 3000;
+	color:#232323;
+	cursor:pointer;
 	right:0;
 	bottom:0;
 	z-index:99;
 }
 
 #restartBtn {
-	position:absolute;
-	left:0;
-	width:60px;
-	height:60px;
-	bottom:0;
-	z-index:99;
-	position: absolute;
-	margin-bottom: 18px;
-	margin-left: 10px;
-	z-index:99;
+	position: fixed;
+	margin-bottom: 10px;
+	width:72px;
+	height:72px;
+	margin-left: 15px;
+	z-index: 3000;
 	color:#232323;
 	cursor:pointer;
+	bottom:0;
+	z-index:99;
 }
 
 #helpScreen {
@@ -256,7 +257,12 @@ and (max-device-width : 580px) {
 	font-weight: 400;
 	src: local('Roboto Regular'), local('Roboto-Regular'), url("fonts/roboto.woff") format('woff');
 }
-
+@font-face {
+	font-family: 'icomoon';
+	font-style: normal;
+	font-weight: 400;
+	src: local('icomoon Regular'), url("fonts/icomoon.ttf"), format('ttf');
+}
 @font-face {
 	font-family: 'Q';
 	font-style: normal;
