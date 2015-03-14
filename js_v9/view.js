@@ -4,6 +4,7 @@ function easeOutCubic(t, b, c, d) {
 }
 
 function renderText(x, y, fontSize, color, text, font) {
+    if (text == 'HIGH SCORE') debugger;
     ctx.save();
     if (!font) {
         font = 'px/0 Roboto';
