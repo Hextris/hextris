@@ -74,6 +74,8 @@ button:focus {
 
 #openSideBar {
     position: absolute;
+    width:60px;
+    height:60px;
     top: 2px;
     left: 4px;
     z-index: 3002;
@@ -96,10 +98,6 @@ button:focus {
     z-index:99;
 }
 
-#restartBtnInner {
-    margin-top:28px;
-}
-
 #restartBtn {
     position:absolute;
     left:0;
@@ -108,8 +106,8 @@ button:focus {
     bottom:0;
     z-index:99;
 	position: absolute;
-	margin-bottom: 3px;
-	margin-left: 7px;
+	margin-bottom: 18px;
+	margin-left: 10px;
 	z-index:99;
 	color:#232323;
 	cursor:pointer;
