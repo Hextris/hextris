@@ -67,30 +67,21 @@ function render() {
 }
 
 function renderBeginningText() {
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 208 * settings.scale, 35, '#2c3e50', 'Controls', '35px Roboto');
-	renderText((trueCanvas.width)/2 - 85 * settings.scale, (trueCanvas.height)/2 - 35 - 169 * settings.scale, 20, '#2c3e50', 'Rotation:', '20px Roboto');
-	renderText((trueCanvas.width)/2 - 21 * settings.scale, (trueCanvas.height)/2 - 35 - 141 * settings.scale, 12, '#2c3e50', 'Left', '12px Roboto');
-	renderText((trueCanvas.width)/2 + 25 * settings.scale, (trueCanvas.height)/2 - 35 - 141 * settings.scale, 12, '#2c3e50', 'Right', '12px Roboto');
-	drawKey("right",(trueCanvas.width)/2 + 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 35 - 195 * settings.scale);
-	drawKey("left",(trueCanvas.width)/2 - 23 * settings.scale - 35/2 * settings.scale, (trueCanvas.height)/2 - 35 - 195 * settings.scale);
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 125 * settings.scale, 20, '#2c3e50', 'Rotate the Hexagon to make combos of 3+ touching blocks!', '20px Roboto');
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 105 * settings.scale, 20, '#2c3e50', 'Make combos in a row to receive a score multiplier!', '20px Roboto');
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 85 * settings.scale, 20, '#2c3e50', 'Don\'t let the blocks stack outside of the gray Hexagon!', '20px Roboto');
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/3 - 35 - 135 * settings.scale, 20, '#2c3e50', 'Tap on the left or the right of the screen', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/3 - 35 - 105 * settings.scale, 20, '#2c3e50', 'to rotate the hexagon.', '20px Roboto');
+	drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 5 , (trueCanvas.height)/3 - 35 - 107 * settings.scale);
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height * 3.1)/3 - 35 - 135 * settings.scale, 20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height * 3.1 )/3 - 35 -  105 * settings.scale, 20, '#2c3e50', 'Tap the center to double the speed.', '20px Roboto');
+	
+	//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Roboto');
 }
 
 function drawKey(key, x, y) {
 	ctx.save();
-	ctx.beginPath();
-	ctx.fillStyle = '#2c3e50';
-	ctx.strokeStyle = '#2c3e50';
-	ctx.lineWidth = 4 * settings.scale;
-	ctx.rect(x + 2.5 * settings.scale, y + 2.5 * settings.scale, 35 * settings.scale, 35 * settings.scale);
-	ctx.stroke();
 
 	switch (key) {
 		case "left":
-			ctx.translate(x + settings.scale * 28, y + settings.scale * 13);
+			ctx.translate(x, y + settings.scale * 13);
 			ctx.rotate(3.14159);
 			ctx.font = "20px Fontawesome";
 			ctx.scale(settings.scale, settings.scale);
@@ -98,16 +89,14 @@ function drawKey(key, x, y) {
 			break;
 		case "right":
 			ctx.font = "20px Fontawesome";
-			ctx.translate(x + settings.scale * 12.5, y + settings.scale * 27.5);
+			ctx.translate(x , y + settings.scale * 27.5);
 			ctx.scale(settings.scale, settings.scale);
 			ctx.fillText(String.fromCharCode("0xf04b"), 0, 0);
 			break;
 		
 		default:
-			ctx.font = "35px Roboto";
-			ctx.translate(x + settings.scale * 25 , y + settings.scale * 39.5);
-			ctx.scale(settings.scale, settings.scale);
-			ctx.fillText(key, 0, 0);
+			drawKey("left", x - 5, y);
+			drawKey("right", x + 5, y);
 	}
 
 	ctx.restore();
