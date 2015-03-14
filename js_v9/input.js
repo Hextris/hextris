@@ -82,7 +82,7 @@ function addKeyListeners() {
 		if ($('#helpScreen').is(":visible")) {
 			$('#helpScreen').fadeOut(150, "linear");
 		}
-
+                alert("hey");
 		pause();
 		return false;
 	});
