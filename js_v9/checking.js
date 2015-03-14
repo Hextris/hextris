@@ -9,10 +9,7 @@ function search(twoD,oneD){
 }
 
 function floodFill(hex, side, index, deleting) {
-	if (hex.blocks[side] === undefined || hex.blocks[side][index] === undefined) {
-		//just makin sure stuff exists
-		return;
-	}
+	if (hex.blocks[side] === undefined || hex.blocks[side][index] === undefined) return;
 
 	//store the color
 	var color = hex.blocks[side][index].color;
