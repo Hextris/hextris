@@ -215,6 +215,7 @@ function gameOverDisplay() {
 }
 
 function pause(o) {
+    alert("pausing");
     writeHighScores();
     var message;
     if (o) {
