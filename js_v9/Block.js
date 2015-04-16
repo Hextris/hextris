@@ -78,14 +78,16 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 		if(attached === undefined)
 			attached = false;
 
-		var diff = this.angle - this.targetAngle, sign = Math.sign(diff);
-		if(Math.abs(diff) > Math.abs(this.angularVelocity) && sign * this.angularVelocity <= 0)
-			this.angle += (this.angularVelocity -= sign * angularVelocityConst * MainHex.dt);
-		else if (this.angularVelocity) {
-			this.angle = this.targetAngle;
-			this.angularVelocity = 0;
+		var sign = Math.sign(this.angle - this.targetAngle);
+		if (sign) {
+			this.angularVelocity -= sign * angularVelocityConst * MainHex.dt;
+			this.angle += this.angularVelocity;
+			if(sign !== Math.sign(this.angle + this.angularVelocity - this.targetAngle)) {
+				this.angle = this.targetAngle;
+				this.angularVelocity = 0;
+			}
 		}
-        
+
 		this.width = 2 * this.distFromHex / Math.sqrt(3);
 		this.widthWide = 2 * (this.distFromHex + this.height) / Math.sqrt(3);
 		//this.widthWide = this.width + this.height + 3;
