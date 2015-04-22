@@ -89,8 +89,8 @@ function initialize(a) {
             baseBlockHeight: 20,
             blockHeight: 20,
             rows: 7,
-            speedModifier: 0.73,
-            creationSpeedModifier: 0.73,
+            speedModifier: 0.73/1.5,
+            creationSpeedModifier: 0.73/1.5,
             comboTime: 240
         };
     } else {
@@ -107,8 +107,8 @@ function initialize(a) {
             baseBlockHeight: 20,
             blockHeight: 15,
             rows: 8,
-            speedModifier: 0.65,
-            creationSpeedModifier: 0.65,
+            speedModifier: 0.65/1.5,
+            creationSpeedModifier: 0.65/1.5,
             comboTime: 240
         };
 
