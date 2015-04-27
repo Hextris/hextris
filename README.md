@@ -7,6 +7,9 @@ Contributors:
  - Noah Moroze (@nmoroze)
  - Michael Yang (@themichaelyang)
 
+#Conribtions
+Please submit pull requests to clay-improvemnets
+
 # Releases
 #### iOS: https://itunes.apple.com/us/app/hextris/id903769553?mt=8
 ![](http://i.imgur.com/KBYZcf5.png)
