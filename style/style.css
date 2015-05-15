@@ -89,10 +89,10 @@ button:focus {
 
 #openSideBar {
 	position: fixed;
-	margin-top: 10px;
+	margin-top: 6px;
 	width:72px;
 	height:72px;
-	margin-left: 15px;
+	margin-left: 11px;
 	z-index: 3000;
 	color:#232323;
 	cursor:pointer;
