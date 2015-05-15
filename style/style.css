@@ -103,6 +103,7 @@ button:focus {
 }
 
 #pauseBtn {
+	display:none;
 	position: fixed;
 	margin-bottom: 10px;
 	width:72px;
@@ -117,6 +118,7 @@ button:focus {
 }
 
 #restartBtn {
+	display:none;
 	position: fixed;
 	margin-bottom: 10px;
 	width:72px;
