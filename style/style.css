@@ -201,6 +201,18 @@ and (max-device-width : 480px) {
       #instructions_head {
 	 padding-left:0%;
       }
+      #openSideBar{
+	width:60px;
+	height:60px;
+      }
+      #pauseBtn {
+	width:60px;
+	height:60px;
+      }
+      #restartBtn {
+	 width:60px;
+	 height:60px;
+      }
 
 
 }
