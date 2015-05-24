@@ -44,7 +44,7 @@ function resumeGame() {
 	startTime = Date.now();
 	setTimeout(function() {
 		if ((gameState == 1 || gameState == 2) && !$('#helpScreen').is(':visible')) {
-			$('.helpText').fadeOut(150, "linear");
+			$('#openSideBar').fadeOut(150, "linear");
 		}
 	}, 7000);
 
@@ -52,7 +52,7 @@ function resumeGame() {
 }
 
 function checkVisualElements() {
-	if (!$('.helpText').is(":visible")) $('.helpText').fadeIn(150, "linear");
+	if ($('#openSideBar').is(":visible")) $('#openSideBar').fadeOut(150, "linear");
 	if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
@@ -72,19 +72,20 @@ function init(b) {
 			hidebottombar();
 
 
+	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
 			if ($('#helpScreen').is(":visible")) {
 				$('#helpScreen').fadeOut(150, "linear");
 			}
 
 			setTimeout(function() {
-				$('.helpText').fadeOut(150, "linear");
+				$('#openSideBar').fadeOut(150, "linear");
 					infobuttonfading = false;
 			}, 7000);
 			clearSaveState();
 	}
 
 	infobuttonfading = true;
-	$("#pauseBtn").html('<img src="./images/btn_pause.svg">');
+	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
 	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
@@ -242,7 +243,7 @@ function animLoop() {
 
 				if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
 				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
-				if (!$('.helpText').is(':visible')) $('.helpText').fadeIn(150, "linear");
+				if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
 
 				showbottombar();
 				canRestart = 0;
@@ -332,7 +333,7 @@ function showHelp() {
 		pause();
 	}
 
-	if($("#pauseBtn").children()[0].src.replace(/^.*[\\\/]/, '') == "btn_pause.svg" && gameState != 0 && !infobuttonfading) {
+	if($("#pauseBtn").attr('src') == "btn_pause.svg" && gameState != 0 && !infobuttonfading) {
 		return;
 	}
 

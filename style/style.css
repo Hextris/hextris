@@ -7,6 +7,7 @@
 	user-select: none;
 	padding:0;
 	margin:0;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 #HIGHSCORE {
@@ -93,14 +94,14 @@ button:focus {
 	width:72px;
 	height:72px;
 	margin-left: 11px;
-	z-index: 3000;
+	z-index: 3003;
 	color:#232323;
 	cursor:pointer;
 	top:0;
 	left:0;
-	z-index:99;
 
 }
+
 
 #pauseBtn {
 	display:none;
@@ -130,19 +131,28 @@ button:focus {
 	bottom:0;
 	z-index:99;
 }
+#startBtn {
+   position:absolute;
+   left:40%;
+   top:38%;
+   height:25%;
+   width:25%;
+   z-index:99999999;
+   cursor:pointer;
+}
 
 #helpScreen {
-	height:480px;
-	width:320px;
+	height:100%;
+	width:100%;
 	z-index:3001;
 	position:fixed;
-	top:18px;
+	top:0;
 	margin:0;
 	font-size:15px;
 	text-align:center;
 	display:none;
 	color:#232323;
-	background-color:rgba(236,240,241,.7);
+	background-color:rgba(236,240,241,1);
 }
 
 #colorBlindBtn {
@@ -157,9 +167,16 @@ button:focus {
 	color:#232323;
 	cursor:pointer;
 }
+
+
 .instructions_body {
 	margin-left:3px;
 	width:calc(100% - 12px) ! important;
+	margin-top:2%;
+}
+
+#instructions_head {
+   margin-top:15%;
 }
 
 @media only screen and (min-device-width : 320px) 
@@ -173,14 +190,31 @@ and (max-device-width : 480px) {
 		height:100%;
 		font-size:13px;
 		text-align:center;
-		background-color:rgba(255,255,255,0.9);
+		background-color:rgba(255,255,255,1);
+	}
+	#inst_main_body{
+	   width:70% !important;
+	   padding-left:15% !important;
+	   margin-left:0;
 	}
 
-	.instructions_body {
-		/*margin-top:20px;*/
-		margin-left:3px;
-		width:calc(100% - 12px) ! important;
-	}
+      #instructions_head {
+	 padding-left:0%;
+      }
+      #openSideBar{
+	width:60px;
+	height:60px;
+      }
+      #pauseBtn {
+	width:60px;
+	height:60px;
+      }
+      #restartBtn {
+	 width:60px;
+	 height:60px;
+      }
+
+
 }
 
 .overlay {
