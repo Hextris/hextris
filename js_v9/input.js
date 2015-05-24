@@ -78,13 +78,12 @@ function addKeyListeners() {
 	});
 
 	$("#pauseBtn").on('touchstart mousedown', function() {
-
-		if (gameState != 1 &&z gameState != -1) {
+		if (gameState != 1 && gameState != -1) {
 			return;
 		}
 
-		if ($('#openSideBar').is(":visible")) {
-			$('#openSideBar').fadeOut(150, "linear");
+		if ($('#helpScreen').is(":visible")) {
+			$('#helpScreen').fadeOut(150, "linear");
 		}
 		pause();
 		return false;
