@@ -79,7 +79,7 @@ function addKeyListeners() {
 
 	$("#pauseBtn").on('touchstart mousedown', function() {
 
-		if (gameState != 1 && gameState != -1) {
+		if (gameState != 1 &&z gameState != -1) {
 			return;
 		}
 
@@ -165,23 +165,9 @@ function handleClickTap(x,y) {
 		[halfRadius,triHeight]];
 	Vertexes = Vertexes.map(function(coord){ 
 		return [coord[0] + trueCanvas.width/2, coord[1] + trueCanvas.height/2]});
+
 	if (gameState == 1 && inside([x,y],Vertexes)){
 		toggleRush();
-		return;
-	}
-	if (gameState == 2 && canRestart) {
-		setTimeout(function() {
-			if(tweetblock) {
-				tweetblock = false;
-				return;
-			}
-			else{
-				if (gameState != 1) {
-					init(1);
-				}
-			}
-			return;
-		}, 1000);
 		return;
 	}
 
@@ -190,26 +176,9 @@ function handleClickTap(x,y) {
 	}
 
 	if (x < window.innerWidth/2) {
-		if (gameState != 1 && gameState != -2 && gameState != -1 ){
-			if (importing === 0) {
-				resumeGame();
-			}
-			else {
-				init(1);
-			}
-		}
-
 		MainHex.rotate(1);
 	}
 	if (x > window.innerWidth/2) {
-		if (gameState != 1 && gameState != -2 && gameState != -1) {
-			if (importing === 0) {
-				resumeGame();
-			}
-			else {
-				init(1);
-			}
-		}
 		MainHex.rotate(-1);
 	}
 }
