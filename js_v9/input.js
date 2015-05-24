@@ -83,8 +83,8 @@ function addKeyListeners() {
 			return;
 		}
 
-		if ($('#helpScreen').is(":visible")) {
-			$('#helpScreen').fadeOut(150, "linear");
+		if ($('#openSideBar').is(":visible")) {
+			$('#openSideBar').fadeOut(150, "linear");
 		}
 		pause();
 		return false;

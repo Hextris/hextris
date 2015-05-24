@@ -278,8 +278,8 @@ function startBtnHandler() {
 
 	if (!canRestart) return false;
 
-	if ($('#helpScreen').is(':visible')) {
-		$('#helpScreen').fadeOut(150, "linear");
+	if ($('#openSideBar').is(':visible')) {
+		$('#openSideBar').fadeOut(150, "linear");
 	}
 
 	if (importing == 1) {
