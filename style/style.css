@@ -193,8 +193,15 @@ and (max-device-width : 480px) {
 		background-color:rgba(255,255,255,1);
 	}
 	#inst_main_body{
-	   width:50%;
+	   width:70% !important;
+	   padding-left:15% !important;
+	   margin-left:0;
 	}
+
+      #instructions_head {
+	 padding-left:0%;
+      }
+
 
 }
 
