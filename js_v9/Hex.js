@@ -17,10 +17,10 @@ function Hex(sideLength) {
 	this.y = trueCanvas.height / 2;
 	this.ct = 0;
 	this.lastCombo = this.ct - settings.comboTime;
-    this.lastColorScored = "#000";
+	this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
-        this.lastRotate = Date.now();
+		this.lastRotate = Date.now();
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
 	}
@@ -53,7 +53,7 @@ function Hex(sideLength) {
 		block.distFromHex = MainHex.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
 		block.attachedLane = lane;
-        block.checked = 1;
+		block.checked = 1;
 	};
 
 	this.doesBlockCollide = function(block, position, tArr) {
@@ -67,7 +67,7 @@ function Hex(sideLength) {
 				if (block.distFromHex - block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
-                    block.checked = 1;
+					block.checked = 1;
 				} else {
 					block.settled = 0;
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
@@ -105,7 +105,7 @@ function Hex(sideLength) {
 	};
 
 	this.rotate = function(steps) {
-                if(Date.now()-this.lastRotate<75 && !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) return;
+				if(Date.now()-this.lastRotate<75 && !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) return;
 		if (!(gameState === 1 || gameState === 0)) return;
 		this.position += steps;
 		if (!history[this.ct]) {
@@ -131,7 +131,7 @@ function Hex(sideLength) {
 		});
 
 		this.targetAngle = this.targetAngle - steps * 60;
-                this.lastRotate = Date.now();
+				this.lastRotate = Date.now();
 	};
 
 	this.draw = function() {
@@ -166,5 +166,5 @@ function Hex(sideLength) {
 }
 
 function arrayToColor(arr){
-    return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
+	return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
 }

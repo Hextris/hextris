@@ -37,7 +37,7 @@ function descaleBlock(b) {
 }
 
 function writeHighScores() {
-        highscores.sort(
+		highscores.sort(
 		function(a,b){
 			a = parseInt(a, 10);
 			b = parseInt(b, 10);
