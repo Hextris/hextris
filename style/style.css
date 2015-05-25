@@ -262,13 +262,13 @@ and (max-device-width : 480px) {
 
 @media only screen and (orientation:landscape) {
 	#attributions {
-		top: calc(50vh + 14vh + 30px);
+		top: calc(50vh + 11vh + 40px);
 	}
 }
 
 @media only screen and (orientation:portrait) {
 	#attributions {
-		top: calc(50vh + 14vw + 30px);
+		top: calc(50vh + 11vw + 40px);
 	}
 }
 
