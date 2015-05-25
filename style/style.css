@@ -256,25 +256,23 @@ and (max-device-width : 480px) {
 	width:100%;
 	left: 0%;
 	text-align:center;
-	font-size:1.25rem;
+	font-size:1.2rem;
 	z-index:98;
 }
 
-@media screen and (orientation:landscape) {
+@media only screen and (orientation:landscape) {
 	#attributions {
-		top: calc(50vh + 15vh);
+		top: calc(50vh + 14vh + 30px);
 	}
 }
 
-@media screen and (orientation:portrait) {
+@media only screen and (orientation:portrait) {
 	#attributions {
-		top: calc(50vh + 15vw);
+		top: calc(50vh + 14vw + 30px);
 	}
 }
 
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 580px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 600px) {
 	.centeredHeader {
 		font-size:2rem; 
 		text-align:center;
@@ -282,7 +280,7 @@ and (max-device-width : 580px) {
 	}
 
 	#attributions {
-		font-size:.7rem;
+		font-size:1.2rem;
 	}
 
 	.centeredSubHeader {
@@ -305,7 +303,7 @@ and (max-device-width : 580px) {
 	src: local('Roboto Regular'), local('Roboto-Regular'), url("fonts/roboto.woff") format('woff');
 }
 @font-face {
-	font-family: 'icomoon';
+	font-family: 'ico on';
 	font-style: normal;
 	font-weight: 400;
 	src: local('icomoon Regular'), url("fonts/icomoon.ttf"), format('ttf');
