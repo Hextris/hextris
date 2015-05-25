@@ -75,7 +75,7 @@ function initialize(a) {
 	$('#clickToExit').bind('click', toggleDevTools);
 	window.settings;
 
-	if (/Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		settings = {
 			os: "other",
 			platform: "mobile",
