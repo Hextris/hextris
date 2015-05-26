@@ -336,12 +336,25 @@ function checkGameOver() {
 // The progress of the colored lines on the outer hexagon indicate the time left before your combo streak dissapears
 
 function showHelp() {
-	$("#inst_main_body").html("<div id = 'instructions_head'>HOW TO PLAY</div><p>The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon</p><p>" + (settings.platform != 'mobile' ? 'Press the right and left arrow keys' : 'tap the left and right sides of the screen') + "  to rotate the Hexagon</p><p>Clear blocks and get points by making 3 or more blocks of the same color touch</p><p>Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon</p> <hr> <p id = 'afterhr'></p> By <a href='http://github.com/meadowstream' target='_blank'>Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target='_blank'>Garrett Finucane</a><br>Find Hextris on <a href = 'https://itunes.apple.com/us/app/id903769553?mt=8' target='_blank'><b>iOS</b></a> </b>&<b> <a href ='https://play.google.com/store/apps/details?id=com.hextris.hextris' target='_blank'><b>Android</b></a><br>More @ the <a href ='http://hextris.github.io/' target='_blank'>Hextris Website</a>");
+	// debugger;
+	if ($('#openSideBar').attr('src') == './images/btn_back.svg') {
+		$('#openSideBar').attr('src', './images/btn_help.svg');
+		if (gameState != 0 && gameState != -1 && gameState != 2) {
+			$('#fork-ribbon').fadeOut(150, 'linear');
+		}
+	} else {
+		$('#openSideBar').attr('src', './images/btn_back.svg');
+		if (gameState == 0 && gameState == -1 && gameState == 2) {
+			$('#fork-ribbon').fadeIn(150, 'linear');
+		}
+	}
+
+	$("#inst_main_body").html("<div id = 'instructions_head'>HOW TO PLAY</div><p>The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon</p><p>" + (settings.platform != 'mobile' ? 'Press the right and left arrow keys' : 'tap the left and right sides of the screen') + "  to rotate the Hexagon</p><p>Clear blocks and get points by making 3 or more blocks of the same color touch</p><p>Time left before your combo streak disappears is indicated shown by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>in</span> the outer hexagon</p> <hr> <p id = 'afterhr'></p> By <a href='http://github.com/meadowstream' target='_blank'>Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target='_blank'>Garrett Finucane</a><br>Find Hextris on <a href = 'https://itunes.apple.com/us/app/id903769553?mt=8' target='_blank'>iOS</a> & <a href ='https://play.google.com/store/apps/details?id=com.hextris.hextris' target='_blank'>Android</a><br>More @ the <a href ='http://hextris.github.io/' target='_blank'>Hextris Website</a>");
 	if (gameState == 1) {
 		pause();
 	}
 
-	if($("#pauseBtn").attr('src') == "btn_pause.svg" && gameState != 0 && !infobuttonfading) {
+	if($("#pauseBtn").attr('src') == "./images/btn_pause.svg" && gameState != 0 && !infobuttonfading) {
 		return;
 	}
 
