@@ -170,13 +170,31 @@ button:focus {
 
 
 .instructions_body {
-	margin-left:3px;
-	width:calc(100% - 12px) ! important;
-	margin-top:2%;
+	padding: 15px;
+	font-size: 1em;
+	text-align: left;
+	max-width: 310px;
+	margin-top:70px;
+}
+
+#inst_main_body > hr {
+	width:100%;
+	color: #232323;
+	background-color: #232323;
+	height: 1px;
+	border: 0;
+	/*margin-left: 10%;*/
+}
+
+#inst_main_body > p {
+	margin-bottom: 15px;
 }
 
 #instructions_head {
-   margin-top:15%;
+	text-align: center;
+	font-size: 1.3em;
+	padding-bottom: 10px;
+	font-weight: bold;
 }
 
 @media only screen and (min-device-width : 320px) 
@@ -193,28 +211,26 @@ and (max-device-width : 480px) {
 		background-color:rgba(255,255,255,1);
 	}
 	#inst_main_body{
-	   width:70% !important;
-	   padding-left:15% !important;
-	   margin-left:0;
+		width:70% !important;
+		padding-left:15% !important;
+		margin-left:0;
 	}
 
-      #instructions_head {
-	 padding-left:0%;
-      }
-      #openSideBar{
-	width:60px;
-	height:60px;
-      }
-      #pauseBtn {
-	width:60px;
-	height:60px;
-      }
-      #restartBtn {
-	 width:60px;
-	 height:60px;
-      }
-
-
+	#instructions_head {
+		padding-left:0%;
+	}
+	#openSideBar{
+		width:60px;
+		height:60px;
+	}
+	#pauseBtn {
+		width:60px;
+		height:60px;
+	}
+	#restartBtn {
+		width:60px;
+		height:60px;
+	}
 }
 
 .overlay {
@@ -366,4 +382,11 @@ body {
 		margin-left:-500px;
 	bottom:10px;
 	z-index:98;
+}
+
+#afterhr {
+	margin: 0;
+	padding: 0;
+	margin-bottom: -10px;
+	padding-bottom: -10px;
 }
