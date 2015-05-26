@@ -228,6 +228,7 @@ function pause(o) {
 
 	var c = document.getElementById("canvas");
 	if (gameState == -1) {
+		$('#fork-ribbon').fadeOut(150, 'linear');
 		$('#restartBtn').fadeOut(150, "linear");
 		if ($('#helpScreen').is(':visible')) {
 			$('#helpScreen').fadeOut(150, "linear");
@@ -247,6 +248,7 @@ function pause(o) {
 		if (message == 'paused') {
 			showText(message);
 		}
+		$('#fork-ribbon').fadeIn(150, 'linear');
 
 		$("#pauseBtn").attr("src","./images/btn_resume.svg");
 		prevGameState = gameState;

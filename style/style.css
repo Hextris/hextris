@@ -177,6 +177,10 @@ button:focus {
 	margin-top:70px;
 }
 
+.instructions_body > a {
+	font-weight: bold;
+}
+
 #inst_main_body > hr {
 	width:100%;
 	color: #232323;
