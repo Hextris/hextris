@@ -22,7 +22,7 @@
 
 @font-face {
 	font-family: Exo;
-	src: url("style/fonts/Exo2-Regular.otf") format("opentype");
+	src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
 }
 
 .tweet {
