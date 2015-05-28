@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<style type="text/css">
+			@font-face {
+				font-family: Exo;
+				font-weight: light;
+				src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
+			}
+
+			@font-face {
+				font-family: Exo;
+				src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+			}
+
+			@font-face {
+				font-family: Exo;
+				font-weight: bold;
+				src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
+			}
+
+			#container {
+				color: #232323;
+				position: absolute;
+				left:50%;
+				top:50%;
+				text-align: center;
+				transform: translate(-50%, -50%);
+				font-family: Exo;
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+			}
+
+			.GOTitle {
+				font-weight: bold;
+				font-size: 22px;
+			}
+
+			#gameOverBox {
+				
+			}
+
+			.scoreNum {
+				font-weight: normal ! important;
+			}
+
+			#cScore {
+				font-size: 55px;
+				font-weight:light;
+				margin-bottom: 22px;
+			}
+
+			#highScoresTitle {
+				margin-bottom: 2px;
+			}
+
+			.score {
+				font-weight: light;
+				line-height: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = 'container'>
+			<div id = 'gameOverBox' class = 'GOTitle'>GAME OVER</div>
+			<div id = 'cScore'>1843</div>
+			<div id = 'highScoresTitle' class = 'GOTitle'>HIGH SCORES</div>
+			<div class = 'score'><span class = 'scoreNum'>1.</span> 1870</div>
+			<div class = 'score'><span class = 'scoreNum'>2.</span> 1540</div>
+			<div class = 'score'><span class = 'scoreNum'>3.</span> 1130</div>
+			<div class = 'score'><span class = 'scoreNum'>4.</span> 960</div>
+		</div>
+	</body>
+</html>
