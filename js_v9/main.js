@@ -93,7 +93,6 @@ function init(b) {
 	history = {};
 	importedHistory = undefined;
 	importing = 0;
-	isGameOver = 2;
 	score = saveState.score || 0;
 	prevScore = 0;
 	spawnLane = 0;

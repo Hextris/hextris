@@ -132,7 +132,6 @@ function initialize(a) {
 	window.framerate = 60;
 	window.history = {};
 	window.score = 0;
-	window.isGameOver = 3;
 	window.scoreAdditionCoeff = 1;
 	window.prevScore = 0;
 	window.numHighScores = 3;
