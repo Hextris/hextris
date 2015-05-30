@@ -63,13 +63,11 @@ function hideUIElements() {
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
 	$("#attributions").hide();
-	$("#bottombar").hide();
 }
 
 function init(b) {
 	if(settings.ending_block && b == 1){return;}
 	if (b) {
-			hidebottombar();
 
 
 	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
@@ -197,7 +195,6 @@ function setStartScreen() {
 	$('#restartBtn').hide();
 	$('#startBtn').show();
 	$('#attributions').show();
-	showbottombar();
 
 	gameState = 0;
 	requestAnimFrame(animLoop);
@@ -244,7 +241,6 @@ function animLoop() {
 				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 				if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
 
-				showbottombar();
 				canRestart = 0;
 				clearSaveState();
 			}

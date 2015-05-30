@@ -1,24 +1,6 @@
 $(document).ready(function() {
 	initialize();
-	$('#bottombar').hide();
 });
-
-function showbottombar() {
-	var isOffline = 'onLine' in navigator && !navigator.onLine;
-	if (isOffline) {
-		setTimeout(showbottombar, 1000);
-	} else {
-		window.iframeHasLoaded = true;
-		if (gameState != 1) {
-			$('#bottombar').fadeIn(150, 'linear');
-		}
-	}
-}
-
-function hidebottombar() {
-	$('#bottombar').fadeOut(150, 'linear');
-}
-
 function initialize(a) {
 	window.rush = 1;
 	window.lastTime = Date.now();
