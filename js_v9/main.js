@@ -56,6 +56,7 @@ function checkVisualElements() {
 	if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
+	if ($('#buttonCont').is(':visible')) $('#buttonCont').fadeOut(150, "linear");
 }
 
 function hideUIElements() {
