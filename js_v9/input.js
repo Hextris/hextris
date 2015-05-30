@@ -121,7 +121,8 @@ function addKeyListeners() {
 			canRestart = false;
 		});
 		$("#restart").on('touchstart', function() {
-			init(1);
+			alert("hey");
+			init();
 			canRestart = false;
 		});
 
@@ -132,8 +133,9 @@ function addKeyListeners() {
 			canRestart = false;
 		});
 		$("#restart").on('mousedown', function() {
-			init(1);
+			init();
 			canRestart = false;
+			$("#gameoverscreen").fadeOut();
 		});
 
 	}

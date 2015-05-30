@@ -81,6 +81,7 @@ function init(b) {
 					infobuttonfading = false;
 			}, 7000);
 			clearSaveState();
+			checkVisualElements();
 	}
 
 	infobuttonfading = true;

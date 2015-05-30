@@ -265,6 +265,7 @@ function startBtnHandler() {
 
 	if (importing == 1) {
 		init(1);
+		checkVisualElements();
 	} else {
 		resumeGame();
 	}
