@@ -182,7 +182,10 @@ function gameOverDisplay() {
 	$("#attributions").show();
 	var c = document.getElementById("canvas");
 	c.className = "blur";
-	showText('gameover');
+	$("#gameoverscreen").fadeIn();
+	$("#container").fadeIn();
+	$("#socialShare").fadeIn();
+	$("#restart").fadeIn();
 }
 
 function pause(o) {
@@ -198,6 +201,7 @@ function pause(o) {
 	if (gameState == -1) {
 		$('#fork-ribbon').fadeOut(150, 'linear');
 		$('#restartBtn').fadeOut(150, "linear");
+		$('#buttonCont').fadeOut(150, "linear");
 		if ($('#helpScreen').is(':visible')) {
 			$('#helpScreen').fadeOut(150, "linear");
 		}
@@ -210,6 +214,7 @@ function pause(o) {
 		}, 200)
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(150, "linear");
+		$('#buttonCont').fadeIn(150, "linear");
 		$('.helpText').fadeIn(200, 'linear');
 		if (message == 'paused') {
 			showText(message);

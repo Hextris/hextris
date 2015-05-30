@@ -368,9 +368,22 @@ body {
 }
 
 #gameoverscreen {
+   /*display:none;*/
+}
+#container {
+   display:none
+}
+#restart{
    display:none;
+}
+#socialShare{
+   display:none;
+}
+#buttonCont{
+   display block !important;
 
 }
+
 
 .unselectable {
 	-webkit-touch-callout: none;
