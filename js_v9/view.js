@@ -103,7 +103,6 @@ function showText(text) {
 		'paused': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press p to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div>",
 		'pausedAndroid': "<div class='centeredHeader unselectable'>Paused</div><br><div class='unselectable centeredSubHeader'>Press <i class='fa fa-play'></i> to resume</div><div style='height:100px;line-height:100px;cursor:pointer;'></div><div class='unselectable centeredSubHeader' style='margin-top:-50px;'><a href = 'market://details?id=com.hextris.hextrisadfree' target='_blank'>Don't like ads? Want to support the developer? Tap for the ad-free version.</a></div>",
 		'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>",
-		'gameover': "<div class='centeredHeader unselectable'> Game Over: " + score + " pts</div><br><div style='font-size:24px;' class='centeredHeader unselectable'> High Scores:</div><table class='tg' style='margin:0px auto'> "
 	};
 
 	if (text == 'paused') {
@@ -114,41 +113,11 @@ function showText(text) {
 
 	if (text == 'gameover') {
 	   //Clay('client.share.any', {text: 'Think you can beat my score of '+ score + ' in Super Cool Game?'})
-		var allZ = 1;
-		var i;
-
-		for (i = 0; i < 3; i++) {
-			if (highscores.length > i) {
-				messages['gameover'] += "<tr> <th class='tg-031e'>" + (i + 1) + ".</th> <th class='tg-031e'>" + highscores[i] + " pts</th> </tr>";
-			}
-		}
-
-		var restartText;
-		if (settings.platform == 'mobile') {
-			restartText = 'Tap anywhere to restart!';
-		} else {
-			restartText = 'Press enter (or click anywhere!) to restart!';
-		}
-
-		messages['gameover'] += "</table><br><div class='unselectable centeredSubHeader' id = 'tapToRestart'>" + restartText + "</div>";
-		if (allZ) {
-			for (i = 0; i < highscores.length; i++) {
-				if (highscores[i] !== 0) {
-					allZ = 0;
-				}
-			}
-		}
-	}
-	messages['gameover'] += "<div class='fltrt' id='tweetStuff'><a class='tweet' href='https://twitter.com/intent/tweet?text=Can you beat my score of "+ score +" points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris' data-lang='en' data-related='hextris:hextris' target='_blank'>Share Your Score on Twitter!!!</a></div>"
+		$("#gameoverscreen").fadeIn();
+    	}
 	$(".overlay").html(messages[text]);
 	$(".overlay").fadeIn("1000", "swing");
 
-	if (text == 'gameover') {
-		if (settings.platform == 'mobile') {
-			$('.tg').css('margin-top', '6px');
-			$("#tapToRestart").css('margin-top','-19px')
-		}
-	}
 }
 
 function setMainMenu() {
@@ -214,7 +183,6 @@ function gameOverDisplay() {
 	var c = document.getElementById("canvas");
 	c.className = "blur";
 	showText('gameover');
-	showbottombar();
 }
 
 function pause(o) {
@@ -237,14 +205,12 @@ function pause(o) {
 		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
 		$('.helpText').fadeOut(200, 'linear');
 		hideText();
-		hidebottombar();
 		setTimeout(function() {
 			gameState = prevGameState;
 		}, 200)
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(150, "linear");
 		$('.helpText').fadeIn(200, 'linear');
-		showbottombar();
 		if (message == 'paused') {
 			showText(message);
 		}

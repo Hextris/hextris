@@ -359,13 +359,17 @@ body {
 	height:100%;
 	width:100%;
 	background-color:#ecf0f1;
-	z-index:3;
+	z-index:0;
 }
-
 #title {
 	z-index:99;
 	margin-top:20px;
 	color:#2c3e50;
+}
+
+#gameoverscreen {
+   display:none;
+
 }
 
 .unselectable {
@@ -376,21 +380,114 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 }
-
-#bottombar {
-	padding:0;
-	position:fixed;
-	width:1000px;
-	text-align:center;
-	left:50%;
-		margin-left:-500px;
-	bottom:10px;
-	z-index:98;
-}
-
 #afterhr {
 	margin: 0;
 	padding: 0;
 	margin-bottom: -10px;
 	padding-bottom: -10px;
 }
+			body {
+				overflow: hidden;
+			}
+
+			@font-face {
+				font-family: Exo;
+				font-weight: light;
+				src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
+			}
+
+			@font-face {
+				font-family: Exo;
+				src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+			}
+
+			@font-face {
+				font-family: Exo;
+				font-weight: bold;
+				src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
+			}
+
+			#container {
+				color: #232323;
+				position: absolute;
+				left:50%;
+				top:50%;
+				text-align: center;
+				transform: translate(-50%, -50%);
+				font-family: Exo;
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+			}
+
+			.GOTitle {
+				font-weight: bold;
+				font-size: 24.2000px;
+			}
+
+			#gameOverBox {
+				
+			}
+
+			.scoreNum {
+				font-weight: normal ! important;
+			}
+
+			#cScore {
+				font-size: 60.5000px;
+				font-weight:light;
+				margin-bottom: 5px;
+				margin-top: -10px;
+			}
+
+			#highScoresTitle {
+				margin-bottom: 2px;
+			}
+
+			.score {
+				font-weight: light;
+				line-height: 18px;
+			}
+
+			#restart {
+				bottom:0;
+				position: absolute;
+				left:calc(50% - 124px);
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+				margin-bottom: 10px;
+			}
+
+			#socialShare {
+				bottom: 0;
+				margin-bottom: 10px;
+				position: absolute;
+				left:calc(50% + 30px);
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+			}
+
+			#bottomContainer {
+				position: absolute;
+				width:100%;
+				bottom: 0;
+			}
+
+			#buttonCont {
+				position: absolute; 
+				/*width:100%;*/
+				left: 50%;
+				width: 310px;
+				margin-left:-8px;
+				bottom:78px;
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+				/*width:300px;*/
+			}
+	

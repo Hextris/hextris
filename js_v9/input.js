@@ -120,12 +120,22 @@ function addKeyListeners() {
 			init(1);
 			canRestart = false;
 		});
+		$("#restart").on('touchstart', function() {
+			init(1);
+			canRestart = false;
+		});
+
 	}
 	else {
 		$("#restartBtn").on('mousedown', function() {
 			init(1);
 			canRestart = false;
 		});
+		$("#restart").on('mousedown', function() {
+			init(1);
+			canRestart = false;
+		});
+
 	}
 }
 function inside (point, vs) {
