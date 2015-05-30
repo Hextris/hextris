@@ -375,6 +375,8 @@ body {
 }
 #restart{
    display:none;
+   cursor: pointer;
+   cursor: pointer !important;
 }
 #socialShare{
    display:none;
