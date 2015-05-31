@@ -183,6 +183,7 @@ function gameOverDisplay() {
 	var c = document.getElementById("canvas");
 	c.className = "blur";
 	$("#gameoverscreen").fadeIn();
+	$("#buttonCont").fadeIn();
 	$("#container").fadeIn();
 	$("#socialShare").fadeIn();
 	$("#restart").fadeIn();
