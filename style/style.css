@@ -22,7 +22,7 @@
 
 @font-face {
 	font-family: Exo;
-	src:url("/style/fonts/Exo2-Regular.otf") format("opentype");
+	src:url("/fonts/Exo2-Regular.otf") format("opentype");
 }
 
 .tweet {
@@ -408,18 +408,18 @@ body {
 			@font-face {
 				font-family: Exo;
 				font-weight: light;
-				src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
+				src:url("/style/fonts/Exo2-ExtraLight.otf") format("opentype");
 			}
 
 			@font-face {
 				font-family: Exo;
-				src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+				src:url("/style/fonts/Exo2-Regular.otf") format("opentype");
 			}
 
 			@font-face {
 				font-family: Exo;
 				font-weight: bold;
-				src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
+				src:url("/style/fonts/Exo2-SemiBold.otf") format("opentype");
 			}
 
 			#container {
