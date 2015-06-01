@@ -56,19 +56,142 @@
 		<script src="vendor/sweet-alert.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="vendor/sweet-alert.css">
 		<link rel="stylesheet" href="style/rrssb.css" />
-		<script type="text/javascript" src = 'vendor/rrssb.min.js'></script>
-			<script type="text/javascript">
-				(function addRussianSocialShare(){
-					var lang = navigator.language || navigator.userLanguage;
-					// debugger;
-					if (lang.substr(0, 2) == 'ru') {
-						$('.rrssb-facebook').remove();
-						var n = $.parseHTML('<li class="rrssb-vk"> <a href="http://vk.com/share.php?url=http://kurtnoble.com/labs/rrssb/index.html" class="popup"> <span class="rrssb-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg> </span> <span class="rrssb-text">vk.com</span> </a> </li>');
-						$('.rrssb-buttons').prepend(n);
-					}
+			<style type="text/css">
+			body {
+				overflow: hidden;
+			}
+			#gameoverscreen {
+				padding:8px;
+			}
+			@font-face {
+				font-family: Exo;
+				font-weight: light;
+				src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
+			}
 
-				})()
-			</script>
+			@font-face {
+				font-family: Exo;
+				src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+			}
+
+			@font-face {
+				font-family: Exo;
+				font-weight: bold;
+				src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
+			}
+
+			#container {
+				color: #232323;
+				position: absolute;
+				left:50%;
+				top:50%;
+				text-align: center;
+				transform: translate(-50%, -50%);
+				font-family: Exo;
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+			}
+
+			.GOTitle {
+				font-weight: bold;
+				font-size: 24.2000px;
+			}
+
+			#gameOverBox {
+				
+			}
+
+			.scoreNum {
+				font-weight: normal ! important;
+			}
+
+			#cScore {
+				font-size: 60.5000px;
+				font-weight:light;
+				margin-bottom: 5px;
+				margin-top: -10px;
+			}
+
+			#highScoresTitle {
+				margin-bottom: 2px;
+			}
+
+			.score {
+				font-weight: light;
+				line-height: 18px;
+			}
+
+			#restart {
+				bottom:0;
+				position: absolute;
+				left:calc(50% - 124px);
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+				margin-bottom: 10px;
+			}
+
+			#socialShare {
+				bottom: 0;
+				margin-bottom: 10px;
+				position: absolute;
+				left:calc(50% + 30px);
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+			}
+
+			#bottomContainer {
+				position: absolute;
+				width:100%;
+				bottom: 0;
+			}
+
+			#buttonCont {
+				position: absolute; 
+				/*width:100%;*/
+				left: 50%;
+				width: 310px;
+				margin-left:-8px;
+				bottom:78px;
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+				/*width:300px;*/
+			}
+
+			#badges {
+				left: calc(50% - 3.5px);
+				top: calc(50% - 165px);
+				position: absolute;
+				transform: translate(-50%, -50%);
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+			}
+
+			#androidBadge {
+				position: absolute;
+				left:calc(50% - 66px);
+				transform: translate(-50%, -1px);
+				-webkit-transform: translate(-50%, -1px);
+				-moz-transform: translate(-50%, -1px);
+				-ms-transform: translate(-50%, -1px);
+			}
+
+			#iOSBadge {
+				position: absolute;
+				left: calc(50% + 65px);
+				transform: translate(-50%, 0%);
+				-webkit-transform: translate(-50%, 0%);
+				-moz-transform: translate(-50%, 0%);
+				-ms-transform: translate(-50%, 0%);
+			}
+		</style>
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
@@ -160,7 +283,18 @@
 							<span class="rrssb-text">google+</span>
 						</a>
 					</li>
-						<li class="rrssb-github">
+					<li class="rrssb-email">
+						<!-- Replace subject with your message using URL Endocding: http://meyerweb.com/eric/tools/dencoder/ -->
+						<a href="mailto:?subject=Check%20out%20how%20ridiculously%20responsive%20these%20social%20buttons%20are&amp;body=http%3A%2F%2Fkurtnoble.com%2Flabs%2Frrssb%2Findex.html">
+					 		<span class="rrssb-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+									<path d="M20.11 26.147c-2.335 1.05-4.36 1.4-7.124 1.4C6.524 27.548.84 22.916.84 15.284.84 7.343 6.602.45 15.4.45c6.854 0 11.8 4.7 11.8 11.252 0 5.684-3.193 9.265-7.398 9.3-1.83 0-3.153-.934-3.347-2.997h-.077c-1.208 1.986-2.96 2.997-5.023 2.997-2.532 0-4.36-1.868-4.36-5.062 0-4.75 3.503-9.07 9.11-9.07 1.713 0 3.7.4 4.6.972l-1.17 7.203c-.387 2.298-.115 3.3 1 3.4 1.674 0 3.774-2.102 3.774-6.58 0-5.06-3.27-8.994-9.304-8.994C9.05 2.87 3.83 7.545 3.83 14.97c0 6.5 4.2 10.2 10 10.202 1.987 0 4.09-.43 5.647-1.245l.634 2.22zM16.647 10.1c-.31-.078-.7-.155-1.207-.155-2.572 0-4.596 2.53-4.596 5.53 0 1.5.7 2.4 1.9 2.4 1.44 0 2.96-1.83 3.31-4.088l.592-3.72z"/>
+								</svg>
+							</span>
+							<span class="rrssb-text">email</span>
+						</a>
+					</li>
+					<li class="rrssb-github">
 							<a href="https://github.com/hextris/hextris">
 								<span class="rrssb-icon">
 									<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
@@ -174,7 +308,21 @@
 					</ul>
 				</div>
 			</div>
-				</div>
+		</div>
 	<!--DONE WITH GAME OVER SCREEN-->
+			<script type="text/javascript">
+				(function addRussianSocialShare(){
+					var lang = navigator.language || navigator.userLanguage;
+					// debugger;
+					if (lang.substr(0, 2) == 'ru') {
+						$('.rrssb-facebook').remove();
+						var n = $.parseHTML('<li class="rrssb-vk"> <a href="http://vk.com/share.php?url=http://kurtnoble.com/labs/rrssb/index.html" class="popup"> <span class="rrssb-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg> </span> <span class="rrssb-text">vk.com</span> </a> </li>');
+						$('.rrssb-buttons').prepend(n);
+					}
+
+				})()
+			</script>
+	<script type="text/javascript" src = 'vendor/rrssb.min.js'></script>
+
 	</body>
 </html>
