@@ -17,17 +17,6 @@ function addKeyListeners() {
 		}
 	});
 	keypress.register_combo({
-		keys: "down",
-		on_keydown: function() {
-				rush=2;
-		},
-		on_release: function() {
-				rush=1;
-		}
-
-	});
-
-	keypress.register_combo({
 		keys: "a",
 		on_keydown: function() {
 			if (MainHex && gameState !== 0) {
@@ -194,13 +183,3 @@ function handleClickTap(x,y) {
 	}
 }
 
-function toggleRush(){
-	rush = ((rush)%2)+1;
-}
-function setRush() {
-	rush = 2;
-}
-
-function removeRush() {
-	rush = 1;
-}

@@ -39,9 +39,6 @@ function drawScoreboard() {
 	if (rush ==1){
 		var color = "rgb(236, 240, 241)";
 	}
-	else{
-		var color = "#e74c3c";
-	}
     var fontSize = settings.platform == 'mobile' ? 35 : 30;
 
 	if (gameState === 0) {
