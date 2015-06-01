@@ -179,6 +179,7 @@ function gameOverDisplay() {
 	$("#attributions").show();
 	var c = document.getElementById("canvas");
 	c.className = "blur";
+	updateHighScores();
 	$("#gameoverscreen").fadeIn();
 	$("#buttonCont").fadeIn();
 	$("#container").fadeIn();
@@ -186,6 +187,12 @@ function gameOverDisplay() {
 	$("#restart").fadeIn();
 }
 
+function updateHighScores (){
+    $("#cScore").text(score);
+    $("#1score").text(highscores[0]);
+    $("#2score").text(highscores[1]);
+    $("#3score").text(highscores[2]);
+}
 function pause(o) {
 	writeHighScores();
 	var message;

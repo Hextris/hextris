@@ -166,11 +166,6 @@ function handleClickTap(x,y) {
 	Vertexes = Vertexes.map(function(coord){ 
 		return [coord[0] + trueCanvas.width/2, coord[1] + trueCanvas.height/2]});
 
-	if (gameState == 1 && inside([x,y],Vertexes)){
-		toggleRush();
-		return;
-	}
-
 	if (!MainHex || gameState === 0 || gameState==-1) {
 		return;
 	}
