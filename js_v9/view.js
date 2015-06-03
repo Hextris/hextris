@@ -138,7 +138,7 @@ function hideText() {
 }
 
 function gameOverDisplay() {
-	if( localStorage.getItem("been_mobile") != "true" || true){
+	if(Cookies.get("visited") == null){
 		settings.ending_block=true;
 		if(settings.os == "android"){
 			sweetAlert({
@@ -175,7 +175,7 @@ function gameOverDisplay() {
 		}
 
 	}
-	localStorage.setItem("been_mobile", "true");
+	Cookies.set("visited",true);
 	$("#attributions").show();
 	var c = document.getElementById("canvas");
 	c.className = "blur";
@@ -189,9 +189,9 @@ function gameOverDisplay() {
 
 function updateHighScores (){
     $("#cScore").text(score);
-    $("#1score").text(highscores[0]);
-    $("#2score").text(highscores[1]);
-    $("#3score").text(highscores[2]);
+    $("#1place").text(highscores[0]);
+    $("#2place").text(highscores[1]);
+    $("#3place").text(highscores[2]);
 }
 function pause(o) {
 	writeHighScores();

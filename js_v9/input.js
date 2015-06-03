@@ -110,9 +110,9 @@ function addKeyListeners() {
 			canRestart = false;
 		});
 		$("#restart").on('touchstart', function() {
-			alert("hey");
 			init();
 			canRestart = false;
+			$("#gameoverscreen").fadeOut();
 		});
 
 	}
