@@ -39,9 +39,6 @@ function drawScoreboard() {
 	if (rush ==1){
 		var color = "rgb(236, 240, 241)";
 	}
-	else{
-		var color = "#e74c3c";
-	}
     var fontSize = settings.platform == 'mobile' ? 35 : 30;
 
 	if (gameState === 0) {
@@ -141,7 +138,7 @@ function hideText() {
 }
 
 function gameOverDisplay() {
-	if( localStorage.getItem("been_mobile") != "true" || true){
+	if(Cookies.get("visited") == null){
 		settings.ending_block=true;
 		if(settings.os == "android"){
 			sweetAlert({
@@ -178,10 +175,11 @@ function gameOverDisplay() {
 		}
 
 	}
-	localStorage.setItem("been_mobile", "true");
+	Cookies.set("visited",true);
 	$("#attributions").show();
 	var c = document.getElementById("canvas");
 	c.className = "blur";
+	updateHighScores();
 	$("#gameoverscreen").fadeIn();
 	$("#buttonCont").fadeIn();
 	$("#container").fadeIn();
@@ -189,6 +187,12 @@ function gameOverDisplay() {
 	$("#restart").fadeIn();
 }
 
+function updateHighScores (){
+    $("#cScore").text(score);
+    $("#1place").text(highscores[0]);
+    $("#2place").text(highscores[1]);
+    $("#3place").text(highscores[2]);
+}
 function pause(o) {
 	writeHighScores();
 	var message;

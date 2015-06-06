@@ -17,17 +17,6 @@ function addKeyListeners() {
 		}
 	});
 	keypress.register_combo({
-		keys: "down",
-		on_keydown: function() {
-				rush=2;
-		},
-		on_release: function() {
-				rush=1;
-		}
-
-	});
-
-	keypress.register_combo({
 		keys: "a",
 		on_keydown: function() {
 			if (MainHex && gameState !== 0) {
@@ -121,9 +110,9 @@ function addKeyListeners() {
 			canRestart = false;
 		});
 		$("#restart").on('touchstart', function() {
-			alert("hey");
 			init();
 			canRestart = false;
+			$("#gameoverscreen").fadeOut();
 		});
 
 	}
@@ -177,11 +166,6 @@ function handleClickTap(x,y) {
 	Vertexes = Vertexes.map(function(coord){ 
 		return [coord[0] + trueCanvas.width/2, coord[1] + trueCanvas.height/2]});
 
-	if (gameState == 1 && inside([x,y],Vertexes)){
-		toggleRush();
-		return;
-	}
-
 	if (!MainHex || gameState === 0 || gameState==-1) {
 		return;
 	}
@@ -194,13 +178,3 @@ function handleClickTap(x,y) {
 	}
 }
 
-function toggleRush(){
-	rush = ((rush)%2)+1;
-}
-function setRush() {
-	rush = 2;
-}
-
-function removeRush() {
-	rush = 1;
-}
