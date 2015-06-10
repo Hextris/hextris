@@ -308,7 +308,7 @@ and (max-device-width : 480px) {
 
 	@media only screen and (orientation:landscape) {
 		#buttonCont {
-		   bottom: calc(50vh - 30vh - 36px);
+			bottom: calc(50vh - 30vh - 36px);
 		}
 	}
 
@@ -316,14 +316,6 @@ and (max-device-width : 480px) {
 		#buttonCont {
 			bottom: calc(50vh - 30vw - 36px);
 		}
-	}
-
-	 {
-		display:none;  
-		visibility:hidden;
-	}
-
-	.rrssb-facebook {
 	}
 }
 .blur {
@@ -505,22 +497,22 @@ body {
 #androidBadge {
 	position: absolute;
 	height:41px;
-	margin-top:4.5px;
+	margin-top:5px;
 	left:calc(50% - 66px);
-	transform: translate(-50%, -1px);
-	-webkit-transform: translate(-50%, -1px);
-	-moz-transform: translate(-50%, -1px);
-	-ms-transform: translate(-50%, -1px);
+	transform: translate(calc(-50% - 4px), -1px);
+	-webkit-transform: translate(calc(-50% - 4px), -1px);
+	-moz-transform: translate(calc(-50% - 4px), -1px);
+	-ms-transform: translate(calc(-50% - 4px), -1px);
 }
 
 #iOSBadge {
-	margin-top:4px;
+	margin-top:5px;
 	position: absolute;
 	left: calc(50% + 65px);
-	transform: translate(-50%, 0%);
-	-webkit-transform: translate(-50%, 0%);
-	-moz-transform: translate(-50%, 0%);
-	-ms-transform: translate(-50%, 0%);
+	transform: translate(calc(-50% - 4px), 0%);
+	-webkit-transform: translate(calc(-50% - 4px), 0%);
+	-moz-transform: translate(calc(-50% - 4px), 0%);
+	-ms-transform: translate(calc(-50% - 4px), 0%);
 }
 
 #authors {
