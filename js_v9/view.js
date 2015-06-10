@@ -176,7 +176,6 @@ function gameOverDisplay() {
 
 	}
 	Cookies.set("visited",true);
-	$("#attributions").show();
 	var c = document.getElementById("canvas");
 	c.className = "blur";
 	updateHighScores();

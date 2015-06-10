@@ -7,7 +7,7 @@
 	user-select: none;
 	padding:0;
 	margin:0;
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
+	  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 #HIGHSCORE {
@@ -29,9 +29,7 @@
 	font-size:2rem;
 	color:#4099FF;
 }
-@media only screen
-and (min-device-width : 320px)
-	and (max-device-width : 480px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	.tweet{
 		font-size:1rem;
 	}
@@ -132,13 +130,13 @@ button:focus {
 	z-index:99;
 }
 #startBtn {
-   position:absolute;
-   left:40%;
-   top:38%;
-   height:25%;
-   width:25%;
-   z-index:99999999;
-   cursor:pointer;
+	position:absolute;
+	left:40%;
+	top:38%;
+	height:25%;
+	width:25%;
+	z-index:99999999;
+	cursor:pointer;
 }
 
 #helpScreen {
@@ -255,40 +253,31 @@ and (max-device-width : 480px) {
 }
 
 .centeredHeader {
-   font-size:5vw; 
-   text-align:center;
-   line-height:4rem;
+	font-size:5vw; 
+	text-align:center;
+	line-height:4rem;
 }
 
 .centeredSubHeader {
-   font-size:2.2rem; 
-   line-height:1em;
-   text-align:center;
+	font-size:2.2rem; 
+	line-height:1em;
+	text-align:center;
 }
 
 .centeredSubSubHeader {
 	font-size:1.4rem; 
 	text-align:center;
 }
-#attributions {
-	color:#232323;
-	position:absolute;
-	width:100%;
-	left: 0%;
-	text-align:center;
-	font-size:1.2rem;
-	z-index:98;
-}
 
 @media only screen and (orientation:landscape) {
-	#attributions {
-		top: calc(50vh + 11vh + 40px);
+	#buttonCont {
+		bottom: calc(50vh - 11vh);
 	}
 }
 
 @media only screen and (orientation:portrait) {
-	#attributions {
-		top: calc(50vh + 11vw + 40px);
+	#buttonCont {
+		bottom: calc(50vh - 11vw);
 	}
 }
 
@@ -297,10 +286,6 @@ and (max-device-width : 480px) {
 		font-size:2rem; 
 		text-align:center;
 		line-height:0.6rem;
-	}
-
-	#attributions {
-		font-size:1.2rem;
 	}
 
 	.centeredSubHeader {
@@ -368,25 +353,19 @@ body {
 }
 
 #gameoverscreen {
-   /*display:none;*/
+	/*display:none;*/
 }
 #container {
-   display:none
+	display:none
 }
 #restart{
-   display:none;
-   cursor: pointer;
-   cursor: pointer !important;
+	display:none;
+	cursor: pointer;
+	cursor: pointer !important;
 }
 #socialShare{
-   display:none;
+	display:none;
 }
-#buttonCont{
-   display block !important;
-
-}
-
-
 .unselectable {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -401,108 +380,137 @@ body {
 	margin-bottom: -10px;
 	padding-bottom: -10px;
 }
-			body {
-				overflow: hidden;
-			}
+body {
+    overflow: hidden;
+}
+#gameoverscreen {
+    padding:8px;
+}
+@font-face {
+    font-family: Exo;
+    font-weight: light;
+    src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
+}
 
-			@font-face {
-				font-family: Exo;
-				font-weight: light;
-				src:url("/style/fonts/Exo2-ExtraLight.otf") format("opentype");
-			}
+@font-face {
+    font-family: Exo;
+    src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+}
 
-			@font-face {
-				font-family: Exo;
-				src:url("/style/fonts/Exo2-Regular.otf") format("opentype");
-			}
+@font-face {
+    font-family: Exo;
+    font-weight: bold;
+    src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
+}
 
-			@font-face {
-				font-family: Exo;
-				font-weight: bold;
-				src:url("/style/fonts/Exo2-SemiBold.otf") format("opentype");
-			}
+#container {
+    color: #232323;
+    position: absolute;
+    left:50%;
+    top:50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-family: Exo;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
 
-			#container {
-				color: #232323;
-				position: absolute;
-				left:50%;
-				top:50%;
-				text-align: center;
-				transform: translate(-50%, -50%);
-				font-family: Exo;
-				-webkit-transform: translate(-50%, -50%);
-				-moz-transform: translate(-50%, -50%);
-				-ms-transform: translate(-50%, -50%);
-			}
+.GOTitle {
+    font-weight: bold;
+    font-size: 24.2000px;
+}
 
-			.GOTitle {
-				font-weight: bold;
-				font-size: 24.2000px;
-			}
+#gameOverBox {
+    
+}
 
-			#gameOverBox {
-				
-			}
+.scoreNum {
+    font-weight: normal ! important;
+}
 
-			.scoreNum {
-				font-weight: normal ! important;
-			}
+#cScore {
+    font-size: 60.5000px;
+    font-weight:light;
+    margin-bottom: 5px;
+    margin-top: -10px;
+}
 
-			#cScore {
-				font-size: 60.5000px;
-				font-weight:light;
-				margin-bottom: 5px;
-				margin-top: -10px;
-			}
+#highScoresTitle {
+    margin-bottom: 2px;
+}
 
-			#highScoresTitle {
-				margin-bottom: 2px;
-			}
+.score {
+    font-weight: light;
+    line-height: 18px;
+}
 
-			.score {
-				font-weight: light;
-				line-height: 18px;
-			}
+#restart {
+    bottom:0;
+    position: absolute;
+    left:calc(50% - 124px);
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    margin-bottom: 10px;
+}
 
-			#restart {
-				bottom:0;
-				position: absolute;
-				left:calc(50% - 124px);
-				transform: translate(-50%, 0%);
-				-webkit-transform: translate(-50%, 0%);
-				-moz-transform: translate(-50%, 0%);
-				-ms-transform: translate(-50%, 0%);
-				margin-bottom: 10px;
-			}
+#socialShare {
+    bottom: 0;
+    margin-bottom: 10px;
+    position: absolute;
+    left:calc(50% + 30px);
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+}
 
-			#socialShare {
-				bottom: 0;
-				margin-bottom: 10px;
-				position: absolute;
-				left:calc(50% + 30px);
-				transform: translate(-50%, 0%);
-				-webkit-transform: translate(-50%, 0%);
-				-moz-transform: translate(-50%, 0%);
-				-ms-transform: translate(-50%, 0%);
-			}
+#bottomContainer {
+    position: absolute;
+    width:100%;
+    bottom: 0;
+}
 
-			#bottomContainer {
-				position: absolute;
-				width:100%;
-				bottom: 0;
-			}
+#buttonCont {
+    position: absolute; 
+    /*width:100%;*/
+    left: 50%;
+    width: 310px;
+    margin-left:-8px;
+    bottom:78px;
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    /*width:300px;*/
+}
 
-			#buttonCont {
-				position: absolute; 
-				/*width:100%;*/
-				left: 50%;
-				width: 310px;
-				margin-left:-8px;
-				bottom:78px;
-				transform: translate(-50%, 0%);
-				-webkit-transform: translate(-50%, 0%);
-				-moz-transform: translate(-50%, 0%);
-				-ms-transform: translate(-50%, 0%);
-				/*width:300px;*/
-			}
-	
+#badges {
+    left: calc(50% - 3.5px);
+    top: calc(50% - 165px);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#androidBadge {
+    position: absolute;
+    left:calc(50% - 66px);
+    transform: translate(-50%, -1px);
+    -webkit-transform: translate(-50%, -1px);
+    -moz-transform: translate(-50%, -1px);
+    -ms-transform: translate(-50%, -1px);
+}
+
+#iOSBadge {
+    position: absolute;
+    left: calc(50% + 65px);
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+}
