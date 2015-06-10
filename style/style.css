@@ -9,7 +9,6 @@
 	margin:0;
 	  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
 #HIGHSCORE {
 	position:absolute;
 	left:50%;
@@ -19,12 +18,10 @@
 	font-family: Exo;
 
 }
-
 @font-face {
 	font-family: Exo;
 	src:url("/fonts/Exo2-Regular.otf") format("opentype");
 }
-
 .tweet {
 	font-size:2rem;
 	color:#4099FF;
@@ -34,13 +31,9 @@
 		font-size:1rem;
 	}
 }
-
 a {
 	color:#232323;
 }
-
-.twitter-share-button { width: 90px !important; }
-
 .navbar {
 	width: 80%;
 	margin: 0 auto;
@@ -48,7 +41,6 @@ a {
 	padding: 2.5vmin 0;
 	text-align: center;
 }
-
 .navbar li {
 	display: inline-block;
 	text-align: center;
@@ -269,15 +261,28 @@ and (max-device-width : 480px) {
 	text-align:center;
 }
 
+#buttonCont {
+	position: absolute; 
+	/*width:100%;*/
+	left: 50%;
+	width: 310px;
+	margin-left:-8px;
+	transform: translate(-50%, 0%);
+	-webkit-transform: translate(-50%, 0%);
+	-moz-transform: translate(-50%, 0%);
+	-ms-transform: translate(-50%, 0%);
+	/*width:300px;*/
+}
+
 @media only screen and (orientation:landscape) {
 	#buttonCont {
-		bottom: calc(50vh - 11vh);
+		bottom: calc(50vh - 17vh - 36px);
 	}
 }
 
 @media only screen and (orientation:portrait) {
 	#buttonCont {
-		bottom: calc(50vh - 11vw);
+		bottom: calc(50vh - 17vw - 36px);
 	}
 }
 
@@ -295,6 +300,30 @@ and (max-device-width : 480px) {
 
 	.overlay {
 		margin-top: -20%;
+	}
+
+	#buttonCont {
+		width:280px;
+	}
+
+	@media only screen and (orientation:landscape) {
+		#buttonCont {
+		   bottom: calc(50vh - 30vh - 36px);
+		}
+	}
+
+	@media only screen and (orientation:portrait) {
+		#buttonCont {
+			bottom: calc(50vh - 30vw - 36px);
+		}
+	}
+
+	 {
+		display:none;  
+		visibility:hidden;
+	}
+
+	.rrssb-facebook {
 	}
 }
 .blur {
@@ -381,136 +410,126 @@ body {
 	padding-bottom: -10px;
 }
 body {
-    overflow: hidden;
+	overflow: hidden;
 }
 #gameoverscreen {
-    padding:8px;
+	padding:8px;
 }
 @font-face {
-    font-family: Exo;
-    font-weight: light;
-    src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
-}
-
-@font-face {
-    font-family: Exo;
-    src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+	font-family: Exo;
+	font-weight: light;
+	src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
 }
 
 @font-face {
-    font-family: Exo;
-    font-weight: bold;
-    src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
+	font-family: Exo;
+	src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+}
+
+@font-face {
+	font-family: Exo;
+	font-weight: bold;
+	src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
 }
 
 #container {
-    color: #232323;
-    position: absolute;
-    left:50%;
-    top:50%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-    font-family: Exo;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+	color: #232323;
+	position: absolute;
+	left:50%;
+	top:50%;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	font-family: Exo;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 }
 
 .GOTitle {
-    font-weight: bold;
-    font-size: 24.2000px;
+	font-weight: bold;
+	font-size: 24.2000px;
 }
 
 #gameOverBox {
-    
+	
 }
 
 .scoreNum {
-    font-weight: normal ! important;
+	font-weight: normal ! important;
 }
 
 #cScore {
-    font-size: 60.5000px;
-    font-weight:light;
-    margin-bottom: 5px;
-    margin-top: -10px;
+	font-size: 60.5000px;
+	font-weight:light;
+	margin-bottom: 5px;
+	margin-top: -10px;
 }
 
 #highScoresTitle {
-    margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .score {
-    font-weight: light;
-    line-height: 18px;
+	font-weight: light;
+	line-height: 18px;
 }
 
 #restart {
-    bottom:0;
-    position: absolute;
-    left:calc(50% - 124px);
-    transform: translate(-50%, 0%);
-    -webkit-transform: translate(-50%, 0%);
-    -moz-transform: translate(-50%, 0%);
-    -ms-transform: translate(-50%, 0%);
-    margin-bottom: 10px;
+	bottom:0;
+	position: absolute;
+	left:calc(50% - 124px);
+	transform: translate(-50%, 0%);
+	-webkit-transform: translate(-50%, 0%);
+	-moz-transform: translate(-50%, 0%);
+	-ms-transform: translate(-50%, 0%);
+	margin-bottom: 10px;
 }
 
 #socialShare {
-    bottom: 0;
-    margin-bottom: 10px;
-    position: absolute;
-    left:calc(50% + 30px);
-    transform: translate(-50%, 0%);
-    -webkit-transform: translate(-50%, 0%);
-    -moz-transform: translate(-50%, 0%);
-    -ms-transform: translate(-50%, 0%);
+	bottom: 0;
+	margin-bottom: 10px;
+	position: absolute;
+	left:calc(50% + 30px);
+	transform: translate(-50%, 0%);
+	-webkit-transform: translate(-50%, 0%);
+	-moz-transform: translate(-50%, 0%);
+	-ms-transform: translate(-50%, 0%);
 }
 
 #bottomContainer {
-    position: absolute;
-    width:100%;
-    bottom: 0;
-}
-
-#buttonCont {
-    position: absolute; 
-    /*width:100%;*/
-    left: 50%;
-    width: 310px;
-    margin-left:-8px;
-    bottom:78px;
-    transform: translate(-50%, 0%);
-    -webkit-transform: translate(-50%, 0%);
-    -moz-transform: translate(-50%, 0%);
-    -ms-transform: translate(-50%, 0%);
-    /*width:300px;*/
-}
-
-#badges {
-    left: calc(50% - 3.5px);
-    top: calc(50% - 165px);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+	position: absolute;
+	width:100%;
+	bottom: 0;
 }
 
 #androidBadge {
-    position: absolute;
-    left:calc(50% - 66px);
-    transform: translate(-50%, -1px);
-    -webkit-transform: translate(-50%, -1px);
-    -moz-transform: translate(-50%, -1px);
-    -ms-transform: translate(-50%, -1px);
+	position: absolute;
+	height:41px;
+	margin-top:4.5px;
+	left:calc(50% - 66px);
+	transform: translate(-50%, -1px);
+	-webkit-transform: translate(-50%, -1px);
+	-moz-transform: translate(-50%, -1px);
+	-ms-transform: translate(-50%, -1px);
 }
 
 #iOSBadge {
-    position: absolute;
-    left: calc(50% + 65px);
-    transform: translate(-50%, 0%);
-    -webkit-transform: translate(-50%, 0%);
-    -moz-transform: translate(-50%, 0%);
-    -ms-transform: translate(-50%, 0%);
+	margin-top:4px;
+	position: absolute;
+	left: calc(50% + 65px);
+	transform: translate(-50%, 0%);
+	-webkit-transform: translate(-50%, 0%);
+	-moz-transform: translate(-50%, 0%);
+	-ms-transform: translate(-50%, 0%);
+}
+
+#authors {
+	position: absolute;
+	width:200px;
+	bottom:0px;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	-webkit-transform: translate(-50%, 0%);
+	-moz-transform: translate(-50%, 0%);
+	-ms-transform: translate(-50%, 0%);
 }

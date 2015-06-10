@@ -58,6 +58,7 @@ function initialize(a) {
 	window.settings;
 
 	if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $('.rrssb-email').remove();
 		settings = {
 			os: "other",
 			platform: "mobile",
