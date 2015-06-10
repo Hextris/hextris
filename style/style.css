@@ -1,40 +1,40 @@
 * {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
 	padding:0;
 	margin:0;
-	  -webkit-tap-highlight-color: rgba(0,0,0,0);
+	  -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 #HIGHSCORE {
 	position:absolute;
 	left:50%;
 	width:250px;
-	overflow: visible;
-	margin-left: -175px;
-	font-family: Exo;
+	overflow:visible;
+	margin-left:-175px;
+	font-family:Exo;
 
 }
 #container {
-	color: #232323;
-	position: absolute;
+	color:#232323;
+	position:absolute;
 	left:50%;
 	top:calc(50%);
-	text-align: center;
-	transform: translate(-50%, -50%);
-	font-family: Exo;
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
+	text-align:center;
+	transform:translate(-50%, -50%);
+	font-family:Exo;
+	-webkit-transform:translate(-50%, -50%);
+	-moz-transform:translate(-50%, -50%);
+	-ms-transform:translate(-50%, -50%);
 }
 .tweet {
 	font-size:2rem;
 	color:#4099FF;
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (min-device-width :320px) and (max-device-width :480px) {
 	.tweet{
 		font-size:1rem;
 	}
@@ -43,56 +43,56 @@ a {
 	color:#232323;
 }
 .navbar {
-	width: 80%;
-	margin: 0 auto;
-	/*background-color: #34495e;*/
-	padding: 2.5vmin 0;
-	text-align: center;
+	width:80%;
+	margin:0 auto;
+	/*background-color:#34495e;*/
+	padding:2.5vmin 0;
+	text-align:center;
 }
 .navbar li {
-	display: inline-block;
-	text-align: center;
-	width: calc( 33% - 1.25vmin );
-	/*pointer-events: none;*/
+	display:inline-block;
+	text-align:center;
+	width:calc( 33% - 1.25vmin );
+	/*pointer-events:none;*/
 }
 
 #title {
-	color: #ecf0f1;
-	font-size: 6vmin;
+	color:#ecf0f1;
+	font-size:6vmin;
 }
 
 #score {
-	font-size: 4vmin;
-	text-align: center;
-	width: 30%;
+	font-size:4vmin;
+	text-align:center;
+	width:30%;
 }
 
 #highscores {
-	text-align: center;
-	list-style: none;
+	text-align:center;
+	list-style:none;
 }
 
 .not-visible {
-	display: none;
+	display:none;
 }
 
 button {
-	color: #ecf0f1;
-	background-color: rgba(0,0,0,0);
-	border: 0;
+	color:#ecf0f1;
+	background-color:rgba(0,0,0,0);
+	border:0;
 }
 
 button:focus {
-	outline: 0;
+	outline:0;
 }
 
 #openSideBar {
-	position: fixed;
-	margin-top: 6px;
+	position:fixed;
+	margin-top:6px;
 	width:72px;
 	height:72px;
-	margin-left: 11px;
-	z-index: 3003;
+	margin-left:11px;
+	z-index:3003;
 	color:#232323;
 	cursor:pointer;
 	top:0;
@@ -103,12 +103,12 @@ button:focus {
 
 #pauseBtn {
 	display:none;
-	position: fixed;
-	margin-bottom: 7px;
+	position:fixed;
+	margin-bottom:7px;
 	width:72px;
 	height:72px;
-	margin-right: 11px;
-	z-index: 3000;
+	margin-right:11px;
+	z-index:3000;
 	color:#232323;
 	cursor:pointer;
 	right:0;
@@ -118,12 +118,12 @@ button:focus {
 
 #restartBtn {
 	display:none;
-	position: fixed;
-	margin-bottom: 7px;
+	position:fixed;
+	margin-bottom:7px;
 	width:72px;
 	height:72px;
-	margin-left: 11px;
-	z-index: 3000;
+	margin-left:11px;
+	z-index:3000;
 	color:#232323;
 	cursor:pointer;
 	bottom:0;
@@ -158,7 +158,7 @@ button:focus {
 	width:120px;
 	height:20px;
 	z-index:9999;
-	left: 47%;
+	left:47%;
 	top:65%;
 	font-size:15px;
 	text-align:center;
@@ -166,41 +166,39 @@ button:focus {
 	cursor:pointer;
 }
 
-
-.instructions_body {
-	padding: 15px;
-	font-size: 1em;
-	text-align: left;
-	max-width: 310px;
-	margin-top:70px;
+#inst_main_body {
+	padding:0px;
+	font-size:1.2em;
+	text-align:left;
+	max-width:310px;
+	margin-top:30px;
 }
 
-.instructions_body > a {
-	font-weight: bold;
+#inst_main_body > a {
+	font-weight:bold;
 }
 
 #inst_main_body > hr {
 	width:100%;
-	color: #232323;
-	background-color: #232323;
-	height: 1px;
-	border: 0;
-	/*margin-left: 10%;*/
+	color:#232323;
+	background-color:#232323;
+	height:1px;
+	border:0;
+	/*margin-left:10%;*/
 }
 
 #inst_main_body > p {
-	margin-bottom: 15px;
+	margin-bottom:15px;
 }
 
 #instructions_head {
-	text-align: center;
-	font-size: 1.3em;
-	padding-bottom: 10px;
-	font-weight: bold;
+	text-align:center;
+	font-size:1.3em;
+	padding-bottom:10px;
+	font-weight:bold;
 }
 
-@media only screen and (min-device-width : 320px) 
-and (max-device-width : 480px) {
+@media only screen and (max-device-width :480px) {
 	#helpScreen {
 		position:fixed;
 		top:2px;
@@ -210,14 +208,12 @@ and (max-device-width : 480px) {
 		height:100%;
 		font-size:13px;
 		text-align:center;
-		background-color:rgba(255,255,255,1);
 	}
-	#inst_main_body{
-		width:70% !important;
-		padding-left:15% !important;
+	#inst_main_body {
+		width:calc(100% - 50px) !important;
+		padding-left:25px !important;
 		margin-left:0;
 	}
-
 	#instructions_head {
 		padding-left:0%;
 	}
@@ -270,37 +266,37 @@ and (max-device-width : 480px) {
 }
 
 #buttonCont {
-	position: absolute; 
+	position:absolute; 
 	/*width:100%;*/
-	left: 50%;
-	width: 310px;
+	left:50%;
+	width:310px;
 	margin-left:-8px;
-	transform: translate(-50%, 0%);
-	-webkit-transform: translate(-50%, 0%);
-	-moz-transform: translate(-50%, 0%);
-	-ms-transform: translate(-50%, 0%);
+	transform:translate(-50%, 0%);
+	-webkit-transform:translate(-50%, 0%);
+	-moz-transform:translate(-50%, 0%);
+	-ms-transform:translate(-50%, 0%);
 	/*width:300px;*/
 }
 
 @media only screen and (orientation:landscape) {
 	#buttonCont {
-		bottom: calc(50vh - 19vh - 36px);
+		bottom:calc(50vh - 19vh - 36px);
 	}
 	#container {
-		top: calc(50vh - 11vh);
+		top:calc(50vh - 11vh);
 	}
 }
 
 @media only screen and (orientation:portrait) {
 	#buttonCont {
-		bottom: calc(50vh - 19vw - 36px);
+		bottom:calc(50vh - 19vw - 36px);
 	}
 	#container {
-		top: calc(50vh - 11vw);
+		top:calc(50vh - 11vw);
 	}
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 600px) {
+@media only screen and (min-device-width :320px) and (max-device-width :600px) {
 	.centeredHeader {
 		font-size:2rem; 
 		text-align:center;
@@ -313,7 +309,7 @@ and (max-device-width : 480px) {
 	}
 
 	.overlay {
-		margin-top: -20%;
+		margin-top:-20%;
 	}
 
 	#buttonCont {
@@ -322,13 +318,13 @@ and (max-device-width : 480px) {
 
 	@media only screen and (orientation:landscape) {
 		#buttonCont {
-			bottom: 119px;
+			bottom:119px;
 		}
 	}
 
 	@media only screen and (orientation:portrait) {
 		#buttonCont {
-			bottom: 119px;
+			bottom:119px;
 		}
 	}
 }
@@ -337,13 +333,13 @@ and (max-device-width : 480px) {
 }
 
 * {
-	padding: 0;
-	margin: 0;
+	padding:0;
+	margin:0;
 }
 
 body {
-	color: #ecf0f1;
-	font-family: 'Exo', sans-serif;
+	color:#ecf0f1;
+	font-family:'Exo', sans-serif;
 	background-color:#ecf0f1;
 }
 
@@ -352,8 +348,8 @@ body {
 }
 
 #canvas {
-	transition: all 0.5s ease;
-	position: absolute;
+	transition:all 0.5s ease;
+	position:absolute;
 	left:0;
 	right:0;
 	height:100%;
@@ -375,130 +371,130 @@ body {
 }
 #restart{
 	display:none;
-	cursor: pointer;
-	cursor: pointer !important;
+	cursor:pointer;
+	cursor:pointer !important;
 }
 #socialShare{
 	display:none;
 }
 .unselectable {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
 }
 #afterhr {
-	margin: 0;
-	padding: 0;
-	margin-bottom: -10px;
-	padding-bottom: -10px;
+	margin:0;
+	padding:0;
+	margin-bottom:-10px;
+	padding-bottom:-10px;
 }
 body {
-	overflow: hidden;
+	overflow:hidden;
 }
 #gameoverscreen {
 	padding:8px;
 }
 @font-face {
-	font-family: Exo;
-	font-weight: light;
+	font-family:Exo;
+	font-weight:light;
 	src:url("./style/fonts/Exo2-ExtraLight.otf") format("opentype");
 }
 
 @font-face {
-	font-family: Exo;
+	font-family:Exo;
 	src:url("/style/fonts/Exo2-Regular.otf") format("opentype");
 }
 
 @font-face {
-	font-family: Exo;
-	font-weight: bold;
+	font-family:Exo;
+	font-weight:bold;
 	src:url("/style/fonts/Exo2-SemiBold.otf") format("opentype");
 }
 
 .GOTitle {
-	font-weight: bold;
-	font-size: 24.2000px;
+	font-weight:bold;
+	font-size:24.2000px;
 }
 
 .scoreNum {
-	font-weight: normal ! important;
+	font-weight:normal ! important;
 }
 
 #cScore {
-	font-size: 60.5000px;
+	font-size:60.5000px;
 	font-weight:light;
-	margin-bottom: 5px;
-	margin-top: -10px;
+	margin-bottom:5px;
+	margin-top:-10px;
 }
 
 #highScoresTitle {
-	margin-bottom: 2px;
+	margin-bottom:2px;
 }
 
 .score {
-	font-weight: light;
-	line-height: 18px;
+	font-weight:light;
+	line-height:18px;
 }
 
 #restart {
 	bottom:0;
-	position: absolute;
+	position:absolute;
 	left:calc(50% - 124px);
-	transform: translate(-50%, 0%);
-	-webkit-transform: translate(-50%, 0%);
-	-moz-transform: translate(-50%, 0%);
-	-ms-transform: translate(-50%, 0%);
-	margin-bottom: 10px;
+	transform:translate(-50%, 0%);
+	-webkit-transform:translate(-50%, 0%);
+	-moz-transform:translate(-50%, 0%);
+	-ms-transform:translate(-50%, 0%);
+	margin-bottom:10px;
 }
 
 #socialShare {
-	bottom: 0;
-	margin-bottom: 10px;
-	position: absolute;
+	bottom:0;
+	margin-bottom:10px;
+	position:absolute;
 	left:calc(50% + 30px);
-	transform: translate(-50%, 0%);
-	-webkit-transform: translate(-50%, 0%);
-	-moz-transform: translate(-50%, 0%);
-	-ms-transform: translate(-50%, 0%);
+	transform:translate(-50%, 0%);
+	-webkit-transform:translate(-50%, 0%);
+	-moz-transform:translate(-50%, 0%);
+	-ms-transform:translate(-50%, 0%);
 }
 
 #bottomContainer {
-	position: absolute;
+	position:absolute;
 	width:100%;
-	bottom: 0;
+	bottom:0;
 }
 
 #androidBadge {
-	position: absolute;
+	position:absolute;
 	height:41px;
 	margin-top:5px;
 	left:calc(50% - 66px);
-	transform: translate(calc(-50% - 4px), -1px);
-	-webkit-transform: translate(calc(-50% - 4px), -1px);
-	-moz-transform: translate(calc(-50% - 4px), -1px);
-	-ms-transform: translate(calc(-50% - 4px), -1px);
+	transform:translate(calc(-50% - 4px), -1px);
+	-webkit-transform:translate(calc(-50% - 4px), -1px);
+	-moz-transform:translate(calc(-50% - 4px), -1px);
+	-ms-transform:translate(calc(-50% - 4px), -1px);
 }
 
 #iOSBadge {
 	margin-top:5px;
-	position: absolute;
-	left: calc(50% + 65px);
-	transform: translate(calc(-50% - 4px), 0%);
-	-webkit-transform: translate(calc(-50% - 4px), 0%);
-	-moz-transform: translate(calc(-50% - 4px), 0%);
-	-ms-transform: translate(calc(-50% - 4px), 0%);
+	position:absolute;
+	left:calc(50% + 65px);
+	transform:translate(calc(-50% - 4px), 0%);
+	-webkit-transform:translate(calc(-50% - 4px), 0%);
+	-moz-transform:translate(calc(-50% - 4px), 0%);
+	-ms-transform:translate(calc(-50% - 4px), 0%);
 }
 
 #authors {
-	position: absolute;
+	position:absolute;
 	width:200px;
 	bottom:0px;
-	left: 50%;
-	transform: translate(-50%, 0%);
-	-webkit-transform: translate(-50%, 0%);
-	-moz-transform: translate(-50%, 0%);
-	-ms-transform: translate(-50%, 0%);
+	left:50%;
+	transform:translate(-50%, 0%);
+	-webkit-transform:translate(-50%, 0%);
+	-moz-transform:translate(-50%, 0%);
+	-ms-transform:translate(-50%, 0%);
 }
