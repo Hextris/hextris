@@ -71,13 +71,13 @@ function render() {
 }
 
 function renderBeginningText() {
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/3 - 35 - 135 * settings.scale, 20, '#2c3e50', 'Tap on the left or the right of the screen', '20px Roboto');
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/3 - 35 - 105 * settings.scale, 20, '#2c3e50', 'to rotate the hexagon.', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/3 - 35 - 135 * settings.scale, 20, '#2c3e50', 'Tap on the left or the right of the screen', '20px Exo');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/3 - 35 - 105 * settings.scale, 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
 	drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 5 , (trueCanvas.height)/3 - 35 - 107 * settings.scale);
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height * 3.1)/3 - 35 - 135 * settings.scale, 20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Roboto');
-	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height * 3.1 )/3 - 35 -  105 * settings.scale, 20, '#2c3e50', 'Tap the center to double the speed.', '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height * 3.1)/3 - 35 - 135 * settings.scale, 20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height * 3.1 )/3 - 35 -  105 * settings.scale, 20, '#2c3e50', 'Tap the center to double the speed.', '20px Exo');
 	
-	//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Roboto');
+	//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Exo');
 }
 
 function drawKey(key, x, y) {

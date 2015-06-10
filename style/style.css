@@ -18,9 +18,17 @@
 	font-family: Exo;
 
 }
-@font-face {
+#container {
+	color: #232323;
+	position: absolute;
+	left:50%;
+	top:calc(50%);
+	text-align: center;
+	transform: translate(-50%, -50%);
 	font-family: Exo;
-	src:url("/fonts/Exo2-Regular.otf") format("opentype");
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 }
 .tweet {
 	font-size:2rem;
@@ -276,13 +284,19 @@ and (max-device-width : 480px) {
 
 @media only screen and (orientation:landscape) {
 	#buttonCont {
-		bottom: calc(50vh - 17vh - 36px);
+		bottom: calc(50vh - 19vh - 36px);
+	}
+	#container {
+		top: calc(50vh - 11vh);
 	}
 }
 
 @media only screen and (orientation:portrait) {
 	#buttonCont {
-		bottom: calc(50vh - 17vw - 36px);
+		bottom: calc(50vh - 19vw - 36px);
+	}
+	#container {
+		top: calc(50vh - 11vw);
 	}
 }
 
@@ -308,39 +322,19 @@ and (max-device-width : 480px) {
 
 	@media only screen and (orientation:landscape) {
 		#buttonCont {
-			bottom: calc(50vh - 30vh - 36px);
+			bottom: 119px;
 		}
 	}
 
 	@media only screen and (orientation:portrait) {
 		#buttonCont {
-			bottom: calc(50vh - 30vw - 36px);
+			bottom: 119px;
 		}
 	}
 }
 .blur {
 	opacity:0.1;
 }
-
-@font-face {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	src: local('Roboto Regular'), local('Roboto-Regular'), url("fonts/roboto.woff") format('woff');
-}
-@font-face {
-	font-family: 'ico on';
-	font-style: normal;
-	font-weight: 400;
-	src: local('icomoon Regular'), url("fonts/icomoon.ttf"), format('ttf');
-}
-@font-face {
-	font-family: 'Q';
-	font-style: normal;
-	font-weight: 400;
-	src: local('Q Regular'), local('Q-Regular'), url("fonts/QuattrocentoSans-Regular.ttf") format('ttf');
-}
-
 
 * {
 	padding: 0;
@@ -349,7 +343,7 @@ and (max-device-width : 480px) {
 
 body {
 	color: #ecf0f1;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Exo2', sans-serif;
 	background-color:#ecf0f1;
 }
 
@@ -415,35 +409,18 @@ body {
 
 @font-face {
 	font-family: Exo;
-	src:url("./style/fonts/Exo2-Regular.otf") format("opentype");
+	src:url("/style/fonts/Exo2-Regular.otf") format("opentype");
 }
 
 @font-face {
 	font-family: Exo;
 	font-weight: bold;
-	src:url("./style/fonts/Exo2-SemiBold.otf") format("opentype");
-}
-
-#container {
-	color: #232323;
-	position: absolute;
-	left:50%;
-	top:50%;
-	text-align: center;
-	transform: translate(-50%, -50%);
-	font-family: Exo;
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
+	src:url("/style/fonts/Exo2-SemiBold.otf") format("opentype");
 }
 
 .GOTitle {
 	font-weight: bold;
 	font-size: 24.2000px;
-}
-
-#gameOverBox {
-	
 }
 
 .scoreNum {
