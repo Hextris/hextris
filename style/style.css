@@ -7,7 +7,7 @@
 	user-select:none;
 	padding:0;
 	margin:0;
-	  -webkit-tap-highlight-color:rgba(0,0,0,0);
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 #HIGHSCORE {
 	position:absolute;
@@ -34,7 +34,7 @@
 	font-size:2rem;
 	color:#4099FF;
 }
-@media only screen and (min-device-width :320px) and (max-device-width :480px) {
+@media only screen and (min-device-width:320px) and (max-device-width:480px) {
 	.tweet{
 		font-size:1rem;
 	}
@@ -45,15 +45,13 @@ a {
 .navbar {
 	width:80%;
 	margin:0 auto;
-	/*background-color:#34495e;*/
 	padding:2.5vmin 0;
 	text-align:center;
 }
 .navbar li {
 	display:inline-block;
 	text-align:center;
-	width:calc( 33% - 1.25vmin );
-	/*pointer-events:none;*/
+	width:calc(33% - 1.25vmin);
 }
 
 #title {
@@ -169,9 +167,16 @@ button:focus {
 #inst_main_body {
 	padding:0px;
 	font-size:1.2em;
+	left:50%;
+	top:50%;
+	position: absolute;
 	text-align:left;
-	max-width:310px;
-	margin-top:30px;
+	max-width:400px;
+	/*margin-top:30px;*/
+	transform:translate(-50%, -50%);
+	-webkit-transform:translate(-50%, -50%);
+	-moz-transform:translate(-50%, -50%);
+	-ms-transform:translate(-50%, -50%);
 }
 
 #inst_main_body > a {
@@ -184,7 +189,6 @@ button:focus {
 	background-color:#232323;
 	height:1px;
 	border:0;
-	/*margin-left:10%;*/
 }
 
 #inst_main_body > p {
@@ -193,12 +197,33 @@ button:focus {
 
 #instructions_head {
 	text-align:center;
-	font-size:1.3em;
-	padding-bottom:10px;
-	font-weight:bold;
+	font-size:1.5em;
+	padding-bottom:4px;
 }
 
-@media only screen and (max-device-width :480px) {
+
+#highScoreInGameTextHeader {
+	color: #bdc3c7;
+	width:100%;
+}
+
+#highScoreInGameText {
+	position: absolute;
+	top:10px;
+	text-align: center;
+	width:200px;
+	left:50%;
+	margin-left:-100px;
+}
+
+#currentHighScore {
+	color: #2c3e50;
+	width:100%;
+	margin-top: -5px;
+	font-size:2em;
+}
+
+@media only screen and (max-device-width:480px) {
 	#helpScreen {
 		position:fixed;
 		top:2px;
@@ -210,9 +235,11 @@ button:focus {
 		text-align:center;
 	}
 	#inst_main_body {
-		width:calc(100% - 50px) !important;
-		padding-left:25px !important;
-		margin-left:0;
+		width:calc(100% - 70px);
+		transform:translate(-50%, -50%);
+		-webkit-transform:translate(-50%, -50%);
+		-moz-transform:translate(-50%, -50%);
+		-ms-transform:translate(-50%, -50%);
 	}
 	#instructions_head {
 		padding-left:0%;
@@ -230,6 +257,24 @@ button:focus {
 		height:60px;
 	}
 }
+
+/*@media only screen (min-device-width:481px) {
+	#restart {
+		transform:translate(-50%, -50%);
+		-webkit-transform:translate(-50%, -50%);
+		-moz-transform:translate(-50%, -50%);
+		-ms-transform:translate(-50%, -50%);
+		
+	}
+*//*
+	#socialShare {
+		transform:translate(-50%, -50%);
+		-webkit-transform:translate(-50%, -50%);
+		-moz-transform:translate(-50%, -50%);
+		-ms-transform:translate(-50%, -50%);
+		
+	}
+}*/
 
 .overlay {
 	position:absolute;
@@ -267,7 +312,6 @@ button:focus {
 
 #buttonCont {
 	position:absolute; 
-	/*width:100%;*/
 	left:50%;
 	width:310px;
 	margin-left:-8px;
@@ -275,7 +319,6 @@ button:focus {
 	-webkit-transform:translate(-50%, 0%);
 	-moz-transform:translate(-50%, 0%);
 	-ms-transform:translate(-50%, 0%);
-	/*width:300px;*/
 }
 
 @media only screen and (orientation:landscape) {
@@ -296,7 +339,7 @@ button:focus {
 	}
 }
 
-@media only screen and (min-device-width :320px) and (max-device-width :600px) {
+@media only screen and (min-device-width:320px) and (max-device-width:600px) {
 	.centeredHeader {
 		font-size:2rem; 
 		text-align:center;
