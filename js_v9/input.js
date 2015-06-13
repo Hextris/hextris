@@ -46,6 +46,17 @@ function addKeyListeners() {
     });
 
     keypress.register_combo({
+        keys: "s",
+        on_keydown: function() {
+                rush=2;
+        },
+        on_release: function() {
+                rush=1;
+        }
+
+    });
+
+    keypress.register_combo({
         keys: "p",
         on_keydown: function(){pause();}
     });
