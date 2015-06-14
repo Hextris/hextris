@@ -7,7 +7,7 @@ Contributors:
  - Noah Moroze (@nmoroze)
  - Michael Yang (@themichaelyang)
 
-#Conribtions
+#Contribtions
 Please submit pull requests to clay-improvemnets
 
 # Releases
