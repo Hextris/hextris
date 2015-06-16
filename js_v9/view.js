@@ -45,6 +45,15 @@ function drawScoreboard() {
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 170 * settings.scale, 150, "#2c3e50", "Hextris");
         renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 100 * settings.scale, 20, "rgb(44,62,80)", 'Play!');
+
+	
+	renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 150 * settings.scale, 25, "rgb(80,62,44)", "Personal High Scores:");
+
+	for (i = 0; i < 3; i++) {
+            if (highscores.length > i) {
+		renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, trueCanvas.height / 2 + gdy + 190 + (25 * i) * settings.scale, 20, "rgb(70,62,44)", (i + 1) + " : " + highscores[i] );
+            }
+        }
     } else if (gameState != 0 && textOpacity > 0) {
         textOpacity -= 0.05;
         renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
