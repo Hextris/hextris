@@ -77,6 +77,7 @@ function renderBeginningText() {
 	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 105 * settings.scale, 20, '#2c3e50', 'Make combos in a row to receive a score multiplier!', '20px Roboto');
 	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 85 * settings.scale, 20, '#2c3e50', 'Don\'t let the blocks stack outside of the gray Hexagon!', '20px Roboto');
 	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Roboto');
+	renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 15 * settings.scale + 150, 20, '#2c3e50', (settings.platform == 'mobile' ? '' : 'Press Enter at any point to restart the game.'), '20px Roboto');
 }
 
 function drawKey(key, x, y) {
