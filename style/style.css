@@ -416,9 +416,13 @@ body {
 	display:none;
 	cursor:pointer;
 	cursor:pointer !important;
+	margin:0;
+	padding:0;
 }
 #socialShare{
 	display:none;
+	margin:0;
+	padding:0;
 }
 .unselectable {
 	-webkit-touch-callout:none;
@@ -483,14 +487,14 @@ body {
 }
 
 #restart {
-	bottom:0;
+	bottom:15px;
 	position:absolute;
 	left:calc(50% - 124px);
 	transform:translate(-50%, 0%);
 	-webkit-transform:translate(-50%, 0%);
 	-moz-transform:translate(-50%, 0%);
 	-ms-transform:translate(-50%, 0%);
-	margin-bottom:10px;
+	margin-bottom:0px;
 }
 
 #socialShare {
