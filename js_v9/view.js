@@ -179,6 +179,13 @@ function gameOverDisplay() {
 	var c = document.getElementById("canvas");
 	c.className = "blur";
 	updateHighScores();
+	if (highscores.length === 0 ){
+		$("#currentHighScore").text(0);
+	}
+	else {
+		$("#currentHighScore").text(highscores[0])
+	}
+
 	$("#gameoverscreen").fadeIn();
 	$("#buttonCont").fadeIn();
 	$("#container").fadeIn();

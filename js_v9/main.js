@@ -82,7 +82,12 @@ function init(b) {
 			clearSaveState();
 			checkVisualElements();
 	}
-
+	if (highscores.length === 0 ){
+		$("#currentHighScore").text(0);
+	}
+	else {
+		$("#currentHighScore").text(highscores[0])
+	}
 	infobuttonfading = true;
 	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
 	hideUIElements();
