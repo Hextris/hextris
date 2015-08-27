@@ -179,28 +179,28 @@ function pause(o) {
 
 	var c = document.getElementById("canvas");
 	if (gameState == -1) {
-		$('#fork-ribbon').fadeOut(150, 'linear');
-		$('#restartBtn').fadeOut(150, "linear");
-		$('#buttonCont').fadeOut(150, "linear");
+		$('#fork-ribbon').fadeOut(300, 'linear');
+		$('#restartBtn').fadeOut(300, "linear");
+		$('#buttonCont').fadeOut(300, "linear");
 		if ($('#helpScreen').is(':visible')) {
-			$('#helpScreen').fadeOut(150, "linear");
+			$('#helpScreen').fadeOut(300, "linear");
 		}
 
 		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
-		$('.helpText').fadeOut(150, 'linear');
+		$('.helpText').fadeOut(300, 'linear');
 		hideText();
 		setTimeout(function() {
 			gameState = prevGameState;
 			pausable =true;
 		}, 400);
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
-		$('#restartBtn').fadeIn(150, "linear");
-		$('#buttonCont').fadeIn(150, "linear");
-		$('.helpText').fadeIn(150, 'linear');
+		$('#restartBtn').fadeIn(300, "linear");
+		$('#buttonCont').fadeIn(300, "linear");
+		$('.helpText').fadeIn(300, 'linear');
 		if (message == 'paused') {
 			showText(message);
 		}
-		$('#fork-ribbon').fadeIn(150, 'linear');
+		$('#fork-ribbon').fadeIn(300, 'linear');
 		$("#pauseBtn").attr("src","./images/btn_resume.svg");
 		prevGameState = gameState;
 		setTimeout(function() {
