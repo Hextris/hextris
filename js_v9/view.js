@@ -163,6 +163,30 @@ function updateHighScores (){
     $("#2place").text(highscores[1]);
     $("#3place").text(highscores[2]);
 }
+function fadeFade(opacity,step,thresh,sign){
+
+    //if(sign){
+	//if(opacity < thresh){
+	    //console.log("hi");
+	    //ctx.clearRect(0,0, trueCanvas.width,trueCanvas.height);
+	    //ctx.globalAlpha = opacity;
+	    //ctx.fillStyle = 'rgb(236,240,241)';
+	    //ctx.fillRect(0, 0, trueCanvas.width, trueCanvas.height);
+	    //ctx.globalAlpha = 1;
+	    //setTimeout(function(){fadeFade(opacity + step,step,thresh,sign)},1);
+	//}
+    //}
+    //else{
+	//if(opacity > thresh){
+	    //ctx.globalAlpha = opacity;
+	    //ctx.fillStyle = 'rgb(236,240,241)';
+	    //ctx.clearRect(0,0, trueCanvas.width,trueCanvas.height);
+	    //ctx.fillRect(0, 0, trueCanvas.width, trueCanvas.height);
+	    //ctx.globalAlpha = 1;
+	    //setTimeout(function(){fadeFade(opacity + step,step,thresh,sign)},1);
+	//}
+    //}
+}
 var pausable = true;
 function pause(o) {
     if (gameState == 0 || gameState == 2 || !pausable) {
@@ -189,11 +213,13 @@ function pause(o) {
 
 		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
 		$('.helpText').fadeOut(300, 'linear');
+		$('#overlay').fadeOut(300, 'linear');
 		hideText();
 		setTimeout(function() {
 			gameState = prevGameState;
 			pausable =true;
 		}, 400);
+		setTimeout(function(){fadeFade(0.9,-0.0025,0,false)},5);
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(300, "linear");
 		$('#buttonCont').fadeIn(300, "linear");
@@ -203,10 +229,12 @@ function pause(o) {
 		}
 		$('#fork-ribbon').fadeIn(300, 'linear');
 		$("#pauseBtn").attr("src","./images/btn_resume.svg");
+		$('#overlay').fadeIn(300, 'linear');
 		prevGameState = gameState;
 		setTimeout(function() {
 		    pausable = true;
 		}, 400);
+		setTimeout(function(){fadeFade(0,0.0025,0.9,true)},1);
 		gameState = -1;
 	}
 }
