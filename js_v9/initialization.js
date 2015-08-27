@@ -42,9 +42,6 @@ function initialize(a) {
 		op = 1;
 	}
 
-	//input.js
-	//all of main.js
-
 	//main.js
 	window.textShown = false;
 
