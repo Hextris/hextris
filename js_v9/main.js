@@ -29,6 +29,14 @@ function scaleCanvas() {
 
 		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
+
+    var buttonOffset = $("#buttonCont").offset().top;
+    var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
+    var delta = buttonOffset - playOffset - 29;
+    if (delta < 0) {
+        $("#bottomContainer").css("margin-bottom", "-" + Math.abs(delta) + "px");
+        console.log("Corrected by " + delta)
+    }
 }
 
 function toggleDevTools() {
