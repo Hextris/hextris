@@ -70,7 +70,7 @@ function init(b) {
 	if (b) {
 
 
-	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
+			$("#pauseBtn").attr('src',"./images/btn_pause.svg");
 			if ($('#helpScreen').is(":visible")) {
 				$('#helpScreen').fadeOut(150, "linear");
 			}
@@ -82,6 +82,7 @@ function init(b) {
 			clearSaveState();
 			checkVisualElements();
 	}
+	checkVisualElements();
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
 	}

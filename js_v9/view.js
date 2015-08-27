@@ -138,43 +138,8 @@ function hideText() {
 }
 
 function gameOverDisplay() {
-	if(Cookies.get("visited") == null){
-		settings.ending_block=true;
-		if(settings.os == "android"){
-			sweetAlert({
-				title: "Hey we'll only bother you once ",
-				text:"We do have an Android app!",
-				showCancelButton: true,
-				closeOnCancel: true ,
-				confirmButtonText: "Take me to it!",
-				},function(isConfirm){
-					if(isConfirm){
-						window.location.href="https://play.google.com/store/apps/details?id=com.hextris.hextris"
-					}
-					else{
-						settings.end_block=false;
-					}
-				
-				});
-		}
-		if(settings.os == "ios"){
-			sweetAlert({
-				title: "Hey we'll only bother you once ",
-				text:"We do have an IOS app!",
-				showCancelButton: true,
-				closeOnCancel: true ,
-				confirmButtonText: "Take me to it!",
-				},function(isConfirm){
-					if(isConfirm){
-						window.location.href="https://itunes.apple.com/us/app/hextris/id903769553?mt=8";
-					}
-					else{
-						settings.end_block=false;
-					}
-				});
-		}
-
-	}
+	
+	settings.ending_block=false;
 	Cookies.set("visited",true);
 	var c = document.getElementById("canvas");
 	c.className = "blur";
@@ -199,7 +164,12 @@ function updateHighScores (){
     $("#2place").text(highscores[1]);
     $("#3place").text(highscores[2]);
 }
+var pausable = true;
 function pause(o) {
+	if(!pausable){
+	    return;
+	}
+	pausable = false;
 	writeHighScores();
 	var message;
 	if (o) {
@@ -222,7 +192,8 @@ function pause(o) {
 		hideText();
 		setTimeout(function() {
 			gameState = prevGameState;
-		}, 200)
+			pausable =true;
+		}, 300);
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(150, "linear");
 		$('#buttonCont').fadeIn(150, "linear");
@@ -231,9 +202,11 @@ function pause(o) {
 			showText(message);
 		}
 		$('#fork-ribbon').fadeIn(150, 'linear');
-
 		$("#pauseBtn").attr("src","./images/btn_resume.svg");
 		prevGameState = gameState;
+		setTimeout(function() {
+		    pausable = true;
+		}, 300);
 		gameState = -1;
 	}
 }
