@@ -82,7 +82,6 @@ function init(b) {
 			clearSaveState();
 			checkVisualElements();
 	}
-	checkVisualElements();
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
 	}
