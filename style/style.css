@@ -258,24 +258,6 @@ button:focus {
 	}
 }
 
-/*@media only screen (min-device-width:481px) {
-	#restart {
-		transform:translate(-50%, -50%);
-		-webkit-transform:translate(-50%, -50%);
-		-moz-transform:translate(-50%, -50%);
-		-ms-transform:translate(-50%, -50%);
-		
-	}
-*//*
-	#socialShare {
-		transform:translate(-50%, -50%);
-		-webkit-transform:translate(-50%, -50%);
-		-moz-transform:translate(-50%, -50%);
-		-ms-transform:translate(-50%, -50%);
-		
-	}
-}*/
-
 .overlay {
 	position:absolute;
 	height:20%;
@@ -409,21 +391,41 @@ body {
 #gameoverscreen {
 	/*display:none;*/
 }
+
 #container {
 	display:none
 }
+
 #restart{
 	display:none;
-	cursor:pointer;
 	cursor:pointer !important;
 	margin:0;
 	padding:0;
+	bottom:15px;
+	position:absolute;
+	left:calc(50% - 124px);
+	transform:translate(-50%, 0%);
+	-webkit-transform:translate(-50%, 0%);
+	-moz-transform:translate(-50%, 0%);
+	-ms-transform:translate(-50%, 0%);
+	margin-bottom:-3.5px;
 }
+
 #socialShare{
 	display:none;
 	margin:0;
 	padding:0;
+	bottom:0;
+	margin-bottom:6.5px;
+	position:absolute;
+	left:calc(50% + 30px);
+	transform:translate(-50%, 0%);
+	-webkit-transform:translate(-50%, 0%);
+	-moz-transform:translate(-50%, 0%);
+	-ms-transform:translate(-50%, 0%);
+    padding-bottom: 2px;
 }
+
 .unselectable {
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
@@ -486,32 +488,13 @@ body {
 	line-height:18px;
 }
 
-#restart {
-	bottom:15px;
-	position:absolute;
-	left:calc(50% - 124px);
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-	margin-bottom:0px;
-}
 
-#socialShare {
-	bottom:0;
-	margin-bottom:10px;
-	position:absolute;
-	left:calc(50% + 30px);
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-}
+
 
 #bottomContainer {
 	position:absolute;
 	width:100%;
-	bottom:0;
+	bottom:0px;
 }
 
 #androidBadge {
