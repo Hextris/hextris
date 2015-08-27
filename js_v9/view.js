@@ -165,9 +165,10 @@ function updateHighScores (){
 }
 var pausable = true;
 function pause(o) {
-	if(!pausable){
-	    return;
-	}
+    if (gameState == 0 || gameState == 2 || !pausable) {
+        return;
+    }
+
 	pausable = false;
 	writeHighScores();
 	var message;
