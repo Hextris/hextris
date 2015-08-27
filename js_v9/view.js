@@ -175,6 +175,7 @@ function gameOverDisplay() {
 		}
 
 	}
+	settings.ending_block=false;
 	Cookies.set("visited",true);
 	var c = document.getElementById("canvas");
 	c.className = "blur";

@@ -106,11 +106,7 @@ function addKeyListeners() {
 
 
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-		$("#restartBtn").on('touchstart', function() {
-			init(1);
-			canRestart = false;
-		});
-		$("#restart").on('touchstart', function() {
+			$("#restart").on('touchstart', function() {
 			init();
 			canRestart = false;
 			$("#gameoverscreen").fadeOut();
@@ -118,10 +114,6 @@ function addKeyListeners() {
 
 	}
 	else {
-		$("#restartBtn").on('mousedown', function() {
-			init(1);
-			canRestart = false;
-		});
 		$("#restart").on('mousedown', function() {
 			init();
 			canRestart = false;
