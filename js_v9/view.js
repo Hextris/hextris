@@ -4,7 +4,6 @@ function easeOutCubic(t, b, c, d) {
 }
 
 function renderText(x, y, fontSize, color, text, font) {
-	if (text == 'HIGH SCORE') debugger;
 	ctx.save();
 	if (!font) {
 		font = 'px Exo';
@@ -132,7 +131,7 @@ function setMainMenu() {
 }
 
 function hideText() {
-	$(".overlay").fadeOut("1000", function() {
+	$(".overlay").fadeOut(150, function() {
 		$(".overlay").html("");
 	})
 }
@@ -188,16 +187,16 @@ function pause(o) {
 		}
 
 		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
-		$('.helpText').fadeOut(200, 'linear');
+		$('.helpText').fadeOut(150, 'linear');
 		hideText();
 		setTimeout(function() {
 			gameState = prevGameState;
 			pausable =true;
-		}, 300);
+		}, 400);
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(150, "linear");
 		$('#buttonCont').fadeIn(150, "linear");
-		$('.helpText').fadeIn(200, 'linear');
+		$('.helpText').fadeIn(150, 'linear');
 		if (message == 'paused') {
 			showText(message);
 		}
@@ -206,7 +205,7 @@ function pause(o) {
 		prevGameState = gameState;
 		setTimeout(function() {
 		    pausable = true;
-		}, 300);
+		}, 400);
 		gameState = -1;
 	}
 }
