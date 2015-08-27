@@ -121,6 +121,15 @@ function addKeyListeners() {
 		});
 
 	}
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			$("#restartBtn").on('touchstart', function() {
+			init(1);
+			canRestart = false;
+			$("#gameoverscreen").fadeOut();
+		});
+
+	}
+
 }
 function inside (point, vs) {
 	// ray-casting algorithm based on
