@@ -71,18 +71,21 @@ function render() {
 }
 
 function renderBeginningText() {
-	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 - 12 , 20, '#2c3e50', 'Use the right and left arrow keys', '20px Exo');
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 + 5 , 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
-			drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 2.5 , (trueCanvas.height/2)- (trueCanvas.height)/3 +5 );
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)+ (trueCanvas.height)/3 ,20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
-	}
-	else {
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 - 17 , 20, '#2c3e50', 'Use the right and left arrow keys', '20px Exo');
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 , 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
-			drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 2.5 , (trueCanvas.height/2)- (trueCanvas.height)/3);
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)+ (trueCanvas.height)/3 ,20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
-		}
+	//if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 , 20, '#2c3e50', 'Use the right and left arrow keys', '20px Exo');
+			//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 + 20 , 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
+			//drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 2.5 , (trueCanvas.height/2)- (trueCanvas.height)/3 + 20 );
+			//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)+ (trueCanvas.height)/3 - 40 ,20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
+	//}
+	//else {
+			var upperheight = (trueCanvas.height/2) - ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) );
+			var lowerheight = (trueCanvas.height/2) + ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) );
+
+			renderText((trueCanvas.width)/2 + 1.5 * settings.scale,upperheight, 20, '#2c3e50', 'Use the right and left arrow keys', '20px Exo');
+			renderText((trueCanvas.width)/2 + 1.5 * settings.scale,upperheight +20, 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
+			drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 2.5 ,upperheight + 20);
+			renderText((trueCanvas.width)/2 + 1.5 * settings.scale,lowerheight,20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
+		//}
 
 	//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Exo');
 }
