@@ -35,7 +35,6 @@ function scaleCanvas() {
     var delta = buttonOffset - playOffset - 29;
     if (delta < 0) {
         $("#bottomContainer").css("margin-bottom", "-" + Math.abs(delta) + "px");
-        console.log("Corrected by " + delta)
     }
 }
 
