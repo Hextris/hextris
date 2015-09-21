@@ -29,6 +29,7 @@
 	-webkit-transform:translate(-50%, -50%);
 	-moz-transform:translate(-50%, -50%);
 	-ms-transform:translate(-50%, -50%);
+    display:none;
 }
 .tweet {
 	font-size:2rem;
@@ -392,10 +393,6 @@ body {
 	/*display:none;*/
 }
 
-#container {
-	display:none
-}
-
 #restart{
 	display:none;
 	cursor:pointer !important;
@@ -416,7 +413,7 @@ body {
 	margin:0;
 	padding:0;
 	bottom:0;
-	margin-bottom:6.5px;
+	margin-bottom: 6.5px;
 	position:absolute;
 	left:calc(50% + 30px);
 	transform:translate(-50%, 0%);

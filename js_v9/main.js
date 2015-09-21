@@ -29,13 +29,24 @@ function scaleCanvas() {
 
 		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
+    setBottomContainer();
+    set_score_pos();
+}
 
+function setBottomContainer() {
     var buttonOffset = $("#buttonCont").offset().top;
     var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
     var delta = buttonOffset - playOffset - 29;
     if (delta < 0) {
         $("#bottomContainer").css("margin-bottom", "-" + Math.abs(delta) + "px");
     }
+}
+
+function set_score_pos() {
+    $("#container").css('margin-top', '0');
+    var bottom_of_container = ($("#container").height() + $("#container").offset().top)
+    var top_of_bottom_container = $("#buttonCont").offset().top
+    $("#container").css("margin-top", String(-(bottom_of_container-top_of_bottom_container+12))+"px")
 }
 
 function toggleDevTools() {
@@ -75,19 +86,17 @@ function hideUIElements() {
 function init(b) {
 	if(settings.ending_block && b == 1){return;}
 	if (b) {
+		$("#pauseBtn").attr('src',"./images/btn_pause.svg");
+		if ($('#helpScreen').is(":visible")) {
+			$('#helpScreen').fadeOut(150, "linear");
+		}
 
-
-			$("#pauseBtn").attr('src',"./images/btn_pause.svg");
-			if ($('#helpScreen').is(":visible")) {
-				$('#helpScreen').fadeOut(150, "linear");
-			}
-
-			setTimeout(function() {
-				$('#openSideBar').fadeOut(150, "linear");
-					infobuttonfading = false;
-			}, 7000);
-			clearSaveState();
-			checkVisualElements();
+		setTimeout(function() {
+			$('#openSideBar').fadeOut(150, "linear");
+			infobuttonfading = false;
+		}, 7000);
+		clearSaveState();
+		checkVisualElements();
 	}
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
@@ -216,84 +225,84 @@ var spd = 1;
 
 function animLoop() {
 	switch (gameState) {
-		case 1:
-			requestAnimFrame(animLoop);
-			render();
-			var now = Date.now();
-			var dt = (now - lastTime)/16.666 * rush;
-			if (spd > 1) {
-				dt *= spd;
+	case 1:
+		requestAnimFrame(animLoop);
+		render();
+		var now = Date.now();
+		var dt = (now - lastTime)/16.666 * rush;
+		if (spd > 1) {
+			dt *= spd;
+		}
+
+		if(gameState == 1 ){
+			if(!MainHex.delay) {
+				update(dt);
 			}
-
-			if(gameState == 1 ){
-				if(!MainHex.delay) {
-					update(dt);
-				}
-				else{
-					MainHex.delay--;
-				}
+			else{
+				MainHex.delay--;
 			}
+		}
 
-			lastTime = now;
+		lastTime = now;
 
-			if (checkGameOver() && !importing) {
-				var saveState = localStorage.getItem("saveState") || "{}";
-				saveState = JSONfn.parse(saveState);
-				gameState = 2;
+		if (checkGameOver() && !importing) {
+			var saveState = localStorage.getItem("saveState") || "{}";
+			saveState = JSONfn.parse(saveState);
+			gameState = 2;
 
-				setTimeout(function() {
-					enableRestart();
-				}, 150);
-
-				if ($('#helpScreen').is(':visible')) {
-					$('#helpScreen').fadeOut(150, "linear");
-				}
-
-				if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
-				if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
-				if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
-
-				canRestart = 0;
-				clearSaveState();
-			}
-			break;
-
-		case 0:
-			requestAnimFrame(animLoop);
-			render();
-			break;
-
-		case -1:
-			requestAnimFrame(animLoop);
-			render();
-			break;
-
-		case 2:
-			var now = Date.now();
-			var dt = (now - lastTime)/16.666 * rush;
-			requestAnimFrame(animLoop);
-			update(dt);
-			render();
-			lastTime = now;
-			break;
-
-		case 3:
-			requestAnimFrame(animLoop);
-			fadeOutObjectsOnScreen();
-			render();
-			break;
-
-		case 4:
 			setTimeout(function() {
-				initialize(1);
-			}, 1);
-			render();
-			return;
+				enableRestart();
+			}, 150);
 
-		default:
-			initialize();
-			setStartScreen();
-			break;
+			if ($('#helpScreen').is(':visible')) {
+				$('#helpScreen').fadeOut(150, "linear");
+			}
+
+			if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
+			if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
+			if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
+
+			canRestart = 0;
+			clearSaveState();
+		}
+		break;
+
+	case 0:
+		requestAnimFrame(animLoop);
+		render();
+		break;
+
+	case -1:
+		requestAnimFrame(animLoop);
+		render();
+		break;
+
+	case 2:
+		var now = Date.now();
+		var dt = (now - lastTime)/16.666 * rush;
+		requestAnimFrame(animLoop);
+		update(dt);
+		render();
+		lastTime = now;
+		break;
+
+	case 3:
+		requestAnimFrame(animLoop);
+		fadeOutObjectsOnScreen();
+		render();
+		break;
+
+	case 4:
+		setTimeout(function() {
+			initialize(1);
+		}, 1);
+		render();
+		return;
+
+	default:
+		initialize();
+		setStartScreen();
+		break;
 	}
 
 	if (!(gameState == 1 || gameState == 2)) {
@@ -333,14 +342,6 @@ function checkGameOver() {
 	}
 	return false;
 }
-
-// The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon.
-
-// Tap the right and left sides of the screen to rotate the hexagon.
-
-// Clear blocks and get points by making 3 or more blocks of the same color touch..
-
-// The progress of the colored lines on the outer hexagon indicate the time left before your combo streak dissapears
 
 function showHelp() {
 	// debugger;

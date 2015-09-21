@@ -23,7 +23,6 @@ function render() {
 			block.draw(true, j);
 		}
 	}
-
 	for (i = 0; i < blocks.length; i++) {
 		blocks[i].draw();
 	}
@@ -31,10 +30,6 @@ function render() {
 	MainHex.draw();
 	if (gameState ==1 || gameState ==-1 || gameState === 0) {
 		drawScoreboard();
-	}
-
-	if (gameState != 0 && gameState != 2) {
-
 	}
 
 	for (i = 0; i < MainHex.texts.length; i++) {
@@ -71,23 +66,30 @@ function render() {
 }
 
 function renderBeginningText() {
-	//if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-			//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 , 20, '#2c3e50', 'Use the right and left arrow keys', '20px Exo');
-			//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)- (trueCanvas.height)/3 + 20 , 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
-			//drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 2.5 , (trueCanvas.height/2)- (trueCanvas.height)/3 + 20 );
-			//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height/2)+ (trueCanvas.height)/3 - 40 ,20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
-	//}
-	//else {
-			var upperheight = (trueCanvas.height/2) - ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) );
-			var lowerheight = (trueCanvas.height/2) + ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) );
+	var upperheight = (trueCanvas.height/2) - ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (5/6);
+	var lowerheight = (trueCanvas.height/2) + ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (11/16);
+    var text = '';
+    var mob, font;
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        mob = true;
+        input_text = 'TAP THE LEFT AND RIDE SIDES'
+        action_text = 'TO ROTATE THE HEXAGON'
+        score_text = 'MATCH 3+ BLOCKS TO SCORE'
+        font = '20px Exo'
+    } else {
+        input_text = 'Use the right and left arrow keys'
+        action_text = 'to rotate the hexagon'
+        score_text = 'Match 3+ blocks to score!'
+        font = '50px Exo'
+        mob = false;
+    }
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight, 20, '#2c3e50', input_text, font);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight +20, 20, '#2c3e50', action_text, font);
+    if (!mob) {
+	    drawKey("",(trueCanvas.width)/2 + 2 * settings.scale - 2.5 ,upperheight + 20);
+    }
 
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale,upperheight, 20, '#2c3e50', 'Use the right and left arrow keys', '20px Exo');
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale,upperheight +20, 20, '#2c3e50', 'to rotate the hexagon.', '20px Exo');
-			drawKey("",(trueCanvas.width)/2 + 1.5 * settings.scale - 2.5 ,upperheight + 20);
-			renderText((trueCanvas.width)/2 + 1.5 * settings.scale,lowerheight,20, '#2c3e50', 'Match 3+ blocks to score points.', '20px Exo');
-		//}
-
-	//renderText((trueCanvas.width)/2 + 1.5 * settings.scale, (trueCanvas.height)/2 - 35 - 65 * settings.scale, 20, '#2c3e50', (settings.platform == 'mobile' ? 'Tap the middle to toggle 2x speed!' : 'Hold the down arrow to toggle 2x speed!'), '20px Exo');
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,lowerheight,20, '#2c3e50', score_text, font);
 }
 
 function drawKey(key, x, y) {
@@ -112,6 +114,5 @@ function drawKey(key, x, y) {
 			drawKey("left", x - 5, y);
 			drawKey("right", x + 5, y);
 	}
-
 	ctx.restore();
 }
