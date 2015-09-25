@@ -66,35 +66,34 @@ function render() {
 }
 
 function renderBeginningText() {
-	var upperheight = (trueCanvas.height/2) - ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (5/6);
-	var lowerheight = (trueCanvas.height/2) + ( (settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (11/16);
+	var upperheight = (trueCanvas.height/2) - ((settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (5/6);
+	var lowerheight = (trueCanvas.height/2) + ((settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (11/16);
     var text = '';
-    var mob, font;
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    var mob, fontSize;
+    if(/|mobile|Mobile|iOS|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         mob = true;
-        input_text = 'TAP THE LEFT AND RIDE SIDES'
-        action_text = 'TO ROTATE THE HEXAGON'
-        score_text = 'MATCH 3+ BLOCKS TO SCORE'
-        font = '20px Exo'
+        input_text = 'Tap the screen\'s left and ride'
+        action_text = 'sides to rotate the hexagon'
+        score_text = 'Match 3+ blocks to score'
+        fontSize = 35
     } else {
         input_text = 'Use the right and left arrow keys'
         action_text = 'to rotate the hexagon'
         score_text = 'Match 3+ blocks to score!'
-        font = '50px Exo'
-        mob = false;
+        fontSize = 20
+        mob = false
     }
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight, 20, '#2c3e50', input_text, font);
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight +20, 20, '#2c3e50', action_text, font);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-5, fontSize, '#2c3e50', input_text);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight+18, fontSize, '#2c3e50', action_text);
     if (!mob) {
-	    drawKey("",(trueCanvas.width)/2 + 2 * settings.scale - 2.5 ,upperheight + 20);
+	    drawKey("",(trueCanvas.width)/2 + 2 * settings.scale-2.5,upperheight+20);
     }
 
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,lowerheight,20, '#2c3e50', score_text, font);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,lowerheight,fontSize, '#2c3e50', score_text);
 }
 
 function drawKey(key, x, y) {
 	ctx.save();
-
 	switch (key) {
 		case "left":
 			ctx.translate(x, y + settings.scale * 13);
