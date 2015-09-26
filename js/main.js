@@ -70,11 +70,11 @@ function resumeGame() {
 		}
 	}, 7000);
 
-	checkVisualElements();
+	checkVisualElements(0);
 }
 
-function checkVisualElements() {
-	if ($('#openSideBar').is(":visible")) $('#openSideBar').fadeOut(150, "linear");
+function checkVisualElements(arg) {
+	if (arg && $('#openSideBar').is(":visible")) $('#openSideBar').fadeOut(150, "linear");
 	if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
@@ -96,11 +96,13 @@ function init(b) {
 		}
 
 		setTimeout(function() {
-			$('#openSideBar').fadeOut(150, "linear");
+            if (gameState == 1) { 
+			    $('#openSideBar').fadeOut(150, "linear");
+            }
 			infobuttonfading = false;
 		}, 7000);
 		clearSaveState();
-		checkVisualElements();
+		checkVisualElements(1);
 	}
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
