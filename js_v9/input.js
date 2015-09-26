@@ -129,6 +129,15 @@ function addKeyListeners() {
 		});
 
 	}
+	else {
+		$("#restartBtn").on('mousedown', function() {
+			init(1);
+			canRestart = false;
+			$("#gameoverscreen").fadeOut();
+		});
+
+
+	}
 
 }
 function inside (point, vs) {
