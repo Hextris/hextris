@@ -84,7 +84,7 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
 			this.angularVelocity += sign * angularVelocityConst * MainHex.dt;
 			this.angle += this.angularVelocity;
 			
-			if (sign !== Math.sign(diff - this.angularVelocity)) {
+			if (sign !== Math.sign(targetOffset - this.angularVelocity)) {
 				this.angle = this.targetAngle;
 				this.angularVelocity = 0;
 			}
