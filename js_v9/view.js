@@ -22,7 +22,6 @@ function drawScoreboard() {
 		scoreOpacity += 0.01;
 		textOpacity += 0.01;
 	}
-
 	ctx.globalAlpha = textOpacity;
 	var scoreSize = 50;
 	var scoreString = String(score);
