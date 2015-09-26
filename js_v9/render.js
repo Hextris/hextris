@@ -70,7 +70,6 @@ function renderBeginningText() {
 	var lowerheight = (trueCanvas.height/2) + ((settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (11/16);
     var text = '';
     var mob, fontSize;
-    console.log(navigator.userAgent);
     if(/mobile|Mobile|iOS|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         mob = true;
         input_text = 'Tap the screen\'s left and ride'
