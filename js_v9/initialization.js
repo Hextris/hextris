@@ -34,17 +34,13 @@ function initialize(a) {
 	window.scoreOpacity = 0;
 	window.textOpacity = 0;
 	window.prevGameState = undefined;
-
-	//render.js
 	window.op = 0;
 	window.saveState = localStorage.getItem("saveState") || "{}";
 	if (saveState !== "{}") {
 		op = 1;
 	}
 
-	//main.js
 	window.textShown = false;
-
 	window.requestAnimFrame = (function() {
 		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
 			window.setTimeout(callback, 1000 / framerate);
@@ -71,7 +67,7 @@ function initialize(a) {
 			rows: 7,
 			speedModifier: 0.73,
 			creationSpeedModifier: 0.73,
-			comboTime: 240
+			comboTime: 310
 		};
 	} else {
 		settings = {
@@ -89,7 +85,7 @@ function initialize(a) {
 			rows: 8,
 			speedModifier: 0.65,
 			creationSpeedModifier: 0.65,
-			comboTime: 240
+			comboTime: 310
 		};
 
 	}
