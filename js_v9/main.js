@@ -344,7 +344,6 @@ function checkGameOver() {
 }
 
 function showHelp() {
-	// debugger;
 	if ($('#openSideBar').attr('src') == './images/btn_back.svg') {
 		$('#openSideBar').attr('src', './images/btn_help.svg');
 		if (gameState != 0 && gameState != -1 && gameState != 2) {

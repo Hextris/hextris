@@ -71,7 +71,6 @@ function renderBeginningText() {
     var text = '';
     var mob, fontSize;
     console.log(navigator.userAgent);
-    debugger;
     if(/mobile|Mobile|iOS|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         mob = true;
         input_text = 'Tap the screen\'s left and ride'

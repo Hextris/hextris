@@ -46,10 +46,8 @@ function initialize(a) {
 			window.setTimeout(callback, 1000 / framerate);
 		};
 	})();
-
 	$('#clickToExit').bind('click', toggleDevTools);
 	window.settings;
-
 	if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         $('.rrssb-email').remove();
 		settings = {
@@ -120,14 +118,10 @@ function initialize(a) {
 			highscores = [];
 		}
 	}
-
-
 	window.blocks = [];
 	window.MainHex;
-
 	window.gdx = 0;
 	window.gdy = 0;
-
 	window.devMode = 0;
 	window.lastGen = undefined;
 	window.prevTimeScored = undefined;
@@ -136,10 +130,8 @@ function initialize(a) {
 	window.importing = 0;
 	window.importedHistory = undefined;
 	window.startTime = undefined;
-
 	window.gameState;
 	setStartScreen();
-
 	if (a != 1) {
 		window.canRestart = 1;
 		window.onblur = function(e) {
@@ -147,9 +139,7 @@ function initialize(a) {
 				pause();
 			}
 		};
-
 		$('#startBtn').off();
-
 		if (settings.platform == 'mobile') {
 			$('#startBtn').on('touchstart', startBtnHandler);
 		} else {
