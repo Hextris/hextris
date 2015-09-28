@@ -27,9 +27,7 @@ var ____LanguageServerLocales = [
 			lngFound = true; /* We found the language in the list so we support it. */
 		}
 	}
-	if(!lngFound) lang = "en-US"; /* Use Fallback language */
-
-	lang = "de-DE";
+	if(!lngFound) lang = "en-US"; /* Use fallback language */
 
 	lang = lang.replace("-", "_").toUpperCase();
 
