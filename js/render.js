@@ -3,7 +3,7 @@ function render() {
 	if (gameState === 0) {
 		grey = "rgb(220, 223, 225)";
 	}
-	
+
 	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
 	clearGameBoard();
 	if (gameState === 1 || gameState === 2 || gameState === -1 || gameState === 0) {
@@ -72,15 +72,15 @@ function renderBeginningText() {
     var mob, fontSize;
     if(/mobile|Mobile|iOS|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         mob = true;
-        input_text = 'Tap the screen\'s left and ride'
-        action_text = 'sides to rotate the hexagon'
-        score_text = 'Match 3+ blocks to score'
+        input_text = _S("input_textM");
+        action_text = _S("action_textM");
+        score_text = _S("score_textM");
         fontSize = 35
     } else {
         mob = false
-        input_text = 'Use the right and left arrow keys'
-        action_text = 'to rotate the hexagon'
-        score_text = 'Match 3+ blocks to score!'
+				input_text = _S("input_text");
+        action_text = _S("action_text");
+        score_text = _S("score_text");
         fontSize = 27
     }
 	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-0*settings.scale, fontSize, '#2c3e50', input_text);
@@ -108,7 +108,7 @@ function drawKey(key, x, y) {
 			ctx.scale(settings.scale, settings.scale);
 			ctx.fillText(String.fromCharCode("0xf04b"), 0, 0);
 			break;
-		
+
 		default:
 			drawKey("left", x - 5, y);
 			drawKey("right", x + 5, y);
