@@ -2,13 +2,13 @@
 	Language Server for hextris.
 	Allows to load languagre resources at runtime.
 
-	von Thomas Roskop.
+	From Thomas Roskop (Github: TRoskop).
 
 	We have to ad every language (currently) to the index.html file to support the language.
 	Moreover, we load only those variables we realy need.
 */
 
-var ____LanguageServerResources = null;
+var ____LanguageServerResources = {};
 
 /*
 	This is a list of all the languages this app does currently support.
@@ -16,7 +16,8 @@ var ____LanguageServerResources = null;
 */
 var ____LanguageServerLocales = [
 	"en-US",
-	"de-DE"
+	"de-DE",
+  "es-ES"
 ];
 
 (function _LanguageServerInit() {
@@ -27,7 +28,22 @@ var ____LanguageServerLocales = [
 			lngFound = true; /* We found the language in the list so we support it. */
 		}
 	}
-	if(!lngFound) lang = "en-US"; /* Use fallback language */
+
+	// If we found no perfect match, let's look for a unexact match.
+  // This means that we only compare the first two chars as they only indicate the language without the region.
+  if(!lngFound) {
+		for (var i = 0; i < ____LanguageServerLocales.length; i++) {
+			var l1 = ____LanguageServerLocales[i].substring(0, 2); // e.g.: en
+      if( lang.indexOf(l1) > -1 ) { // e.g.: if "en-es" contains "en" we have a match.
+				lngFound = true; /* We found the language in the list so we support it. */
+				lang = l1;
+      }      
+		}
+  }
+   
+	if(!lngFound) lang = "en-US"; /* Use fallback language because no language was found! */
+
+  // lang = "es-es"; // For development test, should uncomment this line AND use your (valid!) language!
 
 	lang = lang.replace("-", "_").toUpperCase();
 
@@ -39,7 +55,7 @@ var ____LanguageServerLocales = [
 
 /*
 	Gets the string matching the key.
-	If there is no string, simply return the key in brackets: '{' and '}'
+	If there is no string, simply return the key in brackets: '{key}'
 */
 function _S(key) {
 	return ____LanguageServerResources[key] || "{" + key + "}";
