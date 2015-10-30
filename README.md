@@ -8,7 +8,7 @@ Contributors:
  - Michael Yang (@themichaelyang)
 
 #Conribtions
-Please submit pull requests to clay-improvemnets
+Please submit pull requests to clay-improvements
 
 # Releases
 #### iOS: https://itunes.apple.com/us/app/hextris/id903769553?mt=8
