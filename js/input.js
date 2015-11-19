@@ -52,6 +52,27 @@ function addKeyListeners() {
 	});
 
 	keypress.register_combo({
+		keys: "up",
+		on_keydown: function() {
+			console.log("Up button pressed");
+		}
+	});
+
+	keypress.register_combo({
+		keys: "down",
+		on_keydown: function() {
+			console.log("Down button pressed");
+		}
+	});
+
+	keypress.register_combo({
+		keys: "c",
+		on_keydown: function() {
+			console.log("C button pressed");
+		}
+	});
+
+	keypress.register_combo({
 		keys: "enter",
 		on_keydown: function() {
 			if (gameState==1 || importing == 1) {
