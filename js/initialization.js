@@ -2,6 +2,12 @@ $(document).ready(function() {
 	initialize();
 });
 function initialize(a) {
+	// color blind mode variables
+	// max amount of color blind modes
+	window.maxColorBlindMode = 2;
+	window.currColorBlindMode = 0;
+
+
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;
