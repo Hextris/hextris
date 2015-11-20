@@ -4,14 +4,18 @@ $(document).ready(function() {
 function initialize(a) {
 	// color blind mode variables
 	// max amount of color blind modes
-	window.maxColorBlindMode = 2;
-	window.currColorBlindMode = 0;
-
+	window.currcb = 0;
+	window.prevcb = 0;
+	window.cbcolors = [
+		["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"],
+		["#8e44ad", "#f1c40f", "#3498db", "#d35400"]
+	]
 
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;
 	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
+
 	window.hexColorsToTintedColors = {
 		"#e74c3c": "rgb(241,163,155)",
 		"#f1c40f": "rgb(246,223,133)",

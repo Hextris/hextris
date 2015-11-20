@@ -20,7 +20,7 @@ function Hex(sideLength) {
 	this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
-		this.lastRotate = Date.now();
+	this.lastRotate = Date.now();
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
 	}
@@ -52,6 +52,18 @@ function Hex(sideLength) {
 		lane = (lane + this.sides) % this.sides;
 		block.distFromHex = MainHex.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
 		this.blocks[lane].push(block);
+
+		// TODO: TESTING FUNCTION REMOVE AFTER
+		//for(var i = 0; i < this.blocks.length; i++) {
+		//	for (var j = 0; j < this.blocks[i].length; j++) {
+		//		console.log(i, " ", j, ": ");
+		//		console.log(this.blocks[i][j].color)
+		//		if (this.blocks[i][j].color == "#000000")
+		//			this.blocks[i][j].color="#00ffff";
+		//		else
+		//			console.log("nomatch");
+		//	}
+		//}
 		block.attachedLane = lane;
 		block.checked = 1;
 	};
@@ -105,7 +117,7 @@ function Hex(sideLength) {
 	};
 
 	this.rotate = function(steps) {
-				if(Date.now()-this.lastRotate<75 && !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) return;
+		if(Date.now()-this.lastRotate<75 && !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ) return;
 		if (!(gameState === 1 || gameState === 0)) return;
 		this.position += steps;
 		if (!history[this.ct]) {
@@ -131,7 +143,7 @@ function Hex(sideLength) {
 		});
 
 		this.targetAngle = this.targetAngle - steps * 60;
-				this.lastRotate = Date.now();
+		this.lastRotate = Date.now();
 	};
 
 	this.draw = function() {
@@ -160,7 +172,7 @@ function Hex(sideLength) {
 		else {
 			this.angle += this.angularVelocity;
 		}
- 
+
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
 	};
 }
@@ -168,3 +180,4 @@ function Hex(sideLength) {
 function arrayToColor(arr){
 	return 'rgb(' + arr[0]+ ','+arr[1]+','+arr[2]+')';
 }
+

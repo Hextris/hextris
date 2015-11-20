@@ -75,6 +75,27 @@ function addKeyListeners() {
 	});
 
 	keypress.register_combo({
+		keys: "t",
+		on_keydown: function() {
+			console.log("T button pressed");
+
+			window.prevcb = window.currcb;
+
+			thishex = MainHex;
+			for(var i = 0; i < thishex.blocks.length; i++) {
+				for (var j = 0; j < thishex.blocks[i].length; j++) {
+					console.log(i, " ", j, ": ");
+					console.log(thishex.blocks[i][j].color)
+					if (thishex.blocks[i][j].color == "#000000")
+						thishex.blocks[i][j].color="#ffffff";
+					else
+						console.log("nomatch");
+				}
+			}
+		}
+	});
+
+	keypress.register_combo({
 		keys: "enter",
 		on_keydown: function() {
 			if (gameState==1 || importing == 1) {
@@ -218,10 +239,9 @@ function handleClickTap(x,y) {
 function togglecolor(a){
 	console.log("Hit toggle colour method");
 	//window.colors = ["#8e44ad", "#f1c40f", "#3498db", "#d35400"];
-	window.colors = ["#ffffff", "#f1c40f", "#3498db", "#d35400"];
+	window.colors = ["#ffffff", "#000000", "#3498db", "#d35400"];
 	window.hexColorsToTintedColors = {
-		//"#8e44ad": "rgb(229,152,102)",
-		"#ffffff": "rgb(000,000,000)",
+		"#8e44ad": "rgb(229,152,102)",
 		"#f1c40f": "rgb(246,223,133)",
 		"#3498db": "rgb(151,201,235)",
 		"#d35400": "rgb(210,180,222)"
