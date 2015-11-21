@@ -55,6 +55,16 @@ function addKeyListeners() {
 		keys: "up",
 		on_keydown: function() {
 			console.log("Up button pressed");
+			if (window.speedscale < 2){
+				window.speedscale += 0.1;
+				console.log(window.speedscale);
+			}
+
+			for (var k = 0; k < window.blocks.length; k++){
+				window.blocks[k].iter = (speedscale*window.blocks[k].iter)/oldspeedscale;
+			}
+			window.oldspeedscale = window.speedscale;
+
 		}
 	});
 
@@ -62,6 +72,18 @@ function addKeyListeners() {
 		keys: "down",
 		on_keydown: function() {
 			console.log("Down button pressed");
+			if (window.speedscale >= 0.2){
+				window.speedscale -= 0.1;
+				console.log(window.speedscale);
+			}
+
+			for (var k = 0; k < window.blocks.length; k++){
+				console.log(k, " ");
+				//console.log(window.blocks[k].iter);
+				window.blocks[k].iter = (window.speedscale*window.blocks[k].iter)/oldspeedscale;
+				//console.log(window.blocks[k].iter);
+			}
+			window.oldspeedscale = window.speedscale;
 		}
 	});
 
@@ -81,17 +103,26 @@ function addKeyListeners() {
 
 			window.prevcb = window.currcb;
 
-			thishex = MainHex;
-			for(var i = 0; i < thishex.blocks.length; i++) {
-				for (var j = 0; j < thishex.blocks[i].length; j++) {
-					console.log(i, " ", j, ": ");
-					console.log(thishex.blocks[i][j].color)
-					if (thishex.blocks[i][j].color == "#000000")
-						thishex.blocks[i][j].color="#ffffff";
-					else
-						console.log("nomatch");
-				}
+			for (var k = 0; k < window.blocks.length; k++){
+				console.log(k, " ");
+				console.log(blocks[k].color);
+				if (blocks[k].color == "#000000")
+					blocks[k].color="#ffffff";
+				else
+					console.log("nomatch");
 			}
+            //
+			//thishex = MainHex;
+			//for(var i = 0; i < thishex.blocks.length; i++) {
+			//	for (var j = 0; j < thishex.blocks[i].length; j++) {
+			//		console.log(i, " ", j, ": ");
+			//		console.log(thishex.blocks[i][j].color)
+			//		if (thishex.blocks[i][j].color == "#000000")
+			//			thishex.blocks[i][j].color="#ffffff";
+			//		else
+			//			console.log("nomatch");
+			//	}
+			//}
 		}
 	});
 

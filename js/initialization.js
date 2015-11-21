@@ -11,6 +11,10 @@ function initialize(a) {
 		["#8e44ad", "#f1c40f", "#3498db", "#d35400"]
 	]
 
+
+	window.speedscale = 1;
+	window.oldspeedscale = 1;
+
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;

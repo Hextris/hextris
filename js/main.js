@@ -184,6 +184,10 @@ function init(b) {
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
 	iter *= settings.speedModifier;
+
+	//TODO: added code
+	iter *= window.speedscale;
+
 	if (!history[MainHex.ct]) {
 		history[MainHex.ct] = {};
 	}

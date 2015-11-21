@@ -28,15 +28,20 @@ function waveGen(hex) {
 		this.currentFunction();
 		this.dt = (settings.platform == 'mobile' ? 14 : 16.6667) * MainHex.ct;
 		this.computeDifficulty();
+		// TODO: added this
+		//if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
 		if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
-			if (this.nextGen > 600) {
-				this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
+				if (this.nextGen > 600) {
+					//this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
+					this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier * (1/window.speedscale);
+					console.log(this.nextGen);
 			}
 		}
 	};
 
 	this.randomGeneration = function() {
 		if (this.dt - this.lastGen > this.nextGen) {
+			Console.log("randomgen");
 			this.ct++;
 			this.lastGen = this.dt;
 			var fv = randInt(0, MainHex.sides);
