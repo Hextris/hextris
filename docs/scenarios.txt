@@ -1,0 +1,57 @@
+Github issue:
+Please allow for a more gradual increase of speed
+#129 opened on Mar 3 by EricViala
+
+1. User Story:
+As a player
+I want to have the ability to speed up or slow down the game
+So that I am able to adjust the game for my skill level
+
+Acceptance Criteria:
+
+Scenario 1.1: Game is currently at 30% of its original speed or higher
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 30% of its original playing speed or higher
+When the player presses the "Down" arrow key
+Then the speed of the dropping blocks will be slowed down by 10%
+    And the rate of generation of blocks will be slowed down by 10%
+    And the game continues.
+
+Scenario 1.2: Game is currently at 20% of its original speed (game is too slow)
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 20% of its original playing speed
+When the player presses the "Down" arrow key
+Then the speed of the dropping blocks will remain the same
+    And the rate of generation of blocks blocks will remain the same
+    And the game continues.
+
+Scenario 1.3: Game is currently at 190% of its original speed or lower
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 190% of its original playing speed or lower
+When the player presses the "UP" arrow key
+Then the speed of the dropping blocks will be sped up by 10%
+    And the rate of generation of blocks will be sped up by 10%
+    And the game continues.
+
+Scenario 1.4: Game is currently at 200% of its original speed
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 200% of its original playing speed
+When the player presses the "UP" arrow key
+Then the speed of the dropping blocks will remain the same
+    And the rate of generation of blocks will remain the same
+    And the game continues.
+
+
+=====================================================
+Github issue:
+Alternate color combination to Red/Green, Color blind people may face issue. enhancement
+#74 opened on Aug 17, 2014 by tripples
+
+As a colourblind player
+I want to have the ability change the appearence of the colours of the block
+So that I am able to distinguish the blocks from each other
+

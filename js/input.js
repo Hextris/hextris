@@ -55,11 +55,12 @@ function addKeyListeners() {
 		keys: "up",
 		on_keydown: function() {
 			console.log("Up button pressed");
-			if (window.speedscale < 2){
+			if (window.speedscale < 1.8){
 				window.speedscale += 0.1;
 				console.log(window.speedscale);
 			}
 
+			waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
 			for (var k = 0; k < window.blocks.length; k++){
 				window.blocks[k].iter = (speedscale*window.blocks[k].iter)/oldspeedscale;
 			}
@@ -77,10 +78,15 @@ function addKeyListeners() {
 				console.log(window.speedscale);
 			}
 
+			waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
+			//settings.creationSpeedModifier = settings.creationSpeedModifier*window.speedscale/window.oldspeedscale;
+			//settings.speedModifier = settings.speedModifier*window.speedscale/window.oldspeedscale;
+			//console.log(settings.speedModifier);
+			//console.log(settings.creationSpeedModifier);
+
 			for (var k = 0; k < window.blocks.length; k++){
-				console.log(k, " ");
 				//console.log(window.blocks[k].iter);
-				window.blocks[k].iter = (window.speedscale*window.blocks[k].iter)/oldspeedscale;
+				window.blocks[k].iter = (window.speedscale*window.blocks[k].iter)/window.oldspeedscale;
 				//console.log(window.blocks[k].iter);
 			}
 			window.oldspeedscale = window.speedscale;

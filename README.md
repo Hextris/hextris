@@ -1,3 +1,14 @@
+CPEN 321 L1A Group Members:
+
+Team 06
+
+1. Bo Hu
+2. Xin Wei (Patrick) Tee
+3. William (Will) Tang
+
+
+Original Project Infomration:
+
 Hextris
 ==========
 
