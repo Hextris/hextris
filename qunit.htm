@@ -11,6 +11,7 @@
   <script type='text/javascript' src="js/Block_test.js"></script>
   <script type='text/javascript' src="js/Hex_test.js"></script>
   <script type='text/javascript' src="js/input.js"></script>
+  <script type='text/javascript' src="js/wavegen.js"></script>
   <script type='text/javascript' src="js/initialization_test.js"></script>
 
   <script type='text/javascript' charset='utf-8' src='cordova.js'></script>
@@ -79,6 +80,28 @@
       }
       assert.ok(window.blocks.length == 0, "Falling blocks list empty.");
     });
+
+
+    QUnit.test( "Speed up test, scenario 1.1", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      var testblk1 = new Block(1, "#e74c3c", 8, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 8, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 8, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 8, -1, 0);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+      // when
+      togglespeed(-1, blocks, MainHex);
+      // then
+      // Assert speed of generation has changed
+    });
+
   </script>
 </head>
 <body>
