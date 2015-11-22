@@ -16,21 +16,68 @@
   <script type='text/javascript' charset='utf-8' src='cordova.js'></script>
   <script src="vendor/sweet-alert.min.js"></script>
   <script>
-    QUnit.test( "hello test", function( assert ) {
+    QUnit.test( "colourblind scneario 2.1", function( assert ) {
       initialize(1);
-      var testblk1 = new Block(1, "#ffffff", 123, -1, 0);
-      var testblk2 = new Block(2, "#ffffff", 123, -1, 0);
+      // given
+      window.gameState = 1; // game is starting
+      var testblk1 = new Block(1, "#e74c3c", 123, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 123, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 123, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 123, -1, 0);
       MainHex = new Hex(6);
-      window.blocks = [];
-
       MainHex.blocks[0].push(testblk1);
       MainHex.blocks[1].push(testblk2);
-      console.log(JSON.stringify(MainHex));
-      assert.ok( 1 == "1", "Passed!" );
-      assert.ok("abc" == "abc", "passed3");
-      togglecolor(blocks, MainHex);
-      console.log(JSON.stringify(MainHex));
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+      // when
+      togglecolor(window.blocks, MainHex);
+      // then
+      assert.ok(MainHex.blocks[0][0].color == "#8e44ad", "Block1 on Hex");
+      assert.ok(MainHex.blocks[1][0].color == "#f1c41f", "Block2 on Hex");
+      assert.ok(window.blocks[0].color == "#3499db", "Block3 falling");
+      assert.ok(window.blocks[1].color == "#d35400", "Block4 falling");
+      assert.ok(window.gameState == 1, "Game continues");
+    });
 
+    // This test will run on boundary case of where the user is required to cycle through the colour lists again
+    // given
+    QUnit.test( "colourblind test, scenario 2.2", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      window.currcb = 2;
+      var testblk1 = new Block(1, "#000000", 123, -1, 1);
+      var testblk2 = new Block(2, "#445555", 123, -1, 1);
+      var testblk3 = new Block(3, "#c0c0c0", 123, -1, 0);
+      var testblk4 = new Block(4, "#ffffff", 123, -1, 0);
+      MainHex = new Hex(6);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+      // when
+      togglecolor(window.blocks, MainHex);
+      // then
+      assert.ok(MainHex.blocks[0][0].color == "#e74c3c", "Block1 on Hex");
+      assert.ok(MainHex.blocks[1][0].color == "#f1c40f", "Block2 on Hex");
+      assert.ok(window.blocks[0].color == "#3498db", "Block3 falling");
+      assert.ok(window.blocks[1].color == "#2ecc71", "Block4 falling");
+      assert.ok(window.gameState == 1, "Game continues");
+    });
+
+    // This test will run on empty block lists, such as when the game just starts, to ensure proper functioning of functions on empty lists
+    QUnit.test( "colourblind test on empty list", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      MainHex = new Hex(6);
+      // when
+      togglecolor(window.blocks, MainHex);
+      // then
+      for(var i = 0; i < MainHex.blocks.length; i++){
+        assert.ok(MainHex.blocks[i].length == 0, "Hex block lane " + i + " is empty.");
+      }
+      assert.ok(window.blocks.length == 0, "Falling blocks list empty.");
     });
   </script>
 </head>

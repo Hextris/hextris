@@ -51,69 +51,23 @@ function addKeyListeners() {
 		}
 	});
 
-	keypress.register_combo({
-		keys: "s",
-		on_keydown: function() {
-			console.log("s pressed");
-			window.saveblocks = copyObject(MainHex.blocks);
-		}
-	});
-
-	keypress.register_combo({
-		keys: "u",
-		on_keydown: function() {
-			console.log("u pressed");
-			MainHex.blocks = window.saveblocks;
-		}
-	});
-
+    // speed up key
 	keypress.register_combo({
 		keys: "up",
 		on_keydown: function() {
-			console.log("Up button pressed");
-			if (window.speedscale < 1.8){
-				window.speedscale += 0.1;
-				console.log(window.speedscale);
-			}
-
-			waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
-			for (var k = 0; k < window.blocks.length; k++){
-				window.blocks[k].iter = (speedscale*window.blocks[k].iter)/oldspeedscale;
-			}
-			window.oldspeedscale = window.speedscale;
-
+			togglespeed(0.1, window.blocks, MainHex);
 		}
 	});
 
+    // slow down key
 	keypress.register_combo({
 		keys: "down",
 		on_keydown: function() {
-			console.log("Down button pressed");
-			if (window.speedscale >= 0.2){
-				window.speedscale -= 0.1;
-				console.log(window.speedscale);
-			}
-
-			waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
-
-			for (var k = 0; k < window.blocks.length; k++){
-				//console.log(window.blocks[k].iter);
-				window.blocks[k].iter = (window.speedscale*window.blocks[k].iter)/window.oldspeedscale;
-				//console.log(window.blocks[k].iter);
-			}
-			window.oldspeedscale = window.speedscale;
+			togglespeed(-0.1, window.blocks, MainHex);
 		}
 	});
 
-	keypress.register_combo({
-		keys: "c",
-		on_keydown: function() {
-			console.log("C button pressed");
-			togglecolor();
-
-		}
-	});
-
+    // colour blind toggle key
 	keypress.register_combo({
 		keys: "t",
 		on_keydown: function(){
@@ -234,8 +188,6 @@ function handleClickTap(x,y) {
 }
 
 function togglecolor(blocks, hex){
-	console.log("Hit toggle colour method");
-
 	// compute the current and next color
 	window.prevcb = window.currcb;
 	window.currcb = (window.prevcb + 1) % window.cbcolors.length;
@@ -265,5 +217,43 @@ function togglecolor(blocks, hex){
 			}
 		}
 	}
+}
 
+function togglespeed(increment, blocks, hex){
+
+	// check if we are incrementing or decrementing the game speed
+	if (increment < 0){
+
+		// if incrementing, adjust the speed accordingly
+		if (window.speedscale >= 0.3){
+			window.speedscale -= 0.1;
+			console.log(window.speedscale);
+		}
+	}
+	else { // increment is positive
+		// if decrementing, adjust the speed accordingly
+		if (window.speedscale < 1.7){
+			window.speedscale += 0.1;
+			console.log(window.speedscale);
+		}
+	}
+
+	// slow down the generation of the wave speeds
+	waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
+    var iterfactor = window.speedscale / window.oldspeedscale;
+
+	// slow down speed of falling blocks
+	for (var k = 0; k < blocks.length; k++){
+		blocks[k].iter = blocks[k].iter * iterfactor;
+	}
+
+	// obtain all speeds from the hex and change thems
+	for(var k = 0; k < hex.blocks.length; k++) {
+		for (var l = 0; l < hex.blocks[k].length; l++) {
+			hex.blocks[k][l].iter = hex.blocks[k][l].iter*iterfactor;
+		}
+	}
+
+    // store the old value of so speed can be adjusted in future
+	window.oldspeedscale = window.speedscale;
 }
