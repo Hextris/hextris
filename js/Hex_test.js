@@ -1,4 +1,21 @@
 function Hex(sideLength) {
+	window.settings = {
+		os: "other",
+		platform: "nonmobile",
+		baseScale: 1,
+		startDist: 340,
+		creationDt: 9,
+		scale: 1,
+		prevScale: 1,
+		hexWidth: 65,
+		baseHexWidth: 87,
+		baseBlockHeight: 20,
+		blockHeight: 15,
+		rows: 8,
+		speedModifier: 0.65,
+		creationSpeedModifier: 0.65,
+		comboTime: 310
+	};
 	this.playThrough = 0;
 	this.fillColor = [44,62,80];
 	this.tempColor = [44,62,80];
@@ -14,7 +31,7 @@ function Hex(sideLength) {
 	this.sideLength = sideLength;
 	this.strokeColor = 'blue';
 	this.ct = 0;
-	this.lastCombo = this.ct - settings.comboTime;
+	this.lastCombo = this.ct - window.settings.comboTime;
 	this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
@@ -45,7 +62,7 @@ function Hex(sideLength) {
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.fallingLane;// -this.position;
-		this.shakes.push({lane:block.fallingLane, magnitude:4.5 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
+		this.shakes.push({lane:block.fallingLane, magnitude:4.5 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (window.settings.scale)});
 		lane += this.position;
 		lane = (lane + this.sides) % this.sides;
 		block.distFromHex = MainHex.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
@@ -62,7 +79,7 @@ function Hex(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				if (block.distFromHex - block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex - block.iter * this.dt * window.settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					block.checked = 1;
@@ -71,7 +88,7 @@ function Hex(sideLength) {
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
 			} else {
-				if (arr[position - 1].settled && block.distFromHex - block.iter * this.dt * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+				if (arr[position - 1].settled && block.distFromHex - block.iter * this.dt * window.settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					block.checked = 1;
@@ -89,12 +106,12 @@ function Hex(sideLength) {
 			var arr = this.blocks[lane];
 
 			if (arr.length > 0) {
-				if (block.distFromHex + block.iter * this.dt * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				if (block.distFromHex + block.iter * this.dt * window.settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
 			} else {
-				if (block.distFromHex + block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex + block.iter * this.dt * window.settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
 				}

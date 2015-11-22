@@ -117,7 +117,7 @@ function addKeyListeners() {
 	keypress.register_combo({
 		keys: "t",
 		on_keydown: function(){
-			togglecolor();
+			togglecolor(window.blocks, MainHex);
 		}
 	});
 
@@ -233,41 +233,34 @@ function handleClickTap(x,y) {
 	}
 }
 
-function togglecolor(){
+function togglecolor(blocks, hex){
 	console.log("Hit toggle colour method");
 
 	// compute the current and next color
 	window.prevcb = window.currcb;
-	window.currcb = (window.prevcb + 1) % window.maxcbcolors;
+	window.currcb = (window.prevcb + 1) % window.cbcolors.length;
 
 	// set the current window color to the one we need
 	window.colors = window.cbcolors[currcb];
 
 	// obtain all the current falling blocks
-	for (var i = 0; i < window.blocks.length; i++){
+	for (var i = 0; i < blocks.length; i++){
 
 		// find the colour of the block and change accordingly
 		for (var j = 0; j < window.cbcolors[window.prevcb].length; j++){
-			if (window.blocks[i].color == window.cbcolors[window.prevcb][j]){
-				window.blocks[i].color = window.cbcolors[window.currcb][j];
-			}
-			else {
-				console.log("Error: Colour ", window.blocks[i].color, "doesn't exist");
+			if (blocks[i].color == window.cbcolors[window.prevcb][j]){
+				blocks[i].color = window.cbcolors[window.currcb][j]
 			}
 		}
 	}
 
 	// obtain all colours from the hex and change them
-	for(var k = 0; k < MainHex.blocks.length; k++) {
-		for (var l = 0; l < MainHex.blocks[k].length; l++) {
+	for(var k = 0; k < hex.blocks.length; k++) {
+		for (var l = 0; l < hex.blocks[k].length; l++) {
 			for (var m = 0; m < window.cbcolors[window.prevcb].length; m++){
-
 				// find the colour of the block and change accordingly
-				if (MainHex.blocks[k][l].color == window.cbcolors[window.prevcb][m]){
-					MainHex.blocks[k][l].color = window.cbcolors[window.currcb][m];
-				}
-				else {
-					console.log("Error: Colour ", window.blocks[i].color, "doesn't exist");
+				if (hex.blocks[k][l].color == window.cbcolors[window.prevcb][m]){
+					hex.blocks[k][l].color = window.cbcolors[window.currcb][m];
 				}
 			}
 		}

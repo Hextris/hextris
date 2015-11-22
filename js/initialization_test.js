@@ -82,7 +82,7 @@ function initialize(a) {
 	window.startTime = undefined;
 	window.gameState;
 
-	settings = {
+	window.settings = {
 		os: "other",
 		platform: "nonmobile",
 		baseScale: 1,

@@ -8,7 +8,7 @@
   <script src="http://code.jquery.com/qunit/qunit-1.20.0.js"></script>
   <script type='text/javascript' src="vendor/jquery.js"></script>
 
-  <script type='text/javascript' src="js/Block.js"></script>
+  <script type='text/javascript' src="js/Block_test.js"></script>
   <script type='text/javascript' src="js/Hex_test.js"></script>
   <script type='text/javascript' src="js/input.js"></script>
   <script type='text/javascript' src="js/initialization_test.js"></script>
@@ -17,10 +17,20 @@
   <script src="vendor/sweet-alert.min.js"></script>
   <script>
     QUnit.test( "hello test", function( assert ) {
+      initialize(1);
+      var testblk1 = new Block(1, "#ffffff", 123, -1, 0);
+      var testblk2 = new Block(2, "#ffffff", 123, -1, 0);
+      MainHex = new Hex(6);
+      window.blocks = [];
 
-      window.MainHex = Hex(6);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      console.log(JSON.stringify(MainHex));
       assert.ok( 1 == "1", "Passed!" );
       assert.ok("abc" == "abc", "passed3");
+      togglecolor(blocks, MainHex);
+      console.log(JSON.stringify(MainHex));
+
     });
   </script>
 </head>
