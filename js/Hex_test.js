@@ -13,8 +13,6 @@ function Hex(sideLength) {
 	this.shakes = [];
 	this.sideLength = sideLength;
 	this.strokeColor = 'blue';
-	this.x = trueCanvas.width / 2;
-	this.y = trueCanvas.height / 2;
 	this.ct = 0;
 	this.lastCombo = this.ct - settings.comboTime;
 	this.lastColorScored = "#000";
@@ -134,35 +132,6 @@ function Hex(sideLength) {
 		this.lastRotate = Date.now();
 	};
 
-	this.draw = function() {
-		this.x = trueCanvas.width/2;
-
-		if (gameState != -2) {
-			this.y = trueCanvas.height/2;
-		}
-		this.sideLength = settings.hexWidth;
-		gdx = 0;
-		gdy = 0;
-		for (var i = 0; i < this.shakes.length; i++) {
-			this.shake(this.shakes[i]);
-		}
-		if (this.angle > this.targetAngle) {
-			this.angularVelocity -= angularVelocityConst * this.dt;
-		}
-		else if(this.angle < this.targetAngle) {
-			this.angularVelocity += angularVelocityConst * this.dt;
-		}
-
-		if (Math.abs(this.angle - this.targetAngle + this.angularVelocity) <= Math.abs(this.angularVelocity)) { //do better soon
-			this.angle = this.targetAngle;
-			this.angularVelocity = 0;
-		}
-		else {
-			this.angle += this.angularVelocity;
-		}
-
-		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
-	};
 }
 
 function arrayToColor(arr){

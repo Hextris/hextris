@@ -52,6 +52,22 @@ function addKeyListeners() {
 	});
 
 	keypress.register_combo({
+		keys: "s",
+		on_keydown: function() {
+			console.log("s pressed");
+			window.saveblocks = copyObject(MainHex.blocks);
+		}
+	});
+
+	keypress.register_combo({
+		keys: "u",
+		on_keydown: function() {
+			console.log("u pressed");
+			MainHex.blocks = window.saveblocks;
+		}
+	});
+
+	keypress.register_combo({
 		keys: "up",
 		on_keydown: function() {
 			console.log("Up button pressed");
@@ -79,10 +95,6 @@ function addKeyListeners() {
 			}
 
 			waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
-			//settings.creationSpeedModifier = settings.creationSpeedModifier*window.speedscale/window.oldspeedscale;
-			//settings.speedModifier = settings.speedModifier*window.speedscale/window.oldspeedscale;
-			//console.log(settings.speedModifier);
-			//console.log(settings.creationSpeedModifier);
 
 			for (var k = 0; k < window.blocks.length; k++){
 				//console.log(window.blocks[k].iter);
@@ -104,31 +116,8 @@ function addKeyListeners() {
 
 	keypress.register_combo({
 		keys: "t",
-		on_keydown: function() {
-			console.log("T button pressed");
-
-			window.prevcb = window.currcb;
-
-			for (var k = 0; k < window.blocks.length; k++){
-				console.log(k, " ");
-				console.log(blocks[k].color);
-				if (blocks[k].color == "#000000")
-					blocks[k].color="#ffffff";
-				else
-					console.log("nomatch");
-			}
-            //
-			//thishex = MainHex;
-			//for(var i = 0; i < thishex.blocks.length; i++) {
-			//	for (var j = 0; j < thishex.blocks[i].length; j++) {
-			//		console.log(i, " ", j, ": ");
-			//		console.log(thishex.blocks[i][j].color)
-			//		if (thishex.blocks[i][j].color == "#000000")
-			//			thishex.blocks[i][j].color="#ffffff";
-			//		else
-			//			console.log("nomatch");
-			//	}
-			//}
+		on_keydown: function(){
+			togglecolor();
 		}
 	});
 
@@ -159,35 +148,6 @@ function addKeyListeners() {
 		pause();
 		return false;
 	});
-
-
-	$("#colorBlindBtn").on('touchstart mousedown', function() {
-	window.colors = ["#8e44ad", "#f1c40f", "#3498db", "#d35400"];
-
-	window.hexColorsToTintedColors = {
-		//"#8e44ad": "rgb(229,152,102)",
-		"#ffffff": "rgb(000,000,000)",
-		"#000000": "rgp(000,000,000)",
-		//"#f1c40f": "rgb(246,223,133)",
-		"#3498db": "rgb(151,201,235)",
-		"#d35400": "rgb(210,180,222)"
-	};
-
-	window.rgbToHex = {
-		"rgb(142,68,173)": "#8e44ad",
-		"rgb(241,196,15)": "#f1c40f",
-		"rgb(52,152,219)": "#3498db",
-		"rgb(211,84,0)": "#d35400"
-	};
-
-	window.rgbColorsToTintedColors = {
-		"rgb(142,68,173)": "rgb(229,152,102)",
-		"rgb(241,196,15)": "rgb(246,223,133)",
-		"rgb(52,152,219)": "rgb(151,201,235)",
-		"rgb(46,204,113)": "rgb(210,180,222)"
-	};
-	});
-
 
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 			$("#restart").on('touchstart', function() {
@@ -273,28 +233,44 @@ function handleClickTap(x,y) {
 	}
 }
 
-function togglecolor(a){
+function togglecolor(){
 	console.log("Hit toggle colour method");
-	//window.colors = ["#8e44ad", "#f1c40f", "#3498db", "#d35400"];
-	window.colors = ["#ffffff", "#000000", "#3498db", "#d35400"];
-	window.hexColorsToTintedColors = {
-		"#8e44ad": "rgb(229,152,102)",
-		"#f1c40f": "rgb(246,223,133)",
-		"#3498db": "rgb(151,201,235)",
-		"#d35400": "rgb(210,180,222)"
-	};
 
-	window.rgbToHex = {
-		"rgb(142,68,173)": "#8e44ad",
-		"rgb(241,196,15)": "#f1c40f",
-		"rgb(52,152,219)": "#3498db",
-		"rgb(211,84,0)": "#d35400"
-	};
+	// compute the current and next color
+	window.prevcb = window.currcb;
+	window.currcb = (window.prevcb + 1) % window.maxcbcolors;
 
-	window.rgbColorsToTintedColors = {
-		"rgb(142,68,173)": "rgb(229,152,102)",
-		"rgb(241,196,15)": "rgb(246,223,133)",
-		"rgb(52,152,219)": "rgb(151,201,235)",
-		"rgb(46,204,113)": "rgb(210,180,222)"
-	};
+	// set the current window color to the one we need
+	window.colors = window.cbcolors[currcb];
+
+	// obtain all the current falling blocks
+	for (var i = 0; i < window.blocks.length; i++){
+
+		// find the colour of the block and change accordingly
+		for (var j = 0; j < window.cbcolors[window.prevcb].length; j++){
+			if (window.blocks[i].color == window.cbcolors[window.prevcb][j]){
+				window.blocks[i].color = window.cbcolors[window.currcb][j];
+			}
+			else {
+				console.log("Error: Colour ", window.blocks[i].color, "doesn't exist");
+			}
+		}
+	}
+
+	// obtain all colours from the hex and change them
+	for(var k = 0; k < MainHex.blocks.length; k++) {
+		for (var l = 0; l < MainHex.blocks[k].length; l++) {
+			for (var m = 0; m < window.cbcolors[window.prevcb].length; m++){
+
+				// find the colour of the block and change accordingly
+				if (MainHex.blocks[k][l].color == window.cbcolors[window.prevcb][m]){
+					MainHex.blocks[k][l].color = window.cbcolors[window.currcb][m];
+				}
+				else {
+					console.log("Error: Colour ", window.blocks[i].color, "doesn't exist");
+				}
+			}
+		}
+	}
+
 }
