@@ -185,7 +185,7 @@ function init(b) {
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
 	iter *= settings.speedModifier;
 
-	//TODO: added code
+	// PRJ: this line will scale the speed of the block by its respective amount specified in scale
 	iter *= window.speedscale;
 
 	if (!history[MainHex.ct]) {
