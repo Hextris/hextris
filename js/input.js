@@ -239,7 +239,7 @@ function togglespeed(increment, blocks, hex){
 	}
 
 	// slow down the generation of the wave speeds
-	waveone.nextGen = waveone.nextGen*(2-window.speedscale)/(2-window.oldspeedscale);
+	waveone.nextGen = waveone.nextGen*(1/window.speedscale)/(1/window.oldspeedscale);
     var iterfactor = window.speedscale / window.oldspeedscale;
 
 	// slow down speed of falling blocks
