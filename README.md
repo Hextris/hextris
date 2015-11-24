@@ -2,7 +2,7 @@ Hextris
 ==========
 
 Contributors:
- - Logan Engstrom (@meadowstream)
+ - Logan Engstrom (@lengstrom)
  - Garrett Finucane (@garrettdreyfus)
  - Noah Moroze (@nmoroze)
  - Michael Yang (@themichaelyang)
