@@ -57,6 +57,8 @@ function Hex(sideLength) {
 	};
 
 	this.doesBlockCollide = function(block, position, tArr) {
+
+		//block has rested on either the center of hex or on another block. Collision happened
 		if (block.settled) {
 			return;
 		}
@@ -64,38 +66,57 @@ function Hex(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
+				//current block has hit the center hex
+
 				if (block.distFromHex - block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					block.checked = 1;
-				} else {
+				} 
+
+				//current block is still falling, increment iterations
+				else {
 					block.settled = 0;
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
-			} else {
+			} 
+
+			else {
+
+				//current block is above an existing settled block and hits the existing block
+				
 				if (arr[position - 1].settled && block.distFromHex - block.iter * this.dt * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					block.checked = 1;
 				}
+
+				//either the lower block has not settled yet OR current block has not settled (still falling)
 				else {
 					block.settled = 0;
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
 			}
-		} else {
+		} 
+
+		//block is yet created (position is not defined)
+		else {
 			var lane = this.sides - block.fallingLane;//  -this.position;
 			lane += this.position;
 
 			lane = (lane+this.sides) % this.sides;
 			var arr = this.blocks[lane];
 
+			//
+
 			if (arr.length > 0) {
 				if (block.distFromHex + block.iter * this.dt * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
-			} else {
+			} 
+
+			else {
 				if (block.distFromHex + block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
