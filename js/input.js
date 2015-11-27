@@ -41,7 +41,7 @@ function addKeyListeners() {
 
 	keypress.register_combo({
 		keys: "space",
-		on_keydown: function(){pause();}
+		on_keydown: function(){toggleDrop(window.blocks, MainHex);}
 	});
 
 	keypress.register_combo({
@@ -256,4 +256,12 @@ function togglespeed(increment, blocks, hex){
 
     // store the old value of so speed can be adjusted in future
 	window.oldspeedscale = window.speedscale;
+}
+
+// When called, the currently falling blocks will immediately fall towards the center of hex
+function toggleDrop(blocks, hex){
+	
+	//obtain current falling blocks; blocks[0] for a single falling block, [1] for a joint falling block
+	blocks[0].distFromHex = 0;
+	blocks[1].distFromHex = 0;
 }
