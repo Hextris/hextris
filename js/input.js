@@ -261,7 +261,8 @@ function togglespeed(increment, blocks, hex){
 // When called, the currently falling blocks will immediately fall towards the center of hex
 function toggleDrop(blocks, hex){
 	
-	//obtain current falling blocks; blocks[0] for a single falling block, [1] for a joint falling block
-	blocks[0].distFromHex = 0;
-	blocks[1].distFromHex = 0;
+	//obtain current falling blocks; blocks[0] for a single falling block, [1] for a joint falling block...
+	for (var i = 0; i < blocks.length; i++){
+		blocks[i].distFromHex = 0;
+	}
 }
