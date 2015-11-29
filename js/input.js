@@ -227,14 +227,12 @@ function togglespeed(increment, blocks, hex){
 		// if incrementing, adjust the speed accordingly
 		if (window.speedscale >= 0.3){
 			window.speedscale -= 0.1;
-			console.log(window.speedscale);
 		}
 	}
 	else { // increment is positive
 		// if decrementing, adjust the speed accordingly
 		if (window.speedscale < 1.7){
 			window.speedscale += 0.1;
-			console.log(window.speedscale);
 		}
 	}
 
@@ -260,9 +258,23 @@ function togglespeed(increment, blocks, hex){
 
 // When called, the currently falling blocks will immediately fall towards the center of hex
 function toggleDrop(blocks, hex){
-	
+
+	// tolerance for comparing doubles
+	var tolearnce = 0.01;
+
+	// extract only the closest block to the
+	var minDist = 999999;
+	for  (var i = 0; i < blocks.length; i++){
+		console.log(blocks[i].distFromHex);
+		if (blocks[i].distFromHex < minDist){
+			minDist = blocks[i].distFromHex;
+		}
+	}
+
 	//obtain current falling blocks; blocks[0] for a single falling block, [1] for a joint falling block...
 	for (var i = 0; i < blocks.length; i++){
-		blocks[i].distFromHex = 0;
+		if (blocks[i].distFromHex >= (minDist - tolearnce) && blocks[i].distFromHex <= (minDist + tolearnce)){
+			blocks[i].distFromHex = 0;
+		}
 	}
 }
