@@ -186,7 +186,7 @@
       // when
       togglespeed(1, blocks, MainHex);
       // then
-      // Assert speed of generation has changed
+      // Assert speed of generation has not changed
       assert.equal(prevSpeed, window.speedscale);
     });
 
@@ -202,13 +202,16 @@
 
       //block is falling
       window.blocks.push(testblk1);
-      assert.equal(testblk1.settled, 0);
+      assert.ok(testblk1.settled == 0, "test block 1 unsettled");
 
       // when
       toggleDrop(blocks, MainHex);
+      MainHex.doesBlockCollide(testblk1, testblk1.fallingLane, window.blocks);
       // then
+      // assert block added to hex
+      assert.ok(MainHex.blocks[5].length == 1, "lane 5 has one block");
       // Assert only testblk1 has fell immediately onto center hex
-      assert.equal(testblk1.settled, 1);
+      assert.ok(testblk1.settled == 1, "test block 1 settled");
     });
 
     QUnit.test( "Block Drop Test, scenario 3.2", function( assert ) {
@@ -225,15 +228,21 @@
       //block is falling
       window.blocks.push(testblk1);
       window.blocks.push(testblk2);
-      assert.equal(testblk1.settled, 0);
-      assert.equal(testblk2.settled, 0);
+      assert.ok(testblk1.settled == 0, "test block 1 not settled");
+      assert.ok(testblk2.settled == 0, "test block 2 not settled");
 
       // when
       toggleDrop(blocks, MainHex);
       // then
+      // add block to hex
+      MainHex.doesBlockCollide(testblk1, testblk1.fallinglane, window.blocks);
+      MainHex.doesBlockCollide(testblk2, testblk2.fallinglane, window.blocks);
+
       // Assert both testblk1 and testblk2 are settled on the center hex
-      assert.equal(testblk1.settled, 1);
-      assert.equal(testblk2.settled, 1);
+      assert.ok(testblk1.settled == 1, "test block 1 settled");
+      assert.ok(testblk2.settled == 1, "test block 2 settled");
+      assert.ok(MainHex.blocks[4].length == 1, "lane 4 has one block");
+      assert.ok(MainHex.blocks[5].length == 1, "lane 5 has one block");
     });
 
     QUnit.test( "Block Drop Test, scenario 3.3", function( assert ) {
@@ -251,16 +260,23 @@
       //both blocks are falling
       window.blocks.push(testblk1);
       window.blocks.push(testblk2);
-      assert.equal(testblk1.settled, 0);
-      assert.equal(testblk2.settled, 0);
+      assert.ok(testblk1.settled == 0, "test block 1 not settled");
+      assert.ok(testblk2.settled == 0, "test block 2 not settled");
 
       // when
       toggleDrop(blocks, MainHex);
+      // TODO: ensure blocks collide
+      MainHex.doesBlockCollide(testblk1, testblk1.fallingLane, window.blocks);
+      MainHex.doesBlockCollide(testblk2, testblk2.fallingLane, window.blocks);
       // then
       // Assert that only testblk 2 has fell onto center hex; testblk 1 should still be falling and has not settled
-      assert.equal(testblk1.settled, 0);
-      assert.equal(testblk2.settled, 1);
-    }); 
+
+      assert.ok(testblk1.settled == 0, "test block 1 not settled");
+      assert.ok(testblk2.settled == 1, "test block 2 settled");
+      // assert only one block is added to the hex
+      assert.ok(MainHex.blocks[4].length == 0, "lane 4 empty")
+      assert.ok(MainHex.blocks[5].length == 1, "lane 5 has one block");
+    });
 
   </script>
 </head>
