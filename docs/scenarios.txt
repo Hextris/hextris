@@ -72,3 +72,36 @@ Then the colour of the blocks will change to anothe set of colours that is frien
         if the player has not cycled through all the colourblind colours yet, otherwise the colour of the blocks
         will revert back to the default colour.
     And the game continues.
+
+=====================================================
+Additional Feature:
+Block falls immediately onto center hex upon keypress
+
+3. User Story:
+As a player
+I want to be able to drop the closest falling block immediately onto the side of the center hex I have rotated to immediately
+So that I am able to play the game at a faster pace
+
+Scenario 3.1: User presses Drop Block Toggle Button when a single block is falling
+Given that the game has started
+    And the player is currently playing the game
+    And a single-block is currently falling
+When the player presses the "space" key
+Then the currently falling single-block will fall instantly onto the side of the center hex the player has rotated to
+    And the game continues.
+
+Scenario 3.2: User presses Drop Block Toggle Button when a doubly-joint block is falling
+Given that the game has started
+    And the player is currently playing the game
+    And a doubly-joint block is currently falling
+When the player presses the "space" key
+Then the whole joint block will fall instantly onto the side of the center hex the player has rotated to as a single piece
+    And the game continues.
+
+Scenario 3.3: User presses Drop Block Toggle Button when multiple blocks are falling on the screen
+Given taht the game has started
+    And the player is currently playing the game
+    And there are 2 blocks both falling onto the center hex on the same lane
+Whe the player presses the "space" key
+Then only the block closest to the center hex falls instantly while the other falling block remains falling at its original speed
+    And the game continues.

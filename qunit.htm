@@ -152,15 +152,15 @@
       window.blocks.push(testblk4);
 
 
-      //game currently runs at 150% of original speed
-      window.speedscale = 1.5; 
+      //game currently runs at 130% of original speed
+      window.speedscale = 1.3; 
       var prevSpeed = window.speedscale;
 
       // when
       togglespeed(1, blocks, MainHex);
       // then
-      // Assert speed of generation has changed
-      assert.equal(prevSpeed+0.1, window.speedscale);
+      // Assert that gamespeed is increased by 0.1, since it has not reached the limit of 1.4 yet
+      assert.equal(prevSpeed + 0.1, window.speedscale);
     });
 
     QUnit.test( "Speed up test, scenario 1.4", function( assert ) {
@@ -189,6 +189,78 @@
       // Assert speed of generation has changed
       assert.equal(prevSpeed, window.speedscale);
     });
+
+    QUnit.test( "Block Drop Test, scenario 3.1", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+
+      //a single falling block
+      var testblk1 = new Block(1, "#e74c3c", 8, settings.startDist * settings.scale);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+
+      //block is falling
+      window.blocks.push(testblk1);
+      assert.equal(testblk1.settled, 0);
+
+      // when
+      toggleDrop(blocks, MainHex);
+      // then
+      // Assert only testblk1 has fell immediately onto center hex
+      assert.equal(testblk1.settled, 1);
+    });
+
+    QUnit.test( "Block Drop Test, scenario 3.2", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+
+      //a doubly-joint falling block
+      var testblk1 = new Block(1, "#e74c3c", 8, settings.startDist * settings.scale);
+      var testblk2 = new Block(2, "#f1c40f", 8, settings.startDist * settings.scale);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+
+      //block is falling
+      window.blocks.push(testblk1);
+      window.blocks.push(testblk2);
+      assert.equal(testblk1.settled, 0);
+      assert.equal(testblk2.settled, 0);
+
+      // when
+      toggleDrop(blocks, MainHex);
+      // then
+      // Assert both testblk1 and testblk2 are settled on the center hex
+      assert.equal(testblk1.settled, 1);
+      assert.equal(testblk2.settled, 1);
+    });
+
+    QUnit.test( "Block Drop Test, scenario 3.3", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+
+      //two falling blocks on the same lane, but at different distances from the center hex
+      //testblk 2 is closer to the center hex
+      var testblk1 = new Block(1, "#e74c3c", 8, settings.startDist * settings.scale);
+      var testblk2 = new Block(1, "#f1c40f", 8, (settings.startDist * settings.scale) - 16);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+
+      //both blocks are falling
+      window.blocks.push(testblk1);
+      window.blocks.push(testblk2);
+      assert.equal(testblk1.settled, 0);
+      assert.equal(testblk2.settled, 0);
+
+      // when
+      toggleDrop(blocks, MainHex);
+      // then
+      // Assert that only testblk 2 has fell onto center hex; testblk 1 should still be falling and has not settled
+      assert.equal(testblk1.settled, 0);
+      assert.equal(testblk2.settled, 1);
+    }); 
 
   </script>
 </head>

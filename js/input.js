@@ -231,7 +231,7 @@ function togglespeed(increment, blocks, hex){
 	}
 	else { // increment is positive
 		// if decrementing, adjust the speed accordingly
-		if (window.speedscale < 1.7){
+		if (window.speedscale < 1.4){
 			window.speedscale += 0.1;
 		}
 	}
@@ -274,7 +274,7 @@ function toggleDrop(blocks, hex){
 	//obtain current falling blocks; blocks[0] for a single falling block, [1] for a joint falling block...
 	for (var i = 0; i < blocks.length; i++){
 		if (blocks[i].distFromHex >= (minDist - tolearnce) && blocks[i].distFromHex <= (minDist + tolearnce)){
-			blocks[i].distFromHex = 0;
+			hex.addBlock(blocks[i]);
 		}
 	}
 }
