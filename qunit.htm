@@ -106,13 +106,15 @@
       togglespeed(-1, blocks, MainHex);
       // then
       // Assert speed of generation has changed
-      assert.equal(prevSpeed-0.1, window.speedscale);
+      assert.ok(prevSpeed-0.1 == window.speedscale, "speed lowered");
     });
     
     QUnit.test( "Speed up test, scenario 1.2", function( assert ) {
       initialize(1);
       // given
       window.gameState = 1; // game is starting
+      //game currently runs at 20% of original speed
+      window.speedscale = 0.2;
       var testblk1 = new Block(1, "#e74c3c", 8, -1, 1);
       var testblk2 = new Block(2, "#f1c40f", 8, -1, 1);
       var testblk3 = new Block(3, "#3498db", 8, -1, 0);
@@ -124,16 +126,14 @@
       window.blocks.push(testblk3);
       window.blocks.push(testblk4);
 
-
-      //game currently runs at 20% of original speed
-      window.speedscale = 0.2; 
       var prevSpeed = window.speedscale;
 
       // when
       togglespeed(-1, blocks, MainHex);
       // then
-      // Assert speed of generation has changed
-      assert.equal(prevSpeed, window.speedscale);
+      assert.ok(testblk1.iter = 8, "block1 iter constant");
+      assert.ok(testblk2.iter = 8, "block2 iter constant");
+      assert.ok(prevSpeed == window.speedscale, "speed constant");
     });
 
     QUnit.test( "Speed up test, scenario 1.3", function( assert ) {
@@ -160,7 +160,7 @@
       togglespeed(1, blocks, MainHex);
       // then
       // Assert that gamespeed is increased by 0.1, since it has not reached the limit of 1.4 yet
-      assert.equal(prevSpeed + 0.1, window.speedscale);
+      assert.ok(prevSpeed + 0.1 == window.speedscale, "speed increased");
     });
 
     QUnit.test( "Speed up test, scenario 1.4", function( assert ) {
@@ -187,7 +187,7 @@
       togglespeed(1, blocks, MainHex);
       // then
       // Assert speed of generation has not changed
-      assert.equal(prevSpeed, window.speedscale);
+      assert.ok(prevSpeed == window.speedscale, "speed same");
     });
 
     QUnit.test( "Block Drop Test, scenario 3.1", function( assert ) {
