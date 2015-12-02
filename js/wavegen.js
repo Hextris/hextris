@@ -32,8 +32,6 @@ function blockDestroyed() {
 	if (waveone.nextGen > 3500){
 		waveone.nextGen = 3500;
 	}
-	console.log("genspeed");
-	console.log(waveone.nextGen);
 }
 
 function waveGen(hex) {
@@ -59,8 +57,6 @@ function waveGen(hex) {
 
 			// PRJ
 			this.nextGen = this.nextGen/window.speedscale;
-			console.log("nextgen");
-			console.log(this.nextGen);
 		}
 	};
 

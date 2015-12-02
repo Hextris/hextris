@@ -244,8 +244,7 @@ function togglespeed(increment, blocks, hex) {
 	if (waveone.nextGen > 3500){
 		waveone.nextGen = 3500;
 	}
-
-	console.log(waveone.nextGen);
+	
     var iterfactor = window.speedscale / window.oldspeedscale;
 
 	// slow down speed of falling blocks
