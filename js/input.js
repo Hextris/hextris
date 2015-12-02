@@ -221,52 +221,26 @@ function togglecolor(blocks, hex){
 
 function togglespeed(increment, blocks, hex){
 
-
-	//iterfactor is used to modify block falling speeds
-	var iterfactor = window.speedscale;
-
 	// check if we are incrementing or decrementing the game speed
 	if (increment < 0){
 
 		// if incrementing, adjust the speed accordingly
-		// if (window.speedscale >= 0.4){
-		// 	window.speedscale -= 0.1;
-			
-		// }
-
-		// MODIFIED:
-		// Instead of modifying window.speedscale, we modify difficulty to ensure block generations are normal
-
-		if (waveone.nextGen.diffculty > 0){
-			waveone.nextGen.difficulty -= 1;
+		if (window.speedscale >= 0.3){
+			window.speedscale -= 0.1;
 		}
-		iterfactor -= 0.1;
-
-
 	}
 	else { // increment is positive
 		// if decrementing, adjust the speed accordingly
-		
-		// if (window.speedscale < 1.4){
-		// 	window.speedscale += 0.1;
-		// }
-
-		// MODIFIED:
-		// Instead of modifying window.speedscale, we modify difficulty to ensure block generations are normal
-
-		if (waveone.nextGen.diffculty < 35){
-			waveone.nextGen.difficulty += 3;
+		if (window.speedscale < 1.4){
+			window.speedscale += 0.1;
 		}
-
-		iterfactor += 0.1;
 	}
 
 	// slow down the generation of the wave speeds
-	// waveone.nextGen = waveone.nextGen*(1/window.speedscale)/(1/window.oldspeedscale);
-    // var iterfactor = window.speedscale / window.oldspeedscale;
-	
+	waveone.nextGen = waveone.nextGen*(1/window.speedscale)/(1/window.oldspeedscale);
+    var iterfactor = window.speedscale / window.oldspeedscale;
 
-	// adjust speed of falling blocks
+	// slow down speed of falling blocks
 	for (var k = 0; k < blocks.length; k++){
 		blocks[k].iter = blocks[k].iter * iterfactor;
 	}
