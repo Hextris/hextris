@@ -237,16 +237,16 @@ function togglespeed(increment, blocks, hex) {
 	}
 
 	// slow down the generation of the wave , if necessary.
-	if (window.speedscale <= 1){
+	if (window.speedscale >= 1){
 		waveone.nextGen = waveone.nextGen * (1 / window.speedscale) / (1 / window.oldspeedscale);
 	}
 
 	if (waveone.nextGen > 3500){
 		waveone.nextGen = 3500;
 	}
-	else if (waveone.nextGen < 400){
-		waveone.nextGen = 400;
-	}
+	// else if (waveone.nextGen < 400){
+	// 	waveone.nextGen = 400;
+	// }
 
     var iterfactor = window.speedscale / window.oldspeedscale;
 
