@@ -219,25 +219,29 @@ function togglecolor(blocks, hex){
 	}
 }
 
-function togglespeed(increment, blocks, hex){
+function togglespeed(increment, blocks, hex) {
 
 	// check if we are incrementing or decrementing the game speed
-	if (increment < 0){
+	if (increment < 0) {
 
 		// if incrementing, adjust the speed accordingly
-		if (window.speedscale >= 0.3){
+		if (window.speedscale >= 0.3) {
 			window.speedscale -= 0.1;
 		}
 	}
 	else { // increment is positive
 		// if decrementing, adjust the speed accordingly
-		if (window.speedscale < 1.4){
+		if (window.speedscale < 1.4) {
 			window.speedscale += 0.1;
 		}
 	}
 
-	// slow down the generation of the wave speeds
-	waveone.nextGen = waveone.nextGen*(1/window.speedscale)/(1/window.oldspeedscale);
+	console.log(window.speedscale);
+
+	// slow down the generation of the wave , if necessary.
+	//if (window.speedscale <= 1){
+	//	waveone.nextGen = waveone.nextGen * (1 / window.speedscale) / (1 / window.oldspeedscale);
+	//}
     var iterfactor = window.speedscale / window.oldspeedscale;
 
 	// slow down speed of falling blocks
@@ -265,7 +269,6 @@ function toggleDrop(blocks, hex){
 	// extract only the closest block to the
 	var minDist = 999999;
 	for  (var i = 0; i < blocks.length; i++){
-		console.log(blocks[i].distFromHex);
 		if (blocks[i].distFromHex < minDist){
 			minDist = blocks[i].distFromHex;
 		}

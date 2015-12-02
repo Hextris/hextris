@@ -1,17 +1,26 @@
 function blockDestroyed() {
 
 	// PRJ: all * window.speedscale
-	if (waveone.nextGen*window.speedscale > 1350) {
+
+	var wavescalespeed;
+	if (window.speedscale <= 1.2){
+		wavescalespeed = window.speedscale;
+	}
+	else {
+		wavescalespeed = 1;
+	}
+
+	if (waveone.nextGen*wavescalespeed > 1350) {
 		waveone.nextGen -= 30 * settings.creationSpeedModifier;
-	} else if (waveone.nextGen*window.speedscale > 600) {
+	} else if (waveone.nextGen*wavescalespeed > 600) {
 		waveone.nextGen -= 8 * settings.creationSpeedModifier;
 	} else {
 		waveone.nextGen = 600;
 	}
 
 	// PRJ: this function scales down nextGen
-	if (window.speedscale > 0.001) {
-		waveone.nextGen = waveone.nextGen / window.speedscale;
+	if (wavescalespeed > 0.001) {
+		waveone.nextGen = waveone.nextGen / wavescalespeed;
 	}
 
 	if (waveone.difficulty < 35) {
@@ -19,6 +28,12 @@ function blockDestroyed() {
 	} else {
 		waveone.difficulty = 35;
 	}
+
+	if (waveone.nextGen > 5000){
+		waveone.nextGen = 5000;
+	}
+	console.log("genspeed");
+	console.log(waveone.nextGen);
 }
 
 function waveGen(hex) {
@@ -44,6 +59,7 @@ function waveGen(hex) {
 
 			// PRJ
 			this.nextGen = this.nextGen/window.speedscale;
+			console.log("nextgen");
 			console.log(this.nextGen);
 		}
 	};
