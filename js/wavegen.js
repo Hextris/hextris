@@ -3,7 +3,7 @@ function blockDestroyed() {
 	// PRJ: all * window.speedscale
 
 	var wavescalespeed;
-	if (window.speedscale <= 1.2){
+	if (window.speedscale <= 1.3){
 		wavescalespeed = window.speedscale;
 	}
 	else {
@@ -29,8 +29,8 @@ function blockDestroyed() {
 		waveone.difficulty = 35;
 	}
 
-	if (waveone.nextGen > 5000){
-		waveone.nextGen = 5000;
+	if (waveone.nextGen > 3500){
+		waveone.nextGen = 3500;
 	}
 	console.log("genspeed");
 	console.log(waveone.nextGen);
