@@ -32,6 +32,9 @@ function blockDestroyed() {
 	if (waveone.nextGen > 3500){
 		waveone.nextGen = 3500;
 	}
+	else if (waveone.nextGen < 400){
+		waveone.nextGen = 400;
+	}
 }
 
 function waveGen(hex) {
