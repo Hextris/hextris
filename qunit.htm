@@ -106,6 +106,8 @@
       assert.ok(prevSpeed-0.1 == window.speedscale, "speed lowered");
       assert.ok(testblk1.iter = 7.2, "block1 iter lower");
       assert.ok(testblk2.iter = 7.2, "block2 iter lower");
+      assert.ok(waveone.nextGen > 2500, "gen interval increased");
+
     });
     
     QUnit.test( "Speed up test, scenario 1.2", function( assert ) {
@@ -166,7 +168,7 @@
       assert.ok(prevSpeed + 0.1 == window.speedscale, "speed increased");
       assert.ok(testblk1.iter = 8.8, "block1 iter increased");
       assert.ok(testblk2.iter = 8.8, "block2 iter increased");
-      assert.ok(waveone.nextGen > 2500, "gen speed decreased");
+      assert.ok(waveone.nextGen < 2500, "gen interval decreased");
     });
 
     QUnit.test( "Speed up test, scenario 1.4", function( assert ) {
