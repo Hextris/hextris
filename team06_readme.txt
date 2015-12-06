@@ -9,8 +9,11 @@ Implementation 1: toggleColor function
 	files: js/input.js, js/main.js
 
 Implementation 2: toggleSpeed function
-	files: js/input.js
+	files: js/input.js, js/wavegen.js
 
 Implementation 3: toggleDrop function
 	files: js/input.js
+	
+Unit Tests: using qUnit Libary
+	files: qunit.htm, js/Hex_test.js, js/Block_test.js, js/initialization_test.js
 
