@@ -2,10 +2,27 @@ $(document).ready(function() {
 	initialize();
 });
 function initialize(a) {
+	// color blind mode variables
+	// max amount of color blind modes
+	window.currcb = 0;
+	window.prevcb = 0;
+
+	window.cbcolors = [
+		["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"],
+		["#8e44ad", "#f1c41f", "#3499db", "#d35400"],
+		["#000000", "#445555", "#c0c0c0", "#ffffff"]
+	]
+
+	// variables to adjust speed of game
+	window.speedscale = 1;
+	window.oldspeedscale = 1;
+
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;
-	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
+
+	window.colors = window.cbcolors[0];
+
 	window.hexColorsToTintedColors = {
 		"#e74c3c": "rgb(241,163,155)",
 		"#f1c40f": "rgb(246,223,133)",

@@ -1,4 +1,21 @@
 function Hex(sideLength) {
+	window.settings = {
+		os: "other",
+		platform: "nonmobile",
+		baseScale: 1,
+		startDist: 340,
+		creationDt: 9,
+		scale: 1,
+		prevScale: 1,
+		hexWidth: 65,
+		baseHexWidth: 87,
+		baseBlockHeight: 20,
+		blockHeight: 15,
+		rows: 8,
+		speedModifier: 0.65,
+		creationSpeedModifier: 0.65,
+		comboTime: 310
+	};
 	this.playThrough = 0;
 	this.fillColor = [44,62,80];
 	this.tempColor = [44,62,80];
@@ -13,10 +30,8 @@ function Hex(sideLength) {
 	this.shakes = [];
 	this.sideLength = sideLength;
 	this.strokeColor = 'blue';
-	this.x = trueCanvas.width / 2;
-	this.y = trueCanvas.height / 2;
 	this.ct = 0;
-	this.lastCombo = this.ct - settings.comboTime;
+	this.lastCombo = this.ct - window.settings.comboTime;
 	this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
@@ -47,7 +62,7 @@ function Hex(sideLength) {
 		block.settled = 1;
 		block.tint = 0.6;
 		var lane = this.sides - block.fallingLane;// -this.position;
-		this.shakes.push({lane:block.fallingLane, magnitude:4.5 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (settings.scale)});
+		this.shakes.push({lane:block.fallingLane, magnitude:4.5 * (window.devicePixelRatio ? window.devicePixelRatio : 1) * (window.settings.scale)});
 		lane += this.position;
 		lane = (lane + this.sides) % this.sides;
 		block.distFromHex = MainHex.sideLength / 2 * Math.sqrt(3) + block.height * this.blocks[lane].length;
@@ -57,8 +72,6 @@ function Hex(sideLength) {
 	};
 
 	this.doesBlockCollide = function(block, position, tArr) {
-
-		//block has rested on either the center of hex or on another block. Collision happened
 		if (block.settled) {
 			return;
 		}
@@ -66,58 +79,39 @@ function Hex(sideLength) {
 		if (position !== undefined) {
 			arr = tArr;
 			if (position <= 0) {
-				//current block has hit the center hex
-
-				if (block.distFromHex - block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+				if (block.distFromHex - block.iter * this.dt * window.settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					block.settled = 1;
 					block.checked = 1;
-				} 
-
-				//current block is still falling, increment iterations
-				else {
+				} else {
 					block.settled = 0;
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
-			} 
-
-			else {
-
-				//current block is above an existing settled block and hits the existing block
-				
-				if (arr[position - 1].settled && block.distFromHex - block.iter * this.dt * settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
+			} else {
+				if (arr[position - 1].settled && block.distFromHex - block.iter * this.dt * window.settings.scale - arr[position - 1].distFromHex - arr[position - 1].height <= 0) {
 					block.distFromHex = arr[position - 1].distFromHex + arr[position - 1].height;
 					block.settled = 1;
 					block.checked = 1;
 				}
-
-				//either the lower block has not settled yet OR current block has not settled (still falling)
 				else {
 					block.settled = 0;
 					block.iter = 1.5 + (waveone.difficulty/15) * 3;
 				}
 			}
-		} 
-
-		//block is yet created (position is not defined)
-		else {
+		} else {
 			var lane = this.sides - block.fallingLane;//  -this.position;
 			lane += this.position;
 
 			lane = (lane+this.sides) % this.sides;
 			var arr = this.blocks[lane];
 
-			//
-
 			if (arr.length > 0) {
-				if (block.distFromHex + block.iter * this.dt * settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
+				if (block.distFromHex + block.iter * this.dt * window.settings.scale - arr[arr.length - 1].distFromHex - arr[arr.length - 1].height <= 0) {
 					block.distFromHex = arr[arr.length - 1].distFromHex + arr[arr.length - 1].height;
 					this.addBlock(block);
 				}
-			} 
-
-			else {
-				if (block.distFromHex + block.iter * this.dt * settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
+			} else {
+				if (block.distFromHex + block.iter * this.dt * window.settings.scale - (this.sideLength / 2) * Math.sqrt(3) <= 0) {
 					block.distFromHex = (this.sideLength / 2) * Math.sqrt(3);
 					this.addBlock(block);
 				}
@@ -155,35 +149,6 @@ function Hex(sideLength) {
 		this.lastRotate = Date.now();
 	};
 
-	this.draw = function() {
-		this.x = trueCanvas.width/2;
-
-		if (gameState != -2) {
-			this.y = trueCanvas.height/2;
-		}
-		this.sideLength = settings.hexWidth;
-		gdx = 0;
-		gdy = 0;
-		for (var i = 0; i < this.shakes.length; i++) {
-			this.shake(this.shakes[i]);
-		}
-		if (this.angle > this.targetAngle) {
-			this.angularVelocity -= angularVelocityConst * this.dt;
-		}
-		else if(this.angle < this.targetAngle) {
-			this.angularVelocity += angularVelocityConst * this.dt;
-		}
-
-		if (Math.abs(this.angle - this.targetAngle + this.angularVelocity) <= Math.abs(this.angularVelocity)) { //do better soon
-			this.angle = this.targetAngle;
-			this.angularVelocity = 0;
-		}
-		else {
-			this.angle += this.angularVelocity;
-		}
-
-		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
-	};
 }
 
 function arrayToColor(arr){

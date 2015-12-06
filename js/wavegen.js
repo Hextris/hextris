@@ -1,16 +1,39 @@
 function blockDestroyed() {
-	if (waveone.nextGen > 1350) {
+
+	// PRJ: all * window.speedscale
+
+	var wavescalespeed;
+	if (window.speedscale <= 1.3){
+		wavescalespeed = window.speedscale;
+	}
+	else {
+		wavescalespeed = 1;
+	}
+
+	if (waveone.nextGen*wavescalespeed > 1350) {
 		waveone.nextGen -= 30 * settings.creationSpeedModifier;
-	} else if (waveone.nextGen > 600) {
+	} else if (waveone.nextGen*wavescalespeed > 600) {
 		waveone.nextGen -= 8 * settings.creationSpeedModifier;
 	} else {
 		waveone.nextGen = 600;
+	}
+
+	// PRJ: this function scales down nextGen
+	if (wavescalespeed > 0.001) {
+		waveone.nextGen = waveone.nextGen / wavescalespeed;
 	}
 
 	if (waveone.difficulty < 35) {
 		waveone.difficulty += 0.085 * settings.speedModifier;
 	} else {
 		waveone.difficulty = 35;
+	}
+
+	if (waveone.nextGen > 3500){
+		waveone.nextGen = 3500;
+	}
+	else if (waveone.nextGen < 400){
+		waveone.nextGen = 400;
 	}
 }
 
@@ -29,9 +52,14 @@ function waveGen(hex) {
 		this.dt = (settings.platform == 'mobile' ? 14 : 16.6667) * MainHex.ct;
 		this.computeDifficulty();
 		if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
-			if (this.nextGen > 600) {
+
+			// PRJ: * window.speedscale
+			if (this.nextGen*window.speedscale > 600) {
 				this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
 			}
+
+			// PRJ
+			this.nextGen = this.nextGen/window.speedscale;
 		}
 	};
 

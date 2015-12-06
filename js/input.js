@@ -41,13 +41,37 @@ function addKeyListeners() {
 
 	keypress.register_combo({
 		keys: "space",
-		on_keydown: function(){pause();}
+		on_keydown: function(){toggleDrop(window.blocks, MainHex);}
 	});
 
 	keypress.register_combo({
 		keys: "q",
 		on_keydown: function() {
 			if (devMode) toggleDevTools();
+		}
+	});
+
+    // speed up key
+	keypress.register_combo({
+		keys: "up",
+		on_keydown: function() {
+			togglespeed(0.1, window.blocks, MainHex);
+		}
+	});
+
+    // slow down key
+	keypress.register_combo({
+		keys: "down",
+		on_keydown: function() {
+			togglespeed(-0.1, window.blocks, MainHex);
+		}
+	});
+
+    // colour blind toggle key
+	keypress.register_combo({
+		keys: "t",
+		on_keydown: function(){
+			togglecolor(window.blocks, MainHex);
 		}
 	});
 
@@ -78,32 +102,6 @@ function addKeyListeners() {
 		pause();
 		return false;
 	});
-
-	$("#colorBlindBtn").on('touchstart mousedown', function() {
-	window.colors = ["#8e44ad", "#f1c40f", "#3498db", "#d35400"];
-
-	window.hexColorsToTintedColors = {
-		"#8e44ad": "rgb(229,152,102)",
-		"#f1c40f": "rgb(246,223,133)",
-		"#3498db": "rgb(151,201,235)",
-		"#d35400": "rgb(210,180,222)"
-	};
-
-	window.rgbToHex = {
-		"rgb(142,68,173)": "#8e44ad",
-		"rgb(241,196,15)": "#f1c40f",
-		"rgb(52,152,219)": "#3498db",
-		"rgb(211,84,0)": "#d35400"
-	};
-
-	window.rgbColorsToTintedColors = {
-		"rgb(142,68,173)": "rgb(229,152,102)",
-		"rgb(241,196,15)": "rgb(246,223,133)",
-		"rgb(52,152,219)": "rgb(151,201,235)",
-		"rgb(46,204,113)": "rgb(210,180,222)"
-	};
-	});
-
 
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 			$("#restart").on('touchstart', function() {
@@ -189,3 +187,100 @@ function handleClickTap(x,y) {
 	}
 }
 
+function togglecolor(blocks, hex){
+	// compute the current and next color
+	window.prevcb = window.currcb;
+	window.currcb = (window.prevcb + 1) % window.cbcolors.length;
+
+	// set the current window color to the one we need
+	window.colors = window.cbcolors[currcb];
+
+	// obtain all the current falling blocks
+	for (var i = 0; i < blocks.length; i++){
+
+		// find the colour of the block and change accordingly
+		for (var j = 0; j < window.cbcolors[window.prevcb].length; j++){
+			if (blocks[i].color == window.cbcolors[window.prevcb][j]){
+				blocks[i].color = window.cbcolors[window.currcb][j]
+			}
+		}
+	}
+
+	// obtain all colours from the hex and change them
+	for(var k = 0; k < hex.blocks.length; k++) {
+		for (var l = 0; l < hex.blocks[k].length; l++) {
+			for (var m = 0; m < window.cbcolors[window.prevcb].length; m++){
+				// find the colour of the block and change accordingly
+				if (hex.blocks[k][l].color == window.cbcolors[window.prevcb][m]){
+					hex.blocks[k][l].color = window.cbcolors[window.currcb][m];
+				}
+			}
+		}
+	}
+}
+
+function togglespeed(increment, blocks, hex) {
+
+	// check if we are incrementing or decrementing the game speed
+	if (increment < 0) {
+
+		// if incrementing, adjust the speed accordingly
+		if (window.speedscale >= 0.3) {
+			window.speedscale -= 0.1;
+		}
+	}
+	else { // increment is positive
+		// if decrementing, adjust the speed accordingly
+		if (window.speedscale < 1.4) {
+			window.speedscale += 0.1;
+		}
+	}
+
+	// slow down the generation of the wave , if necessary.
+	if (window.speedscale >= 1){
+		waveone.nextGen = waveone.nextGen * (1 / window.speedscale) / (1 / window.oldspeedscale);
+	}
+
+	if (waveone.nextGen > 3500){
+		waveone.nextGen = 3500;
+	}
+	
+    var iterfactor = window.speedscale / window.oldspeedscale;
+
+	// slow down speed of falling blocks
+	for (var k = 0; k < blocks.length; k++){
+		blocks[k].iter = blocks[k].iter * iterfactor;
+	}
+
+	// obtain all speeds from the hex and change thems
+	for(var k = 0; k < hex.blocks.length; k++) {
+		for (var l = 0; l < hex.blocks[k].length; l++) {
+			hex.blocks[k][l].iter = hex.blocks[k][l].iter*iterfactor;
+		}
+	}
+
+    // store the old value of so speed can be adjusted in future
+	window.oldspeedscale = window.speedscale;
+}
+
+// When called, the currently falling blocks will immediately fall towards the center of hex
+function toggleDrop(blocks, hex){
+
+	// tolerance for comparing doubles
+	var tolearnce = 0.01;
+
+	// extract only the closest block to the
+	var minDist = 999999;
+	for  (var i = 0; i < blocks.length; i++){
+		if (blocks[i].distFromHex < minDist){
+			minDist = blocks[i].distFromHex;
+		}
+	}
+
+	//obtain current falling blocks; blocks[0] for a single falling block, [1] for a joint falling block...
+	for (var i = 0; i < blocks.length; i++){
+		if (blocks[i].distFromHex >= (minDist - tolearnce) && blocks[i].distFromHex <= (minDist + tolearnce)){
+			hex.addBlock(blocks[i]);
+		}
+	}
+}

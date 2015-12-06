@@ -1,0 +1,107 @@
+Github issue:
+Please allow for a more gradual increase of speed
+#129 opened on Mar 3, 2015 by EricViala
+
+1. User Story:
+As a player
+I want to have the ability to speed up or slow down the game
+So that I am able to adjust the game for my skill level
+
+Acceptance Criteria:
+
+Scenario 1.1: Game is currently at 40% of its original speed or higher
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 40% of its original playing speed or higher
+When the player presses the "Down" arrow key
+Then the speed of the dropping blocks will be slowed down by 10%
+    And the rate of generation of blocks will be slowed down by 10%
+    And the game continues.
+
+Scenario 1.2: Game is currently at 30% of its original speed (game is very slow)
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 30% of its original playing speed
+When the player presses the "Down" arrow key
+Then the speed of the dropping blocks will remain the same
+    And the rate of generation of blocks blocks will remain the same
+    And the game continues.
+
+Scenario 1.3: Game is currently at 170% of its original speed or lower
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 170% of its original playing speed or lower
+When the player presses the "UP" arrow key
+Then the speed of the dropping blocks will be sped up by 10%
+    And the rate of generation of blocks will be sped up by 10%
+    And the game continues.
+
+Scenario 1.4: Game is currently at 180% of its original speed (game is very fast)
+Given that the game has started
+    And the player is currently playing the game
+    And the game is at 180% of its original playing speed
+When the player presses the "UP" arrow key
+Then the speed of the dropping blocks will remain the same
+    And the rate of generation of blocks will remain the same
+    And the game continues.
+
+
+=====================================================
+Github issue:
+Alternate color combination to Red/Green, Color blind people may face issue. enhancement
+#74 opened on Aug 17, 2014 by tripples
+
+2. User Story:
+As a colourblind player
+I want to have the ability change the appearence of the colours of the block
+So that I am able to distinguish the blocks from each other
+
+Scenario 2.1: User Press Colourblind Toggle Button when in the default colour
+Given that the game has started
+    And the player is currently playing the game
+When the player presses the "T" key
+Then the colour of the blocks will change to another colour that is friendly for the colourblind
+    And the game continues.
+
+Scenario 2.2: User Press Colourblind Toggle Button when in a colourblind mode
+Given that the game has started
+    And the player is currently playing the game
+    And the blocks are currently in a colourblind colour
+When the player presses the "T" key
+Then the colour of the blocks will change to anothe set of colours that is friendly for the colourblind,
+        if the player has not cycled through all the colourblind colours yet, otherwise the colour of the blocks
+        will revert back to the default colour.
+    And the game continues.
+
+=====================================================
+Additional Feature:
+Block falls immediately onto center hex upon keypress
+
+3. User Story:
+As a player
+I want to be able to drop the closest falling block immediately onto the side of the center hex I have rotated to immediately
+So that I am able to play the game at a faster pace
+
+Scenario 3.1: User presses Drop Block Toggle Button when a single block is falling
+Given that the game has started
+    And the player is currently playing the game
+    And a single-block is currently falling
+When the player presses the "space" key
+Then the currently falling single-block will fall instantly onto the side of the center hex the player has rotated to
+    And the game continues.
+
+Scenario 3.2: User presses Drop Block Toggle Button when a doubly-joint block is falling
+Given that the game has started
+    And the player is currently playing the game
+    And a doubly-joint block is currently falling
+When the player presses the "space" key
+Then the whole joint block will fall instantly onto the side of the center hex the player has rotated to as a single piece
+    And the game continues.
+
+Scenario 3.3: User presses Drop Block Toggle Button when multiple blocks are falling on the screen
+Given taht the game has started
+    And the player is currently playing the game
+    And there are 2 blocks both falling onto the center hex on the same lane
+Whe the player presses the "space" key
+Then only the block closest to the center hex falls instantly while the other falling block remains falling at its original speed
+    And the game continues.

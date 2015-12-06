@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hetrix Acceptance Tests</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.20.0.css">
+  <script src="http://code.jquery.com/qunit/qunit-1.20.0.js"></script>
+  <script src="js/Block_test.js"></script>
+  <script src="js/Hex_test.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/wavegen.js"></script>
+  <script src="js/initialization_test.js"></script>
+
+  <script type='text/javascript' charset='utf-8' src='cordova.js'></script>
+  <script src="vendor/sweet-alert.min.js"></script>
+  <script>
+    QUnit.test( "colourblind scneario 2.1", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      var testblk1 = new Block(1, "#e74c3c", 123, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 123, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 123, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 123, -1, 0);
+      MainHex = new Hex(6);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+      // when
+      togglecolor(window.blocks, MainHex);
+      // then
+      assert.ok(MainHex.blocks[0][0].color == "#8e44ad", "Block1 on Hex");
+      assert.ok(MainHex.blocks[1][0].color == "#f1c41f", "Block2 on Hex");
+      assert.ok(window.blocks[0].color == "#3499db", "Block3 falling");
+      assert.ok(window.blocks[1].color == "#d35400", "Block4 falling");
+      assert.ok(window.gameState == 1, "Game continues");
+    });
+
+    // This test will run on boundary case of where the user is required to cycle through the colour lists again
+    // given
+    QUnit.test( "colourblind test, scenario 2.2", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      window.currcb = 2;
+      var testblk1 = new Block(1, "#000000", 123, -1, 1);
+      var testblk2 = new Block(2, "#445555", 123, -1, 1);
+      var testblk3 = new Block(3, "#c0c0c0", 123, -1, 0);
+      var testblk4 = new Block(4, "#ffffff", 123, -1, 0);
+      MainHex = new Hex(6);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+      // when
+      togglecolor(window.blocks, MainHex);
+      // then
+      assert.ok(MainHex.blocks[0][0].color == "#e74c3c", "Block1 on Hex");
+      assert.ok(MainHex.blocks[1][0].color == "#f1c40f", "Block2 on Hex");
+      assert.ok(window.blocks[0].color == "#3498db", "Block3 falling");
+      assert.ok(window.blocks[1].color == "#2ecc71", "Block4 falling");
+      assert.ok(window.gameState == 1, "Game continues");
+    });
+
+    // This test will run on empty block lists, such as when the game just starts, to ensure proper functioning of functions on empty lists
+    QUnit.test( "colourblind test on empty list", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      MainHex = new Hex(6);
+      // when
+      togglecolor(window.blocks, MainHex);
+      // then
+      for(var i = 0; i < MainHex.blocks.length; i++){
+        assert.ok(MainHex.blocks[i].length == 0, "Hex block lane " + i + " is empty.");
+      }
+      assert.ok(window.blocks.length == 0, "Falling blocks list empty.");
+    });
+
+
+    QUnit.test( "Speed up test, scenario 1.1", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      var testblk1 = new Block(1, "#e74c3c", 8, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 8, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 8, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 8, -1, 0);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+
+
+      //game currently runs at 40% of original speed
+      window.speedscale = 0.4; 
+      var prevSpeed = window.speedscale;
+
+      // when
+      togglespeed(-1, blocks, MainHex);
+      // then
+      // Assert speed of generation has changed
+      assert.ok(prevSpeed-0.1 == window.speedscale, "speed lowered");
+      assert.ok(testblk1.iter = 7.2, "block1 iter lower");
+      assert.ok(testblk2.iter = 7.2, "block2 iter lower");
+      assert.ok(waveone.nextGen > 2500, "gen interval increased");
+
+    });
+    
+    QUnit.test( "Speed up test, scenario 1.2", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      //game currently runs at 20% of original speed
+      window.speedscale = 0.2;
+      window.nextGen = 2500;
+      var testblk1 = new Block(1, "#e74c3c", 8, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 8, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 8, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 8, -1, 0);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+
+      var prevSpeed = window.speedscale;
+      var prevGen = window.nextGen;
+
+      // when
+      togglespeed(-1, blocks, MainHex);
+      // then
+      assert.ok(prevGen == window.nextGen, "gen speed constant");
+      assert.ok(prevSpeed == window.speedscale, "speed constant");
+      assert.ok(testblk1.iter = 8, "block1 iter constant");
+      assert.ok(testblk2.iter = 8, "block2 iter constant");
+    });
+
+    QUnit.test( "Speed up test, scenario 1.3", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      window.nextGen = 2500;
+      var testblk1 = new Block(1, "#e74c3c", 8, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 8, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 8, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 8, -1, 0);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+
+
+      //game currently runs at 130% of original speed
+      window.speedscale = 1.3; 
+      var prevSpeed = window.speedscale;
+
+      // when
+      togglespeed(1, blocks, MainHex);
+      // then
+      // Assert that gamespeed is increased by 0.1, since it has not reached the limit of 1.4 yet
+      assert.ok(prevSpeed + 0.1 == window.speedscale, "speed increased");
+      assert.ok(testblk1.iter = 8.8, "block1 iter increased");
+      assert.ok(testblk2.iter = 8.8, "block2 iter increased");
+      assert.ok(waveone.nextGen < 2500, "gen interval decreased");
+    });
+
+    QUnit.test( "Speed up test, scenario 1.4", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+      window.nextGen = 2500;
+      var testblk1 = new Block(1, "#e74c3c", 8, -1, 1);
+      var testblk2 = new Block(2, "#f1c40f", 8, -1, 1);
+      var testblk3 = new Block(3, "#3498db", 8, -1, 0);
+      var testblk4 = new Block(4, "#2ecc71", 8, -1, 0);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+      MainHex.blocks[0].push(testblk1);
+      MainHex.blocks[1].push(testblk2);
+      window.blocks.push(testblk3);
+      window.blocks.push(testblk4);
+
+
+      //game currently runs at 180% of original speed
+      window.speedscale = 1.8; 
+      var prevSpeed = window.speedscale;
+      var prevGen = window.nextGen;
+      // when
+      togglespeed(1, blocks, MainHex);
+      // then
+      // Assert speed of generation has not changed
+      assert.ok(prevGen == window.nextGen, "gen speed constant");
+      assert.ok(testblk1.iter = 8, "block1 iter constant");
+      assert.ok(testblk2.iter = 8, "block2 iter constant");
+      assert.ok(prevSpeed == window.speedscale, "speed same");
+    });
+
+    QUnit.test( "Block Drop Test, scenario 3.1", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+
+      //a single falling block
+      var testblk1 = new Block(1, "#e74c3c", 8, settings.startDist * settings.scale);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+
+      //block is falling
+      window.blocks.push(testblk1);
+      assert.ok(testblk1.settled == 0, "test block 1 unsettled");
+
+      // when
+      toggleDrop(blocks, MainHex);
+      MainHex.doesBlockCollide(testblk1, testblk1.fallingLane, window.blocks);
+      // then
+      // assert block added to hex
+      assert.ok(MainHex.blocks[5].length == 1, "lane 5 has one block");
+      // Assert only testblk1 has fell immediately onto center hex
+      assert.ok(testblk1.settled == 1, "test block 1 settled");
+    });
+
+    QUnit.test( "Block Drop Test, scenario 3.2", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+
+      //a doubly-joint falling block
+      var testblk1 = new Block(1, "#e74c3c", 8, settings.startDist * settings.scale);
+      var testblk2 = new Block(2, "#f1c40f", 8, settings.startDist * settings.scale);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+
+      //block is falling
+      window.blocks.push(testblk1);
+      window.blocks.push(testblk2);
+      assert.ok(testblk1.settled == 0, "test block 1 not settled");
+      assert.ok(testblk2.settled == 0, "test block 2 not settled");
+
+      // when
+      toggleDrop(blocks, MainHex);
+      // then
+      // add block to hex
+      MainHex.doesBlockCollide(testblk1, testblk1.fallinglane, window.blocks);
+      MainHex.doesBlockCollide(testblk2, testblk2.fallinglane, window.blocks);
+
+      // Assert both testblk1 and testblk2 are settled on the center hex
+      assert.ok(testblk1.settled == 1, "test block 1 settled");
+      assert.ok(testblk2.settled == 1, "test block 2 settled");
+      assert.ok(MainHex.blocks[4].length == 1, "lane 4 has one block");
+      assert.ok(MainHex.blocks[5].length == 1, "lane 5 has one block");
+    });
+
+    QUnit.test( "Block Drop Test, scenario 3.3", function( assert ) {
+      initialize(1);
+      // given
+      window.gameState = 1; // game is starting
+
+      //two falling blocks on the same lane, but at different distances from the center hex
+      //testblk 2 is closer to the center hex
+      var testblk1 = new Block(1, "#e74c3c", 8, settings.startDist * settings.scale);
+      var testblk2 = new Block(1, "#f1c40f", 8, (settings.startDist * settings.scale) - 16);
+      MainHex = new Hex(6);
+      waveone = new waveGen(MainHex);
+
+      //both blocks are falling
+      window.blocks.push(testblk1);
+      window.blocks.push(testblk2);
+      assert.ok(testblk1.settled == 0, "test block 1 not settled");
+      assert.ok(testblk2.settled == 0, "test block 2 not settled");
+
+      // when
+      toggleDrop(blocks, MainHex);
+      // TODO: ensure blocks collide
+      MainHex.doesBlockCollide(testblk1, testblk1.fallingLane, window.blocks);
+      MainHex.doesBlockCollide(testblk2, testblk2.fallingLane, window.blocks);
+      // then
+      // Assert that only testblk 2 has fell onto center hex; testblk 1 should still be falling and has not settled
+
+      assert.ok(testblk1.settled == 0, "test block 1 not settled");
+      assert.ok(testblk2.settled == 1, "test block 2 settled");
+      // assert only one block is added to the hex
+      assert.ok(MainHex.blocks[4].length == 0, "lane 4 empty")
+      assert.ok(MainHex.blocks[5].length == 1, "lane 5 has one block");
+    });
+
+  </script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+</body>
+</html>
