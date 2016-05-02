@@ -6,7 +6,7 @@ function easeOutCubic(t, b, c, d) {
 function renderText(x, y, fontSize, color, text, font) {
 	ctx.save();
 	if (!font) {
-		var font = '20px Exo';
+		var font = 'px Exo';
 	}
 
 	fontSize *= settings.scale;
