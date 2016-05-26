@@ -15,7 +15,7 @@
 	width:250px;
 	overflow:visible;
 	margin-left:-175px;
-	font-family:Exo;
+	font-family:Roboto;
 
 }
 #container {
@@ -25,7 +25,7 @@
 	top:calc(50%);
 	text-align:center;
 	transform:translate(-50%, -50%);
-	font-family:Exo;
+	font-family:Roboto;
 	-webkit-transform:translate(-50%, -50%);
 	-moz-transform:translate(-50%, -50%);
 	-ms-transform:translate(-50%, -50%);
@@ -365,7 +365,7 @@ button:focus {
 
 body {
 	color:#ecf0f1;
-	font-family:'Exo', sans-serif;
+	font-family:'Roboto', sans-serif;
 	background-color:#ecf0f1;
 }
 
@@ -444,18 +444,18 @@ body {
 	padding:8px;
 }
 @font-face {
-	font-family:Exo;
+	font-family:Roboto;
 	font-weight:light;
 	src:url("./fonts/Exo2-ExtraLight.otf") format("opentype");
 }
 
 @font-face {
-	font-family:Exo;
+	font-family:Roboto;
 	src:url("./fonts/Exo2-Regular.otf") format("opentype");
 }
 
 @font-face {
-	font-family:Exo;
+	font-family:Roboto;
 	font-weight:bold;
 	src:url("./fonts/Exo2-SemiBold.otf") format("opentype");
 }
