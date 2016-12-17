@@ -19,8 +19,10 @@ function Hex(sideLength) {
 	this.lastCombo = this.ct - settings.comboTime;
 	this.lastColorScored = "#000";
 	this.adrenalineMode = -1000;
-	this.adrenalineDuration = 1000;
-	this.combosToAdrenaline = 2;
+	this.adrenalineDuration = 800;
+	this.combosToAdrenaline = 6;
+	this.adrenalineColor = 1;
+	this.adrenalineMultiplier = 2;
 	this.texts = [];
 		this.lastRotate = Date.now();
 	for (var i = 0; i < this.sides; i++) {

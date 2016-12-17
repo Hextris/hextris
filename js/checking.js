@@ -74,6 +74,7 @@ function consolidateBlocks(hex,side,index){
 		if(hex.comboMultiplier >= MainHex.combosToAdrenaline){
 			hex.adrenalineMode = now;
 			hex.comboMultiplier = 1;
+			hex.adrenalineColor = randInt(0, colors.length);
 		}
 	}
 	else{

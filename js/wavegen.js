@@ -24,23 +24,31 @@ function waveGen(hex) {
 	this.hex = hex;
 	this.difficulty = 1;
 	this.dt = 0;
+	this.adrenalineMultiplier = 1;
 	this.update = function() {
 		this.currentFunction();
 		this.dt = (settings.platform == 'mobile' ? 14 : 16.6667) * MainHex.ct;
 		this.computeDifficulty();
+		if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+			this.adrenalineMultiplier = 1;
+		}else this.adrenalineMultiplier = MainHex.adrenalineMultiplier;
 		if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
 			if (this.nextGen > 600) {
 				this.nextGen -= 11 * ((this.nextGen / 1300)) * settings.creationSpeedModifier;
-			}
-		}
+		}}
 	};
 
 	this.randomGeneration = function() {
-		if (this.dt - this.lastGen > this.nextGen) {
+		if (this.dt - this.lastGen > this.nextGen / this.adrenalineMultiplier) {
 			this.ct++;
 			this.lastGen = this.dt;
 			var fv = randInt(0, MainHex.sides);
-			addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty / 15) * 3);
+			
+			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration)
+				addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty / 15) * 3);
+			else
+				addNewBlock(fv, colors[MainHex.adrenalineColor], 1.6 + (this.difficulty / 15) * 3);
+
 			var lim = 5;
 			if (this.ct > lim) {
 				var nextPattern = randInt(0, 3 + 21);
@@ -80,7 +88,7 @@ function waveGen(hex) {
 	};
 
 	this.circleGeneration = function() {
-		if (this.dt - this.lastGen > this.nextGen + 500) {
+		if (this.dt - this.lastGen > (this.nextGen + 500) / this.adrenalineMultiplier) {
 			var numColors = randInt(1, 4);
 			if (numColors == 3) {
 				numColors = randInt(1, 4);
@@ -99,7 +107,10 @@ function waveGen(hex) {
 			}
 
 			for (var i = 0; i < MainHex.sides; i++) {
-				addNewBlock(i, colorList[i % numColors], 1.5 + (this.difficulty / 15) * 3);
+				if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration)
+					addNewBlock(i, colorList[i % numColors], 1.5 + (this.difficulty / 15) * 3);
+				else 
+					addNewBlock(i, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * 3);
 			}
 
 			this.ct += 15;
@@ -109,7 +120,7 @@ function waveGen(hex) {
 	};
 
 	this.halfCircleGeneration = function() {
-		if (this.dt - this.lastGen > (this.nextGen + 500) / 2) {
+		if (this.dt - this.lastGen > ((this.nextGen + 500) / 2 ) / this.adrenalineMultiplier) {
 			var numColors = randInt(1, 3);
 			var c = colors[randInt(0, colors.length)];
 			var colorList = [c, c, c];
@@ -119,7 +130,10 @@ function waveGen(hex) {
 
 			var d = randInt(0, 6);
 			for (var i = 0; i < 3; i++) {
-				addNewBlock((d + i) % 6, colorList[i], 1.5 + (this.difficulty / 15) * 3);
+				if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration)
+					addNewBlock((d + i) % 6, colorList[i], 1.5 + (this.difficulty / 15) * 3);
+				else
+					addNewBlock((d + i) % 6, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * 3);
 			}
 
 			this.ct += 8;
@@ -129,11 +143,16 @@ function waveGen(hex) {
 	};
 
 	this.crosswiseGeneration = function() {
-		if (this.dt - this.lastGen > this.nextGen) {
+		if (this.dt - this.lastGen > this.nextGen / this.adrenalineMultiplier) {
 			var ri = randInt(0, colors.length);
 			var i = randInt(0, colors.length);
-			addNewBlock(i, colors[ri], 0.6 + (this.difficulty / 15) * 3);
-			addNewBlock((i + 3) % MainHex.sides, colors[ri], 0.6 + (this.difficulty / 15) * 3);
+			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+				addNewBlock(i, colors[ri], 0.6 + (this.difficulty / 15) * 3);
+				addNewBlock((i + 3) % MainHex.sides, colors[ri], 0.6 + (this.difficulty / 15) * 3);
+			}else{
+				addNewBlock(i, colors[MainHex.adrenalineColor], 0.6 + (this.difficulty / 15) * 3);
+				addNewBlock((i + 3) % MainHex.sides, colors[MainHex.adrenalineColor], 0.6 + (this.difficulty / 15) * 3);
+			}
 			this.ct += 1.5;
 			this.lastGen = this.dt;
 			this.shouldChangePattern();
@@ -142,11 +161,19 @@ function waveGen(hex) {
 
 	this.spiralGeneration = function() {
 		var dir = randInt(0, 2);
-		if (this.dt - this.lastGen > this.nextGen * (2 / 3)) {
-			if (dir) {
-				addNewBlock(5 - (this.ct % MainHex.sides), colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
-			} else {
-				addNewBlock(this.ct % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+		if (this.dt - this.lastGen > (this.nextGen * (2 / 3))/ this.adrenalineMultiplier) {
+			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+				if (dir) {
+					addNewBlock(5 - (this.ct % MainHex.sides), colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+				} else {
+					addNewBlock(this.ct % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+				}
+			}else{
+				if (dir) {
+					addNewBlock(5 - (this.ct % MainHex.sides), colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * (3 / 2));
+				} else {
+					addNewBlock(this.ct % MainHex.sides, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * (3 / 2));
+				}
 			}
 			this.ct += 1;
 			this.lastGen = this.dt;
@@ -155,10 +182,15 @@ function waveGen(hex) {
 	};
 
 	this.doubleGeneration = function() {
-		if (this.dt - this.lastGen > this.nextGen) {
+		if (this.dt - this.lastGen > this.nextGen / this.adrenalineMultiplier)  {
 			var i = randInt(0, colors.length);
-			addNewBlock(i, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
-			addNewBlock((i + 1) % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
+			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+				addNewBlock(i, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
+				addNewBlock((i + 1) % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
+			}else{
+				addNewBlock(i, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * 3);
+				addNewBlock((i + 1) % MainHex.sides, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * 3);
+			}
 			this.ct += 2;
 			this.lastGen = this.dt;
 			this.shouldChangePattern();
