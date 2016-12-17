@@ -1,5 +1,6 @@
 function render() {
 	var grey = '#bdc3c7';
+	var red = '#ff93a5';
 	if (gameState === 0) {
 		grey = "rgb(220, 223, 225)";
 	}
@@ -11,7 +12,10 @@ function render() {
 			op += 0.01;
 		}
 		ctx.globalAlpha = op;
-		drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);
+		if(MainHex.ct - MainHex.adrenalineMode < MainHex.adrenalineDuration)	
+			drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, red, false,6);
+		else
+			drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);
 		drawTimer();
 		ctx.globalAlpha = 1;
 	}
