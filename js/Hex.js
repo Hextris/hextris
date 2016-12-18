@@ -20,9 +20,15 @@ function Hex(sideLength) {
 	this.lastColorScored = "#000";
 	this.adrenalineMode = -1000;
 	this.adrenalineDuration = 800;
-	this.combosToAdrenaline = 6;
+	this.combosToAdrenaline = 8;
 	this.adrenalineColor = 1;
 	this.adrenalineMultiplier = 2;
+
+	this.adrenalineOn = function(){
+		return this.ct - this.adrenalineMode < this.adrenalineDuration;
+	}
+
+
 	this.texts = [];
 		this.lastRotate = Date.now();
 	for (var i = 0; i < this.sides; i++) {

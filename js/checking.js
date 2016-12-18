@@ -65,7 +65,7 @@ function consolidateBlocks(hex,side,index){
 
 	// add scores
 	var now = MainHex.ct;
-	if(now - hex.lastCombo < settings.comboTime && now - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+	if(now - hex.lastCombo < settings.comboTime && !MainHex.adrenalineOn()){
 		settings.comboTime = (1/settings.creationSpeedModifier) * (waveone.nextGen/16.666667) * 3;
 		hex.comboMultiplier += 1;
 		hex.lastCombo = now;

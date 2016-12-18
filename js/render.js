@@ -12,7 +12,7 @@ function render() {
 			op += 0.01;
 		}
 		ctx.globalAlpha = op;
-		if(MainHex.ct - MainHex.adrenalineMode < MainHex.adrenalineDuration)	
+		if(MainHex.adrenalineOn())	
 			drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, red, false,6);
 		else
 			drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);

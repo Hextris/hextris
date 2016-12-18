@@ -29,7 +29,7 @@ function waveGen(hex) {
 		this.currentFunction();
 		this.dt = (settings.platform == 'mobile' ? 14 : 16.6667) * MainHex.ct;
 		this.computeDifficulty();
-		if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+		if(!MainHex.adrenalineOn()){
 			this.adrenalineMultiplier = 1;
 		}else this.adrenalineMultiplier = MainHex.adrenalineMultiplier;
 		if ((this.dt - this.lastGen) * settings.creationSpeedModifier > this.nextGen) {
@@ -44,7 +44,7 @@ function waveGen(hex) {
 			this.lastGen = this.dt;
 			var fv = randInt(0, MainHex.sides);
 			
-			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration)
+			if(!MainHex.adrenalineOn())
 				addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty / 15) * 3);
 			else
 				addNewBlock(fv, colors[MainHex.adrenalineColor], 1.6 + (this.difficulty / 15) * 3);
@@ -107,7 +107,7 @@ function waveGen(hex) {
 			}
 
 			for (var i = 0; i < MainHex.sides; i++) {
-				if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration)
+				if(!MainHex.adrenalineOn())
 					addNewBlock(i, colorList[i % numColors], 1.5 + (this.difficulty / 15) * 3);
 				else 
 					addNewBlock(i, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * 3);
@@ -130,7 +130,7 @@ function waveGen(hex) {
 
 			var d = randInt(0, 6);
 			for (var i = 0; i < 3; i++) {
-				if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration)
+				if(!MainHex.adrenalineOn())
 					addNewBlock((d + i) % 6, colorList[i], 1.5 + (this.difficulty / 15) * 3);
 				else
 					addNewBlock((d + i) % 6, colors[MainHex.adrenalineColor], 1.5 + (this.difficulty / 15) * 3);
@@ -146,7 +146,7 @@ function waveGen(hex) {
 		if (this.dt - this.lastGen > this.nextGen / this.adrenalineMultiplier) {
 			var ri = randInt(0, colors.length);
 			var i = randInt(0, colors.length);
-			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+			if(!MainHex.adrenalineOn()){
 				addNewBlock(i, colors[ri], 0.6 + (this.difficulty / 15) * 3);
 				addNewBlock((i + 3) % MainHex.sides, colors[ri], 0.6 + (this.difficulty / 15) * 3);
 			}else{
@@ -162,7 +162,7 @@ function waveGen(hex) {
 	this.spiralGeneration = function() {
 		var dir = randInt(0, 2);
 		if (this.dt - this.lastGen > (this.nextGen * (2 / 3))/ this.adrenalineMultiplier) {
-			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+			if(!MainHex.adrenalineOn()){
 				if (dir) {
 					addNewBlock(5 - (this.ct % MainHex.sides), colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
 				} else {
@@ -184,7 +184,7 @@ function waveGen(hex) {
 	this.doubleGeneration = function() {
 		if (this.dt - this.lastGen > this.nextGen / this.adrenalineMultiplier)  {
 			var i = randInt(0, colors.length);
-			if(MainHex.ct - MainHex.adrenalineMode > MainHex.adrenalineDuration){
+			if(!MainHex.adrenalineOn()){
 				addNewBlock(i, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
 				addNewBlock((i + 1) % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
 			}else{
