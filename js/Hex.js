@@ -20,7 +20,7 @@ function Hex(sideLength) {
 	this.lastColorScored = "#000";
 	this.adrenalineMode = -1000;
 	this.adrenalineDuration = 800;
-	this.combosToAdrenaline = 8;
+	this.combosToAdrenaline = 12;
 	this.adrenalineColor = 1;
 	this.adrenalineMultiplier = 2;
 
