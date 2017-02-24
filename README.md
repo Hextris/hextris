@@ -1,7 +1,7 @@
 Hextris
 ==========
 
-Contributors:
+By:
  - Logan Engstrom (@lengstrom)
  - Garrett Finucane (@garrettdreyfus)
  - Noah Moroze (@nmoroze)
