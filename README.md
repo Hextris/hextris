@@ -7,7 +7,7 @@ By:
  - Noah Moroze (@nmoroze)
  - Michael Yang (@themichaelyang)
 
-#Contributions
+# Contributions
 Please submit pull requests to clay-improvements
 
 # Releases
