@@ -32,45 +32,45 @@
 		<meta property="twitter:app:url:ipad" content="itunes.apple.com/us/app/id903769553?mt=8">
 		<meta property="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.hextris.hextris">
 		<link rel="icon" type="image/png" href="favicon.ico">
-		<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Exo+2">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="style/style.css">
-		<script type='text/javascript' src="vendor/hammer.min.js"></script>
-		<script type='text/javascript' src="vendor/js.cookie.js"></script>
-		<script type='text/javascript' src="vendor/jsonfn.min.js"></script>
-		<script type='text/javascript' src="vendor/keypress.min.js"></script>
-		<script type='text/javascript' src="vendor/jquery.js"></script>
-		<script type='text/javascript' src="js/save-state.js"></script>
-		<script type='text/javascript' src="js/view.js"></script>
-		<script type='text/javascript' src="js/wavegen.js"></script>
-		<script type='text/javascript' src="js/math.js"></script>
-		<script type='text/javascript' src="js/Block.js"></script>
-		<script type='text/javascript' src="js/Hex.js"></script>
-		<script type='text/javascript' src="js/Text.js"></script>
-		<script type='text/javascript' src="js/comboTimer.js"></script>
-		<script type='text/javascript' src="js/checking.js"></script>
-		<script type='text/javascript' src='js/update.js'></script>
-		<script type='text/javascript' src='js/render.js'></script>
-		<script type='text/javascript' src="js/input.js"></script>
-		<script type='text/javascript' src="js/main.js"></script>
-		<script type='text/javascript' src="js/initialization.js"></script>
-		<script type='text/javascript' charset='utf-8' src='cordova.js'></script>
+		<link rel="stylesheet" href="style/style.css">
+		<script src="vendor/hammer.min.js"></script>
+		<script src="vendor/js.cookie.js"></script>
+		<script src="vendor/jsonfn.min.js"></script>
+		<script src="vendor/keypress.min.js"></script>
+		<script src="vendor/jquery.js"></script>
+		<script src="js/save-state.js"></script>
+		<script src="js/view.js"></script>
+		<script src="js/wavegen.js"></script>
+		<script src="js/math.js"></script>
+		<script src="js/Block.js"></script>
+		<script src="js/Hex.js"></script>
+		<script src="js/Text.js"></script>
+		<script src="js/comboTimer.js"></script>
+		<script src="js/checking.js"></script>
+		<script src='js/update.js'></script>
+		<script src='js/render.js'></script>
+		<script src="js/input.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/initialization.js"></script>
+		<script src="cordova.js" charset="utf-8"></script>
 		<script src="vendor/sweet-alert.min.js"></script>
-		<link rel="stylesheet" href="style/rrssb.css"/>
+		<link rel="stylesheet" href="style/rrssb.css">
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
 		<div id="overlay" class="faded overlay"></div>
-		<div id='startBtn' ></div>
-		<div id="helpScreen" class='unselectable'>
-			<div id='inst_main_body'></div>
+		<div id="startBtn"></div>
+		<div id="helpScreen" class="unselectable">
+			<div id="inst_main_body"></div>
 		</div>
 		<img id="openSideBar" class='helpText' src="./images/btn_help.svg"/>
 		<div class="faded overlay"></div>
 		<img id="pauseBtn" src="./images/btn_pause.svg"/>
-		<img id='restartBtn' src="./images/btn_restart.svg"/>
-		<div id='HIGHSCORE'>HIGH SCORE</div>
-		<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
+		<img id="restartBtn" src="./images/btn_restart.svg"/>
+		<div id="HIGHSCORE">HIGH SCORE</div>
+		<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
 		</script>
 		<div id='highScoreInGameText'>
 			<div id='highScoreInGameTextHeader'>HIGH SCORE</div><div id='currentHighScore'>10292</div>
@@ -107,8 +107,8 @@
 				<div id='buttonCont'>
 					<ul class="rrssb-buttons">
 						<li class="rrssb-facebook">
-							<a href='http://www.facebook.com/sharer.php?s=100
-								&p[url]=hextris.io' class="popup">
+							<a href='https://www.facebook.com/sharer.php?s=100
+								&amp;p[url]=hextris.io' class="popup">
 								<span class="rrssb-icon">
 									<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29">
 										<path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
@@ -119,7 +119,7 @@
 							</a>
 						</li>
 						<li class="rrssb-twitter">
-							<a href="http://twitter.com/home?status=Play Hextris! - http://hextris.github.io/ #hextris"
+							<a href="https://twitter.com/home?status=Play Hextris! - http://hextris.github.io/ #hextris"
 							class="popup">
 								<span class="rrssb-icon">
 									<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
@@ -130,23 +130,23 @@
 								<span class="rrssb-text">twitter</span>
 							</a>
 						</li>
-				</ul>
+					</ul>
 					<div id='badges'>
-						<a href="https://play.google.com/store/apps/details?id=com.hextris.hextris" ><img id='androidBadge' src='images/android.png'/></a>
-						<a href ="https://itunes.apple.com/us/app/hextris/id903769553?mt=8"><img id='iOSBadge'  src='images/appstore.svg'/></a>
+						<a href="https://play.google.com/store/apps/details?id=com.hextris.hextris"><img id='androidBadge' src='images/android.png'></a>
+						<a href="https://itunes.apple.com/us/app/hextris/id903769553?mt=8"><img id='iOSBadge' src='images/appstore.svg'></a>
 					</div>
 				</div>
 			</div>
 		</div>
-			<script type="text/javascript">
-				(function addRussianSocialShare(){
-					var lang=navigator.language || navigator.userLanguage;
-					if (lang.substr(0, 2) == 'ru') {
-						$('.rrssb-facebook').remove();
-						var n=$.parseHTML('<li class="rrssb-vk"><a href="http://vk.com/share.php?url=http://kurtnoble.com/labs/rrssb/index.html" class="popup"><span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg></span><span class="rrssb-text">vk.com</span></a></li>');
-						$('.rrssb-buttons').prepend(n);
-					}})()
-			</script>
-		<script type="text/javascript" src='vendor/rrssb.min.js'></script>
+		<script>
+			(function addRussianSocialShare(){
+				var lang=navigator.language || navigator.userLanguage;
+				if (lang.substr(0, 2) == 'ru') {
+					$('.rrssb-facebook').remove();
+					var n=$.parseHTML('<li class="rrssb-vk"><a href="http://vk.com/share.php?url=http://kurtnoble.com/labs/rrssb/index.html" class="popup"><span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg></span><span class="rrssb-text">vk.com</span></a></li>');
+					$('.rrssb-buttons').prepend(n);
+				}})()
+		</script>
+		<script src="vendor/rrssb.min.js"></script>
 	</body>
 </html>
