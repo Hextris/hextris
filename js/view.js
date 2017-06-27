@@ -215,5 +215,6 @@ function pause(o) {
 		    pausable = true;
 		}, 400);
 		gameState = -1;
+		muteBackgroundMusic();
 	}
 }

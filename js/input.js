@@ -71,7 +71,7 @@ function addKeyListeners() {
 		if (gameState != 1 && gameState != -1) {
 			return;
 		}
-
+		playBackgroundMusic();
 		if ($('#helpScreen').is(":visible")) {
 			$('#helpScreen').fadeOut(150, "linear");
 		}
@@ -108,6 +108,8 @@ function addKeyListeners() {
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 			$("#restart").on('touchstart', function() {
 			init();
+			playBackgroundMusic();
+
 			canRestart = false;
 			$("#gameoverscreen").fadeOut();
 		});
@@ -116,6 +118,7 @@ function addKeyListeners() {
 	else {
 		$("#restart").on('mousedown', function() {
 			init();
+			playBackgroundMusic();
 			canRestart = false;
 			$("#gameoverscreen").fadeOut();
 		});
@@ -124,6 +127,7 @@ function addKeyListeners() {
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 			$("#restartBtn").on('touchstart', function() {
 			init(1);
+			playBackgroundMusic();
 			canRestart = false;
 			$("#gameoverscreen").fadeOut();
 		});
@@ -132,6 +136,7 @@ function addKeyListeners() {
 	else {
 		$("#restartBtn").on('mousedown', function() {
 			init(1);
+			playBackgroundMusic();
 			canRestart = false;
 			$("#gameoverscreen").fadeOut();
 		});
@@ -143,19 +148,19 @@ function addKeyListeners() {
 function inside (point, vs) {
 	// ray-casting algorithm based on
 	// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-	
+
 	var x = point[0], y = point[1];
-	
+
 	var inside = false;
 	for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
 		var xi = vs[i][0], yi = vs[i][1];
 		var xj = vs[j][0], yj = vs[j][1];
-		
+
 		var intersect = ((yi > y) != (yj > y))
 			&& (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
 		if (intersect) inside = !inside;
 	}
-	
+
 	return inside;
 };
 
@@ -174,7 +179,7 @@ function handleClickTap(x,y) {
 		[-radius,0],
 		[-halfRadius,triHeight],
 		[halfRadius,triHeight]];
-	Vertexes = Vertexes.map(function(coord){ 
+	Vertexes = Vertexes.map(function(coord){
 		return [coord[0] + trueCanvas.width/2, coord[1] + trueCanvas.height/2]});
 
 	if (!MainHex || gameState === 0 || gameState==-1) {
@@ -188,4 +193,3 @@ function handleClickTap(x,y) {
 		MainHex.rotate(-1);
 	}
 }
-
