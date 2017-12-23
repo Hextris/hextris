@@ -2,10 +2,10 @@ Hextris
 ==========
 
 By:
- - Logan Engstrom (@lengstrom)
- - Garrett Finucane (@garrettdreyfus)
- - Noah Moroze (@nmoroze)
- - Michael Yang (@themichaelyang)
+ - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
+ - Garrett Finucane ([@garrettdreyfus](http://github.com/garrettdreyfus))
+ - Noah Moroze ([@nmoroze](http://github.com/nmoroze))
+ - Michael Yang ([@themichaelyang](http://github.com/themichaelyang))
 
 # Contributions
 Please submit pull requests to clay-improvements
