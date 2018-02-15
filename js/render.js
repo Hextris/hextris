@@ -72,7 +72,7 @@ function renderBeginningText() {
     var mob, fontSize;
     if(/mobile|Mobile|iOS|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         mob = true;
-        input_text = 'Tap the screen\'s left and ride'
+        input_text = 'Tap the screen\'s left and right'
         action_text = 'sides to rotate the hexagon'
         score_text = 'Match 3+ blocks to score'
         fontSize = 35
