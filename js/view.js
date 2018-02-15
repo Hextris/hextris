@@ -34,9 +34,9 @@ function drawScoreboard() {
 	} else if (scoreString.length == 9) {
 		scoreSize = 27;
 	}
-	if (rush ==1){
+	//if (rush ==1){
 		var color = "rgb(236, 240, 241)";
-	}
+	//}
     var fontSize = settings.platform == 'mobile' ? 35 : 30;
     var h = trueCanvas.height / 2 + gdy + 100 * settings.scale;
 	if (gameState === 0) {
