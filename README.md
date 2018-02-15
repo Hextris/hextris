@@ -1,7 +1,7 @@
 Hextris
 ==========
 
-Hextris is a
+An addictive puzzle game inspired by Tetris.
 
 By:
  - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
