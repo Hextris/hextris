@@ -1,14 +1,16 @@
 Hextris
 ==========
 
+Hextris is a
+
 By:
  - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
  - Garrett Finucane ([@garrettdreyfus](http://github.com/garrettdreyfus))
  - Noah Moroze ([@nmoroze](http://github.com/nmoroze))
  - Michael Yang ([@themichaelyang](http://github.com/themichaelyang))
 
-# Contributions
-Please submit pull requests to clay-improvements
+# Contributing
+Feel free to submit a pull request or open up an issue.
 
 # Releases
 #### iOS: https://itunes.apple.com/us/app/hextris/id903769553?mt=8
@@ -24,6 +26,14 @@ Please submit pull requests to clay-improvements
 
 http://hextris.github.io/presskit/info.html
 
-## License
+# About
+Hextris was created by a couple high school friends (who are now in college!) who unfortunately don't have as much time to update the game. If you'd like to support the open-source development of Hextris, please consider donating at:
 
+ETH: `0xbf5414129552D37B4Fb12D058Cf1596B960d25b2`
+
+## Coinhive Disclosure
+
+Hextris is also passively monetized with [Coinhive](https://coinhive.com/). We do this so that there are no ads to interupt gameplay, and so we can cover the yearly cost of the domain name.
+
+# License
 This work is under a GPL v3 license.
