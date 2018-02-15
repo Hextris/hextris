@@ -1,24 +1,25 @@
 Hextris
 ==========
 
-Contributors:
- - Logan Engstrom (@meadowstream)
- - Garrett Finucane (@garrettdreyfus)
- - Noah Moroze (@nmoroze)
- - Michael Yang (@themichaelyang)
+<img src="images/twitter-opengraph.png" width="100px"><br>
 
-#Conribtions
-Please submit pull requests to clay-improvemnets
+An addictive puzzle game inspired by Tetris. Play it at [hextris.io](http://hextris.io).
 
-# Releases
-#### iOS: https://itunes.apple.com/us/app/hextris/id903769553?mt=8
-![](http://i.imgur.com/KBYZcf5.png)
+By:
+ - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
+ - Garrett Finucane ([@garrettdreyfus](http://github.com/garrettdreyfus))
+ - Noah Moroze ([@nmoroze](http://github.com/nmoroze))
+ - Michael Yang ([@themichaelyang](http://github.com/themichaelyang))
 
-#### Android: https://play.google.com/store/apps/details?id=com.hextris.hextris
-![](http://i.imgur.com/mxj8yKs.png)
+# Contributions
+Please submit pull requests to the branch `clay-improvements`.
 
-#### Firefox OS: https://marketplace.firefox.com/app/hextris-app
-![](http://i.imgur.com/RhECXPg.png)
+# About
+Hextris was created by a couple high school friends (who are now in college!) who unfortunately don't have as much time to update the game. If you'd like to support the open-source development of Hextris, please consider donating at:
+
+**ETH:** `0xbf5414129552D37B4Fb12D058Cf1596B960d25b2`
+
+Disclosure: Please note that the version on hextris.io uses [Monero](http://coinhive.com) to support the developers. If you'd rather not play that version, an unmonetized version is available to play at: https://hextris.github.io/hextris.
 
 ## Press kit
 
