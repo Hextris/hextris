@@ -44,7 +44,7 @@ function consolidateBlocks(hex,side,index){
 	var deletedBlocks = [];
 	//add start case
 	deleting.push([side,index]);
-	//fill deleting	
+	//fill deleting
 	floodFill(hex,side,index,deleting);
 	//make sure there are more than 3 blocks to be deleted
 	if(deleting.length<3){return;}
@@ -81,4 +81,5 @@ function consolidateBlocks(hex,side,index){
 	hex.texts.push(new Text(hex.x,hex.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
 		hex.lastColorScored = deletedBlocks[0].color;
 	score += adder;
+	playCompletionSound(hex.comboMultiplier);
 }
