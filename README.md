@@ -3,7 +3,7 @@ Hextris
 
 <img src="images/twitter-opengraph.png" width="100px"><br>
 
-An addictive puzzle game inspired by Tetris. Play it at [hextris.io](http://hextris.io).
+An addictive puzzle game inspired by Tetris. Play it at [www.hextris.io](http://www.hextris.io).
 
 By:
  - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
