@@ -63,3 +63,27 @@ function getNetworkResponse(request) {
     });
   });
 };
+
+// Delete any unused old caches when a new service worker is activated
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    Promise.all([
+      clients.claim(),
+      caches.keys().then(function(cacheNames) {
+        cacheNames.filter(function(cacheName) {
+          if(cacheName.startsWith('hextris') && cacheName !== CACHE_NAME) {
+          caches.delete(cacheName);
+          }
+        })
+      })
+     ]
+    )
+  )
+});
+
+// listen to messages and skip waiting state of service worker
+// this basically activates service worker when notification recieved.
+self.addEventListener('message', function(event) {
+  if(event.data.activate == 'true');
+    self.skipWaiting();
+});
