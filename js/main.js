@@ -374,3 +374,19 @@ function showHelp() {
 	$("#openSideBar").fadeIn(150,"linear");
 	$('#helpScreen').fadeToggle(150, "linear");
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').then(function(reg) {
+      console.log('SW registered successfully');
+        
+      if(!navigator.serviceWorker.controller) {
+        return;
+      }
+
+    }, function(err) {
+      console.log('SW registration failed');
+    });
+
+  });
+}
