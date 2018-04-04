@@ -374,3 +374,68 @@ function showHelp() {
 	$("#openSideBar").fadeIn(150,"linear");
 	$('#helpScreen').fadeToggle(150, "linear");
 }
+
+// ask browser if it supports service workers, if it does, register it.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').then(function(reg) {
+      console.log('SW registered successfully');
+        
+      if(!navigator.serviceWorker.controller) {
+        return;
+      }
+        
+      if(reg.waiting) {
+        notifySWUpdates(reg.waiting);      
+      }
+        
+      if(reg.installing) {
+        trackSWStates(reg.installing);
+      }
+        
+      reg.addEventListener('updatefound', function() {
+        trackSWStates(reg.installing);
+      })
+      
+      var reloading;
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if(reloading) return;
+        window.location.reload();
+        reloading = true;
+      });
+
+    }, function(err) {
+      console.log('SW registration failed');
+    });
+
+  });
+}
+
+// notify user of game update available, 
+// when user clicks button service worker updates with new cache and page reloads.
+function notifySWUpdates(reg) {
+    console.log('There is a new Service Worker available');
+    let SW_Button = document.createElement('button');
+    SW_Button.innerHTML = 'Update Available';
+    let doc_body = document.getElementsByTagName('body')[0];
+    doc_body.appendChild(SW_Button);
+    SW_Button.style.backgroundColor = 'blue';
+    SW_Button.style.color = '#fff';
+    SW_Button.style.position = 'fixed';
+    SW_Button.style.bottom = '0px';
+    SW_Button.style.right = '0px';
+    SW_Button.style.padding = '5px 10px';
+    SW_Button.addEventListener('click', function() {
+      console.log(reg);
+      reg.postMessage({activate: 'true'});
+    });
+}
+
+// tracks service worker state and activates notification function when installed.
+function trackSWStates(reg) {
+  reg.addEventListener('statechange', function() {
+    if(this.state == 'installed') {
+      notifySWUpdates(reg);
+    }
+  });
+}

@@ -1,0 +1,11 @@
+{
+  "background_color": "#ecf0f1",
+  "display": "standalone",
+  "icons": [],
+  "name": "Hextris",
+  "short_name": "Hextris",
+  "description": "Fast paced HTML5 puzzle game inspired by Tetris!",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#ecf0f1"
+}
