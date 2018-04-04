@@ -1,4 +1,4 @@
-var CACHE_NAME = 'hextris-v2';
+var CACHE_NAME = 'hextris-v3';
 
 // install service worker on first install and load cache assets.
 self.addEventListener('install', function(event) {
@@ -36,11 +36,18 @@ function getNetworkResponse(request) {
   return caches.open(CACHE_NAME).then(cache => {
     return cache.match(request).then(response => {
       if (response) return response;
-
-      return fetch(request).then(networkResponse => {
-        cache.put(request, networkResponse.clone());
-        return networkResponse;
-      })
+    
+      if(request.cache === 'only-if-cached') {
+        return fetch(request, {mode: "same-origin"}).then(networkResponse => {
+          cache.put(request, networkResponse.clone());
+          return networkResponse;
+        })      
+      } else {
+        return fetch(request).then(networkResponse => {
+          cache.put(request, networkResponse.clone());
+          return networkResponse;
+        })      
+      }
     });
   });
 };
