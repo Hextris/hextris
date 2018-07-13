@@ -350,6 +350,11 @@ function checkGameOver() {
 }
 
 function showHelp() {
+	// Prevent start button from being click while in help
+	if (gameState == 0) {
+		$('#startBtn').toggle();
+	}
+	
 	if ($('#openSideBar').attr('src') == './images/btn_back.svg') {
 		$('#openSideBar').attr('src', './images/btn_help.svg');
 		if (gameState != 0 && gameState != -1 && gameState != 2) {
