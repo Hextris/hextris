@@ -19,8 +19,6 @@ Hextris was created by a couple high school friends (who are now in college!) wh
 
 **ETH:** `0xbf5414129552D37B4Fb12D058Cf1596B960d25b2`
 
-Disclosure: Please note that the version on hextris.io uses [Monero](http://coinhive.com) to support the developers. If you'd rather not play that version, an unmonetized version is available to play at: https://hextris.github.io/hextris.
-
 ## Press kit
 
 http://hextris.github.io/presskit/info.html
