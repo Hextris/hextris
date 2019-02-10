@@ -15,9 +15,7 @@ By:
 Please submit pull requests to the branch `clay-improvements`.
 
 # About
-Hextris was created by a couple high school friends (who are now in college!) who unfortunately don't have as much time to update the game. If you'd like to support the open-source development of Hextris, please consider donating at:
-
-**ETH:** `0xbf5414129552D37B4Fb12D058Cf1596B960d25b2`
+Hextris was created by a group of high school friends in 2014.
 
 ## Press kit
 
