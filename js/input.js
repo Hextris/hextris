@@ -16,6 +16,29 @@ function addKeyListeners() {
 			}
 		}
 	});
+		keypress.register_combo({
+		keys: "down",
+		on_keydown: function() {
+			var tempSpeed = settings.speedModifier;
+			if (MainHex && gameState !== 0){
+				//speed up block temporarily
+				if(settings.speedUpKeyHeld == false){
+					settings.speedUpKeyHeld = true;
+					window.rush *=4;
+				}
+			}
+			//settings.speedModifier = tempSpeed;
+		},
+		on_keyup:function(){
+			if (MainHex && gameState !== 0){
+				//speed up block temporarily
+				
+				window.rush /=4;
+				settings.speedUpKeyHeld = false;
+			}
+		}	
+	});
+	
 	keypress.register_combo({
 		keys: "a",
 		on_keydown: function() {
@@ -33,7 +56,29 @@ function addKeyListeners() {
 			}
 		}
 	});
-
+	
+	keypress.register_combo({
+		keys: "s",
+		on_keydown: function() {
+			var tempSpeed = settings.speedModifier;
+			if (MainHex && gameState !== 0){
+				//speed up block temporarily
+				if(settings.speedUpKeyHeld == false){
+					settings.speedUpKeyHeld = true;
+					window.rush *=4;
+				}
+			}
+			//settings.speedModifier = tempSpeed;
+		},
+		on_keyup:function(){
+			if (MainHex && gameState !== 0){
+				//speed up block temporarily
+				
+				window.rush /=4;
+				settings.speedUpKeyHeld = false;
+			}
+		}	
+	});
 	keypress.register_combo({
 		keys: "p",
 		on_keydown: function(){pause();}
