@@ -33,5 +33,4 @@ test('Testing roation over 100, 100 over a 30 degree angle', () => {
 	// Check for correctness
 	expect(checkX).toBe(results['x']);
 	expect(checkY).toBe(results['y']);
-
-;});
+});

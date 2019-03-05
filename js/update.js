@@ -2,6 +2,9 @@
 //remember to update history function to show the respective iter speeds
 function update(dt) {
 	MainHex.dt = dt;
+
+	console.log(MainHex);
+
 	if (gameState == 1) {
 		waveone.update();
 		if (MainHex.ct - waveone.prevTimeScored > 1000) {

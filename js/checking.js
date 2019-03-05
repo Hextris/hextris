@@ -9,6 +9,7 @@ function search(twoD,oneD){
 }
 
 function floodFill(hex, side, index, deleting) {
+	
 	if (hex.blocks[side] === undefined || hex.blocks[side][index] === undefined) return;
 
 	//store the color
@@ -36,8 +37,14 @@ function floodFill(hex, side, index, deleting) {
 		}
 	}
 }
+var a = 0;
 
 function consolidateBlocks(hex,side,index){
+	console.log("LOOP: " + a);
+	a++;
+	console.log(side);
+	console.log(index);
+
 	//record which sides have been changed
 	var sidesChanged =[];
 	var deleting=[];
@@ -82,3 +89,6 @@ function consolidateBlocks(hex,side,index){
 		hex.lastColorScored = deletedBlocks[0].color;
 	score += adder;
 }
+
+// Export all functions as modules
+module.exports = {search, floodFill, consolidateBlocks};
