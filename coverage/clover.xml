@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1551767630953" clover="3.2.0">
+  <project timestamp="1551767630954" name="All files">
+    <metrics statements="55" coveredstatements="31" conditionals="29" coveredconditionals="15" methods="5" coveredmethods="5" elements="89" coveredelements="51" complexity="0" loc="55" ncloc="55" packages="1" files="2" classes="2"/>
+    <file name="checking.js" path="C:\Users\abeld\Desktop\hextris\js\checking.js">
+      <metrics statements="49" coveredstatements="25" conditionals="29" coveredconditionals="15" methods="3" coveredmethods="3"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="4" count="2" type="cond" truecount="3" falsecount="1"/>
+      <line num="5" count="2" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="13" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="18" count="2" type="stmt"/>
+      <line num="19" count="6" type="stmt"/>
+      <line num="21" count="18" type="cond" truecount="2" falsecount="0"/>
+      <line num="23" count="8" type="stmt"/>
+      <line num="25" count="8" type="stmt"/>
+      <line num="27" count="8" type="cond" truecount="1" falsecount="1"/>
+      <line num="28" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="30" count="4" type="cond" truecount="2" falsecount="3"/>
+      <line num="32" count="0" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="40" count="1" type="stmt"/>
+      <line num="43" count="2" type="stmt"/>
+      <line num="44" count="2" type="stmt"/>
+      <line num="45" count="2" type="stmt"/>
+      <line num="46" count="2" type="stmt"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="50" count="2" type="stmt"/>
+      <line num="51" count="2" type="stmt"/>
+      <line num="53" count="2" type="stmt"/>
+      <line num="55" count="2" type="stmt"/>
+      <line num="57" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="60" count="0" type="stmt"/>
+      <line num="62" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="65" count="0" type="stmt"/>
+      <line num="68" count="0" type="stmt"/>
+      <line num="69" count="0" type="stmt"/>
+      <line num="74" count="0" type="stmt"/>
+      <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="76" count="0" type="stmt"/>
+      <line num="77" count="0" type="stmt"/>
+      <line num="78" count="0" type="stmt"/>
+      <line num="79" count="0" type="stmt"/>
+      <line num="80" count="0" type="stmt"/>
+      <line num="83" count="0" type="stmt"/>
+      <line num="84" count="0" type="stmt"/>
+      <line num="85" count="0" type="stmt"/>
+      <line num="87" count="0" type="stmt"/>
+      <line num="88" count="0" type="stmt"/>
+      <line num="89" count="0" type="stmt"/>
+      <line num="90" count="0" type="stmt"/>
+      <line num="94" count="1" type="stmt"/>
+    </file>
+    <file name="math.js" path="C:\Users\abeld\Desktop\hextris\js\math.js">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="13" count="20" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

@@ -3,6 +3,6 @@
     "jest": "^24.1.0"
   },
   "scripts": {
-	"test": "jest"
+	"test": "jest" 	
   }
 }
