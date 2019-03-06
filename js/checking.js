@@ -9,9 +9,7 @@ function search(twoD,oneD){
 }
 
 function floodFill(hex, side, index, deleting) {
-	
 	if (hex.blocks[side] === undefined || hex.blocks[side][index] === undefined) return;
-
 	//store the color
 	var color = hex.blocks[side][index].color;
 	//nested for loops for navigating the blocks
@@ -37,22 +35,18 @@ function floodFill(hex, side, index, deleting) {
 		}
 	}
 }
-var a = 0;
 
 function consolidateBlocks(hex,side,index){
-	console.log("LOOP: " + a);
-	a++;
-	console.log(side);
-	console.log(index);
-
 	//record which sides have been changed
 	var sidesChanged =[];
 	var deleting=[];
 	var deletedBlocks = [];
 	//add start case
 	deleting.push([side,index]);
-	//fill deleting	
+	//fill deleting
+	var newHex = hex;	
 	floodFill(hex,side,index,deleting);
+
 	//make sure there are more than 3 blocks to be deleted
 	if(deleting.length<3){return;}
 	var i;
@@ -64,12 +58,11 @@ function consolidateBlocks(hex,side,index){
 			if(sidesChanged.indexOf(arr[0])==-1){
 				sidesChanged.push(arr[0]);
 			}
-			//mark as deleted
 			hex.blocks[arr[0]][arr[1]].deleted = 1;
 			deletedBlocks.push(hex.blocks[arr[0]][arr[1]]);
 		}
 	}
-
+	
 	// add scores
 	var now = MainHex.ct;
 	if(now - hex.lastCombo < settings.comboTime ){
