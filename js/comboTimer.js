@@ -59,6 +59,7 @@ function calcSide(startVertex,endVertex,fraction,offset){
 		return [[startX,startY],[((endX-startX)*fraction)+startX,((endY-startY)*fraction)+startY]];
 }
 function drawSide(vertexes){
+	var gameState=0;
 	if (gameState === 0) {
 		ctx.strokeStyle = hexColorsToTintedColors[MainHex.lastColorScored];
 	} else {

@@ -34,10 +34,10 @@ test('Testing nextgen and difficulty in wavegen', () => {
     testWave.difficulty = diff_vals[j];
 
     if (j > 3){
-    expect(blockDestroyed(testWave).toBe(0.085 * settings.speedModifer);
+    expect(blockDestroyed(testWave).toBe(0.085 * settings.speedModifer));
     }
     else {
-    expect(blockDestroyed(testWave).toBe(35);
+      expect(blockDestroyed(testWave).toBe(35));
     }
   }
 

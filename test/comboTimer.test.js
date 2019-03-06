@@ -187,6 +187,28 @@ var exHex = {
 	"delay": 0
   }
 
+  ctx = {
+	"fillStyle": "#ecf0f1",
+	"filter": "none",
+	"font": "10px sans-serif",
+	"globalAlpha": 1,
+	"globalCompositeOperation": "source-over",
+	"imageSmoothingEnabled": true,
+	"imageSmoothingQuality": "low",
+	"lineCap": "round",
+	"lineDashOffset": 0,
+	"lineJoin": "miter",
+	"lineWidth": 3.609999895095825,
+	"miterLimit": 10,
+	"shadowBlur": 0,
+	"shadowColor": "rgba(0, 0, 0, 0)",
+	"shadowOffsetX": 0,
+	"shadowOffsetY": 0,
+	"strokeStyle": "rgba(0, 0, 0, 0)",	
+	"textAlign": "start",
+	"textBaseline": "alphabetic"
+  }
+
 
 //All variables in calcSide mostly valuated by drawTimer
 var done = (exHex.ct - exHex.lastCombo);
