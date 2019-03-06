@@ -1,5 +1,5 @@
 
-/* 
+/*
 * File name: comboTimer.test.js
 * Description: Test calcSide for the main function drawTimer calculation
 */
@@ -8,7 +8,7 @@
 // Get two functions to be tested from comboTimer file
 const {calcSide, drawSide, drawTimer} = require('../js/comboTimer.js')
 
-// Example hexagon pattern 
+// Example hexagon pattern
 var exHex = {
 	"playThrough": 0,
 	"fillColor": [
@@ -186,9 +186,9 @@ var exHex = {
 	"lastRotate": 1551762042900,
 	"delay": 0
   }
-  
 
-//All variables in calcSide mostly valuated by drawTimer  
+
+//All variables in calcSide mostly valuated by drawTimer
 var done = (exHex.ct - exHex.lastCombo);
 var startVertex = 0;
 var endVertex =  1;
@@ -230,4 +230,17 @@ test('Testing all of comboTimer.js (calcSide function are being used by drawTime
 	expect(endY).toBe(checkendY);
 
 });
+test('Testing drawSide function', () => {
+	// call drawSide()
+	drawSide(Vertexes);
 
+	//check for correct settings
+	expect(ctx.lineWidth).toBe(4*settings.scale);
+	if (gameState ===0){
+		expect(ctx.strokeStyle).toBe(hexColorsToTintedColors[MainHex.lastColorScored]);
+	}
+	else{
+		expect(ctx.strokeStyle).toBe(MainHex.lastColorScored);
+	}
+
+});
