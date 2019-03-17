@@ -19,24 +19,18 @@ function drawTimer() {
 		if(rightVertexes.length !== 0) drawSide(rightVertexes);
 		if(leftVertexes.length !== 0) drawSide(leftVertexes);
 	}
-
-
 }
 
 function calcSide(startVertex,endVertex,fraction,offset){
 	startVertex = (startVertex+offset)%12;
-	console.log(startVertex);
 	endVertex = (endVertex+offset)%12;
 	ctx.globalAlpha=1;
 	ctx.beginPath();
 	ctx.lineCap = "round";
 
 	var radius = (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth ;
-	console.log(radius);
 	var halfRadius = radius/2;
-	console.log(halfRadius);
 	var triHeight = radius *(Math.sqrt(3)/2);
-	console.log(triHeight);
 	var Vertexes =[
 		[(halfRadius*3)/2,triHeight/2],
 		[radius,0],
@@ -51,7 +45,6 @@ function calcSide(startVertex,endVertex,fraction,offset){
 		[0,triHeight],
 		[halfRadius,triHeight]
 	].reverse();
-	console.log(Vertexes);
 	var startX =trueCanvas.width/2 + Vertexes[startVertex][0];
 	var startY =trueCanvas.height/2 + Vertexes[startVertex][1];
 	var endX = trueCanvas.width/2 + Vertexes[endVertex][0];
@@ -59,7 +52,6 @@ function calcSide(startVertex,endVertex,fraction,offset){
 		return [[startX,startY],[((endX-startX)*fraction)+startX,((endY-startY)*fraction)+startY]];
 }
 function drawSide(vertexes){
-	var gameState=0;
 	if (gameState === 0) {
 		ctx.strokeStyle = hexColorsToTintedColors[MainHex.lastColorScored];
 	} else {
@@ -77,5 +69,4 @@ function drawSide(vertexes){
 	ctx.stroke();
 
 }
-
-module.exports = {calcSide, drawSide};
+module.exports = {calcSide, drawSide, drawTimer};

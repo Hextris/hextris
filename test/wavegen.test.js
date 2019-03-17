@@ -32,7 +32,6 @@ test('Testing nextgen and difficulty in wavegen', () => {
   //Testing difficulty
   for (var j = 0; j < diff_vals.length; j++){
     testWave.difficulty = diff_vals[j];
-
     if (j > 3){
     expect(blockDestroyed(testWave).toBe(0.085 * settings.speedModifer));
     }

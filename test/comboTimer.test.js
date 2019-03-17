@@ -6,7 +6,7 @@
 
 
 // Get two functions to be tested from comboTimer file
-const {calcSide, drawSide, drawTimer} = require('../js/comboTimer.js')
+const {calcSide, drawSide, drawTimer} = require('../js/comboTimer.js');
 
 // Example hexagon pattern
 var exHex = {
@@ -185,7 +185,7 @@ var exHex = {
 	"texts": [],
 	"lastRotate": 1551762042900,
 	"delay": 0
-  }
+  };
 
   ctx = {
 	"fillStyle": "#ecf0f1",
@@ -207,7 +207,7 @@ var exHex = {
 	"strokeStyle": "rgba(0, 0, 0, 0)",	
 	"textAlign": "start",
 	"textBaseline": "alphabetic"
-  }
+  };
 
 
 //All variables in calcSide mostly valuated by drawTimer
@@ -256,9 +256,10 @@ test('Testing drawSide function', () => {
 	// call drawSide()
 	drawSide(Vertexes);
 
+	gameState = 1;
 	//check for correct settings
 	expect(ctx.lineWidth).toBe(4*settings.scale);
-	if (gameState ===0){
+	if (gameState == 0){
 		expect(ctx.strokeStyle).toBe(hexColorsToTintedColors[MainHex.lastColorScored]);
 	}
 	else{
