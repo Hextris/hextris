@@ -64,6 +64,7 @@ function initialize(a) {
 			blockHeight: 20,
 			rows: 7,
 			speedModifier: 0.73,
+			speedUpKeyHeld: false,
 			creationSpeedModifier: 0.73,
 			comboTime: 310
 		};
@@ -82,6 +83,7 @@ function initialize(a) {
 			blockHeight: 15,
 			rows: 8,
 			speedModifier: 0.65,
+			speedUpKeyHeld: false,
 			creationSpeedModifier: 0.65,
 			comboTime: 310
 		};
@@ -249,7 +251,7 @@ function startBtnHandler() {
 
 	if (importing == 1) {
 		init(1);
-		checkVisualElements();
+		checkVisualElements(0);
 	} else {
 		resumeGame();
 	}
