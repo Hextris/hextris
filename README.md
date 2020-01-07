@@ -20,6 +20,18 @@ Hextris was created by a group of high school friends in 2014.
 ## Press kit
 http://hextris.github.io/presskit/info.html
 
+## Citation
+Did you use Hextris in your research? Cite us as follows:
+```
+  @misc{engstrom2015hextris,
+    author = {Logan Engstrom, Garrett Finucane, Noah Moroze, Michael Yang},
+    title = {hextris},
+    year = {2015},
+    howpublished = {\url{https://github.com/hextris/hextris/}},
+    note = {commit xxxxxxx}
+  }
+```
+
 ## License
 Copyright (C) 2018 Logan Engstrom
 
