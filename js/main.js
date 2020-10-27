@@ -185,7 +185,9 @@ function init(b) {
 }
 
 function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two are optional parameters
-	iter *= settings.speedModifier;
+	if(!MainHex.adrenalineOn())
+		iter *= settings.speedModifier;
+	else iter *= settings.speedModifier*MainHex.adrenalineMultiplier;
 	if (!history[MainHex.ct]) {
 		history[MainHex.ct] = {};
 	}
