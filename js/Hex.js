@@ -20,7 +20,7 @@ function Hex(sideLength) {
 	this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
-		this.lastRotate = Date.now();
+  this.lastRotate = Date.now();
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
 	}

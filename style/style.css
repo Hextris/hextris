@@ -9,17 +9,9 @@
 	margin:0;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
-#HIGHSCORE {
-	position:absolute;
-	left:50%;
-	width:250px;
-	overflow:visible;
-	margin-left:-175px;
-	font-family:Exo;
 
-}
 #container {
-	color:#232323;
+	color:#ecf0f1;
 	position:absolute;
 	left:50%;
 	top:calc(50%);
@@ -96,9 +88,14 @@ button:focus {
 	cursor:pointer;
 	top:0;
 	left:0;
-
 }
 
+#xteamlogosvg {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
 
 #pauseBtn {
 	display:none;
@@ -204,7 +201,7 @@ button:focus {
 
 
 #highScoreInGameTextHeader {
-	color: #bdc3c7;
+	color: #ECF0F1;
 	width:100%;
 }
 
@@ -218,7 +215,7 @@ button:focus {
 }
 
 #currentHighScore {
-	color: #2c3e50;
+	color: #ECF0F1;
 	width:100%;
 	margin-top: -5px;
 	font-size:2em;
@@ -366,7 +363,7 @@ button:focus {
 body {
 	color:#ecf0f1;
 	font-family:'Exo', sans-serif;
-	background-color:#ecf0f1;
+	background-color:#303030;
 }
 
 #clickToExit {
@@ -380,7 +377,7 @@ body {
 	right:0;
 	height:100%;
 	width:100%;
-	background-color:#ecf0f1;
+	background-color:#303030;
 	z-index:0;
 }
 #title {

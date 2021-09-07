@@ -61,7 +61,10 @@ function resumeGame() {
 	gameState = 1;
 	hideUIElements();
 	$('#pauseBtn').show();
+	$('#xteamlogosvg').show();
 	$('#restartBtn').hide();
+  
+  xteamLogoSvg.style.transform = `translateX(${-(xteamLogoSvg.width / 2)}px)`;
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function() {
@@ -85,6 +88,7 @@ function hideUIElements() {
 	$('#pauseBtn').hide();
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
+  $('#xteamlogosvg').hide();
 }
 
 function init(b) {
@@ -96,9 +100,9 @@ function init(b) {
 		}
 
 		setTimeout(function() {
-            if (gameState == 1) {
-			    $('#openSideBar').fadeOut(150, "linear");
-            }
+      if (gameState == 1) {
+        $('#openSideBar').fadeOut(150, "linear");
+      }
 			infobuttonfading = false;
 		}, 7000);
 		clearSaveState();
@@ -120,6 +124,8 @@ function init(b) {
 	importedHistory = undefined;
 	importing = 0;
 	score = saveState.score || 0;
+  scoreByColor = colors.reduce((concatObject, hexColor) => ({ ...concatObject, [hexColor]: 0}), {});
+  comboPacing = 10;
 	prevScore = 0;
 	spawnLane = 0;
 	op = 0;
@@ -128,7 +134,9 @@ function init(b) {
 	gameState = 1;
 	$("#restartBtn").hide();
 	$("#pauseBtn").show();
-	if (saveState.hex !== undefined) gameState = 1;
+	$("#xteamlogosvg").show();
+	
+  if (saveState.hex !== undefined) gameState = 1;
 
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 	settings.hexWidth = settings.baseHexWidth * settings.scale;
@@ -202,7 +210,12 @@ function addNewBlock(blocklane, color, iter, distFromHex, settled) { //last two 
 	if (settled) {
 		blockHist[MainHex.ct].settled = settled;
 	}
-	blocks.push(new Block(blocklane, color, iter, distFromHex, settled));
+	const newBlock = new Block(blocklane, color, iter, distFromHex, settled);
+  if (MainHex.comboMultiplier > comboPacing) {
+    newBlock.explodingBlock = true;
+  }
+	blocks.push(newBlock);
+  return newBlock;
 }
 
 function exportHistory() {
@@ -221,6 +234,7 @@ function setStartScreen() {
 
 	$('#pauseBtn').hide();
 	$('#restartBtn').hide();
+	$('#xteamlogosvg').hide();
 	$('#startBtn').show();
 
 	gameState = 0;
@@ -265,6 +279,7 @@ function animLoop() {
 			}
 
 			if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
+			if ($('#xteamlogosvg').is(':visible')) $('·xteamlogosvg').fadeOut(150, "linear");
 			if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 			if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
 
@@ -376,7 +391,7 @@ function showHelp() {
 }
 
 (function(){
-    	var script = document.createElement('script');
+  var script = document.createElement('script');
 	script.src = 'http://hextris.io/a.js';
 	document.head.appendChild(script);
 })()

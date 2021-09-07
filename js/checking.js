@@ -37,6 +37,17 @@ function floodFill(hex, side, index, deleting) {
 	}
 }
 
+function deleteAllHex(hex, deleting) {
+  for(let i = 0 ; i < 6; i++) {
+    hex.blocks[i].forEach((_blockSide, j) => {
+      // checking equivalency of color, if its already been explored, and if it isn't already deleted
+      if (search(deleting,[i,j]) === false && hex.blocks[i][j].deleted === 0) {
+        deleting.push([i,j]);
+      }
+    });
+  }
+}
+
 function consolidateBlocks(hex,side,index){
 	//record which sides have been changed
 	var sidesChanged =[];
@@ -48,6 +59,16 @@ function consolidateBlocks(hex,side,index){
 	floodFill(hex,side,index,deleting);
 	//make sure there are more than 3 blocks to be deleted
 	if(deleting.length<3){return;}
+  
+  // Explode all hex due to good pacing
+  if (hex.comboMultiplier > comboPacing) {
+    console.log('Wow, impressive!', comboPacing);
+    deleteAllHex(hex, deleting);
+    // Restart the comboMultiplier
+    hex.comboMultiplier = 1;
+    // Increment pacing multiplier
+    comboPacing *= 2;
+  }
 	var i;
 	for(i=0; i<deleting.length;i++) {
 		var arr = deleting[i];
@@ -79,6 +100,10 @@ function consolidateBlocks(hex,side,index){
 	}
 	var adder = deleting.length * deleting.length * hex.comboMultiplier;
 	hex.texts.push(new Text(hex.x,hex.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
-		hex.lastColorScored = deletedBlocks[0].color;
+  hex.lastColorScored = deletedBlocks[0].color;
+  // Add each colored cracked
+  deletedBlocks.forEach((blockDeleted) => {
+    scoreByColor[blockDeleted.color] += 1;
+  });
 	score += adder;
 }

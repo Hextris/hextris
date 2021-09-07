@@ -1,7 +1,7 @@
 function render() {
-	var grey = '#bdc3c7';
+	var notSoDarkBlue = '#60676B'; // Darker
 	if (gameState === 0) {
-		grey = "rgb(220, 223, 225)";
+		notSoDarkBlue = "#8194A1"; // ligther
 	}
 	
 	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
@@ -11,7 +11,7 @@ function render() {
 			op += 0.01;
 		}
 		ctx.globalAlpha = op;
-		drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);
+		drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, notSoDarkBlue, false,6);
 		drawTimer();
 		ctx.globalAlpha = 1;
 	}
@@ -83,8 +83,8 @@ function renderBeginningText() {
         score_text = 'Match 3+ blocks to score!'
         fontSize = 27
     }
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-0*settings.scale, fontSize, '#2c3e50', input_text);
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight+33*settings.scale, fontSize, '#2c3e50', action_text);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-0*settings.scale, fontSize, '#FCC058', input_text);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight+33*settings.scale, fontSize, '#FCC058', action_text);
     if (!mob) {
 	    drawKey("",(trueCanvas.width)/2 + 2 * settings.scale-2.5,upperheight+38*settings.scale);
     }
