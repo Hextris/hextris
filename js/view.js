@@ -6,7 +6,7 @@ function easeOutCubic(t, b, c, d) {
 function renderText(x, y, fontSize, color, text, font) {
 	ctx.save();
 	if (!font) {
-		var font = '20px Exo';
+		var font = `20px 'Open Sans'`;
 	}
 
 	fontSize *= settings.scale;
@@ -160,7 +160,7 @@ function gameOverDisplay() {
 	$("#xteamlogosvg").fadeOut();
 	$("#gameoverscreen").fadeIn();
 	$("#buttonCont").fadeIn();
-	$("#container").fadeIn();
+	$("#gameoverdisconnected").fadeIn();
 	$("#socialShare").fadeIn();
 	$("#restart").fadeIn();
   set_score_pos();

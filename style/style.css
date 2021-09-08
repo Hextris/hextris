@@ -10,19 +10,158 @@
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
-#container {
-	color:#ecf0f1;
-	position:absolute;
-	left:50%;
-	top:calc(50%);
-	text-align:center;
-	transform:translate(-50%, -50%);
-	font-family:Exo;
-	-webkit-transform:translate(-50%, -50%);
-	-moz-transform:translate(-50%, -50%);
-	-ms-transform:translate(-50%, -50%);
-    display:none;
+/*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
+#gameoverscreen {
+  padding-top: 2em;
+  
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
+
+/*/////////////////////////////////////////////     GAMEOVER HEADER     //////////////////////////////////////////////////////////////////////*/
+#gameoverscreenheader {
+  font-family:'Open Sans';
+	color:#ecf0f1;
+  /* Flex item props */
+  flex: 0 1 auto;
+  
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+}
+
+#gameoverscreenheader >  * {
+  z-index: 1;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#highscoredisplay .highScoreInGameTextHeader {
+  color: #ECF0F1;
+}
+
+#highscoredisplay #currentHighScore {
+  font-size:2em;
+  font-weight: 900;
+}
+
+/*/////////////////////////////////////////////     GAMEOVER BODY     //////////////////////////////////////////////////////////////////////*/
+#gameoverscreenbody {
+  z-index: 1;
+  font-family:'Open Sans';
+	color:#ecf0f1;
+  padding-top: 3em;
+  /* Flex item props */
+  flex: 1 1 auto;
+  
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+}
+
+#gameoverdisconnected {
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#cScore {
+	font-size:3.78em;
+	font-weight: lighter;
+	margin-bottom:5px;
+	margin-top:-10px;
+}
+
+#cTime {
+	font-size:1.88em;
+	font-weight: lighter;
+	margin-bottom:5px;
+	margin-top:-10px;
+}
+
+#currentScoreAndTime {
+  z-index: 1;
+  width: 100%;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+}
+
+#currentScoreAndTime :nth-child(1) {
+  flex: 1 1 auto;
+}
+
+/*/////////////////////////////////////////////     GAMEOVER FOOTER     //////////////////////////////////////////////////////////////////////*/
+#gameoverscreenfooter {
+  font-family:'Open Sans';
+	color:#ecf0f1;
+  /* Flex item props */
+  flex: 0 1 auto;
+  
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+}
+
+/*/////////////////////////////////////////////     GENERAL PURPOSE     //////////////////////////////////////////////////////////////////////*/
+.score {
+  z-index: 1;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.bigtitle {
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+.scoreNum {
+	font-weight: normal !important;
+}
+
+.score {
+	font-weight: lighter;
+	line-height:18px;
+}
+
+.score img {
+  width: 2em;
+}
+.score :nth-child(1) {
+  width: 1.8em;
+  padding-right: 1.2em;  
+}
+
+.score :nth-child(2) {
+  flex: 1 1 auto;  
+}
+
 .tweet {
 	font-size:2rem;
 	color:#4099FF;
@@ -50,17 +189,6 @@ a {
 #title {
 	color:#ecf0f1;
 	font-size:6vmin;
-}
-
-#score {
-	font-size:4vmin;
-	text-align:center;
-	width:30%;
-}
-
-#highscores {
-	text-align:center;
-	list-style:none;
 }
 
 .not-visible {
@@ -178,7 +306,7 @@ button:focus {
 }
 
 #inst_main_body > a {
-	font-weight:bold;
+	font-weight: bold;
 }
 
 #inst_main_body > hr {
@@ -199,29 +327,11 @@ button:focus {
 	padding-bottom:4px;
 }
 
-
-#highScoreInGameTextHeader {
-	color: #ECF0F1;
-	width:100%;
-}
-
-#highScoreInGameText {
-	position: absolute;
-	top:10px;
-	text-align: center;
-	width:200px;
-	left:50%;
-	margin-left:-100px;
-}
-
-#currentHighScore {
-	color: #ECF0F1;
-	width:100%;
-	margin-top: -5px;
-	font-size:2em;
-}
-
 @media only screen and (max-device-width:480px) {
+  .bigtitle {
+    font-size: 1.1em;
+  }
+
 	#helpScreen {
 		position:fixed;
 		top:2px;
@@ -305,17 +415,11 @@ button:focus {
 	#buttonCont {
 		bottom:calc(50vh - 19vh - 36px);
 	}
-	#container {
-		top:calc(50vh - 11vh);
-	}
 }
 
 @media only screen and (orientation:portrait) {
 	#buttonCont {
 		bottom:calc(50vh - 19vw - 36px);
-	}
-	#container {
-		top:calc(50vh - 11vw);
 	}
 }
 
@@ -362,7 +466,7 @@ button:focus {
 
 body {
 	color:#ecf0f1;
-	font-family:'Exo', sans-serif;
+	font-family:''Open Sans'', sans-serif;
 	background-color:#303030;
 }
 
@@ -384,10 +488,6 @@ body {
 	z-index:99;
 	margin-top:20px;
 	color:#2c3e50;
-}
-
-#gameoverscreen {
-	/*display:none;*/
 }
 
 #restart{
@@ -428,65 +528,20 @@ body {
 	-ms-user-select:none;
 	user-select:none;
 }
+
 #afterhr {
 	margin:0;
 	padding:0;
 	margin-bottom:-10px;
 	padding-bottom:-10px;
 }
+
 body {
 	overflow:hidden;
 }
-#gameoverscreen {
-	padding:8px;
-}
-@font-face {
-	font-family:Exo;
-	font-weight:light;
-	src:url("./fonts/Exo2-ExtraLight.otf") format("opentype");
-}
-
-@font-face {
-	font-family:Exo;
-	src:url("./fonts/Exo2-Regular.otf") format("opentype");
-}
-
-@font-face {
-	font-family:Exo;
-	font-weight:bold;
-	src:url("./fonts/Exo2-SemiBold.otf") format("opentype");
-}
-
-.GOTitle {
-	font-weight:bold;
-	font-size:24.2000px;
-}
-
-.scoreNum {
-	font-weight:normal ! important;
-}
-
-#cScore {
-	font-size:60.5000px;
-	font-weight:light;
-	margin-bottom:5px;
-	margin-top:-10px;
-}
-
-#highScoresTitle {
-	margin-bottom:2px;
-}
-
-.score {
-	font-weight:light;
-	line-height:18px;
-}
-
-
 
 
 #bottomContainer {
-	position:absolute;
 	width:100%;
 	bottom:0px;
 }

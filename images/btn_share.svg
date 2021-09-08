@@ -9,7 +9,7 @@
 		<g id="Game-over-" sketch:type="MSArtboardGroup" transform="translate(-95.000000, -565.000000)">
 			<g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
 				<polygon id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 "></polygon>
-				<text id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="Exo" font-size="16" font-weight="420" fill="#FFFFFF">
+				<text id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="OpenSans" font-size="16" font-weight="420" fill="#FFFFFF">
 					<tspan x="67" y="39">SHARE MY SCORE!</tspan>
 				</text>
 			</g>

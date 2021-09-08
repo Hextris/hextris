@@ -43,14 +43,14 @@ function setBottomContainer() {
 }
 
 function set_score_pos() {
-    $("#container").css('margin-top', '0');
-    var middle_of_container = ($("#container").height()/2 + $("#container").offset().top);
-    var top_of_bottom_container = $("#buttonCont").offset().top
-    var igt = $("#highScoreInGameText")
-    var igt_bottom = igt.offset().top + igt[0].offsetHeight
-    var target_midpoint = (top_of_bottom_container + igt_bottom)/2
-    var diff = (target_midpoint-middle_of_container)
-    $("#container").css("margin-top",diff + "px");
+    // $("#gameoverdisconnected").css('margin-top', '0');
+    // var middle_of_gameoverdisconnected = ($("#gameoverdisconnected").height()/2 + $("#gameoverdisconnected").offset().top);
+    // var top_of_bottom_gameoverdisconnected = $("#buttonCont").offset().top
+    // var igt = $("#highScoreInGameText")
+    // var igt_bottom = igt.offset().top + igt[0].offsetHeight
+    // var target_midpoint = (top_of_bottom_gameoverdisconnected + igt_bottom)/2
+    // var diff = (target_midpoint-middle_of_gameoverdisconnected)
+    // $("#gameoverdisconnected").css("margin-top",diff + "px");
 }
 
 function toggleDevTools() {
