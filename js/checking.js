@@ -62,7 +62,6 @@ function consolidateBlocks(hex,side,index){
   
   // Explode all hex due to good pacing
   if (hex.comboMultiplier > comboPacing) {
-    console.log('Wow, impressive!', comboPacing);
     deleteAllHex(hex, deleting);
     // Restart the comboMultiplier
     hex.comboMultiplier = 1;

@@ -7,30 +7,36 @@ function initialize(a) {
 	window.iframHasLoaded = false;
   
   window.comboPacing = 10;
-  window.colorNames = [
+  window.colorHouses = [
     {
       color:"#6C45BF",
       name: 'Nightclaw',
+      htmlId: 'nightclaw',
     },
     {
       color:"#F7CF05",
       name: 'Nascent Fire',
+      htmlId: 'nascentfire',
     },
     {
       color:"#F22F1D",
       name: 'Ragnar',
+      htmlId: 'ragnar',
     },
     {
       color:"#05F2F2",
       name: 'Corgi',
+      htmlId: 'corgi',
     },
     {
       color:"#F250D7",
       name: 'Lions Pride',
+      htmlId: 'lionspride',
     },
     {
       color:"#038C73",
       name: 'Panda',
+      htmlId: 'panda',
     }
   ]
   ;
@@ -61,9 +67,9 @@ function initialize(a) {
 		"rgb(3, 140, 115)": "rgb(163, 212, 203)", // Panda
 	};
 
-	window.hexagonBackgroundColor = '#303030';
-	window.hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
-	window.centerBlue = 'rgb(44,62,80)';
+	window.hexagonBackgroundColor = '#252D38';
+	window.hexagonBackgroundColorClear = 'rgba(37, 45, 56, 0.5)';
+	window.centerBlue = 'rgb(37,45,56)';
 	window.angularVelocityConst = 4;
 	window.scoreOpacity = 0;
 	window.textOpacity = 0;
@@ -179,10 +185,13 @@ function initialize(a) {
 			}
 		};
 		$('#startBtn').off();
+		$('#startbutton').off();
 		if (settings.platform == 'mobile') {
 			$('#startBtn').on('touchstart', startBtnHandler);
+			$('#startbutton').on('touchstart', startBtnHandler);
 		} else {
 			$('#startBtn').on('mousedown', startBtnHandler);
+			$('#startbutton').on('mousedown', startBtnHandler);
 		}
 
 		document.addEventListener('touchmove', function(e) {
@@ -328,7 +337,7 @@ function handleClickBefore(e) {
 	}
 }
 
-function hexColorToName(hexColor) {
-  const house = colorNames.find(({ color }) => color === hexColor);
-  return house.name;
+function hexColorToHmlId(hexColor) {
+  const house = colorHouses.find(({ color }) => color === hexColor);
+  return house.htmlId;
 }

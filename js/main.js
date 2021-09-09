@@ -30,7 +30,6 @@ function scaleCanvas() {
 		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
     setBottomContainer();
-    set_score_pos();
 }
 
 function setBottomContainer() {
@@ -42,17 +41,6 @@ function setBottomContainer() {
     }
 }
 
-function set_score_pos() {
-    // $("#gameoverdisconnected").css('margin-top', '0');
-    // var middle_of_gameoverdisconnected = ($("#gameoverdisconnected").height()/2 + $("#gameoverdisconnected").offset().top);
-    // var top_of_bottom_gameoverdisconnected = $("#buttonCont").offset().top
-    // var igt = $("#highScoreInGameText")
-    // var igt_bottom = igt.offset().top + igt[0].offsetHeight
-    // var target_midpoint = (top_of_bottom_gameoverdisconnected + igt_bottom)/2
-    // var diff = (target_midpoint-middle_of_gameoverdisconnected)
-    // $("#gameoverdisconnected").css("margin-top",diff + "px");
-}
-
 function toggleDevTools() {
 	$('#devtools').toggle();
 }
@@ -61,10 +49,9 @@ function resumeGame() {
 	gameState = 1;
 	hideUIElements();
 	$('#pauseBtn').show();
-	$('#xteamlogosvg').show();
 	$('#restartBtn').hide();
+  $('#highscoredisplay').fadeOut(1000, 'linear');
   
-  xteamLogoSvg.style.transform = `translateX(${-(xteamLogoSvg.width / 2)}px)`;
 	importing = 0;
 	startTime = Date.now();
 	setTimeout(function() {
@@ -82,13 +69,14 @@ function checkVisualElements(arg) {
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 	if ($('#buttonCont').is(':visible')) $('#buttonCont').fadeOut(150, "linear");
+	if ($('#highscoredisplay').is(':visible')) $('#highscoredisplay').fadeOut(1000, "linear");
 }
 
 function hideUIElements() {
 	$('#pauseBtn').hide();
 	$('#restartBtn').hide();
 	$('#startBtn').hide();
-  $('#xteamlogosvg').hide();
+	$('#startbutton').hide();
 }
 
 function init(b) {
@@ -112,7 +100,7 @@ function init(b) {
 		$("#currentHighScore").text(0);
 	}
 	else {
-		$("#currentHighScore").text(highscores[0])
+		$("#currentHighScore").text((highscores[0])[0])
 	}
 	infobuttonfading = true;
 	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
@@ -134,7 +122,6 @@ function init(b) {
 	gameState = 1;
 	$("#restartBtn").hide();
 	$("#pauseBtn").show();
-	$("#xteamlogosvg").show();
 	
   if (saveState.hex !== undefined) gameState = 1;
 
@@ -225,6 +212,7 @@ function exportHistory() {
 
 function setStartScreen() {
 	$('#startBtn').show();
+	$('#startbutton').show();
 	init();
 	if (isStateSaved()) {
 		importing = 0;
@@ -234,8 +222,8 @@ function setStartScreen() {
 
 	$('#pauseBtn').hide();
 	$('#restartBtn').hide();
-	$('#xteamlogosvg').hide();
 	$('#startBtn').show();
+	$('#startbutton').show();
 
 	gameState = 0;
 	requestAnimFrame(animLoop);
@@ -279,7 +267,6 @@ function animLoop() {
 			}
 
 			if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
-			if ($('#xteamlogosvg').is(':visible')) $('·xteamlogosvg').fadeOut(150, "linear");
 			if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 			if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
 
@@ -353,8 +340,9 @@ function checkGameOver() {
 	for (var i = 0; i < MainHex.sides; i++) {
 		if (isInfringing(MainHex)) {
 			$.get('http://54.183.184.126/' + String(score))
-			if (highscores.indexOf(score) == -1) {
-				highscores.push(score);
+			const hScoreFound = highscores.find(([hScore]) => hScore === score);
+      if (!hScoreFound) {
+				highscores.push([score, getGameDuration()]);
 			}
 			writeHighScores();
 			gameOverDisplay();

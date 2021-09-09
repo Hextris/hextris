@@ -7,13 +7,14 @@
 	user-select:none;
 	padding:0;
 	margin:0;
+  font-size: 16px;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
-/*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreen {
-  padding-top: 2em;
-  
+  /*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
+  padding-top: 2rem;
+
   /* Flex parent props */
 	display: flex;
   flex-direction: column;
@@ -26,8 +27,8 @@
 /*/////////////////////////////////////////////     GAMEOVER HEADER     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreenheader {
   font-family:'Open Sans';
-	color:#ecf0f1;
-  /* Flex item props */
+	color:#FFFFFF;
+  /* Flex itrem props */
   flex: 0 1 auto;
   
   /* Flex parent props */
@@ -36,7 +37,6 @@
 }
 
 #gameoverscreenheader >  * {
-  z-index: 1;
 
   /* Flex parent props */
 	display: flex;
@@ -47,22 +47,27 @@
   align-content: center;
 }
 
+#highscoredisplay {
+  z-index: 1;
+}
+
 #highscoredisplay .highScoreInGameTextHeader {
-  color: #ECF0F1;
+  color: #FFFFFF;
+  font-weight: 200;
 }
 
 #highscoredisplay #currentHighScore {
-  font-size:2em;
+  font-size:2rem;
   font-weight: 900;
+  margin-top: -0.7rem;
 }
 
 /*/////////////////////////////////////////////     GAMEOVER BODY     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreenbody {
-  z-index: 1;
   font-family:'Open Sans';
-	color:#ecf0f1;
-  padding-top: 3em;
-  /* Flex item props */
+	color:#FFFFFF;
+  padding-top: 3rem;
+  /* Flex itrem props */
   flex: 1 1 auto;
   
   /* Flex parent props */
@@ -81,21 +86,20 @@
 }
 
 #cScore {
-	font-size:3.78em;
-	font-weight: lighter;
+	font-size:3.78rem;
+	font-weight: 500;
 	margin-bottom:5px;
 	margin-top:-10px;
 }
 
 #cTime {
-	font-size:1.88em;
-	font-weight: lighter;
+	font-size:1.88rem;
+	font-weight: 500;
 	margin-bottom:5px;
 	margin-top:-10px;
 }
 
 #currentScoreAndTime {
-  z-index: 1;
   width: 100%;
 
   /* Flex parent props */
@@ -114,8 +118,8 @@
 /*/////////////////////////////////////////////     GAMEOVER FOOTER     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreenfooter {
   font-family:'Open Sans';
-	color:#ecf0f1;
-  /* Flex item props */
+	color:#FFFFFF;
+  /* Flex itrem props */
   flex: 0 1 auto;
   
   /* Flex parent props */
@@ -125,7 +129,6 @@
 
 /*/////////////////////////////////////////////     GENERAL PURPOSE     //////////////////////////////////////////////////////////////////////*/
 .score {
-  z-index: 1;
 
   /* Flex parent props */
 	display: flex;
@@ -138,7 +141,7 @@
 
 .bigtitle {
 	font-weight: bold;
-	font-size: 1.3em;
+	font-size: 1.3rem;
 }
 
 .scoreNum {
@@ -146,29 +149,73 @@
 }
 
 .score {
-	font-weight: lighter;
+	font-weight: 400;
 	line-height:18px;
 }
 
 .score img {
-  width: 2em;
+  width: 2rem;
 }
 .score :nth-child(1) {
-  width: 1.8em;
-  padding-right: 1.2em;  
+  width: 1.8rem;
+  padding-right: 1.2rem;  
 }
 
 .score :nth-child(2) {
   flex: 1 1 auto;  
 }
 
+#xteamlogosvg {
+  width: 3rem;
+  position: fixed;
+  left: calc(50% - 1.5rem);
+  top: calc(50% - 1.5rem);
+}
+
+/*/////////////////////////////////////////////     START BUTTON     //////////////////////////////////////////////////////////////////////*/
+#startbutton {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  color: #777F8C;
+  font-family: 'Open Sans';
+  font-weight: 900;
+  font-size: 1.3rem;
+  left: calc(50% - 1.692rem);
+  top: calc(100% - 8rem);
+  animation: neonglow 2s alternate infinite;
+}
+
+@keyframes neonglow {
+  0% {
+    color: #777F8C;
+    text-shadow: none;
+  }
+  
+
+  100% {
+    color: #FFFFFF;
+    text-shadow: 
+      0 0 10px #FFFFFF,
+      0 0 20px #FFFFFF,
+      0 0 40px #FFFFFF,
+      0 0 80px #FFFFFF,
+      0 0 160px #FFFFFF;
+  }
+}
+
+
+
+
+
 .tweet {
-	font-size:2rem;
+	font-size:2rrem;
 	color:#4099FF;
 }
+
 @media only screen and (min-device-width:320px) and (max-device-width:480px) {
 	.tweet{
-		font-size:1rem;
+		font-size:1rrem;
 	}
 }
 a {
@@ -187,7 +234,7 @@ a {
 }
 
 #title {
-	color:#ecf0f1;
+	color:#FFFFFF;
 	font-size:6vmin;
 }
 
@@ -196,7 +243,7 @@ a {
 }
 
 button {
-	color:#ecf0f1;
+	color:#FFFFFF;
 	background-color:rgba(0,0,0,0);
 	border:0;
 }
@@ -216,13 +263,6 @@ button:focus {
 	cursor:pointer;
 	top:0;
 	left:0;
-}
-
-#xteamlogosvg {
-  display: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
 }
 
 #pauseBtn {
@@ -260,7 +300,7 @@ button:focus {
 	height:25%;
 	width:25%;
 	z-index:99999999;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 #helpScreen {
@@ -292,7 +332,7 @@ button:focus {
 
 #inst_main_body {
 	padding:0px;
-	font-size:1.2em;
+	font-size:1.2rem;
 	left:50%;
 	top:50%;
 	position: absolute;
@@ -323,13 +363,13 @@ button:focus {
 
 #instructions_head {
 	text-align:center;
-	font-size:1.5em;
+	font-size:1.5rem;
 	padding-bottom:4px;
 }
 
 @media only screen and (max-device-width:480px) {
   .bigtitle {
-    font-size: 1.1em;
+    font-size: 1.1rem;
   }
 
 	#helpScreen {
@@ -384,19 +424,20 @@ button:focus {
 }
 
 .centeredHeader {
+  font-family: 'Open Sans';
 	font-size:5vw; 
 	text-align:center;
-	line-height:4rem;
+	line-height:4rrem;
 }
 
 .centeredSubHeader {
-	font-size:2.2rem; 
-	line-height:1em;
+	font-size:2.2rrem; 
+	line-height:1rem;
 	text-align:center;
 }
 
 .centeredSubSubHeader {
-	font-size:1.4rem; 
+	font-size:1.4rrem; 
 	text-align:center;
 }
 
@@ -425,13 +466,13 @@ button:focus {
 
 @media only screen and (min-device-width:320px) and (max-device-width:600px) {
 	.centeredHeader {
-		font-size:2rem; 
+		font-size:2rrem; 
 		text-align:center;
-		line-height:0.6rem;
+		line-height:0.6rrem;
 	}
 
 	.centeredSubHeader {
-		font-size:1rem; 
+		font-size:1rrem; 
 		text-align:center;
 	}
 
@@ -465,9 +506,9 @@ button:focus {
 }
 
 body {
-	color:#ecf0f1;
+	color:#FFFFFF;
 	font-family:''Open Sans'', sans-serif;
-	background-color:#303030;
+	background-color:#252D38;
 }
 
 #clickToExit {
@@ -481,7 +522,7 @@ body {
 	right:0;
 	height:100%;
 	width:100%;
-	background-color:#303030;
+	background-color:#252D38;
 	z-index:0;
 }
 #title {

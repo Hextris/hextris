@@ -5,12 +5,14 @@ function easeOutCubic(t, b, c, d) {
 
 function renderText(x, y, fontSize, color, text, font) {
 	ctx.save();
-	if (!font) {
-		var font = `20px 'Open Sans'`;
-	}
 
 	fontSize *= settings.scale;
-	ctx.font = fontSize + font;
+  if (!font) {
+		var font = `20px 'Open Sans'`;
+    ctx.font = fontSize + font;
+	} else {
+    ctx.font = font;
+  }
 	ctx.textAlign = 'center';
 	ctx.fillStyle = color;
 	ctx.fillText(text, x, y + (fontSize / 2) - 9 * settings.scale);
@@ -35,28 +37,22 @@ function drawScoreboard() {
 		scoreSize = 27;
 	}
 	//if (rush ==1){
-  var color = "rgb(236, 240, 241)";
+  var color = "rgb(255, 255, 255)";
 	//}
+  const basePixelFont = 16;
   var fontSize = settings.platform == 'mobile' ? 35 : 30;
   var h = trueCanvas.height / 2 + gdy + 100 * settings.scale;
 	if (gameState === 0) {
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "#ECF0F1", String.fromCharCode("0xf04b"), 'px FontAwesome');
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2.1 + gdy - 155 * settings.scale, 150, "#FCC058", "Hextris");
-		renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, h + 10, fontSize, "#2A3E50", 'Play!');
+		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2.1 + gdy - 155 * settings.scale, 150, "#FCC058", "Hextris", `900 ${( (`${150 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 	} else if (gameState != 0 && textOpacity > 0) {
 		textOpacity -= 0.05;
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "#ECF0F1", String.fromCharCode("0xf04b"), 'px FontAwesome');
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 155 * settings.scale, 150, "#FCC058", "Hextris");
-		renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, h, fontSize, "#2A3E50", 'Play!');
+		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2 + gdy - 155 * settings.scale, 150, "#FCC058", "Hextris", `900 ${( (`${150 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 		ctx.globalAlpha = scoreOpacity;
-		renderText(trueCanvas.width / 2 + gdx, (trueCanvas.height / 2) - xteamLogoSvg.height + gdy, scoreSize, color, score);
+		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height - (trueCanvas.height - 100) + gdy * settings.scale, scoreSize, color, score, `900 ${( (`${scoreSize * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 		
 	} else {
 		ctx.globalAlpha = scoreOpacity;
-		renderText(trueCanvas.width / 2 + gdx, (trueCanvas.height / 2)- xteamLogoSvg.height + gdy, scoreSize, color, score);
-    Object.entries(scoreByColor).forEach(([hexColor, scoreByHex], i) =>
-      renderText(100, 50 + (27 * i), 27, '#FFFFFF', `${hexColorToName(hexColor)}: ${scoreByHex}`)
-    );
+		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height - (trueCanvas.height - 100) + gdy * settings.scale, scoreSize, color, score, `900 ${( (`${scoreSize * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 	}
 
 	ctx.globalAlpha = 1;
@@ -99,10 +95,10 @@ function toggleClass(element, active) {
 
 function showText(text) {
 	var messages = {
-		'paused': "<div class='centeredHeader unselectable'>Game Paused</div>",
-		'pausedAndroid': "<div class='centeredHeader unselectable'>Game Paused</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'></div>",
-		'pausediOS': "<div class='centeredHeader unselectable'>Game Paused</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'></div>",
-		'pausedOther': "<div class='centeredHeader unselectable'>Game Paused</div><div class='unselectable centeredSubHeader' style='margin-top:10px;position:absolute;left:50%;margin-left:-190px;max-width:380px;font-size:18px;'></div>",
+		'paused': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
+		'pausedAndroid': "<div class='centeredHeader unselectable'>Connection Interrupted</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'></div>",
+		'pausediOS': "<div class='centeredHeader unselectable'>Connection Interrupted</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'></div>",
+		'pausedOther': "<div class='centeredHeader unselectable'>Connection Interrupted</div><div class='unselectable centeredSubHeader' style='margin-top:10px;position:absolute;left:50%;margin-left:-190px;max-width:380px;font-size:18px;'></div>",
 		'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>"
 	};
 
@@ -117,7 +113,6 @@ function showText(text) {
 	}
 
 	if (text == 'gameover') {
-	   //Clay('client.share.any', {text: 'Think you can beat my score of '+ score + ' in Super Cool Game?'})
 		$("#gameoverscreen").fadeIn();
   }
 	$(".overlay").html(messages[text]);
@@ -150,27 +145,53 @@ function gameOverDisplay() {
 	Cookies.set("visited",true);
 	var c = document.getElementById("canvas");
 	c.className = "blur";
+  updateTime();
 	updateHighScores();
+  updateHouseCombinations();
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
 	}
 	else {
-		$("#currentHighScore").text(highscores[0])
+		$("#currentHighScore").text((highscores[0])[0])
 	}
 	$("#xteamlogosvg").fadeOut();
-	$("#gameoverscreen").fadeIn();
+  $('#highscoredisplay').fadeIn(1000, 'linear');
+	$("#gameoverscreen").fadeIn(1000, 'linear');
 	$("#buttonCont").fadeIn();
-	$("#gameoverdisconnected").fadeIn();
 	$("#socialShare").fadeIn();
 	$("#restart").fadeIn();
-  set_score_pos();
+}
+
+function getGameDuration() {
+  const twoFiexDecimals = 100;
+  const secInMillis = 1000;
+  const now = Date.now();
+  const timeInMillis = now - startTime;
+  const timeInSecs = timeInMillis / secInMillis;
+  const timeInMillisRounded = Math.round((timeInSecs + Number.EPSILON) * twoFiexDecimals) / twoFiexDecimals;
+  return timeInMillisRounded;
+}
+
+function updateHouseCombinations() {
+  Object.entries(scoreByColor).forEach(([hexColor, scoreByHex]) => {
+    const htmlId = hexColorToHmlId(hexColor);
+    $(`#${htmlId}`).text(`${scoreByHex}`);
+  });
+}
+
+function updateTime() {
+  const timeInMillisRounded = getGameDuration();
+  $("#cTime").text(`${timeInMillisRounded}s`);
+  highscores.forEach(([,time], index) => {
+    $(`#${index + 1}placeTime`).text(`${time}s`);
+  });
 }
 
 function updateHighScores (){
     $("#cScore").text(score);
-    $("#1place").text(highscores[0]);
-    $("#2place").text(highscores[1]);
-    $("#3place").text(highscores[2]);
+    highscores.forEach(([score], index) => {
+      $(`#${index + 1}place`).text(score);
+    });
 }
 
 var pausable = true;

@@ -32,7 +32,9 @@
 		<meta property="twitter:app:url:ipad" content="itunes.apple.com/us/app/id903769553?mt=8">
 		<meta property="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.hextris.hextris">
 		<link rel="icon" type="image/png" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<script type='text/javascript' src="vendor/hammer.min.js"></script>
@@ -73,6 +75,7 @@
 		<img id='restartBtn' src="./images/btn_restart.svg"/>
 		<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
 		</script>
+    <aside id='startbutton'>PLAY</aside>
 		<section id="gameoverscreen">
 			<aside id ="gameoverscreenheader">
         <div id='highscoredisplay'>
@@ -84,17 +87,17 @@
             <div class='score'>
               <span class='scoreNum'>1.</span>
               <div id="1place" >0</div>
-              <div >0</div>
+              <div id='1placeTime'>0</div>
             </div>
             <div class='score'>
               <span class='scoreNum'>2.</span>
               <div id="2place" >0</div>
-              <div>0</div>
+              <div id='2placeTime'>0</div>
             </div>
             <div class='score'>
               <span class='scoreNum'>3.</span>
               <div id="3place" >0</div>
-              <div>0</div>
+              <div id='3placeTime'>0</div>
             </div>
           </section>          
         </div>
@@ -112,32 +115,32 @@
             <div class='bigtitle'>HOUSE COMBINATIONS</div>
             <div class='score'>
               <img class='scoreNum' src='https://i.imgur.com/uNVtvov.png'>
-              <div id="lionspride" >0</div>
-              <div >0</div>
+              <div id="lionspride">0</div>
+              <div>0</div>
             </div>
             <div class='score'>
               <img class='scoreNum' src='https://i.imgur.com/rKHJXY5.png'>
-              <div id="nightclaw" >0</div>
+              <div id="nightclaw">0</div>
               <div>0</div>
             </div>
             <div class='score'>
               <img class='scoreNum' src='https://i.imgur.com/VZt6iHe.png'>
-              <div id="ragnar" >0</div>
+              <div id="ragnar">0</div>
               <div>0</div>
             </div>
             <div class='score'>
               <img class='scoreNum' src='https://i.imgur.com/vreZ3FV.png'>
-              <div id="corgi" >0</div>
+              <div id="corgi">0</div>
               <div >0</div>
             </div>
             <div class='score'>
               <img class='scoreNum' src='https://i.imgur.com/uyWDlgw.png'>
-              <div id="nascentfire" >0</div>
+              <div id="nascentfire">0</div>
               <div>0</div>
             </div>
             <div class='score'>
               <img class='scoreNum' src='https://i.imgur.com/piUWYzt.png'>
-              <div id="panda" >0</div>
+              <div id="panda">0</div>
               <div>0</div>
             </div>
           </section>  
