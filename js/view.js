@@ -19,6 +19,15 @@ function renderText(x, y, fontSize, color, text, font) {
 	ctx.restore();
 }
 
+function renderCircle(x, y, radius, color, startAngle, endAngle) {
+	ctx.save();
+	ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.stroke();
+	ctx.restore();
+}
+
 function drawScoreboard() {
 	if (scoreOpacity < 1) {
 		scoreOpacity += 0.01;

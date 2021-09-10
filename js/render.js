@@ -39,6 +39,14 @@ function render() {
 			i--;
 		}
 	}
+	
+  for (i = 0; i < MainHex.circles.length; i++) {
+		var alive = MainHex.circles[i].draw();
+		if(!alive){
+			MainHex.circles.splice(i,1);
+			i--;
+		}
+	}
 
 	if ((MainHex.ct < 650 && (gameState !== 0) && !MainHex.playThrough)) {
 		if (MainHex.ct > (650 - 50)) {

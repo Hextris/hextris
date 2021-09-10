@@ -36,4 +36,3 @@ function fadeUpAndOut(text, pacing = 200){
 	text.alive = text.opacity;
 	text.y -= 3 * MainHex.dt;
 }
-

@@ -20,6 +20,7 @@ function Hex(sideLength) {
 	this.lastColorScored = "#000";
 	this.comboTime = 1;
 	this.texts = [];
+	this.circles = [];
   this.lastRotate = Date.now();
   this.comboMultiplier = 1;
 	for (var i = 0; i < this.sides; i++) {
@@ -179,6 +180,7 @@ function Hex(sideLength) {
       // Check if the combo timer is done and restart the comboTimer in that case
       var now = this.ct;
       if((now - this.lastCombo) > settings.comboTime ) {
+        // Restart comboMultiplier
         this.comboMultiplier = 1;
       }
 
@@ -188,6 +190,29 @@ function Hex(sideLength) {
     // Explode all hex due to good pacing
     if (this.comboMultiplier > comboPacing) {
       deleteAllHex(this, deleting);
+
+      this.circles.push(
+        new Circle(
+          trueCanvas.width / 2,
+          trueCanvas.height / 2,
+          1,
+          fadeBiggerAndOut,
+          '#FFF',
+          )
+      );
+
+      setTimeout(() => {
+        this.circles.push(
+          new Circle(
+            trueCanvas.width / 2,
+            trueCanvas.height / 2,
+            1,
+            fadeBiggerAndOut,
+            '#FFF',
+            )
+        );
+      }, 500)
+
       // Restart the comboMultiplier
       this.comboMultiplier = 1;
       // Increment pacing multiplier

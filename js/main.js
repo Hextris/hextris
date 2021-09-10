@@ -110,7 +110,7 @@ function init(b) {
 	importing = 0;
 	score = saveState.score || 0;
   scoreByColor = colors.reduce((concatObject, hexColor) => ({ ...concatObject, [hexColor]: 0}), {});
-  comboPacing = 2;
+  comboPacing = 10;
 	prevScore = 0;
 	spawnLane = 0;
 	op = 0;
@@ -173,6 +173,7 @@ function init(b) {
 	waveone = saveState.wavegen || new waveGen(MainHex);
 
 	MainHex.texts = []; //clear texts
+	MainHex.circles = []; //clear circles
 	MainHex.delay = 15;
 	hideText();
 }
