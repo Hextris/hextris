@@ -22,7 +22,7 @@ function Hex(sideLength) {
 	this.texts = [];
 	this.circles = [];
   this.lastRotate = Date.now();
-  this.comboMultiplier = 1;
+  this.comboMultiplier = 0;
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
 	}
@@ -177,11 +177,11 @@ function Hex(sideLength) {
     floodFill(this, side, index, deleting);
     //make sure there are more than 3 blocks to be deleted
     if (deleting.length < 3) {
-      // Check if the combo timer is done and restart the comboTimer in that case
+      // Check if the combo timer is done and restart the comboMultiplier in that case
       var now = this.ct;
       if((now - this.lastCombo) > settings.comboTime ) {
         // Restart comboMultiplier
-        this.comboMultiplier = 1;
+        this.comboMultiplier = 0;
       }
 
       return;
@@ -214,10 +214,11 @@ function Hex(sideLength) {
       }, 500)
 
       // Restart the comboMultiplier
-      this.comboMultiplier = 1;
+      this.comboMultiplier = 0;
       // Increment pacing multiplier
       comboPacing *= 2;
     }
+
     var i;
     for(i=0; i<deleting.length;i++) {
       var arr = deleting[i];

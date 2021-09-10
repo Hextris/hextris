@@ -23,7 +23,19 @@ function render() {
 			block.draw(true, j);
 		}
 	}
+
 	for (i = 0; i < blocks.length; i++) {
+    var now = MainHex.ct;
+    // If (the block is an "explosive" block) AND (a "combo explosion" occurred) OR (the combo timer finished)
+    // => then restart the block to its basic color
+    if (blocks[i].explodingBlock && (  MainHex.comboMultiplier <= 1 || ((now - MainHex.lastCombo) > settings.comboTime ))) {
+      blocks[i].explodingBlock = false;
+      blocks[i].auxColor = blocks[i].color;
+      // If (the block is NOT and "explosive" block) AND (a "combo explosion" is AVAILABLE to execute)
+      // => then make the block explosive
+    } else if (!blocks[i].explodingBlock && MainHex.comboMultiplier > comboPacing) {
+      blocks[i].explodingBlock = true;
+    }
 		blocks[i].draw();
 	}
 
