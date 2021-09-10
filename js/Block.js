@@ -198,8 +198,20 @@ function Block(fallingLane, color, iter, distFromHex, settled) {
       case 12:
         this.auxColor = pSBC(0.5, this.color);
         break;
+      case 14:
+        this.auxColor = pSBC(0.5, this.color);
+        break;
+      case 16:
+        this.auxColor = pSBC(0.6, this.color);
+        break;
       case 18:
-        this.auxColor = pSBC(0.75, this.color);
+        this.auxColor = pSBC(0.7, this.color);
+        break;
+      case 20:
+        this.auxColor = pSBC(0.8, this.color);
+        break;
+      case 22:
+        this.auxColor = pSBC(0.9, this.color);
         break;
       case 24:
         this.auxColor = pSBC(1, this.color);
