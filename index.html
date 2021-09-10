@@ -37,7 +37,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="style/style.css">
-		<script type='text/javascript' src="vendor/hammer.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type='text/javascript' src="vendor/hammer.min.js"></script>
 		<script type='text/javascript' src="vendor/js.cookie.js"></script>
 		<script type='text/javascript' src="vendor/jsonfn.min.js"></script>
 		<script type='text/javascript' src="vendor/keypress.min.js"></script>
@@ -56,7 +57,6 @@
 		<script type='text/javascript' src="js/input.js"></script>
 		<script type='text/javascript' src="js/main.js"></script>
 		<script type='text/javascript' src="js/initialization.js"></script>
-		<script type='text/javascript' async src="https://hextris.io/scripts/a.js"></script>
 		<script src="vendor/sweet-alert.min.js"></script>
 		<link rel="stylesheet" href="style/rrssb.css"/>
 		<script data-ad-client="ca-pub-9107422120987163" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -78,24 +78,24 @@
     <aside id='startbutton'>PLAY</aside>
 		<section id="gameoverscreen">
 			<aside id ="gameoverscreenheader">
-        <div id='highscoredisplay'>
+        <aside id='highscoredisplay'>
           <div class='highScoreInGameTextHeader'>BEST TRY</div><div id='currentHighScore'>0</div>
-        </div>
-        <div id="highscorehistory">
-          <section>
-            <div class='bigtitle'>BEST CRACKED COMBINATIONS</div>
+        </aside>
+        <div id= 'highscorehistory'>
+          <div class='bigtitle'>CRACKED COMBINATIONS</div>
+          <section id='highscorehistorydisplay'>
             <div class='score'>
-              <span class='scoreNum'>1.</span>
+              <span>1.</span>
               <div id="1place" >0</div>
               <div id='1placeTime'>0</div>
             </div>
             <div class='score'>
-              <span class='scoreNum'>2.</span>
+              <span>2.</span>
               <div id="2place" >0</div>
               <div id='2placeTime'>0</div>
             </div>
             <div class='score'>
-              <span class='scoreNum'>3.</span>
+              <span>3.</span>
               <div id="3place" >0</div>
               <div id='3placeTime'>0</div>
             </div>
@@ -111,44 +111,45 @@
           </aside>
         </div>
         <div id="gamestats">
-          <section>
-            <div class='bigtitle'>HOUSE COMBINATIONS</div>
+          <div class='bigtitle'>HOUSE COMBINATIONS</div>
+          <section id='gamestatsscores'>
             <div class='score'>
-              <img class='scoreNum' src='https://i.imgur.com/uNVtvov.png'>
+              <img src='https://i.imgur.com/uNVtvov.png'>
               <div id="lionspride">0</div>
-              <div>0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
             </div>
             <div class='score'>
-              <img class='scoreNum' src='https://i.imgur.com/rKHJXY5.png'>
+              <img src='https://i.imgur.com/rKHJXY5.png'>
               <div id="nightclaw">0</div>
-              <div>0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
             </div>
             <div class='score'>
-              <img class='scoreNum' src='https://i.imgur.com/VZt6iHe.png'>
+              <img src='https://i.imgur.com/VZt6iHe.png'>
               <div id="ragnar">0</div>
-              <div>0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
             </div>
             <div class='score'>
-              <img class='scoreNum' src='https://i.imgur.com/vreZ3FV.png'>
+              <img src='https://i.imgur.com/vreZ3FV.png'>
               <div id="corgi">0</div>
-              <div >0</div>
+              <div ></div> <!-- This is to balance the scores. Please don't delete it -->
             </div>
             <div class='score'>
-              <img class='scoreNum' src='https://i.imgur.com/uyWDlgw.png'>
+              <img src='https://i.imgur.com/uyWDlgw.png'>
               <div id="nascentfire">0</div>
-              <div>0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
             </div>
             <div class='score'>
-              <img class='scoreNum' src='https://i.imgur.com/piUWYzt.png'>
+              <img src='https://i.imgur.com/piUWYzt.png'>
               <div id="panda">0</div>
-              <div>0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
             </div>
           </section>  
         </div>
       </aside>
 			<aside id="gameoverscreenfooter">
-        <div id='bottomContainer'>
-          <img id='restart' src='./images/btn_restart.svg' height='57px'>
+        <div id='gaveoveroptions'>
+          <img id='restart' class='gameoverButton' src='./images/btn_restart.svg'>
+          <img id='worldwide' class='gameoverButton' src='./images/btn_worldwide.svg'>
           <div id='socialShare'>
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
             <svg width="224.6377px" height="57px"  viewBox="0 0 255 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

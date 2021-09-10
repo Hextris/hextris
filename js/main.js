@@ -36,9 +36,6 @@ function setBottomContainer() {
     var buttonOffset = $("#buttonCont").offset().top;
     var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
     var delta = buttonOffset - playOffset - 29;
-    if (delta < 0) {
-        $("#bottomContainer").css("margin-bottom", "-" + Math.abs(delta) + "px");
-    }
 }
 
 function toggleDevTools() {
@@ -53,7 +50,7 @@ function resumeGame() {
   $('#highscoredisplay').fadeOut(1000, 'linear');
   
 	importing = 0;
-	startTime = Date.now();
+	startTime = moment();
 	setTimeout(function() {
 		if ((gameState == 1 || gameState == 2) && !$('#helpScreen').is(':visible')) {
 			$('#openSideBar').fadeOut(150, "linear");
@@ -113,7 +110,7 @@ function init(b) {
 	importing = 0;
 	score = saveState.score || 0;
   scoreByColor = colors.reduce((concatObject, hexColor) => ({ ...concatObject, [hexColor]: 0}), {});
-  comboPacing = 10;
+  comboPacing = 2;
 	prevScore = 0;
 	spawnLane = 0;
 	op = 0;
@@ -122,6 +119,7 @@ function init(b) {
 	gameState = 1;
 	$("#restartBtn").hide();
 	$("#pauseBtn").show();
+  $("#xteamlogosvg").fadeIn(1000, 'linear');
 	
   if (saveState.hex !== undefined) gameState = 1;
 
@@ -171,7 +169,7 @@ function init(b) {
 
 	MainHex.y = -100;
 
-	startTime = Date.now();
+	startTime = moment();
 	waveone = saveState.wavegen || new waveGen(MainHex);
 
 	MainHex.texts = []; //clear texts
@@ -342,7 +340,7 @@ function checkGameOver() {
 			$.get('http://54.183.184.126/' + String(score))
 			const hScoreFound = highscores.find(([hScore]) => hScore === score);
       if (!hScoreFound) {
-				highscores.push([score, getGameDuration()]);
+				highscores.push([score, getGameDurationText()]);
 			}
 			writeHighScores();
 			gameOverDisplay();

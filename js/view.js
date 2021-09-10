@@ -96,9 +96,9 @@ function toggleClass(element, active) {
 function showText(text) {
 	var messages = {
 		'paused': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
-		'pausedAndroid': "<div class='centeredHeader unselectable'>Connection Interrupted</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'></div>",
-		'pausediOS': "<div class='centeredHeader unselectable'>Connection Interrupted</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'></div>",
-		'pausedOther': "<div class='centeredHeader unselectable'>Connection Interrupted</div><div class='unselectable centeredSubHeader' style='margin-top:10px;position:absolute;left:50%;margin-left:-190px;max-width:380px;font-size:18px;'></div>",
+		'pausedAndroid': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
+		'pausediOS': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
+		'pausedOther': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
 		'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>"
 	};
 
@@ -116,7 +116,7 @@ function showText(text) {
 		$("#gameoverscreen").fadeIn();
   }
 	$(".overlay").html(messages[text]);
-	$(".overlay").fadeIn("1000", "swing");
+	$(".overlay").fadeIn(1000, "swing");
 
 }
 
@@ -154,22 +154,29 @@ function gameOverDisplay() {
 	else {
 		$("#currentHighScore").text((highscores[0])[0])
 	}
-	$("#xteamlogosvg").fadeOut();
+	$("#xteamlogosvg").fadeOut(1000, 'linear');
   $('#highscoredisplay').fadeIn(1000, 'linear');
 	$("#gameoverscreen").fadeIn(1000, 'linear');
+	$("#restart").fadeIn(1000, 'linear');
+	$("#worldwide").fadeIn(1000, 'linear');
 	$("#buttonCont").fadeIn();
 	$("#socialShare").fadeIn();
-	$("#restart").fadeIn();
 }
 
-function getGameDuration() {
-  const twoFiexDecimals = 100;
-  const secInMillis = 1000;
-  const now = Date.now();
-  const timeInMillis = now - startTime;
-  const timeInSecs = timeInMillis / secInMillis;
-  const timeInMillisRounded = Math.round((timeInSecs + Number.EPSILON) * twoFiexDecimals) / twoFiexDecimals;
-  return timeInMillisRounded;
+function getGameDurationText() {
+  const endTime = moment();
+  const endTimeFormatted = moment(endTime, 'YYYY/MM/DD HH:mm');
+  const startTimeFormatted = moment(startTime, 'YYYY/MM/DD HH:mm')
+  const duration = moment.duration(
+    endTimeFormatted.diff(startTimeFormatted)
+  );
+  const ZERO = 0;
+  const hoursText = duration.hours() > ZERO ? `${duration.hours()}h` : null ;
+  const minutesText = duration.minutes() > ZERO ? `${duration.minutes()}m` : null ;
+  const secondsText = duration.seconds() > ZERO ? `${duration.seconds()}` : null ;
+  const milliSecondsText = duration.milliseconds() > ZERO ? `${duration.seconds()}` : null ;
+  const durationText = `${hoursText ? `${hoursText} ` : ''}${minutesText ? `${minutesText} ` : ''}${secondsText}.${milliSecondsText}s`;
+  return durationText;
 }
 
 function updateHouseCombinations() {
@@ -180,10 +187,10 @@ function updateHouseCombinations() {
 }
 
 function updateTime() {
-  const timeInMillisRounded = getGameDuration();
-  $("#cTime").text(`${timeInMillisRounded}s`);
+  const timeInMillisRounded = getGameDurationText();
+  $("#cTime").text(`${timeInMillisRounded}`);
   highscores.forEach(([,time], index) => {
-    $(`#${index + 1}placeTime`).text(`${time}s`);
+    $(`#${index + 1}placeTime`).text(`${time}`);
   });
 }
 

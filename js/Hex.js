@@ -21,6 +21,7 @@ function Hex(sideLength) {
 	this.comboTime = 1;
 	this.texts = [];
   this.lastRotate = Date.now();
+  this.comboMultiplier = 1;
 	for (var i = 0; i < this.sides; i++) {
 		this.blocks.push([]);
 	}
@@ -163,6 +164,108 @@ function Hex(sideLength) {
  
 		drawPolygon(this.x + gdx, this.y + gdy + this.dy, this.sides, this.sideLength, this.angle,arrayToColor(this.fillColor) , 0, 'rgba(0,0,0,0)');
 	};
+
+  this.consolidateBlocks = function (side,index) {
+    //record which sides have been changed
+    var sidesChanged =[];
+    var deleting=[];
+    var deletedBlocks = [];
+    //add start case
+    deleting.push([side,index]);
+    //fill deleting	
+    floodFill(this, side, index, deleting);
+    //make sure there are more than 3 blocks to be deleted
+    if (deleting.length < 3) {
+      // Check if the combo timer is done and restart the comboTimer in that case
+      var now = this.ct;
+      if((now - this.lastCombo) > settings.comboTime ) {
+        this.comboMultiplier = 1;
+      }
+
+      return;
+    }
+    
+    // Explode all hex due to good pacing
+    if (this.comboMultiplier > comboPacing) {
+      deleteAllHex(this, deleting);
+      // Restart the comboMultiplier
+      this.comboMultiplier = 1;
+      // Increment pacing multiplier
+      comboPacing *= 2;
+    }
+    var i;
+    for(i=0; i<deleting.length;i++) {
+      var arr = deleting[i];
+      //just making sure the arrays are as they should be
+      if(arr !== undefined && arr.length==2) {
+        //add to sides changed if not in there
+        if(sidesChanged.indexOf(arr[0])==-1){
+          sidesChanged.push(arr[0]);
+        }
+        //mark as deleted
+        this.blocks[arr[0]][arr[1]].deleted = 1;
+        deletedBlocks.push(this.blocks[arr[0]][arr[1]]);
+      }
+    }
+  
+    // add scores
+    var now = this.ct;
+    if(now - this.lastCombo < settings.comboTime ) {
+      settings.comboTime = (1/settings.creationSpeedModifier) * (waveone.nextGen/16.666667) * 3;
+      this.comboMultiplier += 1;
+      this.lastCombo = now;
+      var coords = findCenterOfBlocks(deletedBlocks);
+      this.texts.push(
+        new Text(
+          coords['x'],
+          coords['y'],
+          "x "+ this.comboMultiplier.toString(),
+          undefined,
+          "#FFF",
+          fadeUpAndOut
+        )
+      );
+      if (this.comboMultiplier === comboPacing + 1) {
+        const fontSize = 50;
+        const basePixelFont = 16;
+        setTimeout(() => {
+          this.texts.push(
+            new Text(
+              coords['x'],
+              coords['y'],
+              'IMPRESSIVE PACING',
+              `800 ${( (`${fontSize * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`,
+              "#FFF",
+              fadeUpAndOut,
+              fontSize,
+              500,
+            )
+          );
+        }, 500);
+      }
+    } else {
+      settings.comboTime = 240;
+      this.lastCombo = now;
+      this.comboMultiplier = 1;
+    }
+    var adder = deleting.length * deleting.length * this.comboMultiplier;
+    this.texts.push(
+      new Text(
+        this.x,
+        this.y,
+        "+ "+ adder.toString(),
+        undefined,
+        deletedBlocks[0].color,
+        fadeUpAndOut
+      )
+    );
+    this.lastColorScored = deletedBlocks[0].color;
+    // Add each colored cracked
+    deletedBlocks.forEach((blockDeleted) => {
+      scoreByColor[blockDeleted.color] += 1;
+    });
+    score += adder;
+  }
 }
 
 function arrayToColor(arr){

@@ -11,8 +11,8 @@
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
+/*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreen {
-  /*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
   padding-top: 2rem;
 
   /* Flex parent props */
@@ -24,11 +24,15 @@
   align-content: center;
 }
 
+#gameoverscreen > * {
+  width: 100%;
+}
+
 /*/////////////////////////////////////////////     GAMEOVER HEADER     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreenheader {
   font-family:'Open Sans';
 	color:#FFFFFF;
-  /* Flex itrem props */
+  /* Flex item props */
   flex: 0 1 auto;
   
   /* Flex parent props */
@@ -36,7 +40,37 @@
   flex-direction: column;
 }
 
-#gameoverscreenheader >  * {
+#highscorehistory {
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#highscorehistory > * {
+  width: 100%;
+}
+
+#highscorehistorydisplay {
+
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#highscorehistorydisplay > * {
+  width: 60%;
+}
+
+#highscoredisplay {
+  z-index: 1;
 
   /* Flex parent props */
 	display: flex;
@@ -47,11 +81,7 @@
   align-content: center;
 }
 
-#highscoredisplay {
-  z-index: 1;
-}
-
-#highscoredisplay .highScoreInGameTextHeader {
+#highscoredisplay.highScoreInGameTextHeader {
   color: #FFFFFF;
   font-weight: 200;
 }
@@ -67,7 +97,7 @@
   font-family:'Open Sans';
 	color:#FFFFFF;
   padding-top: 3rem;
-  /* Flex itrem props */
+  /* Flex item props */
   flex: 1 1 auto;
   
   /* Flex parent props */
@@ -85,23 +115,53 @@
   align-content: center;
 }
 
+#gameoverdisconnected > * {
+  width: 70%;
+} 
+
+#gamestats {
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#gamestats > * {
+  width: 100%;
+}
+
+#gamestatsscores {
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#gamestatsscores > * {
+  width: 30%;
+}
+
 #cScore {
-	font-size:3.78rem;
+	font-size: 2.88rem;
 	font-weight: 500;
 	margin-bottom:5px;
 	margin-top:-10px;
 }
 
 #cTime {
-	font-size:1.88rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 	margin-bottom:5px;
-	margin-top:-10px;
+	margin-top: -10px;
 }
 
 #currentScoreAndTime {
-  width: 100%;
-
   /* Flex parent props */
 	display: flex;
   flex-direction: row;
@@ -111,7 +171,7 @@
   align-content: flex-start;
 }
 
-#currentScoreAndTime :nth-child(1) {
+#currentScoreAndTime > :nth-child(1) {
   flex: 1 1 auto;
 }
 
@@ -119,16 +179,89 @@
 #gameoverscreenfooter {
   font-family:'Open Sans';
 	color:#FFFFFF;
-  /* Flex itrem props */
+  padding-top: 1rem;
+
+  /* Flex item props */
   flex: 0 1 auto;
   
   /* Flex parent props */
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+#gameoverscreenfooter > * {
+  width: 100%;
+}
+
+#gaveoveroptions {
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
+}
+
+#gaveoveroptions > * {
+
+  /* Flex item props*/
+  flex: 1 1 auto;
+}
+
+.gameoverButton {
+  display: none;
+  cursor: pointer;
+  height: 1.7rem;
+}
+
+#worldwide {
+  animation: neonglowyellow 1.5s alternate infinite;
+}
+
+#restart {
+  filter: invert(53%) sepia(12%) saturate(372%) hue-rotate(178deg) brightness(92%) contrast(93%);
+  animation: neonglowwhite 1.5s alternate infinite;
+}
+
+@keyframes neonglowwhite {
+  0% {
+   filter:
+    invert(53%) sepia(12%) saturate(372%) hue-rotate(178deg) brightness(92%) contrast(93%)
+    drop-shadow(0 0 0px #FFFFFF);
+  }
+  
+  100% {
+    filter:
+      invert(0%) sepia(0%) saturate(0%) hue-rotate(88deg) brightness(109%) contrast(100%)
+      drop-shadow(0 0 3px #FFFFFF)
+      drop-shadow(0 0 6px #FFFFFF)
+      drop-shadow(0 0 8px #FFFFFF);
+  }
+}
+
+@keyframes neonglowyellow {
+  0% {
+   filter:
+    invert(68%) sepia(33%) saturate(286%) hue-rotate(2deg) brightness(90%) contrast(90%)
+    drop-shadow(0 0 0px #B5A37F);
+  }
+  
+  100% {
+    filter:
+      invert(87%) sepia(50%) saturate(835%) hue-rotate(330deg) brightness(190%) contrast(101%)
+      drop-shadow(0 0 3px #D49F2C)
+      drop-shadow(0 0 6px #EBB031)
+      drop-shadow(0 0 8px #FFBE35);
+  }
 }
 
 /*/////////////////////////////////////////////     GENERAL PURPOSE     //////////////////////////////////////////////////////////////////////*/
 .score {
+  font-weight: 400;
+	line-height:18px;
 
   /* Flex parent props */
 	display: flex;
@@ -142,26 +275,18 @@
 .bigtitle {
 	font-weight: bold;
 	font-size: 1.3rem;
-}
-
-.scoreNum {
-	font-weight: normal !important;
-}
-
-.score {
-	font-weight: 400;
-	line-height:18px;
+  display: flex;
+  justify-content: center;
 }
 
 .score img {
   width: 2rem;
 }
-.score :nth-child(1) {
-  width: 1.8rem;
+.score > :nth-child(1) {
   padding-right: 1.2rem;  
 }
 
-.score :nth-child(2) {
+.score > :nth-child(2) {
   flex: 1 1 auto;  
 }
 
@@ -170,6 +295,26 @@
   position: fixed;
   left: calc(50% - 1.5rem);
   top: calc(50% - 1.5rem);
+}
+
+.centeredHeader {
+  font-family: 'Open Sans';
+	font-size: 2.5rem;
+	text-align: center;
+	line-height: 4rem;
+}
+
+.overlay {
+	position: absolute;
+	height: 20%;
+	width: 100%;
+	left: 50%;
+	top: 40%;
+	margin-left: -50%;
+	margin-top: -10%;
+	z-index: 3000;
+	color: #232323;
+	text-align: center;
 }
 
 /*/////////////////////////////////////////////     START BUTTON     //////////////////////////////////////////////////////////////////////*/
@@ -183,26 +328,90 @@
   font-size: 1.3rem;
   left: calc(50% - 1.692rem);
   top: calc(100% - 8rem);
-  animation: neonglow 2s alternate infinite;
+  animation: neonglowtext 2s alternate infinite;
 }
 
-@keyframes neonglow {
+@keyframes neonglowtext {
   0% {
     color: #777F8C;
     text-shadow: none;
   }
   
-
   100% {
     color: #FFFFFF;
     text-shadow: 
-      0 0 10px #FFFFFF,
-      0 0 20px #FFFFFF,
-      0 0 40px #FFFFFF,
-      0 0 80px #FFFFFF,
-      0 0 160px #FFFFFF;
+    0 0 10px #FFFFFF,
+    0 0 20px #FFFFFF,
+    0 0 40px #FFFFFF,
+    0 0 80px #FFFFFF,
+    0 0 160px #FFFFFF;
   }
 }
+
+/*/////////////////////////////////////////////     MEDIA QUERIES     //////////////////////////////////////////////////////////////////////*/
+@media only screen and (min-device-width:800px) {
+  #gameoverscreen > * {
+    width: 40%;
+  }
+
+  #highscorehistorydisplay > * {
+    width: 40%;
+  }
+
+  #gameoverdisconnected > * {
+    width: 45%;
+  } 
+
+  #cScore {
+    font-size:3.78rem;
+    font-weight: 500;
+    margin-bottom:5px;
+    margin-top:-10px;
+  }
+  
+  #cTime {
+    font-size: 1.88rem;
+    font-weight: 500;
+    margin-bottom:5px;
+    margin-top: -10px;
+  }
+
+  #gameoverscreenfooter > * {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-device-width:600px) and (min-device-width:800px) {
+  #gameoverscreen > * {
+    width: 60%;
+  }
+
+  #cScore {
+    font-size:2.8rem;
+    font-weight: 500;
+    margin-bottom:5px;
+    margin-top:-10px;
+  }
+
+  #cTime {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom:5px;
+    margin-top: -10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -406,39 +615,9 @@ button:focus {
 	}
 }
 
-.overlay {
-	position:absolute;
-	height:20%;
-	width:100%;
-	left:50%;
-	top:50%;
-	margin-left:-50%;
-	margin-top:-10%;
-	z-index:3000;
-	color:#232323;
-	text-align:center;
-}
 
 .helpText {
 	z-index:3001;
-}
-
-.centeredHeader {
-  font-family: 'Open Sans';
-	font-size:5vw; 
-	text-align:center;
-	line-height:4rrem;
-}
-
-.centeredSubHeader {
-	font-size:2.2rrem; 
-	line-height:1rem;
-	text-align:center;
-}
-
-.centeredSubSubHeader {
-	font-size:1.4rrem; 
-	text-align:center;
 }
 
 #buttonCont {
@@ -469,11 +648,6 @@ button:focus {
 		font-size:2rrem; 
 		text-align:center;
 		line-height:0.6rrem;
-	}
-
-	.centeredSubHeader {
-		font-size:1rrem; 
-		text-align:center;
 	}
 
 	.overlay {
@@ -531,20 +705,6 @@ body {
 	color:#2c3e50;
 }
 
-#restart{
-	display:none;
-	cursor:pointer !important;
-	margin:0;
-	padding:0;
-	bottom:15px;
-	position:absolute;
-	left:calc(50% - 124px);
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-	margin-bottom:-3.5px;
-}
 
 #socialShare{
 	display:none;
@@ -579,12 +739,6 @@ body {
 
 body {
 	overflow:hidden;
-}
-
-
-#bottomContainer {
-	width:100%;
-	bottom:0px;
 }
 
 #androidBadge {
