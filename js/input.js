@@ -117,8 +117,20 @@ function addKeyListeners() {
 			return;
 		}
 
-		if ($('#helpScreen').is(":visible")) {
-			$('#helpScreen').fadeOut(150, "linear");
+		if ($('#overlayhelpscreen').is(":visible")) {
+			$('#overlayhelpscreen').fadeOut(800, "linear");
+		}
+		pause();
+		return false;
+	});
+	
+  $("#resumeBtn").on('touchstart mousedown', function() {
+		if (gameState != 1 && gameState != -1) {
+			return;
+		}
+
+		if ($('#overlayhelpscreen').is(":visible")) {
+			$('#overlayhelpscreen').fadeOut(800, "linear");
 		}
 		pause();
 		return false;

@@ -184,14 +184,16 @@ function initialize(a) {
 				pause();
 			}
 		};
-		$('#startBtn').off();
+		$('.startBtn').off();
 		$('#startbutton').off();
 		if (settings.platform == 'mobile') {
-			$('#startBtn').on('touchstart', startBtnHandler);
+			$('.startBtn').on('touchstart', startBtnHandler);
 			$('#startbutton').on('touchstart', startBtnHandler);
+			$('#openHelp').on('touchstart', showHelp);
 		} else {
-			$('#startBtn').on('mousedown', startBtnHandler);
+			$('.startBtn').on('mousedown', startBtnHandler);
 			$('#startbutton').on('mousedown', startBtnHandler);
+			$('#openHelp').on('mousedown', showHelp);
 		}
 
 		document.addEventListener('touchmove', function(e) {

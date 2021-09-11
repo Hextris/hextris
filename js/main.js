@@ -45,14 +45,15 @@ function toggleDevTools() {
 function resumeGame() {
 	gameState = 1;
 	hideUIElements();
-	$('#pauseBtn').show();
+	$("#pauseBtn").fadeIn(300, 'linear');
 	$('#restartBtn').hide();
+	$('#resumeBtn').hide();
   $('#highscoredisplay').fadeOut(1000, 'linear');
   
 	importing = 0;
 	startTime = moment();
 	setTimeout(function() {
-		if ((gameState == 1 || gameState == 2) && !$('#helpScreen').is(':visible')) {
+		if ((gameState == 1 || gameState == 2) && !$('#overlayoverlayhelpscreen').is(':visible')) {
 			$('#openSideBar').fadeOut(150, "linear");
 		}
 	}, 7000);
@@ -65,6 +66,7 @@ function checkVisualElements(arg) {
 	if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
+	if (!$('#resumeBtn').is(':visible')) $('#resumeBtn').fadeOut(150, "linear");
 	if ($('#buttonCont').is(':visible')) $('#buttonCont').fadeOut(150, "linear");
 	if ($('#highscoredisplay').is(':visible')) $('#highscoredisplay').fadeOut(1000, "linear");
 }
@@ -72,16 +74,16 @@ function checkVisualElements(arg) {
 function hideUIElements() {
 	$('#pauseBtn').hide();
 	$('#restartBtn').hide();
-	$('#startBtn').hide();
+	$('#resumeBtn').hide();
+	$('.startBtn').hide();
 	$('#startbutton').hide();
 }
 
 function init(b) {
 	if(settings.ending_block && b == 1){return;}
 	if (b) {
-		$("#pauseBtn").attr('src',"./images/btn_pause.svg");
-		if ($('#helpScreen').is(":visible")) {
-			$('#helpScreen').fadeOut(150, "linear");
+		if ($('#overlayhelpscreen').is(":visible")) {
+			$('#overlayhelpscreen').fadeOut(800, "linear");
 		}
 
 		setTimeout(function() {
@@ -100,7 +102,7 @@ function init(b) {
 		$("#currentHighScore").text((highscores[0])[0])
 	}
 	infobuttonfading = true;
-	$("#pauseBtn").attr('src',"./images/btn_pause.svg");
+  $("#pausesection").hide();
 	hideUIElements();
 	var saveState = localStorage.getItem("saveState") || "{}";
 	saveState = JSONfn.parse(saveState);
@@ -118,7 +120,8 @@ function init(b) {
 	scoreOpacity = 0;
 	gameState = 1;
 	$("#restartBtn").hide();
-	$("#pauseBtn").show();
+	$("#resumeBtn").hide();
+	$("#pauseBtn").fadeIn(300, 'linear');
   $("#xteamlogosvg").fadeIn(1000, 'linear');
 	
   if (saveState.hex !== undefined) gameState = 1;
@@ -210,7 +213,7 @@ function exportHistory() {
 }
 
 function setStartScreen() {
-	$('#startBtn').show();
+	$('.startBtn').show();
 	$('#startbutton').show();
 	init();
 	if (isStateSaved()) {
@@ -221,7 +224,8 @@ function setStartScreen() {
 
 	$('#pauseBtn').hide();
 	$('#restartBtn').hide();
-	$('#startBtn').show();
+	$('#resumeBtn').hide();
+	$('.startBtn').show();
 	$('#startbutton').show();
 
 	gameState = 0;
@@ -261,12 +265,13 @@ function animLoop() {
 				enableRestart();
 			}, 150);
 
-			if ($('#helpScreen').is(':visible')) {
-				$('#helpScreen').fadeOut(150, "linear");
+			if ($('#overlayhelpscreen').is(':visible')) {
+				$('#overlayhelpscreen').fadeOut(800, "linear");
 			}
 
 			if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
 			if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
+			if ($('#resumeBtn').is(':visible')) $('#resumeBtn').fadeOut(150, "linear");
 			if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
 
 			canRestart = 0;
@@ -352,29 +357,29 @@ function checkGameOver() {
 }
 
 function showHelp() {
-	if ($('#openSideBar').attr('src') == './images/btn_back.svg') {
-		$('#openSideBar').attr('src', './images/btn_help.svg');
-		if (gameState != 0 && gameState != -1 && gameState != 2) {
-			$('#fork-ribbon').fadeOut(150, 'linear');
-		}
+	if ($('#openHelp').attr('src') == './images/btn_back.svg') {
+		$('#openHelp').attr('src', './images/btn_help.svg');
 	} else {
-		$('#openSideBar').attr('src', './images/btn_back.svg');
-		if (gameState == 0 && gameState == -1 && gameState == 2) {
-			$('#fork-ribbon').fadeIn(150, 'linear');
-		}
+		$('#openHelp').attr('src', './images/btn_back.svg');
 	}
 
-	$("#inst_main_body").html("<div id = 'instructions_head'>HOW TO PLAY</div><p>The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon.</p><p>" + (settings.platform != 'mobile' ? 'Press the right and left arrow keys' : 'Tap the left and right sides of the screen') + " to rotate the Hexagon." + (settings.platform != 'mobile' ? ' Press the down arrow to speed up the block falling': '') + " </p><p>Clear blocks and get points by making 3 or more blocks of the same color touch.</p><p>Time left before your combo streak disappears is indicated by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>on</span> the outer hexagon</p> <hr> <p id = 'afterhr'></p> By <a href='http://loganengstrom.com' target='_blank'>Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target='_blank'>Garrett Finucane</a><br>Find Hextris on <a href = 'https://itunes.apple.com/us/app/id903769553?mt=8' target='_blank'>iOS</a> & <a href ='https://play.google.com/store/apps/details?id=com.hextris.hextris' target='_blank'>Android</a><br>More @ the <a href ='http://hextris.github.io/' target='_blank'>Hextris Website</a>");
-	if (gameState == 1) {
+  $('#instructionsbody').fadeIn(800, 'linear')
+
+  if (settings.platform !== 'mobile') {
+    $('.instdesktop').fadeIn(800, 'linear');
+  } else {
+    $('.instmobile').fadeIn(800, 'linear');
+  }
+	
+  if (gameState == 1) {
 		pause();
 	}
 
-	if($("#pauseBtn").attr('src') == "./images/btn_pause.svg" && gameState != 0 && !infobuttonfading) {
+	if($("#resumeBtn").attr('src') == "./images/btn_pause.svg" && gameState != 0 && !infobuttonfading) {
 		return;
 	}
 
-	$("#openSideBar").fadeIn(150,"linear");
-	$('#helpScreen').fadeToggle(150, "linear");
+	$('#overlayhelpscreen').fadeToggle(800, "linear");
 }
 
 (function(){

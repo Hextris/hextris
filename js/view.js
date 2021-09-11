@@ -124,9 +124,8 @@ function showText(text) {
 	if (text == 'gameover') {
 		$("#gameoverscreen").fadeIn();
   }
+  $("#pausesection").fadeIn(1000, 'linear');
 	$(".overlay").html(messages[text]);
-	$(".overlay").fadeIn(1000, "swing");
-
 }
 
 function setMainMenu() {
@@ -136,17 +135,12 @@ function setMainMenu() {
 		canRestart = 's';
 	}, 500);
 	$('#restartBtn').hide();
-	if ($("#pauseBtn").replace(/^.*[\\\/]/, '') == "btn_pause.svg") {
-		$("#pauseBtn").attr("src","./images/btn_resume.svg");
-	} else {
-		$("#pauseBtn").attr("src","./images/btn_pause.svg");
-	}
+	$('#resumeBtn').hide();
 }
 
 function hideText() {
-	$(".overlay").fadeOut(150, function() {
-		$(".overlay").html("");
-	})
+	$(".overlay").fadeOut(150, 'linear');
+  $(".overlay").html('');
 }
 
 function gameOverDisplay() {
@@ -163,6 +157,7 @@ function gameOverDisplay() {
 	else {
 		$("#currentHighScore").text((highscores[0])[0])
 	}
+  $("#pausesection").hide();
 	$("#xteamlogosvg").fadeOut(1000, 'linear');
   $('#highscoredisplay').fadeIn(1000, 'linear');
 	$("#gameoverscreen").fadeIn(1000, 'linear');
@@ -229,12 +224,13 @@ function pause(o) {
 	if (gameState == -1) {
 		$('#fork-ribbon').fadeOut(300, 'linear');
 		$('#restartBtn').fadeOut(300, "linear");
+		$('#resumeBtn').fadeOut(300, "linear");
 		$('#buttonCont').fadeOut(300, "linear");
-		if ($('#helpScreen').is(':visible')) {
-			$('#helpScreen').fadeOut(300, "linear");
+		if ($('#overlayhelpscreen').is(':visible')) {
+			$('#overlayhelpscreen').fadeOut(300, "linear");
 		}
 
-		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
+		$("#pauseBtn").fadeIn(300, 'linear');
 		$('.helpText').fadeOut(300, 'linear');
 		$('#overlay').fadeOut(300, 'linear');
 		hideText();
@@ -244,13 +240,14 @@ function pause(o) {
 		}, 400);
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(300, "linear");
+		$('#resumeBtn').fadeIn(300, "linear");
 		$('#buttonCont').fadeIn(300, "linear");
 		$('.helpText').fadeIn(300, 'linear');
 		if (message == 'paused') {
 			showText(message);
 		}
 		$('#fork-ribbon').fadeIn(300, 'linear');
-		$("#pauseBtn").attr("src","./images/btn_resume.svg");
+		$("#pauseBtn").fadeOut(300, 'linear');
 		$('#overlay').fadeIn(300, 'linear');
 		prevGameState = gameState;
 		setTimeout(function() {

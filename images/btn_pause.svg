@@ -1,15 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="75px" height="65px" viewBox="0 0 75 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-	<!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-	<title>Pause button</title>
-	<desc>Created with Sketch.</desc>
-	<defs></defs>
-	<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-		<g id="New-game" sketch:type="MSArtboardGroup" transform="translate(-275.000000, -565.000000)">
-			<g id="Pause-button" sketch:type="MSLayerGroup" transform="translate(275.000000, 560.000000)">
-				<polygon id="Pause-hex" fill="#FFFFFF" sketch:type="MSShapeGroup" transform="translate(37.500000, 37.500000) rotate(-90.000000) translate(-37.500000, -37.500000) " points="37.5 0 69.9759526 18.75 69.9759526 56.25 37.5 75 5.02404736 56.25 5.02404736 18.75 "></polygon>
-				<path d="M26,52 L34,52 L34,24 L26,24 L26,52 L26,52 Z M42,24 L42,52 L50,52 L50,24 L42,24 L42,24 Z" id="Pause-shape" fill="#2C3E50" sketch:type="MSShapeGroup"></path>
-			</g>
-		</g>
-	</g>
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="btn_pause.svg"
+   id="svg12"
+   version="1.1"
+   viewBox="0 0 480 480"
+   height="480"
+   width="480">
+  <metadata
+     id="metadata16">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Pause button</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     id="namedview14"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title2">Pause button</title>
+  <desc
+     id="desc4">Created with Sketch.</desc>
+  <defs
+     id="defs6" />
+  <g
+     style="fill:#ffffff"
+     transform="matrix(17.071429,0,0,17.071429,-408.7143,-323.35716)"
+     sketch:type="MSPage"
+     fill-rule="evenodd"
+     fill="none"
+     stroke-width="0.0585774"
+     stroke="none"
+     id="Page-1">
+    <g
+       style="stroke-width:0.0585774;fill:#ffffff"
+       transform="translate(-275,-565)"
+       sketch:type="MSArtboardGroup"
+       id="New-game">
+      <g
+         style="stroke-width:0.0585774;fill:#ffffff"
+         transform="translate(275,560)"
+         sketch:type="MSLayerGroup"
+         id="Pause-button">
+        <path
+           style="stroke-width:0.00341702;fill:#ffffff"
+           sketch:type="MSShapeGroup"
+           fill="#2c3e50"
+           id="Pause-shape"
+           d="m 26,52 h 8 V 24 H 26 Z M 42,24 v 28 h 8 V 24 Z" />
+      </g>
+    </g>
+  </g>
 </svg>

@@ -297,24 +297,16 @@
   top: calc(50% - 1.5rem);
 }
 
-.centeredHeader {
-  font-family: 'Open Sans';
-	font-size: 2.5rem;
-	text-align: center;
-	line-height: 4rem;
-}
-
-.overlay {
-	position: absolute;
-	height: 20%;
-	width: 100%;
-	left: 50%;
-	top: 40%;
-	margin-left: -50%;
-	margin-top: -10%;
-	z-index: 3000;
-	color: #232323;
-	text-align: center;
+#pauseBtn {
+	z-index: 1;
+	display: none;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	cursor: pointer;
+	height: 2.8rem;
+  padding-bottom: 5%;
+  padding-right: 5%;
 }
 
 /*/////////////////////////////////////////////     START BUTTON     //////////////////////////////////////////////////////////////////////*/
@@ -348,20 +340,155 @@
   }
 }
 
+/*/////////////////////////////////////////////     PAUSE SECTION     //////////////////////////////////////////////////////////////////////*/
+
+#pausesection {
+  z-index: 1;
+  width: 100%;
+  padding-top: 7rem;
+  display: none;
+  
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#pausesection > * {
+  width: 100%;
+  z-index: 1;
+}
+
+.overlay {
+	color: #232323;
+	text-align: center;
+}
+
+.centeredHeader {
+  font-family: 'Open Sans';
+  font-weight: 600;
+	font-size: 1.6rem;
+	line-height: 4rem;
+}
+
+/*/////////////////////////////////////////////     PAUSE SECTION BODY    //////////////////////////////////////////////////////////////////////*/
+
+#overlayhelpscreen {
+  display: none;
+}
+
+#helpScreen {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color:#232323;
+  font-family: 'Open Sans';
+  
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#instructionsbody {
+	font-size: 0.9rem;
+	text-align: left;
+	width: 80%;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#instructionsbody > a {
+	font-weight: bold;
+}
+
+#instructionsbody > hr {
+	width: 100%;
+	background-color:#232323;
+	height: 1px;
+	border: 0;
+}
+
+#instructionsbody p {
+  font-size: 0.9rem;
+	margin-bottom: 0.9375rem;
+}
+
+.instdesktop {
+  display: none;
+}
+
+.instmobile {
+  display: none;
+}
+
+#afterhr {
+	align-self: flex-start;
+}
+
+/*/////////////////////////////////////////////     PAUSE SECTION FOOTER    //////////////////////////////////////////////////////////////////////*/
+
+#pausesectionfooter {
+  /* Flex item props */
+  flex: 0 1 auto;
+  
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pausesectionfooter > * {
+  width: 80%;
+}
+
+#pausesectionoptions {
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
+}
+
+#pausesectionoptions > img {
+  cursor: pointer;
+  height: 1.7rem;
+
+  /* Flex item props */
+  flex: 1 1 auto;
+}
+
+
+
+
+
 /*/////////////////////////////////////////////     MEDIA QUERIES     //////////////////////////////////////////////////////////////////////*/
 @media only screen and (min-device-width:800px) {
   #gameoverscreen > * {
     width: 40%;
   }
-
+  
   #highscorehistorydisplay > * {
     width: 40%;
   }
-
+  
   #gameoverdisconnected > * {
     width: 45%;
   } 
-
+  
   #cScore {
     font-size:3.78rem;
     font-weight: 500;
@@ -375,31 +502,73 @@
     margin-bottom:5px;
     margin-top: -10px;
   }
-
+  
   #gameoverscreenfooter > * {
     width: 80%;
   }
+
+  #pausesection {
+    padding-top: 7rem;
+  }
+
+  #pausesection > * {
+    width: 80%;
+  }
+
+  #pausesectionfooter > * {
+    width: 40%;
+  }
+
+  #instructionsbody {
+    font-size: 1.2rem;
+    width: 40%;
+  }
+
+  .centeredHeader {
+    font-size: 2.5rem;
+    line-height: 4rem;
+  }
+
+  #pauseBtn {
+    height: 4rem;
+  }
 }
 
-@media only screen and (min-device-width:600px) and (min-device-width:800px) {
+@media only screen and (min-device-width:600px) and (max-device-width:800px) {
   #gameoverscreen > * {
     width: 60%;
   }
-
+  
   #cScore {
     font-size:2.8rem;
     font-weight: 500;
     margin-bottom:5px;
     margin-top:-10px;
   }
-
+  
   #cTime {
     font-size: 1.3rem;
     font-weight: 500;
     margin-bottom:5px;
     margin-top: -10px;
   }
+  
+  #pausesection > * {
+    width: 60%;
+  }
+
+  #instructionsbody {
+    font-size: 1rem;
+    width: 80%;
+  }
 }
+
+
+
+
+
+
+
 
 
 
@@ -461,163 +630,10 @@ button:focus {
 	outline:0;
 }
 
-#openSideBar {
-	position:fixed;
-	margin-top:6px;
-	width:72px;
-	height:72px;
-	margin-left:11px;
-	z-index:3003;
-	color:#232323;
-	cursor:pointer;
-	top:0;
-	left:0;
-}
-
-#pauseBtn {
-	display:none;
-	position:fixed;
-	margin-bottom:7px;
-	width:72px;
-	height:72px;
-	margin-right:11px;
-	z-index:3000;
-	color:#232323;
-	cursor:pointer;
-	right:0;
-	bottom:0;
-	z-index:99;
-}
-
-#restartBtn {
-	display:none;
-	position:fixed;
-	margin-bottom:7px;
-	width:72px;
-	height:72px;
-	margin-left:11px;
-	z-index:3000;
-	color:#232323;
-	cursor:pointer;
-	bottom:0;
-	z-index:99;
-}
-#startBtn {
-	position:absolute;
-	left:40%;
-	top:38%;
-	height:25%;
-	width:25%;
-	z-index:99999999;
-	cursor: pointer;
-}
-
-#helpScreen {
-	height:100%;
-	width:100%;
-	z-index:3001;
-	position:fixed;
-	top:0;
-	margin:0;
-	font-size:15px;
-	text-align:center;
-	display:none;
-	color:#232323;
-	background-color:rgba(236,240,241,1);
-}
-
-#colorBlindBtn {
-	position:absolute;
-	width:120px;
-	height:20px;
-	z-index:9999;
-	left:47%;
-	top:65%;
-	font-size:15px;
-	text-align:center;
-	color:#232323;
-	cursor:pointer;
-}
-
-#inst_main_body {
-	padding:0px;
-	font-size:1.2rem;
-	left:50%;
-	top:50%;
-	position: absolute;
-	text-align:left;
-	max-width:400px;
-	/*margin-top:30px;*/
-	transform:translate(-50%, -50%);
-	-webkit-transform:translate(-50%, -50%);
-	-moz-transform:translate(-50%, -50%);
-	-ms-transform:translate(-50%, -50%);
-}
-
-#inst_main_body > a {
-	font-weight: bold;
-}
-
-#inst_main_body > hr {
-	width:100%;
-	color:#232323;
-	background-color:#232323;
-	height:1px;
-	border:0;
-}
-
-#inst_main_body > p {
-	margin-bottom:15px;
-}
-
-#instructions_head {
-	text-align:center;
-	font-size:1.5rem;
-	padding-bottom:4px;
-}
-
 @media only screen and (max-device-width:480px) {
   .bigtitle {
     font-size: 1.1rem;
   }
-
-	#helpScreen {
-		position:fixed;
-		top:2px;
-		padding-top:20px;
-		margin:0;
-		width:100%;
-		height:100%;
-		font-size:13px;
-		text-align:center;
-	}
-	#inst_main_body {
-		width:calc(100% - 70px);
-		transform:translate(-50%, -50%);
-		-webkit-transform:translate(-50%, -50%);
-		-moz-transform:translate(-50%, -50%);
-		-ms-transform:translate(-50%, -50%);
-	}
-	#instructions_head {
-		padding-left:0%;
-	}
-	#openSideBar{
-		width:60px;
-		height:60px;
-	}
-	#pauseBtn {
-		width:60px;
-		height:60px;
-	}
-	#restartBtn {
-		width:60px;
-		height:60px;
-	}
-}
-
-
-.helpText {
-	z-index:3001;
 }
 
 #buttonCont {
@@ -644,12 +660,6 @@ button:focus {
 }
 
 @media only screen and (min-device-width:320px) and (max-device-width:600px) {
-	.centeredHeader {
-		font-size:2rrem; 
-		text-align:center;
-		line-height:0.6rrem;
-	}
-
 	.overlay {
 		margin-top:-20%;
 	}
@@ -730,13 +740,6 @@ body {
 	user-select:none;
 }
 
-#afterhr {
-	margin:0;
-	padding:0;
-	margin-bottom:-10px;
-	padding-bottom:-10px;
-}
-
 body {
 	overflow:hidden;
 }
@@ -760,15 +763,4 @@ body {
 	-webkit-transform:translate(calc(-50% - 4px), 0%);
 	-moz-transform:translate(calc(-50% - 4px), 0%);
 	-ms-transform:translate(calc(-50% - 4px), 0%);
-}
-
-#authors {
-	position:absolute;
-	width:200px;
-	bottom:0px;
-	left:50%;
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
 }
