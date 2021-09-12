@@ -49,13 +49,11 @@ function drawScoreboard() {
   var color = "rgb(255, 255, 255)";
 	//}
   const basePixelFont = 16;
-  var fontSize = settings.platform == 'mobile' ? 35 : 30;
-  var h = trueCanvas.height / 2 + gdy + 100 * settings.scale;
 	if (gameState === 0) {
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2.1 + gdy - 155 * settings.scale, 150, "#FCC058", "Hextris", `900 ${( (`${150 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
+		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2.1 + gdy - 155 * settings.scale, 90, "#FCC058", "HackBreak", `900 ${( (`${90 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 	} else if (gameState != 0 && textOpacity > 0) {
 		textOpacity -= 0.05;
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2 + gdy - 155 * settings.scale, 150, "#FCC058", "Hextris", `900 ${( (`${150 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
+		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2 + gdy - 155 * settings.scale, 90, "#FCC058", "HackBreak", `900 ${( (`${90 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 		ctx.globalAlpha = scoreOpacity;
 		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height - (trueCanvas.height - 100) + gdy * settings.scale, scoreSize, color, score, `900 ${( (`${scoreSize * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 		
@@ -104,10 +102,10 @@ function toggleClass(element, active) {
 
 function showText(text) {
 	var messages = {
-		'paused': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
-		'pausedAndroid': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
-		'pausediOS': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
-		'pausedOther': "<div class='centeredHeader unselectable'>Connection Interrupted</div>",
+		'paused': "<div class='centeredHeader unselectable'>HackBreak</div>",
+		'pausedAndroid': "<div class='centeredHeader unselectable'>HackBreak</div>",
+		'pausediOS': "<div class='centeredHeader unselectable'>HackBreak</div>",
+		'pausedOther': "<div class='centeredHeader unselectable'>HackBreak</div>",
 		'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>"
 	};
 
@@ -226,12 +224,9 @@ function pause(o) {
 		$('#restartBtn').fadeOut(300, "linear");
 		$('#resumeBtn').fadeOut(300, "linear");
 		$('#buttonCont').fadeOut(300, "linear");
-		if ($('#overlayhelpscreen').is(':visible')) {
-			$('#overlayhelpscreen').fadeOut(300, "linear");
-		}
+		$('#overlayhelpscreen').fadeOut(300, 'linear');
 
 		$("#pauseBtn").fadeIn(300, 'linear');
-		$('.helpText').fadeOut(300, 'linear');
 		$('#overlay').fadeOut(300, 'linear');
 		hideText();
 		setTimeout(function() {
@@ -242,13 +237,13 @@ function pause(o) {
 		$('#restartBtn').fadeIn(300, "linear");
 		$('#resumeBtn').fadeIn(300, "linear");
 		$('#buttonCont').fadeIn(300, "linear");
-		$('.helpText').fadeIn(300, 'linear');
 		if (message == 'paused') {
 			showText(message);
 		}
 		$('#fork-ribbon').fadeIn(300, 'linear');
 		$("#pauseBtn").fadeOut(300, 'linear');
 		$('#overlay').fadeIn(300, 'linear');
+    showHelp();
 		prevGameState = gameState;
 		setTimeout(function() {
 		    pausable = true;

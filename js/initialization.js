@@ -189,11 +189,9 @@ function initialize(a) {
 		if (settings.platform == 'mobile') {
 			$('.startBtn').on('touchstart', startBtnHandler);
 			$('#startbutton').on('touchstart', startBtnHandler);
-			$('#openHelp').on('touchstart', showHelp);
 		} else {
 			$('.startBtn').on('mousedown', startBtnHandler);
 			$('#startbutton').on('mousedown', startBtnHandler);
-			$('#openHelp').on('mousedown', showHelp);
 		}
 
 		document.addEventListener('touchmove', function(e) {
@@ -293,10 +291,6 @@ function startBtnHandler() {
 
 	if (!canRestart) return false;
 
-	if ($('#openSideBar').is(':visible')) {
-		$('#openSideBar').fadeOut(150, "linear");
-	}
-
 	if (importing == 1) {
 		init(1);
 		checkVisualElements(0);
@@ -322,21 +316,11 @@ function handleClick(e) {
 function handleTapBefore(e) {
 	var x = e.changedTouches[0].clientX;
 	var y = e.changedTouches[0].clientY;
-
-	if (x < 120 && y < 83 && $('.helpText').is(':visible')) {
-		showHelp();
-		return;
-	}
 }
 
 function handleClickBefore(e) {
 	var x = e.clientX;
 	var y = e.clientY;
-
-	if (x < 120 && y < 83 && $('.helpText').is(':visible')) {
-		showHelp();
-		return;
-	}
 }
 
 function hexColorToHmlId(hexColor) {

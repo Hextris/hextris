@@ -52,17 +52,11 @@ function resumeGame() {
   
 	importing = 0;
 	startTime = moment();
-	setTimeout(function() {
-		if ((gameState == 1 || gameState == 2) && !$('#overlayoverlayhelpscreen').is(':visible')) {
-			$('#openSideBar').fadeOut(150, "linear");
-		}
-	}, 7000);
 
 	checkVisualElements(0);
 }
 
 function checkVisualElements(arg) {
-	if (arg && $('#openSideBar').is(":visible")) $('#openSideBar').fadeOut(150, "linear");
 	if (!$('#pauseBtn').is(':visible')) $('#pauseBtn').fadeIn(150, "linear");
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
@@ -82,16 +76,6 @@ function hideUIElements() {
 function init(b) {
 	if(settings.ending_block && b == 1){return;}
 	if (b) {
-		if ($('#overlayhelpscreen').is(":visible")) {
-			$('#overlayhelpscreen').fadeOut(800, "linear");
-		}
-
-		setTimeout(function() {
-      if (gameState == 1) {
-        $('#openSideBar').fadeOut(150, "linear");
-      }
-			infobuttonfading = false;
-		}, 7000);
 		clearSaveState();
 		checkVisualElements(1);
 	}
@@ -264,15 +248,9 @@ function animLoop() {
 			setTimeout(function() {
 				enableRestart();
 			}, 150);
-
-			if ($('#overlayhelpscreen').is(':visible')) {
-				$('#overlayhelpscreen').fadeOut(800, "linear");
-			}
-
 			if ($('#pauseBtn').is(':visible')) $('#pauseBtn').fadeOut(150, "linear");
 			if ($('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 			if ($('#resumeBtn').is(':visible')) $('#resumeBtn').fadeOut(150, "linear");
-			if ($('#openSideBar').is(':visible')) $('.openSideBar').fadeOut(150, "linear");
 
 			canRestart = 0;
 			clearSaveState();
@@ -357,13 +335,9 @@ function checkGameOver() {
 }
 
 function showHelp() {
-	if ($('#openHelp').attr('src') == './images/btn_back.svg') {
-		$('#openHelp').attr('src', './images/btn_help.svg');
-	} else {
-		$('#openHelp').attr('src', './images/btn_back.svg');
-	}
-
-  $('#instructionsbody').fadeIn(800, 'linear')
+  $('#instructionsbody').fadeIn(800, 'linear');
+  $('#overlayhelpscreen').fadeIn(800, 'linear');
+  
 
   if (settings.platform !== 'mobile') {
     $('.instdesktop').fadeIn(800, 'linear');
@@ -378,8 +352,6 @@ function showHelp() {
 	if($("#resumeBtn").attr('src') == "./images/btn_pause.svg" && gameState != 0 && !infobuttonfading) {
 		return;
 	}
-
-	$('#overlayhelpscreen').fadeToggle(800, "linear");
 }
 
 (function(){

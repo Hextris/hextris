@@ -381,7 +381,6 @@
 }
 
 #helpScreen {
-  padding-top: 1rem;
   padding-bottom: 1rem;
   color:#232323;
   font-family: 'Open Sans';
@@ -395,9 +394,13 @@
   align-content: center;
 }
 
+#helpScreen > hr {
+	background-color:#232323;
+	height: 1px;
+	border: 0;
+}
+
 #instructionsbody {
-	font-size: 0.9rem;
-	text-align: left;
 	width: 80%;
 
   /* Flex parent props */
@@ -409,20 +412,51 @@
   align-content: center;
 }
 
-#instructionsbody > a {
-	font-weight: bold;
+#instructionsbody > * {
+  width: 100%;
 }
 
-#instructionsbody > hr {
-	width: 100%;
-	background-color:#232323;
-	height: 1px;
-	border: 0;
+.instructionspart {
+	text-align: left;
+  font-weight: 400;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
 }
 
-#instructionsbody p {
+.instructionspart > *:nth-child(1) {
+  
+  /* Flex item props */
+  flex: 1 1 auto;
+
+  /* Flex parent props */
+  display: flex;
+  justify-content: center;
+}
+
+.instructionspart img {
+  height: 4rem;
+}
+
+.instructionspart p {
   font-size: 0.9rem;
 	margin-bottom: 0.9375rem;
+}
+
+.instructionstext {
+  width: 60%;
+}
+
+.instructionstext > b {
+  font-size: 0.9rem;
+}
+
+.instructionstext strong {
+  font-size: 0.9rem;
 }
 
 .instdesktop {
@@ -435,6 +469,105 @@
 
 #afterhr {
 	align-self: flex-start;
+  font-size: 0.6rem;
+}
+
+#afterhr > p {
+  font-size: 0.6rem;
+  margin-bottom: auto;
+}
+
+#afterhr a {
+  font-weight: bold;
+  font-size: 0.6rem;
+}
+
+#afterhr img {
+  width: 0.5rem;
+}
+
+
+#howtophone {
+  animation: phonetab 2s ease-in-out infinite;
+}
+
+@keyframes phonetab {
+  0% {
+    content:url('../images/how_to_phone/how_to_phone_1.svg');
+  }
+  
+  50% {
+    content:url('../images/how_to_phone/how_to_phone_2.svg');
+  }
+
+  100% {
+    content:url('../images/how_to_phone/how_to_phone_3.svg');
+  }
+}
+
+
+#howtodesktop {
+  animation: desktoparrowkeypress 2s ease-in-out infinite;
+}
+
+@keyframes desktoparrowkeypress {
+  0% {
+    content:url('../images/how_to_desktop/how_to_desktop_1.svg');
+  }
+  
+  50% {
+    content:url('../images/how_to_desktop/how_to_desktop_2.svg');
+  }
+
+  100% {
+    content:url('../images/how_to_desktop/how_to_desktop_3.svg');
+  }
+}
+
+
+#howtodesktopspeed {
+  animation: desktoparrowkeypressspeed 2s ease-in-out infinite;
+}
+
+@keyframes desktoparrowkeypressspeed {
+  0% {
+    content:url('../images/how_to_desktop/how_to_desktop_1.svg');
+  }
+
+  100% {
+    content:url('../images/how_to_desktop/how_to_desktop_speed.svg');
+  }
+}
+
+#hexagon_timer_speed_container {
+  height: 4rem;
+}
+
+#hexagon_timer_speed {
+  stroke: #F22F1D;
+  stroke-width: 0.14rem;
+  animation: hexagoncolorchange 12s ease-in-out infinite;
+}
+
+@keyframes hexagoncolorchange {
+  0% {
+    stroke: #F22F1D;
+  }
+  16% {
+    stroke: #F7CF05;
+  }
+  32% {
+    stroke: #6C45BF;
+  }
+  48% {
+    stroke: #05F2F2;
+  }
+  64% {
+    stroke: #F250D7;
+  }
+  100% {
+    stroke: #038C73;
+  }
 }
 
 /*/////////////////////////////////////////////     PAUSE SECTION FOOTER    //////////////////////////////////////////////////////////////////////*/
@@ -508,7 +641,7 @@
   }
 
   #pausesection {
-    padding-top: 7rem;
+    padding-top: 5rem;
   }
 
   #pausesection > * {
@@ -521,7 +654,14 @@
 
   #instructionsbody {
     font-size: 1.2rem;
-    width: 40%;
+    width: 60%;
+  }
+
+  .instructionspart > *:nth-child(1) {
+  
+    /* Flex item props */
+    flex: 1 1 20%;
+  
   }
 
   .centeredHeader {
@@ -563,6 +703,15 @@
   }
 }
 
+@media only screen and (min-device-width:1024px) {
+  #pausesection > * {
+    width: 50%;
+  }
+  
+  #instructionsbody{
+    width: 100%;
+  }
+}
 
 
 

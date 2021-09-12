@@ -1,36 +1,17 @@
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
-		<title>Hextris</title>
+		<title>HackBreak</title>
 		<meta name="apple-itunes-app" content="app-id=903769553"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
-		<meta property="og:url" content="http://hextris.github.io/hextris/"/>
-		<meta property="og:site_name" content="Hextris"/>
-		<meta property="og:title" content="Hextris"/>
-		<meta property="og:description" content="An addictive puzzle game inspired by Tetris."/>
+		<meta property="og:site_name" content="HackBreak"/>
+		<meta property="og:title" content="HackBreak"/>
+		<meta property="og:description" content="An addictive puzzle game inspired by Hextris."/>
 		<meta property="og:type" content="website"/>
-		<meta property="og:author" content="https://www.facebook.com/hextris"/>
-		<meta property="og:image" content="http://hextris.github.io/hextris/images/facebook-opengraph.png"/>
+		<meta property="og:author" content="https://www.facebook.com/HackBreak"/>
+		<meta property="og:image" content="http://HackBreak.github.io/HackBreak/images/facebook-opengraph.png"/>
 		<meta property="og:image:width" content="1200"/>
 		<meta property="og:image:height" content="630"/>
-		<meta property="twitter:card" content="summary"/>
-		<meta property="twitter:site" content="@hextris"/>
-		<meta property="twitter:site:id" content="2742209678"/>
-		<meta property="twitter:creator" content="@hextris"/>
-		<meta property="twitter:creator:id" content="2742209678"/>
-		<meta property="twitter:domain" content="http://hextris.github.io"/>
-		<meta property="twitter:title" content="Hextris"/>
-		<meta property="twitter:description" content="An addictive puzzle game inspired by Tetris."/>
-		<meta property="twitter:image:src" content="http://hextris.github.io/hextris/images/twitter-opengraph.png"/>
-		<meta property="twitter:image:width" content="512"/>
-		<meta property="twitter:image:height" content="512"/>
-		<meta property="twitter:app:id:iphone" content="id903769553">
-		<meta property="twitter:app:id:ipad" content="id903769553">
-		<meta property="twitter:app:id:googleplay" content="com.hextris.hextris">
-		<meta property="twitter:app:country" content="us">
-		<meta property="twitter:app:url:iphone" content="itunes.apple.com/us/app/id903769553?mt=8">
-		<meta property="twitter:app:url:ipad" content="itunes.apple.com/us/app/id903769553?mt=8">
-		<meta property="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.hextris.hextris">
 		<link rel="icon" type="image/png" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,34 +48,73 @@
 		<section id='pausesection'>
       <aside id="overlay" class="faded overlay"></aside>
       <section id='overlayhelpscreen'>
-        <aside id="helpScreen" class='helpScreenDisplay unselectable'>
-          <div id='instructionsbody'>
-            <div class='bigtitle'>HOW TO PLAY</div>
-            <p>The goal of Hextris is to stop blocks from leaving the inside of the outer gray hexagon.</p>
-            <span class='instdesktop'>
-              <p>Press the right and left arrow keys to rotate the Hexagon. Press the down arrow to speed up the block falling</p>
-            </span>
-            <span class='instmobile'>
-              <p>Tap the left and right sides of the screen to rotate the Hexagon.</p>
-            </span>
-            <p>Clear blocks and get points by making 3 or more blocks of the same color touch.</p>
-            <p>Time left before your combo streak disappears is indicated by <span style='color:#f1c40f;'>the</span> <span style='color:#e74c3c'>colored</span> <span style='color:#3498db'>lines</span> <span style='color:#2ecc71'>on</span> the outer hexagon</p>
-            <hr> 
-            <p id = 'afterhr'> By <a href='http://loganengstrom.com' target='_blank'>Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target='_blank'>Garrett Finucane</a>
-            <br>Find Hextris on <a href = 'https://itunes.apple.com/us/app/id903769553?mt=8' target='_blank'>iOS</a> & <a href ='https://play.google.com/store/apps/details?id=com.hextris.hextris' target='_blank'>Android</a>
-            <br>More @ the <a href ='http://hextris.github.io/' target='_blank'>Hextris Website</a></p>
-          </div>
+        <aside id="helpScreen" class='unselectable'>
+          <div class='bigtitle'>HOW TO PLAY</div>
+          <section id='instructionsbody'>
+            <aside class='instructionspart'>
+              <span>
+                <img src='https://i.imgur.com/E2wk7kj.png'>
+              </span>
+              <div class='instructionstext'>
+                <b>GOAL</b>
+                <!-- <p>Shadowcorp stole some memories from the watchmen. Try to break into their servers by cracking combinations.</p> -->
+                <p>Crack a combination with 3 or more blocks of the same color.</p>
+                <p>Rember to stay away from the borders.</p>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span>
+                <img id='howtodesktop' class='instdesktop' src='./images/how_to_desktop/how_to_desktop_1.svg'>
+              </span>
+              <div class='instructionstext instdesktop'>
+                <b>MOVEMENT</b>
+                <p>Press <strong>right</strong> and <strong>left</strong> to <strong>rotate</strong> the Hexagon.</p>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span>
+                <img id='howtophone' class='instmobile' src='./images/how_to_phone/how_to_phone_1.svg'>
+              </span>
+              <div class='instructionstext instmobile'>
+                <b>MOVEMENT</b>
+                <p>Tap <strong>left</strong> and <strong>right</strong> to <strong>rotate</strong> the Hexagon.</p>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span>
+                <img id='howtodesktopspeed' class='instdesktop' src='./images/how_to_desktop/how_to_desktop_1.svg'>
+              </span>
+              <div class='instructionstext instdesktop'>
+                <span>
+                  <p>Press <strong>down</strong> to <i><strong>speed up</strong></i> the block falling.</p>
+                </span>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span id='hexagon_timer_speed_container'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 0 129 127"><path id='hexagon_timer_speed' d="M95.25 118.544h-63.5L0 63.5 31.75 8.456h63.5L127 63.5z" fill="#9fa6b0"/></svg>
+              </span>
+              <div class='instructionstext'>
+                <b>COMBO TIMER</b>
+                <p>Indicated by the colored lines on the border.</p>
+                <p>Get to <strong>Impressive Pacing</strong> and you'll crack all the combinations at once.</p>
+              </div>
+            </aside>
+          </section>
+          <hr> 
+          <span id = 'afterhr'>
+            <p>Made with <img src='./images/heart.svg'> by <a href='https://x-team.com/' target='_blank'>X-Team</a></p>
+            <p>Inspired in <a href ='http://HackBreak.github.io/' target='_blank'>HackBreak</a> by <a href='http://loganengstrom.com' target='_blank'>Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target='_blank'>Garrett Finucane</a></p>
+          </span>
         </aside>
       </section>
       <section id='pausesectionfooter'>
         <section id='pausesectionoptions'>
           <img id='resumeBtn' src='./images/btn_resume.svg'>
           <img id='restartBtn' src="./images/btn_restart.svg"/>
-          <img id="openHelp" class='helpText' src="./images/btn_help.svg"/>
         </section>
       </section>
     </section>
-		<!-- <div class="faded overlay"></div> -->
 		<img id="xteamlogosvg" src="./images/x-team-logo.svg"/>
 		<img id="pauseBtn" src="./images/btn_pause.svg"/>
 		<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
@@ -183,10 +203,10 @@
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                 <g id="Game-over-" sketch:type="MSArtboardGroup" transform="translate(-95.000000, -565.000000)">
                   <!-- <g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
-                    <a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 ">
+                    <a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=HackBreak ? http://HackBreak.github.io/HackBreak @HackBreak','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 ">
                     </polygon>
                     </a>
-                    <text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="'Open Sans'" font-size="16" font-weight="420" fill="#FFFFFF">
+                    <text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=HackBreak ? http://HackBreak.github.io/HackBreak @HackBreak','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="'Open Sans'" font-size="16" font-weight="420" fill="#FFFFFF">
                       <tspan x="67" y="39">SHARE MY SCORE!</tspan>
                     </text>
                   </g> -->
@@ -198,7 +218,7 @@
             <!-- <ul class="rrssb-buttons">
               <li class="rrssb-facebook">
                 <a href='http://www.facebook.com/sharer.php?s=100
-                  &p[url]=hextris.io' class="popup">
+                  &p[url]=HackBreak.io' class="popup">
                   <span class="rrssb-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29">
                       <path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
@@ -209,7 +229,7 @@
                 </a>
               </li>
               <li class="rrssb-twitter">
-                <a href="http://twitter.com/home?status=Play Hextris! - http://hextris.github.io/ #hextris"
+                <a href="http://twitter.com/home?status=Play HackBreak! - http://HackBreak.github.io/ #HackBreak"
                 class="popup">
                   <span class="rrssb-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
@@ -222,8 +242,8 @@
               </li>
             </ul> -->
             <!-- <div id='badges'>
-              <a href="https://play.google.com/store/apps/details?id=com.hextris.hextris" ><img id='androidBadge' src='images/android.png'/></a>
-              <a href ="https://itunes.apple.com/us/app/hextris/id903769553?mt=8"><img id='iOSBadge'  src='images/appstore.svg'/></a>
+              <a href="https://play.google.com/store/apps/details?id=com.HackBreak.HackBreak" ><img id='androidBadge' src='images/android.png'/></a>
+              <a href ="https://itunes.apple.com/us/app/HackBreak/id903769553?mt=8"><img id='iOSBadge'  src='images/appstore.svg'/></a>
             </div> -->
           </div>
         </div>
