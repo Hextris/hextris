@@ -165,18 +165,25 @@ function gameOverDisplay() {
 	$("#socialShare").fadeIn();
 }
 
-function getGameDurationText() {
+function getGameDuration() {
   const endTime = moment();
   const endTimeFormatted = moment(endTime, 'YYYY/MM/DD HH:mm');
   const startTimeFormatted = moment(startTime, 'YYYY/MM/DD HH:mm')
-  const duration = moment.duration(
+  return moment.duration(
     endTimeFormatted.diff(startTimeFormatted)
   );
+}
+
+function parseGameDurationToText(duration) {
   const ZERO = 0;
+  const TEN = 10;
+  const HUNDRED = 100;
   const hoursText = duration.hours() > ZERO ? `${duration.hours()}h` : null ;
   const minutesText = duration.minutes() > ZERO ? `${duration.minutes()}m` : null ;
   const secondsText = duration.seconds() > ZERO ? `${duration.seconds()}` : null ;
-  const milliSecondsText = duration.milliseconds() > ZERO ? `${duration.seconds()}` : null ;
+  const milliSecondsText = duration.milliseconds() > ZERO ?
+    `${duration.milliseconds() >= HUNDRED ? Math.round( duration.milliseconds() / TEN ) : duration.milliseconds()}` :
+    null ;
   const durationText = `${hoursText ? `${hoursText} ` : ''}${minutesText ? `${minutesText} ` : ''}${secondsText}.${milliSecondsText}s`;
   return durationText;
 }
@@ -189,10 +196,12 @@ function updateHouseCombinations() {
 }
 
 function updateTime() {
-  const timeInMillisRounded = getGameDurationText();
-  $("#cTime").text(`${timeInMillisRounded}`);
+  const gameDuration = getGameDuration();
+  const gameDurationText = parseGameDurationToText(gameDuration);
+  $("#cTime").text(`${gameDurationText}`);
   highscores.forEach(([,time], index) => {
-    $(`#${index + 1}placeTime`).text(`${time}`);
+    const momentTime = moment.duration(time);
+    $(`#${index + 1}placeTime`).text(`${parseGameDurationToText(momentTime)}`);
   });
 }
 

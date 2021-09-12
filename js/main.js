@@ -321,10 +321,13 @@ function isInfringing(hex) {
 function checkGameOver() {
 	for (var i = 0; i < MainHex.sides; i++) {
 		if (isInfringing(MainHex)) {
-			$.get('http://54.183.184.126/' + String(score))
-			const hScoreFound = highscores.find(([hScore]) => hScore === score);
+			// $.get('http://54.183.184.126/' + String(score));
+      const gameDuration = getGameDuration();
+			const hScoreFound = highscores.find(([hScore, hTime]) =>
+        hScore === score && hTime < gameDuration._milliseconds
+      );
       if (!hScoreFound) {
-				highscores.push([score, getGameDurationText()]);
+				highscores.push([score, gameDuration._milliseconds]);
 			}
 			writeHighScores();
 			gameOverDisplay();
