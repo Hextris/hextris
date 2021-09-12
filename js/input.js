@@ -116,9 +116,13 @@ function addKeyListeners() {
 		if (gameState != 1 && gameState != -1) {
 			return;
 		}
-
-		if ($('#helpScreen').is(":visible")) {
-			$('#helpScreen').fadeOut(150, "linear");
+		pause();
+		return false;
+	});
+	
+  $("#resumeBtn").on('touchstart mousedown', function() {
+		if (gameState != 1 && gameState != -1) {
+			return;
 		}
 		pause();
 		return false;
@@ -205,10 +209,6 @@ function inside (point, vs) {
 };
 
 function handleClickTap(x,y) {
-	if (x < 120 && y < 83 && $('.helpText').is(':visible')) {
-		showHelp();
-		return;
-	}
 	var radius = settings.hexWidth ;
 	var halfRadius = radius/2;
 	var triHeight = radius *(Math.sqrt(3)/2);

@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="75px" height="65px" viewBox="0 0 75 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-	<!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-	<title>Restart button</title>
-	<desc>Created with Sketch.</desc>
-	<defs></defs>
-	<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-		<g id="Paused" sketch:type="MSArtboardGroup" transform="translate(-10.000000, -565.000000)">
-			<g id="Restart-button" sketch:type="MSLayerGroup" transform="translate(10.000000, 560.000000)">
-				<polygon id="Score-hex-4" fill="#F1C40F" sketch:type="MSShapeGroup" transform="translate(37.500000, 37.500000) rotate(-90.000000) translate(-37.500000, -37.500000) " points="37.5 0 69.9759526 18.75 69.9759526 56.25 37.5 75 5.02404736 56.25 5.02404736 18.75 "></polygon>
-				<path d="M47.8849281,28.1125 C45.3545966,25.575 41.8611632,24 37.9912445,24 C30.2514071,24 24,30.265 24,38 C24,45.735 30.2514071,52 37.9912445,52 C44.5140713,52 49.9774859,47.5375 51.5272045,41.5 L47.8849281,41.5 C46.4402752,45.5775 42.5703565,48.5 37.9912445,48.5 C32.1863665,48.5 27.4846779,43.80125 27.4846779,38 C27.4846779,32.19875 32.1863665,27.5 37.9912445,27.5 C40.8893058,27.5 43.4896811,28.7075 45.3896185,30.60625 L39.742339,36.25 L52,36.25 L52,24 L47.8849281,28.1125 L47.8849281,28.1125 Z" id="Shape" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
-			</g>
-		</g>
-	</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" height="480" width="480" ><path fill="#fff" d="M408.75 71.206C365.553 27.887 305.916 1 239.851 1 107.72 1 1 107.952 1 240s106.72 239 238.851 239c111.354 0 204.622-76.181 231.078-179.25H408.75c-24.662 69.609-90.727 119.5-168.899 119.5-99.098 0-179.362-80.214-179.362-179.25S140.753 60.75 239.851 60.75c49.474 0 93.866 20.614 126.301 53.028l-96.407 96.347H479V1z" fill-rule="evenodd"/></svg>

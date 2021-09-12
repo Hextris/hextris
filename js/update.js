@@ -13,7 +13,6 @@ function update(dt) {
 	var j;
 	var block;
 
-	var objectsToRemove = [];
 	for (i = 0; i < blocks.length; i++) {
 		MainHex.doesBlockCollide(blocks[i]);
 		if (!blocks[i].settled) {
@@ -25,9 +24,12 @@ function update(dt) {
 
 	for (i = 0; i < MainHex.blocks.length; i++) {
 		for (j = 0; j < MainHex.blocks[i].length; j++) {
-			if (MainHex.blocks[i][j].checked ==1 ) {
-				consolidateBlocks(MainHex,MainHex.blocks[i][j].attachedLane,MainHex.blocks[i][j].getIndex());
-				MainHex.blocks[i][j].checked=0;
+			if (MainHex.blocks[i][j].checked == 1 ) {
+				MainHex.consolidateBlocks(
+          MainHex.blocks[i][j].attachedLane,
+          MainHex.blocks[i][j].getIndex(),
+        );
+				MainHex.blocks[i][j].checked= 0;
 			}
 		}
 	}

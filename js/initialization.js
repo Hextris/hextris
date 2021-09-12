@@ -5,31 +5,71 @@ function initialize(a) {
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;
-	window.colors = ["#e74c3c", "#f1c40f", "#3498db", "#2ecc71"];
-	window.hexColorsToTintedColors = {
-		"#e74c3c": "rgb(241,163,155)",
-		"#f1c40f": "rgb(246,223,133)",
-		"#3498db": "rgb(151,201,235)",
-		"#2ecc71": "rgb(150,227,183)"
+  
+  window.comboPacing = 10;
+  window.colorHouses = [
+    {
+      color:"#6C45BF",
+      name: 'Nightclaw',
+      htmlId: 'nightclaw',
+    },
+    {
+      color:"#F7CF05",
+      name: 'Nascent Fire',
+      htmlId: 'nascentfire',
+    },
+    {
+      color:"#F22F1D",
+      name: 'Ragnar',
+      htmlId: 'ragnar',
+    },
+    {
+      color:"#05F2F2",
+      name: 'Corgi',
+      htmlId: 'corgi',
+    },
+    {
+      color:"#F250D7",
+      name: 'Lions Pride',
+      htmlId: 'lionspride',
+    },
+    {
+      color:"#038C73",
+      name: 'Panda',
+      htmlId: 'panda',
+    }
+  ]
+  ;
+  // HOUSE COLORS   Nightclaw, Nascent F, Ragnar,   Corgi Pack, Lions P,  Panda
+  window.colors = ["#6C45BF", "#F7CF05", "#F22F1D", "#05F2F2", "#F250D7", "#038C73"];
+  window.hexColorsToTintedColors = {
+    "#6C45BF": "rgb(160, 145, 191)", // Nightclaw
+    "#F7CF05": "rgb(247, 225, 114)", // Nascent Fire
+    "#BE2F1D": "rgb(204, 105, 92)", // Ragnar
+    "#05F2F2": "rgb(153, 242, 242)", // Corgi
+    "#F250D7": "rgb(242, 160, 229)", // Lions Pride
+    "#038C73": "rgb(163, 212, 203)", // Panda
+  };
+  window.rgbToHex = {
+		"rgb(108, 69, 191)":"#6C45BF", // Nightclaw
+		"rgb(247, 207, 5)":"#F7CF05", // Nascent Fire
+		"rgb(190, 47, 29)":"#BE2F1D", // Ragnar
+		"rgb(5, 242, 242)":"#05F2F2", // Corgi
+		"rgb(242, 80, 215)":"#F250D7", // Lions Pride
+		"rgb(3, 140, 115)":"#038C73", // Panda
 	};
-
-	window.rgbToHex = {
-		"rgb(231,76,60)": "#e74c3c",
-		"rgb(241,196,15)": "#f1c40f",
-		"rgb(52,152,219)": "#3498db",
-		"rgb(46,204,113)": "#2ecc71"
-	};
-
 	window.rgbColorsToTintedColors = {
-		"rgb(231,76,60)": "rgb(241,163,155)",
-		"rgb(241,196,15)": "rgb(246,223,133)",
-		"rgb(52,152,219)": "rgb(151,201,235)",
-		"rgb(46,204,113)": "rgb(150,227,183)"
+		"rgb(108, 69, 191)": "rgb(160, 145, 191)", // Nightclaw
+		"rgb(247, 207, 5)": "rgb(247, 225, 114)", // Nascent Fire
+		"rgb(190, 47, 29)": "rgb(204, 105, 92)", // Ragnar
+		"rgb(5, 242, 242)": "rgb(153, 242, 242)", // Corgi
+		"rgb(242, 80, 215)": "rgb(242, 160, 229)", // Lions Pride
+		"rgb(3, 140, 115)": "rgb(163, 212, 203)", // Panda
 	};
 
-	window.hexagonBackgroundColor = 'rgb(236, 240, 241)';
-	window.hexagonBackgroundColorClear = 'rgba(236, 240, 241, 0.5)';
-	window.centerBlue = 'rgb(44,62,80)';
+	window.hexagonBackgroundColor = '#252D38';
+	window.hexagonBackgroundColorClear = 'rgba(37, 45, 56, 0.5)';
+	window.centerBlue = 'rgb(37,45,56)';
 	window.angularVelocityConst = 4;
 	window.scoreOpacity = 0;
 	window.textOpacity = 0;
@@ -97,6 +137,8 @@ function initialize(a) {
 		settings.os="ios";
 	}
 
+	window.xteamLogoSvg = document.getElementById('xteamlogosvg');
+
 	window.canvas = document.getElementById('canvas');
 	window.ctx = canvas.getContext('2d');
 	window.trueCanvas = {
@@ -108,6 +150,7 @@ function initialize(a) {
 	window.framerate = 60;
 	window.history = {};
 	window.score = 0;
+  window.scoreByColor = colors.reduce((concatObject, hexColor) => ({ ...concatObject, [hexColor]: 0}), {});
 	window.scoreAdditionCoeff = 1;
 	window.prevScore = 0;
 	window.numHighScores = 3;
@@ -141,11 +184,14 @@ function initialize(a) {
 				pause();
 			}
 		};
-		$('#startBtn').off();
+		$('.startBtn').off();
+		$('#startbutton').off();
 		if (settings.platform == 'mobile') {
-			$('#startBtn').on('touchstart', startBtnHandler);
+			$('.startBtn').on('touchstart', startBtnHandler);
+			$('#startbutton').on('touchstart', startBtnHandler);
 		} else {
-			$('#startBtn').on('mousedown', startBtnHandler);
+			$('.startBtn').on('mousedown', startBtnHandler);
+			$('#startbutton').on('mousedown', startBtnHandler);
 		}
 
 		document.addEventListener('touchmove', function(e) {
@@ -245,10 +291,6 @@ function startBtnHandler() {
 
 	if (!canRestart) return false;
 
-	if ($('#openSideBar').is(':visible')) {
-		$('#openSideBar').fadeOut(150, "linear");
-	}
-
 	if (importing == 1) {
 		init(1);
 		checkVisualElements(0);
@@ -274,19 +316,14 @@ function handleClick(e) {
 function handleTapBefore(e) {
 	var x = e.changedTouches[0].clientX;
 	var y = e.changedTouches[0].clientY;
-
-	if (x < 120 && y < 83 && $('.helpText').is(':visible')) {
-		showHelp();
-		return;
-	}
 }
 
 function handleClickBefore(e) {
 	var x = e.clientX;
 	var y = e.clientY;
+}
 
-	if (x < 120 && y < 83 && $('.helpText').is(':visible')) {
-		showHelp();
-		return;
-	}
+function hexColorToHmlId(hexColor) {
+  const house = colorHouses.find(({ color }) => color === hexColor);
+  return house.htmlId;
 }

@@ -37,18 +37,18 @@ function descaleBlock(b) {
 }
 
 function writeHighScores() {
-		highscores.sort(
-		function(a,b){
-			a = parseInt(a, 10);
-			b = parseInt(b, 10);
-			if (a < b) {
-				return 1;
-			} else if (a > b) {
-				return -1;
-			}else {
-				return 0;
-			}
-		}
+  highscores.sort(
+    ([aScore, aTime],[bScore, bTime]) => {
+      aScore = parseInt(aScore, 10);
+      bScore = parseInt(bScore, 10);
+      if (aScore < bScore) {
+        return 1;
+      } else if (aScore > bScore) {
+        return -1;
+      } else {
+        return (aTime < bTime) ? 1: (aTime > bTime) ? -1 : 0;
+      }
+    }
 	);
 	highscores = highscores.slice(0,3);
 	localStorage.setItem("highscores", JSON.stringify(highscores));

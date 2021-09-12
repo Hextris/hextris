@@ -1,7 +1,7 @@
 function render() {
-	var grey = '#bdc3c7';
+	var notSoDarkBlue = '#848D9A'; // Darker
 	if (gameState === 0) {
-		grey = "rgb(220, 223, 225)";
+		notSoDarkBlue = "#848D9A "; // ligther
 	}
 	
 	ctx.clearRect(0, 0, trueCanvas.width, trueCanvas.height);
@@ -11,7 +11,7 @@ function render() {
 			op += 0.01;
 		}
 		ctx.globalAlpha = op;
-		drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, grey, false,6);
+		drawPolygon(trueCanvas.width / 2 , trueCanvas.height / 2 , 6, (settings.rows * settings.blockHeight) * (2/Math.sqrt(3)) + settings.hexWidth, 30, notSoDarkBlue, false, 6);
 		drawTimer();
 		ctx.globalAlpha = 1;
 	}
@@ -23,7 +23,19 @@ function render() {
 			block.draw(true, j);
 		}
 	}
+
 	for (i = 0; i < blocks.length; i++) {
+    var now = MainHex.ct;
+    // If (the block is an "explosive" block) AND (a "combo explosion" occurred) OR (the combo timer finished)
+    // => then restart the block to its basic color
+    if (blocks[i].explodingBlock && (  MainHex.comboMultiplier <= 1 || ((now - MainHex.lastCombo) > settings.comboTime ))) {
+      blocks[i].explodingBlock = false;
+      blocks[i].auxColor = blocks[i].color;
+      // If (the block is NOT and "explosive" block) AND (a "combo explosion" is AVAILABLE to execute)
+      // => then make the block explosive
+    } else if (!blocks[i].explodingBlock && MainHex.comboMultiplier > comboPacing) {
+      blocks[i].explodingBlock = true;
+    }
 		blocks[i].draw();
 	}
 
@@ -36,6 +48,14 @@ function render() {
 		var alive = MainHex.texts[i].draw();
 		if(!alive){
 			MainHex.texts.splice(i,1);
+			i--;
+		}
+	}
+	
+  for (i = 0; i < MainHex.circles.length; i++) {
+		var alive = MainHex.circles[i].draw();
+		if(!alive){
+			MainHex.circles.splice(i,1);
 			i--;
 		}
 	}
@@ -83,13 +103,13 @@ function renderBeginningText() {
         score_text = 'Match 3+ blocks to score!'
         fontSize = 27
     }
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-0*settings.scale, fontSize, '#2c3e50', input_text);
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight+33*settings.scale, fontSize, '#2c3e50', action_text);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-0*settings.scale, fontSize, '#FFFFFF', input_text);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight+33*settings.scale, fontSize, '#FFFFFF', action_text);
     if (!mob) {
 	    drawKey("",(trueCanvas.width)/2 + 2 * settings.scale-2.5,upperheight+38*settings.scale);
     }
 
-	renderText((trueCanvas.width)/2 + 2 * settings.scale,lowerheight,fontSize, '#2c3e50', score_text);
+	renderText((trueCanvas.width)/2 + 2 * settings.scale,lowerheight,fontSize, '#FFFFFF', score_text);
 }
 
 function drawKey(key, x, y) {

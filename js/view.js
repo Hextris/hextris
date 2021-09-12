@@ -5,15 +5,26 @@ function easeOutCubic(t, b, c, d) {
 
 function renderText(x, y, fontSize, color, text, font) {
 	ctx.save();
-	if (!font) {
-		var font = '20px Exo';
-	}
 
 	fontSize *= settings.scale;
-	ctx.font = fontSize + font;
+  if (!font) {
+		var font = `20px 'Open Sans'`;
+    ctx.font = fontSize + font;
+	} else {
+    ctx.font = font;
+  }
 	ctx.textAlign = 'center';
 	ctx.fillStyle = color;
 	ctx.fillText(text, x, y + (fontSize / 2) - 9 * settings.scale);
+	ctx.restore();
+}
+
+function renderCircle(x, y, radius, color, startAngle, endAngle) {
+	ctx.save();
+	ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.stroke();
 	ctx.restore();
 }
 
@@ -35,24 +46,20 @@ function drawScoreboard() {
 		scoreSize = 27;
 	}
 	//if (rush ==1){
-		var color = "rgb(236, 240, 241)";
+  var color = "rgb(255, 255, 255)";
 	//}
-    var fontSize = settings.platform == 'mobile' ? 35 : 30;
-    var h = trueCanvas.height / 2 + gdy + 100 * settings.scale;
+  const basePixelFont = 16;
 	if (gameState === 0) {
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2.1 + gdy - 155 * settings.scale, 150, "#2c3e50", "Hextris");
-		renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, h + 10, fontSize, "rgb(44,62,80)", 'Play!');
+		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2.1 + gdy - 155 * settings.scale, 90, "#FCC058", "HackBreak", `900 ${( (`${90 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 	} else if (gameState != 0 && textOpacity > 0) {
 		textOpacity -= 0.05;
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy, 60, "rgb(236, 240, 241)", String.fromCharCode("0xf04b"), 'px FontAwesome');
-		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale, trueCanvas.height / 2 + gdy - 155 * settings.scale, 150, "#2c3e50", "Hextris");
-		renderText(trueCanvas.width / 2 + gdx + 5 * settings.scale, h, fontSize, "rgb(44,62,80)", 'Play!');
+		renderText(trueCanvas.width / 2 + gdx + 6 * settings.scale - 5, trueCanvas.height / 2 + gdy - 155 * settings.scale, 90, "#FCC058", "HackBreak", `900 ${( (`${90 * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 		ctx.globalAlpha = scoreOpacity;
-		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, color, score);
+		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height - (trueCanvas.height - 100) + gdy * settings.scale, scoreSize, color, score, `900 ${( (`${scoreSize * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
+		
 	} else {
 		ctx.globalAlpha = scoreOpacity;
-		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height / 2 + gdy, scoreSize, color, score);
+		renderText(trueCanvas.width / 2 + gdx, trueCanvas.height - (trueCanvas.height - 100) + gdy * settings.scale, scoreSize, color, score, `900 ${( (`${scoreSize * settings.scale}20`) / basePixelFont)}rem 'Open Sans'`);
 	}
 
 	ctx.globalAlpha = 1;
@@ -95,10 +102,10 @@ function toggleClass(element, active) {
 
 function showText(text) {
 	var messages = {
-		'paused': "<div class='centeredHeader unselectable'>Game Paused</div>",
-		'pausedAndroid': "<div class='centeredHeader unselectable'>Game Paused</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'><a href = 'https://play.google.com/store/apps/details?id=com.hextris.hextrisadfree' target='_blank'Want to support the developers? Don't like ads? Tap for Hextris ad-free!</a></div>",
-		'pausediOS': "<div class='centeredHeader unselectable'>Game Paused</div><div class='unselectable centeredSubHeader' style='position:absolute;margin-left:-150px;left:50%;margin-top:20px;width:300px;font-size:16px;'><a href = 'https://itunes.apple.com/us/app/hextris-ad-free/id912895524?mt=8' target='_blank'>Want to support the developers? Don't like ads? Tap for Hextris ad-free!</a></div>",
-		'pausedOther': "<div class='centeredHeader unselectable'>Game Paused</div><div class='unselectable centeredSubHeader' style='margin-top:10px;position:absolute;left:50%;margin-left:-190px;max-width:380px;font-size:18px;'><a href = 'http://hextris.github.io/' target='_blank'>Want to support the developers? Click here to buy one of the ad-free mobile versions!</a></div>",
+		'paused': "<div class='centeredHeader unselectable'>HackBreak</div>",
+		'pausedAndroid': "<div class='centeredHeader unselectable'>HackBreak</div>",
+		'pausediOS': "<div class='centeredHeader unselectable'>HackBreak</div>",
+		'pausedOther': "<div class='centeredHeader unselectable'>HackBreak</div>",
 		'start': "<div class='centeredHeader unselectable' style='line-height:80px;'>Press enter to start</div>"
 	};
 
@@ -106,19 +113,17 @@ function showText(text) {
 		if (settings.os == 'android') {
 			text = 'pausedAndroid'
 		} else if (settings.os == 'ios') {
-            text = 'pausediOS'
-        } else if (settings.platform == 'nonmobile') {
-            text = 'pausedOther'
-        }
+        text = 'pausediOS'
+    } else if (settings.platform == 'nonmobile') {
+        text = 'pausedOther'
+    }
 	}
 
 	if (text == 'gameover') {
-	   //Clay('client.share.any', {text: 'Think you can beat my score of '+ score + ' in Super Cool Game?'})
 		$("#gameoverscreen").fadeIn();
-    	}
+  }
+  $("#pausesection").fadeIn(1000, 'linear');
 	$(".overlay").html(messages[text]);
-	$(".overlay").fadeIn("1000", "swing");
-
 }
 
 function setMainMenu() {
@@ -128,17 +133,12 @@ function setMainMenu() {
 		canRestart = 's';
 	}, 500);
 	$('#restartBtn').hide();
-	if ($("#pauseBtn").replace(/^.*[\\\/]/, '') == "btn_pause.svg") {
-		$("#pauseBtn").attr("src","./images/btn_resume.svg");
-	} else {
-		$("#pauseBtn").attr("src","./images/btn_pause.svg");
-	}
+	$('#resumeBtn').hide();
 }
 
 function hideText() {
-	$(".overlay").fadeOut(150, function() {
-		$(".overlay").html("");
-	})
+	$(".overlay").fadeOut(150, 'linear');
+  $(".overlay").html('');
 }
 
 function gameOverDisplay() {
@@ -146,26 +146,70 @@ function gameOverDisplay() {
 	Cookies.set("visited",true);
 	var c = document.getElementById("canvas");
 	c.className = "blur";
+  updateTime();
 	updateHighScores();
+  updateHouseCombinations();
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
 	}
 	else {
-		$("#currentHighScore").text(highscores[0])
+		$("#currentHighScore").text((highscores[0])[0])
 	}
-	$("#gameoverscreen").fadeIn();
+  $("#pausesection").hide();
+	$("#xteamlogosvg").fadeOut(1000, 'linear');
+  $('#highscoredisplay').fadeIn(1000, 'linear');
+	$("#gameoverscreen").fadeIn(1000, 'linear');
+	$("#restart").fadeIn(1000, 'linear');
+	$("#worldwide").fadeIn(1000, 'linear');
 	$("#buttonCont").fadeIn();
-	$("#container").fadeIn();
 	$("#socialShare").fadeIn();
-	$("#restart").fadeIn();
-    set_score_pos();
+}
+
+function getGameDuration() {
+  const endTime = moment();
+  const endTimeFormatted = moment(endTime, 'YYYY/MM/DD HH:mm');
+  const startTimeFormatted = moment(startTime, 'YYYY/MM/DD HH:mm')
+  return moment.duration(
+    endTimeFormatted.diff(startTimeFormatted)
+  );
+}
+
+function parseGameDurationToText(duration) {
+  const ZERO = 0;
+  const TEN = 10;
+  const HUNDRED = 100;
+  const hoursText = duration.hours() > ZERO ? `${duration.hours()}h` : null ;
+  const minutesText = duration.minutes() > ZERO ? `${duration.minutes()}m` : null ;
+  const secondsText = duration.seconds() > ZERO ? `${duration.seconds()}` : null ;
+  const milliSecondsText = duration.milliseconds() > ZERO ?
+    `${duration.milliseconds() >= HUNDRED ? Math.round( duration.milliseconds() / TEN ) : duration.milliseconds()}` :
+    null ;
+  const durationText = `${hoursText ? `${hoursText} ` : ''}${minutesText ? `${minutesText} ` : ''}${secondsText}.${milliSecondsText}s`;
+  return durationText;
+}
+
+function updateHouseCombinations() {
+  Object.entries(scoreByColor).forEach(([hexColor, scoreByHex]) => {
+    const htmlId = hexColorToHmlId(hexColor);
+    $(`#${htmlId}`).text(`${scoreByHex}`);
+  });
+}
+
+function updateTime() {
+  const gameDuration = getGameDuration();
+  const gameDurationText = parseGameDurationToText(gameDuration);
+  $("#cTime").text(`${gameDurationText}`);
+  highscores.forEach(([,time], index) => {
+    const momentTime = moment.duration(time);
+    $(`#${index + 1}placeTime`).text(`${parseGameDurationToText(momentTime)}`);
+  });
 }
 
 function updateHighScores (){
     $("#cScore").text(score);
-    $("#1place").text(highscores[0]);
-    $("#2place").text(highscores[1]);
-    $("#3place").text(highscores[2]);
+    highscores.forEach(([score], index) => {
+      $(`#${index + 1}place`).text(score);
+    });
 }
 
 var pausable = true;
@@ -187,13 +231,11 @@ function pause(o) {
 	if (gameState == -1) {
 		$('#fork-ribbon').fadeOut(300, 'linear');
 		$('#restartBtn').fadeOut(300, "linear");
+		$('#resumeBtn').fadeOut(300, "linear");
 		$('#buttonCont').fadeOut(300, "linear");
-		if ($('#helpScreen').is(':visible')) {
-			$('#helpScreen').fadeOut(300, "linear");
-		}
+		$('#overlayhelpscreen').fadeOut(300, 'linear');
 
-		$("#pauseBtn").attr("src", "./images/btn_pause.svg");
-		$('.helpText').fadeOut(300, 'linear');
+		$("#pauseBtn").fadeIn(300, 'linear');
 		$('#overlay').fadeOut(300, 'linear');
 		hideText();
 		setTimeout(function() {
@@ -202,14 +244,15 @@ function pause(o) {
 		}, 400);
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(300, "linear");
+		$('#resumeBtn').fadeIn(300, "linear");
 		$('#buttonCont').fadeIn(300, "linear");
-		$('.helpText').fadeIn(300, 'linear');
 		if (message == 'paused') {
 			showText(message);
 		}
 		$('#fork-ribbon').fadeIn(300, 'linear');
-		$("#pauseBtn").attr("src","./images/btn_resume.svg");
+		$("#pauseBtn").fadeOut(300, 'linear');
 		$('#overlay').fadeIn(300, 'linear');
+    showHelp();
 		prevGameState = gameState;
 		setTimeout(function() {
 		    pausable = true;

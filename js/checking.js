@@ -37,48 +37,13 @@ function floodFill(hex, side, index, deleting) {
 	}
 }
 
-function consolidateBlocks(hex,side,index){
-	//record which sides have been changed
-	var sidesChanged =[];
-	var deleting=[];
-	var deletedBlocks = [];
-	//add start case
-	deleting.push([side,index]);
-	//fill deleting	
-	floodFill(hex,side,index,deleting);
-	//make sure there are more than 3 blocks to be deleted
-	if(deleting.length<3){return;}
-	var i;
-	for(i=0; i<deleting.length;i++) {
-		var arr = deleting[i];
-		//just making sure the arrays are as they should be
-		if(arr !== undefined && arr.length==2) {
-			//add to sides changed if not in there
-			if(sidesChanged.indexOf(arr[0])==-1){
-				sidesChanged.push(arr[0]);
-			}
-			//mark as deleted
-			hex.blocks[arr[0]][arr[1]].deleted = 1;
-			deletedBlocks.push(hex.blocks[arr[0]][arr[1]]);
-		}
-	}
-
-	// add scores
-	var now = MainHex.ct;
-	if(now - hex.lastCombo < settings.comboTime ){
-		settings.comboTime = (1/settings.creationSpeedModifier) * (waveone.nextGen/16.666667) * 3;
-		hex.comboMultiplier += 1;
-		hex.lastCombo = now;
-		var coords = findCenterOfBlocks(deletedBlocks);
-		hex.texts.push(new Text(coords['x'],coords['y'],"x "+hex.comboMultiplier.toString(),"bold Q","#fff",fadeUpAndOut));
-	}
-	else{
-		settings.comboTime = 240;
-		hex.lastCombo = now;
-		hex.comboMultiplier = 1;
-	}
-	var adder = deleting.length * deleting.length * hex.comboMultiplier;
-	hex.texts.push(new Text(hex.x,hex.y,"+ "+adder.toString(),"bold Q ",deletedBlocks[0].color,fadeUpAndOut));
-		hex.lastColorScored = deletedBlocks[0].color;
-	score += adder;
+function deleteAllHex(hex, deleting) {
+  for(let i = 0 ; i < 6; i++) {
+    hex.blocks[i].forEach((_blockSide, j) => {
+      // checking equivalency of color, if its already been explored, and if it isn't already deleted
+      if (search(deleting,[i,j]) === false && hex.blocks[i][j].deleted === 0) {
+        deleting.push([i,j]);
+      }
+    });
+  }
 }

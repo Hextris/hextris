@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
-		<title>Hextris</title>
+		<title>HackBreak</title>
 		<meta name="apple-itunes-app" content="app-id=903769553"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
-		<meta property="og:url" content="http://hextris.github.io/hextris/"/>
-		<meta property="og:site_name" content="Hextris"/>
-		<meta property="og:title" content="Hextris"/>
-		<meta property="og:description" content="An addictive puzzle game inspired by Tetris."/>
+		<meta property="og:site_name" content="HackBreak"/>
+		<meta property="og:title" content="HackBreak"/>
+		<meta property="og:description" content="An addictive puzzle game inspired by Hextris."/>
 		<meta property="og:type" content="website"/>
-		<meta property="og:author" content="https://www.facebook.com/hextris"/>
-		<meta property="og:image" content="http://hextris.github.io/hextris/images/facebook-opengraph.png"/>
+		<meta property="og:author" content="https://www.facebook.com/HackBreak"/>
+		<meta property="og:image" content="http://HackBreak.github.io/HackBreak/images/facebook-opengraph.png"/>
 		<meta property="og:image:width" content="1200"/>
 		<meta property="og:image:height" content="630"/>
-		<meta property="twitter:card" content="summary"/>
-		<meta property="twitter:site" content="@hextris"/>
-		<meta property="twitter:site:id" content="2742209678"/>
-		<meta property="twitter:creator" content="@hextris"/>
-		<meta property="twitter:creator:id" content="2742209678"/>
-		<meta property="twitter:domain" content="http://hextris.github.io"/>
-		<meta property="twitter:title" content="Hextris"/>
-		<meta property="twitter:description" content="An addictive puzzle game inspired by Tetris."/>
-		<meta property="twitter:image:src" content="http://hextris.github.io/hextris/images/twitter-opengraph.png"/>
-		<meta property="twitter:image:width" content="512"/>
-		<meta property="twitter:image:height" content="512"/>
-		<meta property="twitter:app:id:iphone" content="id903769553">
-		<meta property="twitter:app:id:ipad" content="id903769553">
-		<meta property="twitter:app:id:googleplay" content="com.hextris.hextris">
-		<meta property="twitter:app:country" content="us">
-		<meta property="twitter:app:url:iphone" content="itunes.apple.com/us/app/id903769553?mt=8">
-		<meta property="twitter:app:url:ipad" content="itunes.apple.com/us/app/id903769553?mt=8">
-		<meta property="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.hextris.hextris">
 		<link rel="icon" type="image/png" href="favicon.ico">
-		<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="style/style.css">
-		<script type='text/javascript' src="vendor/hammer.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type='text/javascript' src="vendor/hammer.min.js"></script>
 		<script type='text/javascript' src="vendor/js.cookie.js"></script>
 		<script type='text/javascript' src="vendor/jsonfn.min.js"></script>
 		<script type='text/javascript' src="vendor/keypress.min.js"></script>
@@ -45,6 +29,7 @@
 		<script type='text/javascript' src="js/wavegen.js"></script>
 		<script type='text/javascript' src="js/math.js"></script>
 		<script type='text/javascript' src="js/Block.js"></script>
+		<script type='text/javascript' src="js/Circle.js"></script>
 		<script type='text/javascript' src="js/Hex.js"></script>
 		<script type='text/javascript' src="js/Text.js"></script>
 		<script type='text/javascript' src="js/comboTimer.js"></script>
@@ -54,100 +39,216 @@
 		<script type='text/javascript' src="js/input.js"></script>
 		<script type='text/javascript' src="js/main.js"></script>
 		<script type='text/javascript' src="js/initialization.js"></script>
-		<script type='text/javascript' async src="https://hextris.io/scripts/a.js"></script>
 		<script src="vendor/sweet-alert.min.js"></script>
 		<link rel="stylesheet" href="style/rrssb.css"/>
 		<script data-ad-client="ca-pub-9107422120987163" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
-		<div id="overlay" class="faded overlay"></div>
-		<div id='startBtn' ></div>
-		<div id="helpScreen" class='unselectable'>
-			<div id='inst_main_body'></div>
-		</div>
-		<img id="openSideBar" class='helpText' src="./images/btn_help.svg"/>
-		<div class="faded overlay"></div>
+		<section id='pausesection'>
+      <aside id="overlay" class="faded overlay"></aside>
+      <section id='overlayhelpscreen'>
+        <aside id="helpScreen" class='unselectable'>
+          <div class='bigtitle'>HOW TO PLAY</div>
+          <section id='instructionsbody'>
+            <aside class='instructionspart'>
+              <span>
+                <img src='https://i.imgur.com/E2wk7kj.png'>
+              </span>
+              <div class='instructionstext'>
+                <b>GOAL</b>
+                <!-- <p>Shadowcorp stole some memories from the watchmen. Try to break into their servers by cracking combinations.</p> -->
+                <p>Crack a combination with 3 or more blocks of the same color.</p>
+                <p>Rember to stay away from the borders.</p>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span>
+                <img id='howtodesktop' class='instdesktop' src='./images/how_to_desktop/how_to_desktop_1.svg'>
+              </span>
+              <div class='instructionstext instdesktop'>
+                <b>MOVEMENT</b>
+                <p>Press <strong>right</strong> and <strong>left</strong> to <strong>rotate</strong> the Hexagon.</p>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span>
+                <img id='howtophone' class='instmobile' src='./images/how_to_phone/how_to_phone_1.svg'>
+              </span>
+              <div class='instructionstext instmobile'>
+                <b>MOVEMENT</b>
+                <p>Tap <strong>left</strong> and <strong>right</strong> to <strong>rotate</strong> the Hexagon.</p>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span>
+                <img id='howtodesktopspeed' class='instdesktop' src='./images/how_to_desktop/how_to_desktop_1.svg'>
+              </span>
+              <div class='instructionstext instdesktop'>
+                <span>
+                  <p>Press <strong>down</strong> to <i><strong>speed up</strong></i> the block falling.</p>
+                </span>
+              </div>
+            </aside>
+            <aside class='instructionspart'>
+              <span id='hexagon_timer_speed_container'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 0 129 127"><path id='hexagon_timer_speed' d="M95.25 118.544h-63.5L0 63.5 31.75 8.456h63.5L127 63.5z" fill="#9fa6b0"/></svg>
+              </span>
+              <div class='instructionstext'>
+                <b>COMBO TIMER</b>
+                <p>Indicated by the colored lines on the border.</p>
+                <p>Get to <strong>Impressive Pacing</strong> and you'll crack all the combinations at once.</p>
+              </div>
+            </aside>
+          </section>
+          <hr> 
+          <span id = 'afterhr'>
+            <p>Made with <img src='./images/heart.svg'> by <a href='https://x-team.com/' target='_blank'>X-Team</a></p>
+            <p>Inspired in <a href ='http://HackBreak.github.io/' target='_blank'>HackBreak</a> by <a href='http://loganengstrom.com' target='_blank'>Logan Engstrom</a> & <a href='http://github.com/garrettdreyfus' target='_blank'>Garrett Finucane</a></p>
+          </span>
+        </aside>
+      </section>
+      <section id='pausesectionfooter'>
+        <section id='pausesectionoptions'>
+          <img id='resumeBtn' src='./images/btn_resume.svg'>
+          <img id='restartBtn' src="./images/btn_restart.svg"/>
+        </section>
+      </section>
+    </section>
+		<img id="xteamlogosvg" src="./images/x-team-logo.svg"/>
 		<img id="pauseBtn" src="./images/btn_pause.svg"/>
-		<img id='restartBtn' src="./images/btn_restart.svg"/>
-		<div id='HIGHSCORE'>HIGH SCORE</div>
 		<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
 		</script>
-		<div id='highScoreInGameText'>
-			<div id='highScoreInGameTextHeader'>HIGH SCORE</div><div id='currentHighScore'>10292</div>
-		</div>
-		<div id="gameoverscreen">
-			<div id='container'>
-				<div id='gameOverBox' class='GOTitle'>GAME OVER</div>
-				<div id='cScore'>1843</div>
-				<div id='highScoresTitle' class='GOTitle'>HIGH SCORES</div>
-				<div class='score'><span class='scoreNum'>1.</span> <div id="1place" style="display:inline;">0</div></div>
-				<div class='score'><span class='scoreNum'>2.</span> <div id="2place" style="display:inline;">0</div></div>
-				<div class='score'><span class='scoreNum'>3.</span> <div id="3place" style="display:inline;">0</div></div>
-			</div>
-			<div id='bottomContainer'>
-				<img id='restart' src='./images/btn_restart.svg' height='57px'>
-				<div id='socialShare'>
-					<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-					<svg width="224.6377px" height="57px"  viewBox="0 0 255 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-						<title>Share button</title>
-						<defs>
-						</defs>
-						<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-							<g id="Game-over-" sketch:type="MSArtboardGroup" transform="translate(-95.000000, -565.000000)">
-								<g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
-								<a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 "></polygon></a>
-									<text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="Exo" font-size="16" font-weight="420" fill="#FFFFFF">
-										<tspan x="67" y="39">SHARE MY SCORE!</tspan>
-									</text>
-								</g>
-							</g>
-						</g>
-					</svg>
-				</div>
-				<div id='buttonCont'>
-					<ul class="rrssb-buttons">
-						<li class="rrssb-facebook">
-							<a href='http://www.facebook.com/sharer.php?s=100
-								&p[url]=hextris.io' class="popup">
-								<span class="rrssb-icon">
-									<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29">
-										<path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
-										class="cls-2" fill-rule="evenodd"/>
-									</svg>
-								</span>
-								<span class="rrssb-text">facebook</span>
-							</a>
-						</li>
-						<li class="rrssb-twitter">
-							<a href="http://twitter.com/home?status=Play Hextris! - http://hextris.github.io/ #hextris"
-							class="popup">
-								<span class="rrssb-icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
-										<path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"
-										/>
-									</svg>
-								</span>
-								<span class="rrssb-text">twitter</span>
-							</a>
-						</li>
-				</ul>
-					<div id='badges'>
-						<a href="https://play.google.com/store/apps/details?id=com.hextris.hextris" ><img id='androidBadge' src='images/android.png'/></a>
-						<a href ="https://itunes.apple.com/us/app/hextris/id903769553?mt=8"><img id='iOSBadge'  src='images/appstore.svg'/></a>
-					</div>
-				</div>
-			</div>
-		</div>
-			<script type="text/javascript">
-				(function addRussianSocialShare(){
-					var lang=navigator.language || navigator.userLanguage;
-					if (lang.substr(0, 2) == 'ru') {
-						$('.rrssb-facebook').remove();
-						var n=$.parseHTML('<li class="rrssb-vk"><a href="http://vk.com/share.php?url=http://kurtnoble.com/labs/rrssb/index.html" class="popup"><span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="70 70 378.7 378.7"><path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"/></svg></span><span class="rrssb-text">vk.com</span></a></li>');
-						$('.rrssb-buttons').prepend(n);
-					}})()
-			</script>
+    <aside id='startbutton'>PLAY</aside>
+		<section id="gameoverscreen">
+			<aside id ="gameoverscreenheader">
+        <aside id='highscoredisplay'>
+          <div class='highScoreInGameTextHeader'>BEST TRY</div><div id='currentHighScore'>0</div>
+        </aside>
+        <div id= 'highscorehistory'>
+          <div class='bigtitle'>CRACKED COMBINATIONS</div>
+          <section id='highscorehistorydisplay'>
+            <div class='score'>
+              <span>1.</span>
+              <div id="1place" >0</div>
+              <div id='1placeTime'>0</div>
+            </div>
+            <div class='score'>
+              <span>2.</span>
+              <div id="2place" >0</div>
+              <div id='2placeTime'>0</div>
+            </div>
+            <div class='score'>
+              <span>3.</span>
+              <div id="3place" >0</div>
+              <div id='3placeTime'>0</div>
+            </div>
+          </section>          
+        </div>
+      </aside>
+      <aside id="gameoverscreenbody">
+        <div id='gameoverdisconnected'>
+          <div id='gameOverBox' class='bigtitle'>DISCONNECTED</div>
+          <aside id='currentScoreAndTime'>
+            <div id='cScore'>0</div>
+          <div id='cTime'>0</div>
+          </aside>
+        </div>
+        <div id="gamestats">
+          <div class='bigtitle'>HOUSE COMBINATIONS</div>
+          <section id='gamestatsscores'>
+            <div class='score'>
+              <img src='https://i.imgur.com/uNVtvov.png'>
+              <div id="lionspride">0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+            </div>
+            <div class='score'>
+              <img src='https://i.imgur.com/rKHJXY5.png'>
+              <div id="nightclaw">0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+            </div>
+            <div class='score'>
+              <img src='https://i.imgur.com/VZt6iHe.png'>
+              <div id="ragnar">0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+            </div>
+            <div class='score'>
+              <img src='https://i.imgur.com/vreZ3FV.png'>
+              <div id="corgi">0</div>
+              <div ></div> <!-- This is to balance the scores. Please don't delete it -->
+            </div>
+            <div class='score'>
+              <img src='https://i.imgur.com/uyWDlgw.png'>
+              <div id="nascentfire">0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+            </div>
+            <div class='score'>
+              <img src='https://i.imgur.com/piUWYzt.png'>
+              <div id="panda">0</div>
+              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+            </div>
+          </section>  
+        </div>
+      </aside>
+			<aside id="gameoverscreenfooter">
+        <div id='gaveoveroptions'>
+          <img id='restart' class='gameoverButton' src='./images/btn_restart.svg'>
+          <img id='worldwide' class='gameoverButton' src='./images/btn_worldwide.svg'>
+          <div id='socialShare'>
+            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            <svg width="224.6377px" height="57px"  viewBox="0 0 255 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>Share button</title>
+              <defs>
+              </defs>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                <g id="Game-over-" sketch:type="MSArtboardGroup" transform="translate(-95.000000, -565.000000)">
+                  <!-- <g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
+                    <a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=HackBreak ? http://HackBreak.github.io/HackBreak @HackBreak','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 ">
+                    </polygon>
+                    </a>
+                    <text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=HackBreak ? http://HackBreak.github.io/HackBreak @HackBreak','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="'Open Sans'" font-size="16" font-weight="420" fill="#FFFFFF">
+                      <tspan x="67" y="39">SHARE MY SCORE!</tspan>
+                    </text>
+                  </g> -->
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div id='buttonCont'>
+            <!-- <ul class="rrssb-buttons">
+              <li class="rrssb-facebook">
+                <a href='http://www.facebook.com/sharer.php?s=100
+                  &p[url]=HackBreak.io' class="popup">
+                  <span class="rrssb-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29">
+                      <path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
+                      class="cls-2" fill-rule="evenodd"/>
+                    </svg>
+                  </span>
+                  <span class="rrssb-text">facebook</span>
+                </a>
+              </li>
+              <li class="rrssb-twitter">
+                <a href="http://twitter.com/home?status=Play HackBreak! - http://HackBreak.github.io/ #HackBreak"
+                class="popup">
+                  <span class="rrssb-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                      <path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="rrssb-text">twitter</span>
+                </a>
+              </li>
+            </ul> -->
+            <!-- <div id='badges'>
+              <a href="https://play.google.com/store/apps/details?id=com.HackBreak.HackBreak" ><img id='androidBadge' src='images/android.png'/></a>
+              <a href ="https://itunes.apple.com/us/app/HackBreak/id903769553?mt=8"><img id='iOSBadge'  src='images/appstore.svg'/></a>
+            </div> -->
+          </div>
+        </div>
+      </aside>
+		</section>
 		<script type="text/javascript" src='vendor/rrssb.min.js'></script>
 	</body>
 </html>
