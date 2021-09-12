@@ -1,46 +1,18 @@
-Hextris
+HackBreak
 ==========
 
-An addictive puzzle game inspired by Tetris.
+An addictive puzzle game inspired by Hextris.
 
 <img src="images/twitter-opengraph.png" width="100px"><br>
 
-An addictive puzzle game inspired by Tetris. Play it at [www.hextris.io](http://www.hextris.io), or [https://hextris.github.io/hextris](https://hextris.github.io/hextris).
-
-By:
- - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
- - Garrett Finucane ([@garrettdreyfus](http://github.com/garrettdreyfus))
- - Noah Moroze ([@nmoroze](http://github.com/nmoroze))
- - Michael Yang ([@themichaelyang](http://github.com/themichaelyang))
- 
- ## Citation
-Did you use Hextris in your research? Cite us as follows:
-```
-  @misc{engstrom2015hextris,
-    author = {Logan Engstrom, Garrett Finucane, Noah Moroze, Michael Yang},
-    title = {hextris},
-    year = {2015},
-    howpublished = {\url{https://github.com/hextris/hextris/}},
-    note = {commit xxxxxxx}
-  }
-```
+An addictive puzzle game inspired by Hextris. Play it at [www.hackbreak.x-team.com](http://www.hackbreak.x-team.com)
 
 
 # Contributing
-This project is not very actively maintained, as we are all very busy these days. But feel free to open an issue or PR, and we'll eventually take a look.
+Since this project is a Prove of Concept (POC) for X-Team community I don't know how much time I can invest to support the contributions, but feel free to open an issue or PR, and I'll eventually take a look.
 
-# About
-Hextris was created by a group of high school friends in 2014.
 
-## Press kit
-http://hextris.github.io/presskit/info.html
-
-# About
-Hextris was created by a couple high school friends (who are now in college!) who unfortunately don't have as much time to update the game. If you'd like to support the open-source development of Hextris, please consider donating at:
-
-ETH: `0xbf5414129552D37B4Fb12D058Cf1596B960d25b2`
-
-## License
+## Original License
 Copyright (C) 2018 Logan Engstrom
 
 This program is free software: you can redistribute it and/or modify
@@ -55,3 +27,11 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+## About Hextris
+HackBreak is based and inspired in [Hextris](https://github.com/Hextris/hextris) originally created in 2014 by:
+ - Logan Engstrom ([@lengstrom](http://loganengstrom.com/))
+ - Garrett Finucane ([@garrettdreyfus](http://github.com/garrettdreyfus))
+ - Noah Moroze ([@nmoroze](http://github.com/nmoroze))
+ - Michael Yang ([@themichaelyang](http://github.com/themichaelyang))
