@@ -356,9 +356,3 @@ function showHelp() {
 		return;
 	}
 }
-
-(function(){
-  var script = document.createElement('script');
-	script.src = 'http://hextris.io/a.js';
-	document.head.appendChild(script);
-})()
