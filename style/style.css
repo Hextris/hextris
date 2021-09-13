@@ -363,7 +363,7 @@
 }
 
 .overlay {
-	color: #232323;
+	color: #252D38;
 	text-align: center;
 }
 
@@ -382,7 +382,7 @@
 
 #helpScreen {
   padding-bottom: 1rem;
-  color:#232323;
+  color:#252D38;
   font-family: 'Open Sans';
   
   /* Flex parent props */
@@ -395,7 +395,7 @@
 }
 
 #helpScreen > hr {
-	background-color:#232323;
+	background-color:#252D38;
 	height: 1px;
 	border: 0;
 }
@@ -599,12 +599,13 @@
 #pausesectionoptions > img {
   cursor: pointer;
   height: 1.7rem;
+  filter:
+    brightness(0) saturate(100%)
+    invert(14%) sepia(41%) saturate(379%) hue-rotate(174deg) brightness(91%) contrast(89%);
 
   /* Flex item props */
   flex: 1 1 auto;
 }
-
-
 
 
 
