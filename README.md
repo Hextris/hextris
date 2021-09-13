@@ -3,7 +3,7 @@ HackBreak
 
 An addictive puzzle game inspired by Hextris.
 
-<img src="images/twitter-opengraph.png" width="100px"><br>
+<img src="images/HackBreak_icon.png" width="100px"><br>
 
 An addictive puzzle game inspired by Hextris. Play it at [www.hackbreak.x-team.com](http://www.hackbreak.x-team.com)
 
