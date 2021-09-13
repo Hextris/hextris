@@ -104,7 +104,7 @@ function addKeyListeners() {
 			}
 			if (gameState == 2) {
 				init();
-				$("#gameoverscreen").fadeOut();
+				$("#gaveoverscreenlayout").fadeOut();
 			}
 			if (gameState===0) {
 				resumeGame();
@@ -158,7 +158,7 @@ function addKeyListeners() {
 			$("#restart").on('touchstart', function() {
 			init();
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 	}
@@ -166,7 +166,7 @@ function addKeyListeners() {
 		$("#restart").on('mousedown', function() {
 			init();
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 	}
@@ -174,7 +174,7 @@ function addKeyListeners() {
 			$("#restartBtn").on('touchstart', function() {
 			init(1);
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 	}
@@ -182,7 +182,7 @@ function addKeyListeners() {
 		$("#restartBtn").on('mousedown', function() {
 			init(1);
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 
