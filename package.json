@@ -1,0 +1,26 @@
+{
+  "name": "hackbreak",
+  "version": "1.0.0",
+  "description": "An addictive puzzle game inspired by Hextris.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccmoralesj/hextris.git"
+  },
+  "keywords": [
+    "html5-game"
+  ],
+  "author": "Cristian Morales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccmoralesj/hextris/issues"
+  },
+  "homepage": "https://github.com/ccmoralesj/hextris#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "1.22.6",
+    "dotenv": "10.0.0"
+  }
+}

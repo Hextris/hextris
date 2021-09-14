@@ -161,7 +161,6 @@ function gameOverDisplay() {
 	$("#gameoverscreen").fadeIn(1000, 'linear');
 	$("#restart").fadeIn(1000, 'linear');
 	$("#worldwide").fadeIn(1000, 'linear');
-	$("#buttonCont").fadeIn();
 	$("#socialShare").fadeIn();
 }
 
@@ -232,7 +231,6 @@ function pause(o) {
 		$('#fork-ribbon').fadeOut(300, 'linear');
 		$('#restartBtn').fadeOut(300, "linear");
 		$('#resumeBtn').fadeOut(300, "linear");
-		$('#buttonCont').fadeOut(300, "linear");
 		$('#overlayhelpscreen').fadeOut(300, 'linear');
 
 		$("#pauseBtn").fadeIn(300, 'linear');
@@ -245,7 +243,6 @@ function pause(o) {
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(300, "linear");
 		$('#resumeBtn').fadeIn(300, "linear");
-		$('#buttonCont').fadeIn(300, "linear");
 		if (message == 'paused') {
 			showText(message);
 		}

@@ -1,7 +1,27 @@
 $(document).ready(function() {
-	initialize();
+  initialize();
+  
+  $('#login-button').click(function(event){
+    event.preventDefault();
+    if ($('#username').val() === '') {
+      $('.registrationError').fadeIn();
+      $('.registrationError').removeClass('inputErrorMessage');
+      requestAnimationFrame(() => $('.registrationError').addClass('inputErrorMessage'));
+      $('#login-button').blur();
+    } else {
+      username = $('#username').val();
+      localStorage.setItem('username', `${username}`)
+      $('form').fadeOut(500);
+    }
+  
+  });
 });
-function initialize(a) {
+function initialize(somevar) {
+  const { createClient } = supabase;
+  const supabaseUrl = 'https://ntkxlegilzynpvxzgikx.supabase.co';
+  const supabasePublicKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMTU4ODk1OSwiZXhwIjoxOTQ3MTY0OTU5fQ.5vZTojuvkWv9T4iwZdt6Oqda3-y66u4_oRtI6QPpfIk';
+  windows.supabase = createClient(supabaseUrl, supabasePublicKey);
+  window.username = localStorage.getItem('username') || null;
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;
@@ -176,8 +196,16 @@ function initialize(a) {
 	window.importedHistory = undefined;
 	window.startTime = undefined;
 	window.gameState;
-	setStartScreen();
-	if (a != 1) {
+	
+  if (username === null) {
+    $('#registration').show();
+  } else {
+    $('#registration').hide();
+  }
+
+  setStartScreen();
+	
+  if (somevar != 1) {
 		window.canRestart = 1;
 		window.onblur = function(e) {
 			if (gameState == 1) {

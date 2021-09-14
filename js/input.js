@@ -99,16 +99,18 @@ function addKeyListeners() {
 	keypress.register_combo({
 		keys: "enter",
 		on_keydown: function() {
-			if (gameState==1 || importing == 1) {
-				init(1);
-			}
-			if (gameState == 2) {
-				init();
-				$("#gameoverscreen").fadeOut();
-			}
-			if (gameState===0) {
-				resumeGame();
-			}
+			if (username !== null) {
+        if (gameState==1 || importing == 1) {
+          init(1);
+        }
+        if (gameState == 2) {
+          init();
+          $("#gameoverscreen").fadeOut();
+        }
+        if (gameState===0) {
+          resumeGame();
+        }
+      }
 		}
 	});
 
@@ -189,6 +191,7 @@ function addKeyListeners() {
 	}
 
 }
+
 function inside (point, vs) {
 	// ray-casting algorithm based on
 	// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -233,4 +236,3 @@ function handleClickTap(x,y) {
 		MainHex.rotate(-1);
 	}
 }
-

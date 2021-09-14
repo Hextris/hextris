@@ -1,3 +1,6 @@
+:root {
+  --clr-neon: #FCC058;
+}
 * {
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
@@ -11,6 +14,54 @@
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
+/*/////////////////////////////////////////////     REGISTRATION SCREEN     //////////////////////////////////////////////////////////////////////*/
+#registration {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(37,45,56,0.5);
+}
+
+#registration > article {
+  height: 100%;
+
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registrationError {
+  display: none;
+  position: absolute;
+  top: 4%;
+  left: 10%;
+  color: #cc0000;
+  text-shadow: 0 0 0.125rem hsl(0 0% 100% / 0.3), 0 0 0.45rem currentColor;
+
+}
+
+.inputErrorMessage {
+  animation: shake 0.3s ease-in forwards;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: translateX(10%);
+  }
+  
+  25%, 50%, 75% {
+    transform: translateX(-10%);
+  }
+}
 /*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
 #gameoverscreen {
   padding-top: 2rem;
@@ -332,11 +383,10 @@
   100% {
     color: #FFFFFF;
     text-shadow: 
-    0 0 10px #FFFFFF,
-    0 0 20px #FFFFFF,
-    0 0 40px #FFFFFF,
-    0 0 80px #FFFFFF,
-    0 0 160px #FFFFFF;
+      0 0 0.5rem #ffffff,
+      0 0 0.8rem #ffffff,
+      0 0 1.3rem #ffffff,
+      0 0 1.8rem #ffffff
   }
 }
 
@@ -786,48 +836,9 @@ button:focus {
   }
 }
 
-#buttonCont {
-	position:absolute; 
-	left:50%;
-	width:310px;
-	margin-left:-8px;
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-}
-
-@media only screen and (orientation:landscape) {
-	#buttonCont {
-		bottom:calc(50vh - 19vh - 36px);
-	}
-}
-
-@media only screen and (orientation:portrait) {
-	#buttonCont {
-		bottom:calc(50vh - 19vw - 36px);
-	}
-}
-
 @media only screen and (min-device-width:320px) and (max-device-width:600px) {
 	.overlay {
 		margin-top:-20%;
-	}
-
-	#buttonCont {
-		width:280px;
-	}
-
-	@media only screen and (orientation:landscape) {
-		#buttonCont {
-			bottom:119px;
-		}
-	}
-
-	@media only screen and (orientation:portrait) {
-		#buttonCont {
-			bottom:119px;
-		}
 	}
 }
 .blur {

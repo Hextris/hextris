@@ -29,13 +29,6 @@ function scaleCanvas() {
 
 		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
-    setBottomContainer();
-}
-
-function setBottomContainer() {
-    var buttonOffset = $("#buttonCont").offset().top;
-    var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
-    var delta = buttonOffset - playOffset - 29;
 }
 
 function toggleDevTools() {
@@ -61,7 +54,6 @@ function checkVisualElements(arg) {
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 	if (!$('#resumeBtn').is(':visible')) $('#resumeBtn').fadeOut(150, "linear");
-	if ($('#buttonCont').is(':visible')) $('#buttonCont').fadeOut(150, "linear");
 	if ($('#highscoredisplay').is(':visible')) $('#highscoredisplay').fadeOut(1000, "linear");
 }
 
