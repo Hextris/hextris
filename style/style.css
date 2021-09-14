@@ -881,22 +881,6 @@ body {
 	color:#2c3e50;
 }
 
-
-#socialShare{
-	display:none;
-	margin:0;
-	padding:0;
-	bottom:0;
-	margin-bottom: 6.5px;
-	position:absolute;
-	left:calc(50% + 30px);
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-    padding-bottom: 2px;
-}
-
 .unselectable {
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;

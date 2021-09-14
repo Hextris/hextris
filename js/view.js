@@ -161,7 +161,6 @@ function gameOverDisplay() {
 	$("#gaveoverscreenlayout").fadeIn(1000, 'linear');
 	$("#restart").fadeIn(1000, 'linear');
 	$("#worldwide").fadeIn(1000, 'linear');
-	$("#socialShare").fadeIn();
 }
 
 function getGameDuration() {
