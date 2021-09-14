@@ -19,7 +19,7 @@ exports.handler = async event => {
     return io.sendResponse({ statusCode: 405, body: { message: 'Method Not Allowed' } });
   }
 
-  const requestBody = io.bodyParser(event.body);
+  const requestBody = io.bodyParser(event);
   const usernameToAdd = requestBody.username;
   const identifier = requestBody.identifier;
 
