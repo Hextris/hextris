@@ -10,7 +10,7 @@ $(document).ready(function() {
       $('#login-button').blur();
     } else {
       // username = $('#username').val();
-      const body =  { username: $('#username').val()};
+      const body =  { username: $('#username').val() };
       const searchUserLambda = '/.netlify/functions/search-user';
       const fetchOptions = {
         method: 'POST',

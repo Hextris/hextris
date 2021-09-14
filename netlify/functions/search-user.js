@@ -18,7 +18,9 @@ exports.handler = async event => {
   }
 
   const requestBody = JSON.parse(event.body);
+  console.log(`The parsed body: `, requestBody);
   const usernameToSearch = requestBody.username;
+  console.log(`The username to search: `, usernameToSearch);
   // Search for the username
 	const { data, error } = await supabase
 		.from('UserEntry')
@@ -34,6 +36,6 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
-    body: { data },
+    body: JSON.stringify({ data }),
   }
 }
