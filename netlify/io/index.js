@@ -1,5 +1,5 @@
 
-export default {
+module.exports = {
   bodyParser: (event) => JSON.parse(event.body),
   sendResponse: async ({
     body,
