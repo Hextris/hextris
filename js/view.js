@@ -120,7 +120,7 @@ function showText(text) {
 	}
 
 	if (text == 'gameover') {
-		$("#gameoverscreen").fadeIn();
+		$("#gaveoverscreenlayout").fadeIn(500, 'linear');
   }
   $("#pausesection").fadeIn(1000, 'linear');
 	$(".overlay").html(messages[text]);
@@ -158,7 +158,7 @@ function gameOverDisplay() {
   $("#pausesection").hide();
 	$("#xteamlogosvg").fadeOut(1000, 'linear');
   $('#highscoredisplay').fadeIn(1000, 'linear');
-	$("#gameoverscreen").fadeIn(1000, 'linear');
+	$("#gaveoverscreenlayout").fadeIn(1000, 'linear');
 	$("#restart").fadeIn(1000, 'linear');
 	$("#worldwide").fadeIn(1000, 'linear');
 	$("#socialShare").fadeIn();

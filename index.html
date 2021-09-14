@@ -2,37 +2,37 @@
 <html lang='en'>
 	<head>
 		<title>HackBreak</title>
-		<meta name='apple-itunes-app' content='app-id=903769553'/>
-		<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui'/>
-		<meta property='og:site_name' content='HackBreak'/>
-		<meta property='og:title' content='HackBreak'/>
-		<meta property='og:description' content='An addictive puzzle game inspired by Hextris.'/>
-		<meta property='og:type' content='website'/>
-		<meta property='og:image:width' content='1200'/>
-		<meta property='og:image:height' content='630'/>
-		<link rel='icon' type='image/png' href='favicon.ico'>
-    <link rel='preconnect' href='https://fonts.googleapis.com'>
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-    <link href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap' rel='stylesheet' type='text/css'>
-		<link rel='stylesheet' href='style/fa/css/font-awesome.min.css'>
-		<link rel='stylesheet' type='text/css' href='style/style.css'>
-		<link rel='stylesheet' type='text/css' href='style/login.css'>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js' integrity='sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
-    <script type='text/javascript' src='vendor/hammer.min.js'></script>
-		<script type='text/javascript' src='vendor/js.cookie.js'></script>
-		<script type='text/javascript' src='vendor/jsonfn.min.js'></script>
-		<script type='text/javascript' src='vendor/keypress.min.js'></script>
-		<script type='text/javascript' src='vendor/jquery.js'></script>
-		<script type='text/javascript' src='js/save-state.js'></script>
-		<script type='text/javascript' src='js/view.js'></script>
-		<script type='text/javascript' src='js/wavegen.js'></script>
-		<script type='text/javascript' src='js/math.js'></script>
-		<script type='text/javascript' src='js/Block.js'></script>
-		<script type='text/javascript' src='js/Circle.js'></script>
-		<script type='text/javascript' src='js/Hex.js'></script>
-		<script type='text/javascript' src='js/Text.js'></script>
-		<script type='text/javascript' src='js/comboTimer.js'></script>
-		<script type='text/javascript' src='js/checking.js'></script>
+		<meta name="apple-itunes-app" content="app-id=903769553"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
+		<meta property="og:site_name" content="HackBreak"/>
+		<meta property="og:title" content="HackBreak"/>
+		<meta property="og:description" content="Hack Shadowcorp's servers and return access to the stream."/>
+		<meta property="og:type" content="website"/>
+		<meta property="og:image:width" content="1200"/>
+		<meta property="og:image:height" content="630"/>
+		<link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link rel="stylesheet" type="text/css" href="style/login.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type='text/javascript' src="vendor/hammer.min.js"></script>
+		<script type='text/javascript' src="vendor/js.cookie.js"></script>
+		<script type='text/javascript' src="vendor/jsonfn.min.js"></script>
+		<script type='text/javascript' src="vendor/keypress.min.js"></script>
+		<script type='text/javascript' src="vendor/jquery.js"></script>
+		<script type='text/javascript' src="js/save-state.js"></script>
+		<script type='text/javascript' src="js/view.js"></script>
+		<script type='text/javascript' src="js/wavegen.js"></script>
+		<script type='text/javascript' src="js/math.js"></script>
+		<script type='text/javascript' src="js/Block.js"></script>
+		<script type='text/javascript' src="js/Circle.js"></script>
+		<script type='text/javascript' src="js/Hex.js"></script>
+		<script type='text/javascript' src="js/Text.js"></script>
+		<script type='text/javascript' src="js/comboTimer.js"></script>
+		<script type='text/javascript' src="js/checking.js"></script>
 		<script type='text/javascript' src='js/update.js'></script>
 		<script type='text/javascript' src='js/render.js'></script>
 		<script type='text/javascript' src='js/input.js'></script>
@@ -138,83 +138,137 @@
 		<img id='xteamlogosvg' src='./images/x-team-logo.svg'/>
 		<img id='pauseBtn' src='./images/btn_pause.svg'/>
     <aside id='startbutton'>PLAY</aside>
-		<section id='gameoverscreen'>
-			<aside id ='gameoverscreenheader'>
-        <aside id='highscoredisplay'>
-          <div class='highScoreInGameTextHeader'>BEST TRY</div><div id='currentHighScore'>0</div>
-        </aside>
-        <div id= 'highscorehistory'>
-          <div class='bigtitle'>CRACKED COMBINATIONS</div>
-          <section id='highscorehistorydisplay'>
-            <div class='score'>
-              <span>1.</span>
-              <div id='1place' >0</div>
-              <div id='1placeTime'>0</div>
-            </div>
-            <div class='score'>
-              <span>2.</span>
-              <div id='2place' >0</div>
-              <div id='2placeTime'>0</div>
-            </div>
-            <div class='score'>
-              <span>3.</span>
-              <div id='3place' >0</div>
-              <div id='3placeTime'>0</div>
-            </div>
-          </section>          
-        </div>
-      </aside>
-      <aside id='gameoverscreenbody'>
-        <div id='gameoverdisconnected'>
-          <div id='gameOverBox' class='bigtitle'>DISCONNECTED</div>
-          <aside id='currentScoreAndTime'>
-            <div id='cScore'>0</div>
-          <div id='cTime'>0</div>
+		<article id='gaveoverscreenlayout'>
+      <section id="gameoverscreen">
+        <aside id ="gameoverscreenheader">
+          <aside id='highscoredisplay'>
+            <div class='highScoreInGameTextHeader'>BEST TRY</div><div id='currentHighScore'>0</div>
           </aside>
-        </div>
-        <div id='gamestats'>
-          <div class='bigtitle'>HOUSE COMBINATIONS</div>
-          <section id='gamestatsscores'>
-            <div class='score'>
-              <img src='https://i.imgur.com/uNVtvov.png'>
-              <div id='lionspride'>0</div>
-              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+          <div id= 'highscorehistory'>
+            <div class='bigtitle'>CRACKED COMBINATIONS</div>
+            <section id='highscorehistorydisplay'>
+              <div class='score'>
+                <span>1.</span>
+                <div id="1place" >0</div>
+                <div id='1placeTime'>0</div>
+              </div>
+              <div class='score'>
+                <span>2.</span>
+                <div id="2place" >0</div>
+                <div id='2placeTime'>0</div>
+              </div>
+              <div class='score'>
+                <span>3.</span>
+                <div id="3place" >0</div>
+                <div id='3placeTime'>0</div>
+              </div>
+            </section>          
+          </div>
+        </aside>
+        <aside id="gameoverscreenbody">
+          <div id='gameoverdisconnected'>
+            <div id='gameOverBox' class='bigtitle'>DISCONNECTED</div>
+            <aside id='currentScoreAndTime'>
+              <div id='cScore'>0</div>
+            <div id='cTime'>0</div>
+            </aside>
+          </div>
+          <div id="gamestats">
+            <div class='bigtitle'>HOUSE COMBINATIONS</div>
+            <section id='gamestatsscores'>
+              <div class='score'>
+                <img src='https://i.imgur.com/uNVtvov.png'>
+                <div id="lionspride">0</div>
+                <div></div> <!-- This is to balance the scores. Please don't delete it -->
+              </div>
+              <div class='score'>
+                <img src='https://i.imgur.com/rKHJXY5.png'>
+                <div id="nightclaw">0</div>
+                <div></div> <!-- This is to balance the scores. Please don't delete it -->
+              </div>
+              <div class='score'>
+                <img src='https://i.imgur.com/VZt6iHe.png'>
+                <div id="ragnar">0</div>
+                <div></div> <!-- This is to balance the scores. Please don't delete it -->
+              </div>
+              <div class='score'>
+                <img src='https://i.imgur.com/vreZ3FV.png'>
+                <div id="corgi">0</div>
+                <div ></div> <!-- This is to balance the scores. Please don't delete it -->
+              </div>
+              <div class='score'>
+                <img src='https://i.imgur.com/uyWDlgw.png'>
+                <div id="nascentfire">0</div>
+                <div></div> <!-- This is to balance the scores. Please don't delete it -->
+              </div>
+              <div class='score'>
+                <img src='https://i.imgur.com/piUWYzt.png'>
+                <div id="panda">0</div>
+                <div></div> <!-- This is to balance the scores. Please don't delete it -->
+              </div>
+            </section>  
+          </div>
+        </aside>
+        <aside id="gameoverscreenfooter">
+          <div id='gaveoveroptions'>
+            <img id='restart' class='gameoverButton' src='./images/btn_restart.svg'>
+            <img id='worldwide' class='gameoverButton' src='./images/btn_worldwide.svg'>
+            <div id='socialShare'>
+              <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+              <svg width="224.6377px" height="57px"  viewBox="0 0 255 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>Share button</title>
+                <defs>
+                </defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                  <g id="Game-over-" sketch:type="MSArtboardGroup" transform="translate(-95.000000, -565.000000)">
+                    <!-- <g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
+                      <a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=HackBreak ? http://HackBreak.github.io/HackBreak @HackBreak','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 ">
+                      </polygon>
+                      </a>
+                      <text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=HackBreak ? http://HackBreak.github.io/HackBreak @HackBreak','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="'Open Sans'" font-size="16" font-weight="420" fill="#FFFFFF">
+                        <tspan x="67" y="39">SHARE MY SCORE!</tspan>
+                      </text>
+                    </g> -->
+                  </g>
+                </g>
+              </svg>
             </div>
-            <div class='score'>
-              <img src='https://i.imgur.com/rKHJXY5.png'>
-              <div id='nightclaw'>0</div>
-              <div></div> <!-- This is to balance the scores. Please don't delete it -->
+            <div id='buttonCont'>
+              <!-- <ul class="rrssb-buttons">
+                <li class="rrssb-facebook">
+                  <a href='http://www.facebook.com/sharer.php?s=100
+                    &p[url]=HackBreak.io' class="popup">
+                    <span class="rrssb-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="29" height="29" viewBox="0 0 29 29">
+                        <path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"
+                        class="cls-2" fill-rule="evenodd"/>
+                      </svg>
+                    </span>
+                    <span class="rrssb-text">facebook</span>
+                  </a>
+                </li>
+                <li class="rrssb-twitter">
+                  <a href="http://twitter.com/home?status=Play HackBreak! - http://HackBreak.github.io/ #HackBreak"
+                  class="popup">
+                    <span class="rrssb-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+                        <path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="rrssb-text">twitter</span>
+                  </a>
+                </li>
+              </ul> -->
+              <!-- <div id='badges'>
+                <a href="https://play.google.com/store/apps/details?id=com.HackBreak.HackBreak" ><img id='androidBadge' src='images/android.png'/></a>
+                <a href ="https://itunes.apple.com/us/app/HackBreak/id903769553?mt=8"><img id='iOSBadge'  src='images/appstore.svg'/></a>
+              </div> -->
             </div>
-            <div class='score'>
-              <img src='https://i.imgur.com/VZt6iHe.png'>
-              <div id='ragnar'>0</div>
-              <div></div> <!-- This is to balance the scores. Please don't delete it -->
-            </div>
-            <div class='score'>
-              <img src='https://i.imgur.com/vreZ3FV.png'>
-              <div id='corgi'>0</div>
-              <div ></div> <!-- This is to balance the scores. Please don't delete it -->
-            </div>
-            <div class='score'>
-              <img src='https://i.imgur.com/uyWDlgw.png'>
-              <div id='nascentfire'>0</div>
-              <div></div> <!-- This is to balance the scores. Please don't delete it -->
-            </div>
-            <div class='score'>
-              <img src='https://i.imgur.com/piUWYzt.png'>
-              <div id='panda'>0</div>
-              <div></div> <!-- This is to balance the scores. Please don't delete it -->
-            </div>
-          </section>  
-        </div>
-      </aside>
-			<aside id='gameoverscreenfooter'>
-        <div id='gaveoveroptions'>
-          <img id='restart' class='gameoverButton' src='./images/btn_restart.svg'>
-          <img id='worldwide' class='gameoverButton' src='./images/btn_worldwide.svg'>
-        </div>
-      </aside>
-		</section>
-		<script type='text/javascript' src='vendor/rrssb.min.js'></script>
+          </div>
+        </aside>
+      </section>
+    </article>
+		<script type="text/javascript" src='vendor/rrssb.min.js'></script>
 	</body>
 </html>

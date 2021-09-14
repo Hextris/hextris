@@ -99,18 +99,16 @@ function addKeyListeners() {
 	keypress.register_combo({
 		keys: "enter",
 		on_keydown: function() {
-			if (username !== null) {
-        if (gameState==1 || importing == 1) {
-          init(1);
-        }
-        if (gameState == 2) {
-          init();
-          $("#gameoverscreen").fadeOut();
-        }
-        if (gameState===0) {
-          resumeGame();
-        }
-      }
+			if (gameState==1 || importing == 1) {
+				init(1);
+			}
+			if (gameState == 2) {
+				init();
+				$("#gaveoverscreenlayout").fadeOut();
+			}
+			if (gameState===0) {
+				resumeGame();
+			}
 		}
 	});
 
@@ -160,7 +158,7 @@ function addKeyListeners() {
 			$("#restart").on('touchstart', function() {
 			init();
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 	}
@@ -168,7 +166,7 @@ function addKeyListeners() {
 		$("#restart").on('mousedown', function() {
 			init();
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 	}
@@ -176,7 +174,7 @@ function addKeyListeners() {
 			$("#restartBtn").on('touchstart', function() {
 			init(1);
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 	}
@@ -184,7 +182,7 @@ function addKeyListeners() {
 		$("#restartBtn").on('mousedown', function() {
 			init(1);
 			canRestart = false;
-			$("#gameoverscreen").fadeOut();
+			$("#gaveoverscreenlayout").fadeOut();
 		});
 
 
