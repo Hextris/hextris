@@ -31,8 +31,8 @@ exports.handler = async event => {
     return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
 
-  return {
+  return io.sendResponse({
     statusCode: 200,
-    body: JSON.stringify({ data }),
-  }
+    body: { data },
+  })
 }
