@@ -21,7 +21,6 @@ exports.handler = async event => {
 
   const requestBody = io.bodyParser(event);
   const usernameToAdd = requestBody.username;
-  const identifier = requestBody.identifier;
 
   // Insert a user
 	const { data, error } = await supabase
