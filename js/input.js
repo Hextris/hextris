@@ -99,16 +99,18 @@ function addKeyListeners() {
 	keypress.register_combo({
 		keys: "enter",
 		on_keydown: function() {
-			if (gameState==1 || importing == 1) {
-				init(1);
-			}
-			if (gameState == 2) {
-				init();
-				$("#gaveoverscreenlayout").fadeOut();
-			}
-			if (gameState===0) {
-				resumeGame();
-			}
+			if (username !== null) {
+        if (gameState==1 || importing == 1) {
+          init(1);
+        }
+        if (gameState == 2) {
+          init();
+          $("#gaveoverscreenlayout").fadeOut();
+        }
+        if (gameState===0) {
+          resumeGame();
+        }
+      }
 		}
 	});
 
