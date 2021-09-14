@@ -21,6 +21,7 @@ $(document).ready(function() {
       };
       fetch(searchUserLambda, fetchOptions)
         .then( (response) => {
+          console.log('The Response:', response);
           return response.json();
         })
         .then((jsonResponse) => {
