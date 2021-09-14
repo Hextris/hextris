@@ -229,8 +229,6 @@ function initialize(somevar) {
 		});
 
 		addKeyListeners();
-		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
-		ga('send', 'pageview');
 
 		document.addEventListener("pause", handlePause, false);
 		document.addEventListener("backbutton", handlePause, false);
