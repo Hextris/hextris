@@ -9,9 +9,30 @@ $(document).ready(function() {
       requestAnimationFrame(() => $('.registrationError').addClass('inputErrorMessage'));
       $('#login-button').blur();
     } else {
-      username = $('#username').val();
-      localStorage.setItem('username', `${username}`)
-      $('form').fadeOut(500);
+      // username = $('#username').val();
+      const body =  { username: $('#username').val()};
+      const searchUserLambda = '/.netlify/functions/search-user';
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      fetch(searchUserLambda, fetchOptions)
+        .then( (response) => {
+          return response.json();
+        })
+        .then((jsonResponse) => {
+          console.log('All good my friends');
+          console.log(jsonResponse);
+        })
+        .catch( (e) => {
+          console.log('oh No!, something happened!')
+          console.log(e.message);
+        });
+      // localStorage.setItem('username', `${username}`)
+      // $('form').fadeOut(500);
     }
   
   });
