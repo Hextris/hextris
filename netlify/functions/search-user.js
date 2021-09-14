@@ -1,4 +1,6 @@
 require('dotenv').config();
+const io = require('../io');
+
 const {
 	SUPABASE_URL,
 	SUPABASE_SERVICE_API_KEY
@@ -14,10 +16,10 @@ exports.handler = async event => {
 
   // Only allow POST
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: { message: 'Method Not Allowed' } };
+    return io.sendResponse({ statusCode: 405, body: { message: 'Method Not Allowed' } });
   }
 
-  const requestBody = JSON.parse(event.body);
+  const requestBody = io.bodyParser(event.body);
   const usernameToSearch = requestBody.username;
   // Search for the username
 	const { data, error } = await supabase
@@ -26,7 +28,7 @@ exports.handler = async event => {
     .eq('username', usernameToSearch);
 
   if (error) {
-    return { statusCode: 500, body: { message: 'Something wrong happened' } };
+    return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
 
   return {

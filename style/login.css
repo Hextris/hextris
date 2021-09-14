@@ -125,6 +125,10 @@ form > * {
   width: 100%;
 }
 
+form > label {
+  font-weight: 700;
+}
+
 form > input {
   appearance: none;
   outline: 0;
@@ -133,7 +137,6 @@ form > input {
   
   border-radius: 0.18rem;
   padding: 0.625rem 0;
-  margin-bottom: 0.625rem;
   text-align: center;
   font-size: 1.125rem;
   
@@ -143,11 +146,11 @@ form > input {
   font-weight: 300;
 }
 
-form > input:hover{
+form > input:hover {
   background-color: rgba(255,255,255, 0.4);
 }
 
-form > input:focus{
+form > input:focus {
   background-color: white;
   width: 110%;
   
@@ -155,7 +158,7 @@ form > input:focus{
   box-shadow: 0 0 0.5rem 0 var(--clr-neon);
 }
 
-form > button {
+form button {
   appearance: none;
   outline: 0;
   padding: 0.625rem 0;
@@ -164,16 +167,16 @@ form > button {
   cursor: pointer;
   font-size: 1.125rem;
   font-weight: 600;
+  margin-top: 0.625rem;
   transition-duration: 0.25s;
 
   border: var(--clr-neon) 0.125rem solid;
   text-shadow: 0 0 0.125rem hsl(0 0% 100% / 0.3), 0 0 0.45rem currentColor;
   box-shadow: inset 0 0 0.5rem 0 var(--clr-neon), 0 0 0.5rem 0 var(--clr-neon);
-
 }
 
-form > button:hover,
-form > button:focus {
+form button:hover,
+form button:focus {
   background: var(--clr-neon);
   color: #252D38;
   text-shadow: none;

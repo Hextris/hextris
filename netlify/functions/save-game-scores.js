@@ -16,7 +16,7 @@ exports.handler = async event => {
 
   // Only allow POST
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: { message: 'Method Not Allowed' } };
+    return io.sendResponse({ statusCode: 405, body: { message: 'Method Not Allowed' } });
   }
 
   const requestBody = io.bodyParser(event.body);
@@ -31,7 +31,7 @@ exports.handler = async event => {
 		]);
 
   if (error) {
-    return { statusCode: 500, body: { message: 'Something wrong happened' } };
+    return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
 
   return io.sendResponse({

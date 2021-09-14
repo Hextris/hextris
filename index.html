@@ -64,6 +64,13 @@
           <input id='username' type='text' name='username' placeholder='Username' required>
           <button type='submit' id='login-button'>Access</button>
         </form>
+        <form class='form fallbackForm' autocomplete='off'>
+          <label>The username <i id='takenusername'></i> <br>is already taken. <br>Proceed anyway? </label>
+          <section>
+            <button type='submit' id='login-button-yes'>Yes</button>
+            <button type='submit' id='login-button-no'>No</button>
+          </section>
+        </form>
       </article>
     </section>
 		<section id='pausesection'>

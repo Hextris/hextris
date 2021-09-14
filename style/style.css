@@ -15,6 +15,7 @@
 }
 
 /*/////////////////////////////////////////////     REGISTRATION SCREEN     //////////////////////////////////////////////////////////////////////*/
+
 #registration {
   z-index: 2;
   position: absolute;
@@ -62,6 +63,24 @@
     transform: translateX(-10%);
   }
 }
+
+.fallbackForm {
+  display: none;
+}
+
+.fallbackForm > section {
+  /* Flex parent props */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fallbackForm > section > * {
+  flex: 1 1 auto;
+}
+
 /*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
 #gaveoverscreenlayout {
   display: none;
