@@ -1,4 +1,6 @@
 require('dotenv').config();
+const io = require('../io');
+
 const {
 	SUPABASE_URL,
 	SUPABASE_SERVICE_API_KEY
@@ -17,7 +19,7 @@ exports.handler = async event => {
     return { statusCode: 405, body: { message: 'Method Not Allowed' } };
   }
 
-  const requestBody = JSON.parse(event.body);
+  const requestBody = io.bodyParser(event.body);
   const usernameToAdd = requestBody.username;
   const identifier = requestBody.identifier;
 
@@ -32,9 +34,9 @@ exports.handler = async event => {
     return { statusCode: 500, body: { message: 'Something wrong happened' } };
   }
 
-  return {
+  return io.sendResponse({
     statusCode: 200,
-    body: JSON.stringify({ data }),
-  }
+    body: { data },
+  })
   
 }
