@@ -1,7 +1,7 @@
 $(document).ready(function() {
   initialize();
   
-  $('#login-button').click(function(event){
+  $('#login-button').click(async function(event){
     event.preventDefault();
     if ($('#username').val() === '') {
       $('.registrationError').fadeIn();
@@ -20,19 +20,16 @@ $(document).ready(function() {
           'Content-Type': 'application/json'
         }
       };
-      fetch(searchUserLambda, fetchOptions)
-        .then( (response) => {
-          console.log('The Response:', response);
-          return response.json();
-        })
-        .then((jsonResponse) => {
-          console.log('All good my friends');
-          console.log(jsonResponse);
-        })
-        .catch( (e) => {
-          console.log('oh No!, something happened!')
-          console.log(e.message);
-        });
+      try {
+        const fetchResponse = await fetch(searchUserLambda, fetchOptions)
+        console.log('The Response:', response);
+        const jsonResponse = await fetchResponse.json();
+        console.log('All good my friends');
+        console.log(jsonResponse);
+      } catch (e) {
+        console.log('oh No!, something happened!')
+        console.log(e.message);
+      }
       // localStorage.setItem('username', `${username}`)
       // $('form').fadeOut(500);
     }

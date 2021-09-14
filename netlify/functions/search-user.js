@@ -18,17 +18,12 @@ exports.handler = async event => {
   }
 
   const requestBody = JSON.parse(event.body);
-  console.log(`The parsed body: `, requestBody);
   const usernameToSearch = requestBody.username;
-  console.log(`The username to search: `, usernameToSearch);
   // Search for the username
 	const { data, error } = await supabase
 		.from('UserEntry')
  		.select('username')
-     .eq('username', usernameToSearch);
-
-  // Did it work?
-  console.log(data, error);
+    .eq('username', usernameToSearch);
 
   if (error) {
     return { statusCode: 500, body: { message: 'Something wrong happened' } };
