@@ -10,6 +10,7 @@ $(document).ready(function() {
       $('#login-button').blur();
     } else {
       // username = $('#username').val();
+      window.auxdatausername = $('#username').val();
       const body =  { username: $('#username').val() };
       const searchUserLambda = '/.netlify/functions/search-user';
       const fetchOptions = {
@@ -25,6 +26,11 @@ $(document).ready(function() {
         const jsonResponse = await fetchResponse.json();
         console.log('All good my friends');
         console.log(jsonResponse);
+        const [user] = jsonResponse.data;
+        if (user) {
+          $('registrationForm').fadeOut(100, 'linear');
+          $('.fallbackForm').fadeInt(100, 'linear');
+        }
       } catch (e) {
         console.log('oh No!, something happened!')
         console.log(e.message);
