@@ -20,28 +20,32 @@ exports.handler = async event => {
   }
 
   const requestBody = io.bodyParser(event);
-  const username = requestBody.username;
-  const highscores = requestBody.highscores;
-
-  // Insert a user
-	const { data: [userEntry], error } = await supabase
+  const usernameToSearch = requestBody.username;
+  // Search for the username
+	const { data: usersFound, error } = await supabase
 		.from('UserEntry')
- 		.update({ highScores: Object.fromEntries(highscores) })
-    .match({ username })
-    .limit(1);
+ 		.select('username, highScores')
+    .eq('username', usernameToSearch)
+    .limit(10);
 
   if (error) {
     return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
 
-  const userEntryResponse = {
-    username: userEntry.username,
-    highscores: Object.entries(userEntry.highScores),
-  };
-
+  const orderFunction = ([aScore, aTime],[bScore, bTime]) => {
+    aScore = parseInt(aScore, 10);
+    bScore = parseInt(bScore, 10);
+    if (aScore < bScore) {
+      return 1;
+    } else if (aScore > bScore) {
+      return -1;
+    } else {
+      return (aTime < bTime) ? 1: (aTime > bTime) ? -1 : 0;
+    }
+  }
+  
   return io.sendResponse({
     statusCode: 200,
-    body: { data: userEntryResponse },
+    body: { data: usersFound },
   })
-  
 }

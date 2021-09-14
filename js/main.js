@@ -71,11 +71,15 @@ function init(b) {
 		clearSaveState();
 		checkVisualElements(1);
 	}
-	if (highscores.length === 0 ){
+	if (!window.highscores) {
 		$("#currentHighScore").text(0);
 	}
 	else {
-		$("#currentHighScore").text((highscores[0])[0])
+    if (highscores.length === 0) {
+      $("#currentHighScore").text(0);
+    } else {
+      $("#currentHighScore").text((highscores[0])[0])
+    }
 	}
 	infobuttonfading = true;
   $("#pausesection").hide();

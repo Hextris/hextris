@@ -178,8 +178,8 @@ function parseGameDurationToText(duration) {
   const HUNDRED = 100;
   const hoursText = duration.hours() > ZERO ? `${duration.hours()}h` : null ;
   const minutesText = duration.minutes() > ZERO ? `${duration.minutes()}m` : null ;
-  const secondsText = duration.seconds() > ZERO ? `${duration.seconds()}` : null ;
-  const milliSecondsText = duration.milliseconds() > ZERO ?
+  const secondsText = duration.seconds() >= ZERO ? `${duration.seconds()}` : null ;
+  const milliSecondsText = duration.milliseconds() >= ZERO ?
     `${duration.milliseconds() >= HUNDRED ? Math.round( duration.milliseconds() / TEN ) : duration.milliseconds()}` :
     null ;
   const durationText = `${hoursText ? `${hoursText} ` : ''}${minutesText ? `${minutesText} ` : ''}${secondsText}.${milliSecondsText}s`;

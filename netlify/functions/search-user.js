@@ -22,17 +22,23 @@ exports.handler = async event => {
   const requestBody = io.bodyParser(event);
   const usernameToSearch = requestBody.username;
   // Search for the username
-	const { data, error } = await supabase
+	const { data: [userFound], error } = await supabase
 		.from('UserEntry')
- 		.select('username')
-    .eq('username', usernameToSearch);
+ 		.select('username, highScores')
+    .eq('username', usernameToSearch)
+    .limit(1);
 
   if (error) {
     return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
 
+  const userEntry = {
+    username: userFound.username,
+    highscores: Object.entries(userFound.highScores),
+  };
+  
   return io.sendResponse({
     statusCode: 200,
-    body: { data },
+    body: { data: userEntry },
   })
 }

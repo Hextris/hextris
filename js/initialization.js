@@ -3,15 +3,14 @@ $(document).ready(function() {
   
   $('#login-button').click(async function(event){
     event.preventDefault();
-    if ($('#username').val() === '') {
+    const usernameInput = $('#username').val();
+    if (usernameInput === '') {
       $('.registrationError').fadeIn();
       $('.registrationError').removeClass('inputErrorMessage');
       requestAnimationFrame(() => $('.registrationError').addClass('inputErrorMessage'));
       $('#login-button').blur();
     } else {
-      // username = $('#username').val();
-      window.auxdatausername = $('#username').val();
-      const body =  { username: $('#username').val() };
+      const body =  { username: usernameInput };
       const searchUserLambda = '/.netlify/functions/search-user';
       const fetchOptions = {
         method: 'POST',
@@ -24,21 +23,79 @@ $(document).ready(function() {
       try {
         const fetchResponse = await fetch(searchUserLambda, fetchOptions)
         const jsonResponse = await fetchResponse.json();
-        console.log('All good my friends');
-        console.log(jsonResponse);
-        const [user] = jsonResponse.data;
+        const user = jsonResponse.data;
         if (user) {
-          $('registrationForm').fadeOut(100, 'linear');
-          $('.fallbackForm').fadeInt(100, 'linear');
+          $('#takenusername').html(user.username);
+          $('#registrationForm').fadeOut(100, 'linear');
+          $('.fallbackForm').fadeIn(100, 'linear');
+        } else  {
+          const username = usernameInput;
+          const body =  { 
+            username,
+          };
+          const createUserLambda = '/.netlify/functions/register-user';
+          const fetchOptions = {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          };
+          const fetchResponse = await fetch(createUserLambda, fetchOptions)
+          const jsonResponse = await fetchResponse.json();
+          const user = jsonResponse.data;
+          window.username = user.username;
+          highscores = user.highscores;
+          localStorage.setItem('username', user.username);
+          localStorage.setItem('highscores', JSON.stringify(highscores));
+
+          $('#registration').fadeOut(500);
         }
       } catch (e) {
         console.log('oh No!, something happened!')
-        console.log(e.message);
+        console.log(e);
       }
-      // localStorage.setItem('username', `${username}`)
-      // $('form').fadeOut(500);
     }
   
+  });
+
+  $('#login-button-yes').click(async function(event){
+    event.preventDefault();
+    const username = $('#username').val();
+    const body =  { 
+      username,
+    };
+    console.log('The username: ', username);
+    const createUserLambda = '/.netlify/functions/register-user';
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      };
+    try {
+      const fetchResponse = await fetch(createUserLambda, fetchOptions)
+      const jsonResponse = await fetchResponse.json();
+      const user = jsonResponse.data;
+      window.username = user.username;
+      highscores = user.highscores;
+      localStorage.setItem('username', user.username);
+      localStorage.setItem('highscores', JSON.stringify(highscores));
+      $('#registration').fadeOut(500, 'linear');
+    } catch(e) {
+      console.log('oh No!, something happened!')
+      console.log(e);
+    }
+  });
+
+  $('#login-button-no').click(async function(event){
+    event.preventDefault();
+    $('#takenusername').html('');
+    $('.fallbackForm').fadeOut(100, 'linear');
+    $('#registrationForm').fadeIn(100, 'linear');  
   });
 });
 function initialize(somevar) {
@@ -195,15 +252,29 @@ function initialize(somevar) {
 	window.scoreAdditionCoeff = 1;
 	window.prevScore = 0;
 	window.numHighScores = 3;
-
-	highscores = [];
-	if (localStorage.getItem('highscores')) {
-		try {
-			highscores = JSON.parse(localStorage.getItem('highscores'));
-		} catch (e) {
-			highscores = [];
-		}
-	}
+  if (username === null) {
+    $('#registration').fadeIn(300);
+    if (localStorage.getItem('highscores')) {
+      try {
+        window.highscores = JSON.parse(localStorage.getItem('highscores'));
+      } catch (e) {
+        window.highscores = [];
+      }
+    }
+  } else {
+    $('#registration').fadeOut(100);
+    loadHighScores()
+      .then( (userEntry) => {
+        window.highscores = userEntry.highscores;
+        localStorage.setItem('highscores', JSON.stringify(highscores));
+        if (highscores.length === 0) {
+          $("#currentHighScore").text(0);
+        } else {
+          $("#currentHighScore").text((highscores[0])[0])
+        }
+        console.log('High scores loaded successfully...')
+      });
+  }
 	window.blocks = [];
 	window.MainHex;
 	window.gdx = 0;
@@ -217,12 +288,6 @@ function initialize(somevar) {
 	window.importedHistory = undefined;
 	window.startTime = undefined;
 	window.gameState;
-	
-  if (username === null) {
-    $('#registration').show();
-  } else {
-    $('#registration').hide();
-  }
 
   setStartScreen();
 	
@@ -364,3 +429,26 @@ function hexColorToHmlId(hexColor) {
   const house = colorHouses.find(({ color }) => color === hexColor);
   return house.htmlId;
 }
+
+async function loadHighScores() {
+  const searchUserLambda = '/.netlify/functions/search-user';
+  const fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify({
+      username: window.username,
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const fetchResponse = await fetch(searchUserLambda, fetchOptions)
+    const jsonResponse = await fetchResponse.json();
+    const userEntry = jsonResponse.data;
+    return userEntry
+  } catch (e) {
+    console.log('oh No!, something happened!')
+    console.log(e);
+  }
+} 
