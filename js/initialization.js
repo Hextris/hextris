@@ -22,7 +22,6 @@ $(document).ready(function() {
       };
       try {
         const fetchResponse = await fetch(searchUserLambda, fetchOptions)
-        console.log('The Response:', response);
         const jsonResponse = await fetchResponse.json();
         console.log('All good my friends');
         console.log(jsonResponse);
