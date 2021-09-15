@@ -167,6 +167,7 @@ function addKeyListeners() {
       $("#restart2").on('touchstart', function() {
         init();
         canRestart = false;
+        $("#gaveoverscreenlayout").fadeOut();
         $("#worldwidescorelayout").fadeOut();
         $('#worldwidescoredisplay').empty();
       });
@@ -189,6 +190,7 @@ function addKeyListeners() {
 		$("#restart").on('mousedown', function() {
 			init();
 			canRestart = false;
+      $("#gaveoverscreenlayout").fadeOut();
 			$("#worldwidescorelayout").fadeOut();
       $('#worldwidescoredisplay').empty();
 
@@ -198,6 +200,7 @@ function addKeyListeners() {
 			init();
 			canRestart = false;
 			$("#gaveoverscreenlayout").fadeOut();
+      $("#worldwidescorelayout").fadeOut();
       $('#worldwidescoredisplay').empty();
 		});
 		

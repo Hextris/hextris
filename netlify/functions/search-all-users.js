@@ -29,10 +29,12 @@ exports.handler = async event => {
   if (error) {
     return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
-
-  const usersAndScores = usersFound.map( (user) =>
-    ({ ...user, highScores: Object.entries(user.highScores), highestScore: Object.entries(user.highScores).sort(helpers.orderScoreFunction).pop() })
-  );
+  const usersAndScores = usersFound.map( (user) => {
+    const highscoresSorted = Object.entries(user.highScores).sort(helpers.orderScoreFunction);
+    const highestScore = highscoresSorted?.shift() ?? [0 , 0];
+    
+    return { ...user, highScores: Object.entries(user.highScores), highestScore };
+  });
 
   const finalSort = ({ highestScore: [aScore, aTime] },{ highestScore: [bScore, bTime] }) => {
     aScore = parseInt(aScore, 10);
@@ -48,6 +50,7 @@ exports.handler = async event => {
     }
   }
   const highestUserScores = usersAndScores.sort(finalSort);
+
   return io.sendResponse({
     statusCode: 200,
     body: { data: highestUserScores.slice(0, 10) },

@@ -280,11 +280,12 @@ async function generateGlobalScoresSection() {
 
     const scoreTemplate = document.getElementById('scoretemplate');
     const globalScoreDisplay = document.querySelector( '#worldwidescoredisplay');
-    AllUsers.forEach( (user, index) => {
+    AllUsers.forEach( (user) => {
       const clon = scoreTemplate.content.cloneNode(true);
-      const gameDuration = moment.duration(user.highestScore.pop());
+      const highestScore = user.highestScore.shift();
+      const gameDuration = moment.duration(user.highestScore.shift());
       clon.querySelector('span').innerText = user.username;
-      clon.querySelector('aside').innerText = `${user.highestScore.pop()}`;
+      clon.querySelector('aside').innerText = `${highestScore}`;
       clon.querySelector('div').innerText = parseGameDurationToText(gameDuration);
       globalScoreDisplay.appendChild(clon);
     });

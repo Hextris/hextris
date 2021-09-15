@@ -38,7 +38,7 @@ exports.handler = async event => {
   }
 
   if (usersFound && usersFound.length) {
-    const userFound = usersFound.pop();
+    const userFound = usersFound.shift();
     const creationAttemptsString = userFound.usernameKey.split('#').pop();
     const creationAttempts = parseInt(creationAttemptsString, 10);
     const usernameKey = `${userFound.username}#${creationAttempts + 1}`;
