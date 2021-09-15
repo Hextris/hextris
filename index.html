@@ -62,7 +62,7 @@
           <label class='registrationErrorStyle inputError'>Please register to proceed</label>
           <label class='registrationErrorStyle inputCharsError'>No special characters allowed</label>
           <label for="username">Create a connection</label>
-          <input id='username' type='text' name='username' placeholder='Username' required>
+          <input id='username' type='text' name='username' maxlength='12' placeholder='Username' required>
           <button type='submit' id='login-button'>Access</button>
         </form>
         <form class='form fallbackForm' autocomplete='off'>
@@ -153,84 +153,106 @@
 		<img id='pauseBtn' src='./images/btn_pause.svg'/>
     <aside id='startbutton'>PLAY</aside>
 		<article id='gaveoverscreenlayout'>
-      <section id="gameoverscreen">
-        <aside id ="gameoverscreenheader">
-          <aside id='highscoredisplay'>
-            <div class='highScoreInGameTextHeader'>BEST TRY</div><div id='currentHighScore'>0</div>
-          </aside>
-          <div id= 'highscorehistory'>
-            <div class='bigtitle'>CRACKED COMBINATIONS</div>
-            <section id='highscorehistorydisplay'>
-              <div class='score'>
-                <span>1.</span>
-                <div id="1place" >0</div>
-                <div id='1placeTime'>0</div>
-              </div>
-              <div class='score'>
-                <span>2.</span>
-                <div id="2place" >0</div>
-                <div id='2placeTime'>0</div>
-              </div>
-              <div class='score'>
-                <span>3.</span>
-                <div id="3place" >0</div>
-                <div id='3placeTime'>0</div>
-              </div>
-            </section>          
-          </div>
-        </aside>
-        <aside id="gameoverscreenbody">
-          <div id='gameoverdisconnected'>
-            <div id='gameOverBox' class='bigtitle'>DISCONNECTED</div>
-            <aside id='currentScoreAndTime'>
-              <div id='cScore'>0</div>
-            <div id='cTime'>0</div>
+      <section id='gaveoverscreenmainlayout'>
+        <section id="gameoverscreen">
+          <aside id ="gameoverscreenheader">
+            <aside id='highscoredisplay'>
+              <div class='highScoreInGameTextHeader'>BEST TRY</div><div id='currentHighScore'>0</div>
             </aside>
-          </div>
-          <div id="gamestats">
-            <div class='bigtitle'>HOUSE COMBINATIONS</div>
-            <section id='gamestatsscores'>
-              <div class='score'>
-                <img src='https://i.imgur.com/uNVtvov.png'>
-                <div id="lionspride">0</div>
-                <div></div> <!-- This is to balance the scores. Please don't delete it -->
-              </div>
-              <div class='score'>
-                <img src='https://i.imgur.com/rKHJXY5.png'>
-                <div id="nightclaw">0</div>
-                <div></div> <!-- This is to balance the scores. Please don't delete it -->
-              </div>
-              <div class='score'>
-                <img src='https://i.imgur.com/VZt6iHe.png'>
-                <div id="ragnar">0</div>
-                <div></div> <!-- This is to balance the scores. Please don't delete it -->
-              </div>
-              <div class='score'>
-                <img src='https://i.imgur.com/vreZ3FV.png'>
-                <div id="corgi">0</div>
-                <div ></div> <!-- This is to balance the scores. Please don't delete it -->
-              </div>
-              <div class='score'>
-                <img src='https://i.imgur.com/uyWDlgw.png'>
-                <div id="nascentfire">0</div>
-                <div></div> <!-- This is to balance the scores. Please don't delete it -->
-              </div>
-              <div class='score'>
-                <img src='https://i.imgur.com/piUWYzt.png'>
-                <div id="panda">0</div>
-                <div></div> <!-- This is to balance the scores. Please don't delete it -->
-              </div>
-            </section>  
-          </div>
-        </aside>
-        <aside id="gameoverscreenfooter">
-          <div id='gaveoveroptions'>
-            <img id='restart' class='gameoverButton' src='./images/btn_restart.svg'>
-            <img id='worldwide' class='gameoverButton' src='./images/btn_worldwide.svg'>
+            <div id= 'highscorehistory'>
+              <div class='bigtitle'>CRACKED COMBINATIONS</div>
+              <section id='highscorehistorydisplay'>
+                <div class='score'>
+                  <span>1.</span>
+                  <div id="1place" >0</div>
+                  <div id='1placeTime'>0</div>
+                </div>
+                <div class='score'>
+                  <span>2.</span>
+                  <div id="2place" >0</div>
+                  <div id='2placeTime'>0</div>
+                </div>
+                <div class='score'>
+                  <span>3.</span>
+                  <div id="3place" >0</div>
+                  <div id='3placeTime'>0</div>
+                </div>
+              </section>          
+            </div>
+          </aside>
+          <aside id="gameoverscreenbody">
+            <div id='gameoverdisconnected'>
+              <div id='gameOverBox' class='bigtitle'>DISCONNECTED</div>
+              <aside id='currentScoreAndTime'>
+                <div id='cScore'>0</div>
+              <div id='cTime'>0</div>
+              </aside>
+            </div>
+            <div id="gamestats">
+              <div class='bigtitle'>HOUSE COMBINATIONS</div>
+              <section id='gamestatsscores'>
+                <div class='score'>
+                  <img src='https://i.imgur.com/uNVtvov.png'>
+                  <div id="lionspride">0</div>
+                  <div></div> <!-- This is to balance the scores. Please don't delete it -->
+                </div>
+                <div class='score'>
+                  <img src='https://i.imgur.com/rKHJXY5.png'>
+                  <div id="nightclaw">0</div>
+                  <div></div> <!-- This is to balance the scores. Please don't delete it -->
+                </div>
+                <div class='score'>
+                  <img src='https://i.imgur.com/VZt6iHe.png'>
+                  <div id="ragnar">0</div>
+                  <div></div> <!-- This is to balance the scores. Please don't delete it -->
+                </div>
+                <div class='score'>
+                  <img src='https://i.imgur.com/vreZ3FV.png'>
+                  <div id="corgi">0</div>
+                  <div ></div> <!-- This is to balance the scores. Please don't delete it -->
+                </div>
+                <div class='score'>
+                  <img src='https://i.imgur.com/uyWDlgw.png'>
+                  <div id="nascentfire">0</div>
+                  <div></div> <!-- This is to balance the scores. Please don't delete it -->
+                </div>
+                <div class='score'>
+                  <img src='https://i.imgur.com/piUWYzt.png'>
+                  <div id="panda">0</div>
+                  <div></div> <!-- This is to balance the scores. Please don't delete it -->
+                </div>
+              </section>  
+            </div>
+          </aside>
+          <aside id="gameoverscreenfooter">
+            <div id='gaveoveroptions'>
+              <img id='restart' class='gameoverButton' src='./images/btn_restart.svg'>
+              <img id='worldwide' class='gameoverButton' src='./images/btn_worldwide.svg'>
+            </div>
+          </aside>
+        </section>
+      </section>
+      <section id='worldwidescorelayout'>
+        <section id='worldwidescore'>
+          <div class='bigtitle'>TOP HACK BREAKS</div>
+          <section id='worldwidescoredisplay'>
+          </section>
+        </section>
+        <aside id="worldwidecreenfooter">
+          <div id='worldwideoptions'>
+            <img id='restart2' class='gameoverButton' src='./images/btn_restart.svg'>
+            <img id='worldwideback' class='gameoverButton' src='./images/left-arrow.svg'>
           </div>
         </aside>
       </section>
     </article>
+    <template id= 'scoretemplate'>
+      <article class='score'>
+        <span></span>
+        <aside></aside>
+        <div></details>
+      </article>
+    </template>
 		<script type="text/javascript" src='vendor/rrssb.min.js'></script>
 	</body>
 </html>

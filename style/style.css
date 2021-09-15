@@ -352,23 +352,114 @@
 @keyframes neonglowyellow {
   0% {
    filter:
-    invert(68%) sepia(33%) saturate(286%) hue-rotate(2deg) brightness(90%) contrast(90%)
+    /* invert(68%) sepia(33%) saturate(286%) hue-rotate(2deg) brightness(90%) contrast(90%) */
+    invert(600%) sepia(300%) saturate(200%) hue-rotate(200deg) brightness(9%) contrast(9%)
     drop-shadow(0 0 0px #B5A37F);
   }
   
   100% {
     filter:
-      invert(87%) sepia(50%) saturate(835%) hue-rotate(330deg) brightness(190%) contrast(101%)
+      /* invert(87%) sepia(50%) saturate(835%) hue-rotate(330deg) brightness(190%) contrast(101%) */
+      invert(87%) sepia(50%) saturate(200%) hue-rotate(330deg) brightness(190%) contrast(101%)
       drop-shadow(0 0 3px #D49F2C)
       drop-shadow(0 0 6px #EBB031)
       drop-shadow(0 0 8px #FFBE35);
   }
 }
 
+/*/////////////////////////////////////////////     WORLDWIDE SCORES SECTION     //////////////////////////////////////////////////////////////////////*/
+
+#worldwidescorelayout {
+  display: none;
+}
+
+#worldwidescore {
+  padding-top: 2rem;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#worldwidescore > * {
+  width: 100%;
+  z-index: 1;
+  font-family: 'Open Sans';
+}
+
+#worldwidescoredisplay {
+
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#worldwidescoredisplay > * {
+  width: 60%;
+}
+
+#worldwidescoredisplay span {
+  width: 40%;
+}
+
+/*/////////////////////////////////////////////     WORLDWIDE FOOTER FOOTER     //////////////////////////////////////////////////////////////////////*/
+#worldwidecreenfooter {
+  font-family:'Open Sans';
+	color:#FFFFFF;
+  padding-top: 1rem;
+
+  /* Flex item props */
+  flex: 0 1 auto;
+  
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#worldwidecreenfooter > * {
+  width: 100%;
+}
+
+#worldwideoptions {
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
+}
+
+#worldwideoptions > * {
+
+  /* Flex item props*/
+  flex: 1 1 auto;
+}
+
+
+#worldwideback {
+  animation: neonglowyellow 1.5s alternate infinite;
+}
+
+#restart2 {
+  filter: invert(53%) sepia(12%) saturate(372%) hue-rotate(178deg) brightness(92%) contrast(93%);
+  animation: neonglowwhite 1.5s alternate infinite;
+}
+
 /*/////////////////////////////////////////////     GENERAL PURPOSE     //////////////////////////////////////////////////////////////////////*/
 .score {
   font-weight: 400;
-	line-height:18px;
+	line-height: 18px;
 
   /* Flex parent props */
 	display: flex;
@@ -377,6 +468,10 @@
   justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
+}
+
+.score > * {
+  font-size: 0.8rem;
 }
 
 .bigtitle {
@@ -725,6 +820,10 @@
     width: 40%;
   }
   
+  #worldwidescoredisplay > * {
+    width: 40%;
+  }
+  
   #gameoverdisconnected > * {
     width: 45%;
   } 
@@ -778,6 +877,10 @@
 
   #pauseBtn {
     height: 4rem;
+  }
+
+  .score > * {
+    font-size: 1rem;
   }
 }
 

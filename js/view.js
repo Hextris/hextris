@@ -121,6 +121,7 @@ function showText(text) {
 
 	if (text == 'gameover') {
 		$("#gaveoverscreenlayout").fadeIn(500, 'linear');
+		$("#gaveoverscreenmainlayout").fadeIn();
   }
   $("#pausesection").fadeIn(1000, 'linear');
 	$(".overlay").html(messages[text]);
@@ -158,12 +159,15 @@ function gameOverDisplay() {
 		$("#currentHighScoreMainScreen").text((highscores[0])[0])
 	}
   $('#highscoremainscreen').fadeOut(1000, 'linear');
+  $('#gameOverBox').text(username.toLocaleUpperCase());
   $("#pausesection").hide();
 	$("#xteamlogosvg").fadeOut(1000, 'linear');
-  // $('#highscoredisplay').fadeIn(1000, 'linear');
 	$("#gaveoverscreenlayout").fadeIn(1000, 'linear');
+	$("#gaveoverscreenmainlayout").fadeIn();
 	$("#restart").fadeIn(1000, 'linear');
 	$("#worldwide").fadeIn(1000, 'linear');
+
+  generateGlobalScoresSection().then();
 }
 
 function getGameDuration() {
@@ -258,4 +262,34 @@ function pause(o) {
 		}, 400);
 		gameState = -1;
 	}
+}
+
+async function generateGlobalScoresSection() {
+  const searchAllUsersLambda = '/.netlify/functions/search-all-users';
+  const fetchOptions = {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const fetchResponse = await fetch(searchAllUsersLambda, fetchOptions)
+    const jsonResponse = await fetchResponse.json();
+    const AllUsers = jsonResponse.data;
+
+    const scoreTemplate = document.getElementById('scoretemplate');
+    const globalScoreDisplay = document.querySelector( '#worldwidescoredisplay');
+    AllUsers.forEach( (user, index) => {
+      const clon = scoreTemplate.content.cloneNode(true);
+      const gameDuration = moment.duration(user.highestScore.pop());
+      clon.querySelector('span').innerText = user.username;
+      clon.querySelector('aside').innerText = `${user.highestScore.pop()}`;
+      clon.querySelector('div').innerText = parseGameDurationToText(gameDuration);
+      globalScoreDisplay.appendChild(clon);
+    });
+  } catch (e) {
+    console.log('oh No!, something happened!')
+    console.log(e);
+  }
 }

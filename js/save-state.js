@@ -46,7 +46,7 @@ function writeHighScores() {
       } else if (aScore > bScore) {
         return -1;
       } else {
-        return (aTime < bTime) ? 1: (aTime > bTime) ? -1 : 0;
+        return (aTime < bTime) ? -1: (aTime > bTime) ? 1 : 0;
       }
     }
 	);

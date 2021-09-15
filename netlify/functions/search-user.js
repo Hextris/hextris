@@ -33,11 +33,15 @@ exports.handler = async event => {
     return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
   }
 
-  const highScoresSorted = Object.entries(userFound.highScores).sort(helpers.orderScoreFunction);
-  const userEntry = {
-    username: userFound.username,
-    highscores: highScoresSorted,
-  };
+  let userEntry = null;
+  if (userFound) {
+    const highScoresSorted = Object.entries(userFound.highScores).sort(helpers.orderScoreFunction);
+  
+    userEntry = {
+      username: userFound.username,
+      highscores: highScoresSorted,
+    };
+  }
 
   return io.sendResponse({
     statusCode: 200,
