@@ -121,6 +121,7 @@ function showText(text) {
 
 	if (text == 'gameover') {
 		$("#gaveoverscreenlayout").fadeIn(500, 'linear');
+		$("#gaveoverscreenmainlayout").fadeIn();
   }
   $("#pausesection").fadeIn(1000, 'linear');
 	$(".overlay").html(messages[text]);
@@ -151,18 +152,22 @@ function gameOverDisplay() {
   updateHouseCombinations();
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
+		$("#currentHighScoreMainScreen").text(0);
 	}
 	else {
 		$("#currentHighScore").text((highscores[0])[0])
+		$("#currentHighScoreMainScreen").text((highscores[0])[0])
 	}
+  $('#highscoremainscreen').fadeOut(1000, 'linear');
+  $('#gameOverBox').text(username.toLocaleUpperCase());
   $("#pausesection").hide();
 	$("#xteamlogosvg").fadeOut(1000, 'linear');
-  $('#highscoredisplay').fadeIn(1000, 'linear');
 	$("#gaveoverscreenlayout").fadeIn(1000, 'linear');
+	$("#gaveoverscreenmainlayout").fadeIn();
 	$("#restart").fadeIn(1000, 'linear');
 	$("#worldwide").fadeIn(1000, 'linear');
-	$("#buttonCont").fadeIn();
-	$("#socialShare").fadeIn();
+
+  generateGlobalScoresSection().then();
 }
 
 function getGameDuration() {
@@ -180,8 +185,8 @@ function parseGameDurationToText(duration) {
   const HUNDRED = 100;
   const hoursText = duration.hours() > ZERO ? `${duration.hours()}h` : null ;
   const minutesText = duration.minutes() > ZERO ? `${duration.minutes()}m` : null ;
-  const secondsText = duration.seconds() > ZERO ? `${duration.seconds()}` : null ;
-  const milliSecondsText = duration.milliseconds() > ZERO ?
+  const secondsText = duration.seconds() >= ZERO ? `${duration.seconds()}` : null ;
+  const milliSecondsText = duration.milliseconds() >= ZERO ?
     `${duration.milliseconds() >= HUNDRED ? Math.round( duration.milliseconds() / TEN ) : duration.milliseconds()}` :
     null ;
   const durationText = `${hoursText ? `${hoursText} ` : ''}${minutesText ? `${minutesText} ` : ''}${secondsText}.${milliSecondsText}s`;
@@ -232,7 +237,6 @@ function pause(o) {
 		$('#fork-ribbon').fadeOut(300, 'linear');
 		$('#restartBtn').fadeOut(300, "linear");
 		$('#resumeBtn').fadeOut(300, "linear");
-		$('#buttonCont').fadeOut(300, "linear");
 		$('#overlayhelpscreen').fadeOut(300, 'linear');
 
 		$("#pauseBtn").fadeIn(300, 'linear');
@@ -245,7 +249,6 @@ function pause(o) {
 	} else if (gameState != -2 && gameState !== 0 && gameState !== 2) {
 		$('#restartBtn').fadeIn(300, "linear");
 		$('#resumeBtn').fadeIn(300, "linear");
-		$('#buttonCont').fadeIn(300, "linear");
 		if (message == 'paused') {
 			showText(message);
 		}
@@ -259,4 +262,34 @@ function pause(o) {
 		}, 400);
 		gameState = -1;
 	}
+}
+
+async function generateGlobalScoresSection() {
+  const searchAllUsersLambda = '/.netlify/functions/search-all-users';
+  const fetchOptions = {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const fetchResponse = await fetch(searchAllUsersLambda, fetchOptions)
+    const jsonResponse = await fetchResponse.json();
+    const AllUsers = jsonResponse.data;
+
+    const scoreTemplate = document.getElementById('scoretemplate');
+    const globalScoreDisplay = document.querySelector( '#worldwidescoredisplay');
+    AllUsers.forEach( (user, index) => {
+      const clon = scoreTemplate.content.cloneNode(true);
+      const gameDuration = moment.duration(user.highestScore.pop());
+      clon.querySelector('span').innerText = user.username;
+      clon.querySelector('aside').innerText = `${user.highestScore.pop()}`;
+      clon.querySelector('div').innerText = parseGameDurationToText(gameDuration);
+      globalScoreDisplay.appendChild(clon);
+    });
+  } catch (e) {
+    console.log('oh No!, something happened!')
+    console.log(e);
+  }
 }

@@ -26,8 +26,8 @@ function exportSaveState() {
 
 		state.blocks.map(descaleBlock);
 	}
-
-	localStorage.setItem('highscores', JSON.stringify(highscores));
+  uploadDataToDB()
+    .then(() => localStorage.setItem('highscores', JSON.stringify(highscores)));
 
 	return JSONfn.stringify(state);
 }
@@ -46,12 +46,13 @@ function writeHighScores() {
       } else if (aScore > bScore) {
         return -1;
       } else {
-        return (aTime < bTime) ? 1: (aTime > bTime) ? -1 : 0;
+        return (aTime < bTime) ? -1: (aTime > bTime) ? 1 : 0;
       }
     }
 	);
 	highscores = highscores.slice(0,3);
-	localStorage.setItem("highscores", JSON.stringify(highscores));
+  uploadDataToDB()
+    .then( () => localStorage.setItem('highscores', JSON.stringify(highscores)));
 }
 
 function clearSaveState() {
@@ -60,4 +61,31 @@ function clearSaveState() {
 
 function isStateSaved() {
 	return localStorage.getItem("saveState") != "{}" && localStorage.getItem("saveState") != undefined;
+}
+
+async function uploadDataToDB() {
+  const body =  {
+    username: window.username,
+    highscores, 
+  };
+  const savegameScoresLambda = '/.netlify/functions/save-game-scores';
+  const fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const fetchResponse = await fetch(savegameScoresLambda, fetchOptions)
+    const jsonResponse = await fetchResponse.json();
+    const userEntry = jsonResponse.data;
+    if (userEntry) {
+      console.log('Highscores saved...');
+    }
+  } catch (e) {
+    console.log('oh No!, something happened!')
+    console.log(e);
+  }
 }

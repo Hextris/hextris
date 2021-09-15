@@ -1,3 +1,6 @@
+:root {
+  --clr-neon: #FCC058;
+}
 * {
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
@@ -9,6 +12,105 @@
 	margin:0;
   font-size: 16px;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+/*/////////////////////////////////////////////     REGISTRATION SCREEN     //////////////////////////////////////////////////////////////////////*/
+
+#registration {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(37,45,56,0.5);
+}
+
+#registration > article {
+  height: 100%;
+
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registrationErrorStyle {
+  display: none;
+  position: absolute;
+  top: 4%;
+  left: 10%;
+  color: #cc0000;
+  text-shadow: 0 0 0.125rem hsl(0 0% 100% / 0.3), 0 0 0.45rem currentColor;
+}
+
+.inputErrorMessage {
+  animation: shake 0.3s ease-in forwards;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  
+  12.5%, 37.5%, 62.5%, 87.5% {
+    transform: translateX(10%);
+  }
+  
+  25%, 50%, 75% {
+    transform: translateX(-10%);
+  }
+}
+
+.fallbackForm {
+  display: none;
+}
+
+.fallbackForm > section {
+  /* Flex parent props */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fallbackForm > section > * {
+  flex: 1 1 auto;
+}
+
+/*/////////////////////////////////////////////     HIG SCORE MAIN SCREEN     //////////////////////////////////////////////////////////////////////*/
+#highscoremainscreen {
+  display: block;
+  padding-top: 2rem;
+}
+
+#highscoremainscreenoverlay {
+  font-family: 'Open Sans';
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#highscoremainscreenoverlay > * {
+  z-index: 1;
+}
+
+#highscoremainscreenoverlay.highScoreInGameTextHeader {
+  color: #FFFFFF;
+  font-weight: 200;
+}
+
+#highscoremainscreenoverlay :nth-child(2) {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: -0.7rem;
 }
 
 /*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
@@ -250,23 +352,114 @@
 @keyframes neonglowyellow {
   0% {
    filter:
-    invert(68%) sepia(33%) saturate(286%) hue-rotate(2deg) brightness(90%) contrast(90%)
+    /* invert(68%) sepia(33%) saturate(286%) hue-rotate(2deg) brightness(90%) contrast(90%) */
+    invert(600%) sepia(300%) saturate(200%) hue-rotate(200deg) brightness(9%) contrast(9%)
     drop-shadow(0 0 0px #B5A37F);
   }
   
   100% {
     filter:
-      invert(87%) sepia(50%) saturate(835%) hue-rotate(330deg) brightness(190%) contrast(101%)
+      /* invert(87%) sepia(50%) saturate(835%) hue-rotate(330deg) brightness(190%) contrast(101%) */
+      invert(87%) sepia(50%) saturate(200%) hue-rotate(330deg) brightness(190%) contrast(101%)
       drop-shadow(0 0 3px #D49F2C)
       drop-shadow(0 0 6px #EBB031)
       drop-shadow(0 0 8px #FFBE35);
   }
 }
 
+/*/////////////////////////////////////////////     WORLDWIDE SCORES SECTION     //////////////////////////////////////////////////////////////////////*/
+
+#worldwidescorelayout {
+  display: none;
+}
+
+#worldwidescore {
+  padding-top: 2rem;
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#worldwidescore > * {
+  width: 100%;
+  z-index: 1;
+  font-family: 'Open Sans';
+}
+
+#worldwidescoredisplay {
+
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#worldwidescoredisplay > * {
+  width: 60%;
+}
+
+#worldwidescoredisplay span {
+  width: 40%;
+}
+
+/*/////////////////////////////////////////////     WORLDWIDE FOOTER FOOTER     //////////////////////////////////////////////////////////////////////*/
+#worldwidecreenfooter {
+  font-family:'Open Sans';
+	color:#FFFFFF;
+  padding-top: 1rem;
+
+  /* Flex item props */
+  flex: 0 1 auto;
+  
+  /* Flex parent props */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#worldwidecreenfooter > * {
+  width: 100%;
+}
+
+#worldwideoptions {
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
+}
+
+#worldwideoptions > * {
+
+  /* Flex item props*/
+  flex: 1 1 auto;
+}
+
+
+#worldwideback {
+  animation: neonglowyellow 1.5s alternate infinite;
+}
+
+#restart2 {
+  filter: invert(53%) sepia(12%) saturate(372%) hue-rotate(178deg) brightness(92%) contrast(93%);
+  animation: neonglowwhite 1.5s alternate infinite;
+}
+
 /*/////////////////////////////////////////////     GENERAL PURPOSE     //////////////////////////////////////////////////////////////////////*/
 .score {
   font-weight: 400;
-	line-height:18px;
+	line-height: 18px;
 
   /* Flex parent props */
 	display: flex;
@@ -275,6 +468,10 @@
   justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
+}
+
+.score > * {
+  font-size: 0.8rem;
 }
 
 .bigtitle {
@@ -337,11 +534,10 @@
   100% {
     color: #FFFFFF;
     text-shadow: 
-    0 0 10px #FFFFFF,
-    0 0 20px #FFFFFF,
-    0 0 40px #FFFFFF,
-    0 0 80px #FFFFFF,
-    0 0 160px #FFFFFF;
+      0 0 0.5rem #ffffff,
+      0 0 0.8rem #ffffff,
+      0 0 1.3rem #ffffff,
+      0 0 1.8rem #ffffff
   }
 }
 
@@ -368,7 +564,7 @@
 }
 
 .overlay {
-	color: #232323;
+	color: #252D38;
 	text-align: center;
 }
 
@@ -387,7 +583,7 @@
 
 #helpScreen {
   padding-bottom: 1rem;
-  color:#232323;
+  color:#252D38;
   font-family: 'Open Sans';
   
   /* Flex parent props */
@@ -400,7 +596,7 @@
 }
 
 #helpScreen > hr {
-	background-color:#232323;
+	background-color:#252D38;
 	height: 1px;
 	border: 0;
 }
@@ -604,12 +800,13 @@
 #pausesectionoptions > img {
   cursor: pointer;
   height: 1.7rem;
+  filter:
+    brightness(0) saturate(100%)
+    invert(14%) sepia(41%) saturate(379%) hue-rotate(174deg) brightness(91%) contrast(89%);
 
   /* Flex item props */
   flex: 1 1 auto;
 }
-
-
 
 
 
@@ -623,19 +820,23 @@
     width: 40%;
   }
   
+  #worldwidescoredisplay > * {
+    width: 40%;
+  }
+  
   #gameoverdisconnected > * {
     width: 45%;
   } 
   
   #cScore {
-    font-size:3.78rem;
+    font-size: 3rem;
     font-weight: 500;
     margin-bottom:5px;
     margin-top:-10px;
   }
   
   #cTime {
-    font-size: 1.88rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom:5px;
     margin-top: -10px;
@@ -676,6 +877,10 @@
 
   #pauseBtn {
     height: 4rem;
+  }
+
+  .score > * {
+    font-size: 1rem;
   }
 }
 
@@ -790,48 +995,9 @@ button:focus {
   }
 }
 
-#buttonCont {
-	position:absolute; 
-	left:50%;
-	width:310px;
-	margin-left:-8px;
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-}
-
-@media only screen and (orientation:landscape) {
-	#buttonCont {
-		bottom:calc(50vh - 19vh - 36px);
-	}
-}
-
-@media only screen and (orientation:portrait) {
-	#buttonCont {
-		bottom:calc(50vh - 19vw - 36px);
-	}
-}
-
 @media only screen and (min-device-width:320px) and (max-device-width:600px) {
 	.overlay {
 		margin-top:-20%;
-	}
-
-	#buttonCont {
-		width:280px;
-	}
-
-	@media only screen and (orientation:landscape) {
-		#buttonCont {
-			bottom:119px;
-		}
-	}
-
-	@media only screen and (orientation:portrait) {
-		#buttonCont {
-			bottom:119px;
-		}
 	}
 }
 .blur {
@@ -867,22 +1033,6 @@ body {
 	z-index:99;
 	margin-top:20px;
 	color:#2c3e50;
-}
-
-
-#socialShare{
-	display:none;
-	margin:0;
-	padding:0;
-	bottom:0;
-	margin-bottom: 6.5px;
-	position:absolute;
-	left:calc(50% + 30px);
-	transform:translate(-50%, 0%);
-	-webkit-transform:translate(-50%, 0%);
-	-moz-transform:translate(-50%, 0%);
-	-ms-transform:translate(-50%, 0%);
-    padding-bottom: 2px;
 }
 
 .unselectable {

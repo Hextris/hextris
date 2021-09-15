@@ -29,13 +29,6 @@ function scaleCanvas() {
 
 		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
-    setBottomContainer();
-}
-
-function setBottomContainer() {
-    var buttonOffset = $("#buttonCont").offset().top;
-    var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
-    var delta = buttonOffset - playOffset - 29;
 }
 
 function toggleDevTools() {
@@ -48,7 +41,7 @@ function resumeGame() {
 	$("#pauseBtn").fadeIn(300, 'linear');
 	$('#restartBtn').hide();
 	$('#resumeBtn').hide();
-  $('#highscoredisplay').fadeOut(1000, 'linear');
+  $('#highscoremainscreen').fadeOut(1000, 'linear');
   
 	importing = 0;
 	startTime = moment();
@@ -61,8 +54,7 @@ function checkVisualElements(arg) {
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 	if (!$('#resumeBtn').is(':visible')) $('#resumeBtn').fadeOut(150, "linear");
-	if ($('#buttonCont').is(':visible')) $('#buttonCont').fadeOut(150, "linear");
-	if ($('#highscoredisplay').is(':visible')) $('#highscoredisplay').fadeOut(1000, "linear");
+	if ($('#highscoremainscreen').is(':visible')) $('#highscoremainscreen').fadeOut(1000, "linear");
 }
 
 function hideUIElements() {
@@ -79,11 +71,18 @@ function init(b) {
 		clearSaveState();
 		checkVisualElements(1);
 	}
-	if (highscores.length === 0 ){
+	if (!window.highscores) {
 		$("#currentHighScore").text(0);
+		$("#currentHighScoreMainScreen").text(0);
 	}
 	else {
-		$("#currentHighScore").text((highscores[0])[0])
+    if (highscores.length === 0) {
+      $("#currentHighScore").text(0);
+      $("#currentHighScoreMainScreen").text(0);
+    } else {
+      $("#currentHighScore").text((highscores[0])[0])
+      $("#currentHighScoreMainScreen").text((highscores[0])[0])
+    }
 	}
 	infobuttonfading = true;
   $("#pausesection").hide();

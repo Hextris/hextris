@@ -99,16 +99,18 @@ function addKeyListeners() {
 	keypress.register_combo({
 		keys: "enter",
 		on_keydown: function() {
-			if (gameState==1 || importing == 1) {
-				init(1);
-			}
-			if (gameState == 2) {
-				init();
-				$("#gaveoverscreenlayout").fadeOut();
-			}
-			if (gameState===0) {
-				resumeGame();
-			}
+			if (username !== null) {
+        if (gameState==1 || importing == 1) {
+          init(1);
+        }
+        if (gameState == 2) {
+          init();
+          $("#gaveoverscreenlayout").fadeOut();
+        }
+        if (gameState===0) {
+          resumeGame();
+        }
+      }
 		}
 	});
 
@@ -156,17 +158,61 @@ function addKeyListeners() {
 
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 			$("#restart").on('touchstart', function() {
-			init();
-			canRestart = false;
-			$("#gaveoverscreenlayout").fadeOut();
-		});
-
+        init();
+        canRestart = false;
+        $("#gaveoverscreenlayout").fadeOut();
+        $('#worldwidescoredisplay').empty();
+      });
+			
+      $("#restart2").on('touchstart', function() {
+        init();
+        canRestart = false;
+        $("#worldwidescorelayout").fadeOut();
+        $('#worldwidescoredisplay').empty();
+      });
+      
+      $("#worldwide").on('touchstart', function() {
+        $("#gaveoverscreenmainlayout").fadeOut(200, 'linear');
+        $('#worldwidescorelayout').fadeIn(500, 'linear');
+        $("#restart2").fadeIn(1000, 'linear');
+	      $("#worldwideback").fadeIn(1000, 'linear');
+      });
+      
+      $("#worldwideback").on('touchstart', function() {
+        $('#worldwidescorelayout').fadeOut(200, 'linear');
+        $("#gaveoverscreenmainlayout").fadeIn(500, 'linear');
+        $("#restart2").fadeOut(1000, 'linear');
+	      $("#worldwideback").fadeOut(1000, 'linear');
+      });
 	}
 	else {
 		$("#restart").on('mousedown', function() {
 			init();
 			canRestart = false;
+			$("#worldwidescorelayout").fadeOut();
+      $('#worldwidescoredisplay').empty();
+
+		});
+		
+    $("#restart2").on('mousedown', function() {
+			init();
+			canRestart = false;
 			$("#gaveoverscreenlayout").fadeOut();
+      $('#worldwidescoredisplay').empty();
+		});
+		
+    $("#worldwide").on('mousedown', function() {
+			$("#gaveoverscreenmainlayout").fadeOut(200, 'linear');
+      $('#worldwidescorelayout').fadeIn(500, 'linear');
+      $("#restart2").fadeIn(1000, 'linear');
+      $("#worldwideback").fadeIn(1000, 'linear');
+		});
+		
+    $("#worldwideback").on('mousedown', function() {
+      $('#worldwidescorelayout').fadeOut(200, 'linear');
+			$("#gaveoverscreenmainlayout").fadeIn(500, 'linear');
+      $("#restart2").fadeOut(1000, 'linear');
+      $("#worldwideback").fadeOut(1000, 'linear');
 		});
 
 	}
@@ -189,6 +235,7 @@ function addKeyListeners() {
 	}
 
 }
+
 function inside (point, vs) {
 	// ray-casting algorithm based on
 	// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
@@ -233,4 +280,3 @@ function handleClickTap(x,y) {
 		MainHex.rotate(-1);
 	}
 }
-

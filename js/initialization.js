@@ -1,7 +1,115 @@
 $(document).ready(function() {
-	initialize();
+  initialize();
+  
+  $('#login-button').click(async function(event){
+    event.preventDefault();
+    const usernameInput = $('#username').val();
+    if (usernameInput === '') {
+      $('.inputCharsError').fadeOut();
+      $('.inputError').fadeIn();
+      $('.inputError').removeClass('inputErrorMessage');
+      requestAnimationFrame(() => $('.inputError').addClass('inputErrorMessage'));
+      $('#login-button').blur();
+    } else {
+      const lettersNumbersUnderscore = new RegExp('^[a-zA-Z0-9_]*$');
+      if (!lettersNumbersUnderscore.test(usernameInput)) {
+        $('.inputError').fadeOut();
+        $('.inputCharsError').fadeIn();
+        $('.inputCharsError').removeClass('inputErrorMessage');
+        requestAnimationFrame(() => $('.inputCharsError').addClass('inputErrorMessage'));
+        $('#login-button').blur();
+        return;
+      }
+      const body =  { username: usernameInput };
+      const searchUserLambda = '/.netlify/functions/search-user';
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      };
+      try {
+        const fetchResponse = await fetch(searchUserLambda, fetchOptions)
+        const jsonResponse = await fetchResponse.json();
+        const user = jsonResponse.data;
+        if (user) {
+          $('#takenusername').html(user.username);
+          $('#registrationForm').fadeOut(100, 'linear');
+          $('.fallbackForm').fadeIn(100, 'linear');
+        } else  {
+          const username = usernameInput;
+          const body =  { 
+            username,
+          };
+          const createUserLambda = '/.netlify/functions/register-user';
+          const fetchOptions = {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          };
+          const fetchResponse = await fetch(createUserLambda, fetchOptions)
+          const jsonResponse = await fetchResponse.json();
+          const user = jsonResponse.data;
+          window.username = user.username;
+          highscores = user.highscores;
+          localStorage.setItem('username', user.username);
+          localStorage.setItem('highscores', JSON.stringify(highscores));
+
+          $('#registration').fadeOut(500);
+        }
+      } catch (e) {
+        console.log('oh No!, something happened!')
+        console.log(e);
+      }
+    }
+  
+  });
+
+  $('#login-button-yes').click(async function(event){
+    event.preventDefault();
+    const username = $('#username').val();
+    const body =  { 
+      username,
+    };
+    console.log('The username: ', username);
+    const createUserLambda = '/.netlify/functions/register-user';
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      };
+    try {
+      const fetchResponse = await fetch(createUserLambda, fetchOptions)
+      const jsonResponse = await fetchResponse.json();
+      const user = jsonResponse.data;
+      window.username = user.username;
+      highscores = user.highscores;
+      localStorage.setItem('username', user.username);
+      localStorage.setItem('highscores', JSON.stringify(highscores));
+      $('#registration').fadeOut(500, 'linear');
+    } catch(e) {
+      console.log('oh No!, something happened!')
+      console.log(e);
+    }
+  });
+
+  $('#login-button-no').click(async function(event){
+    event.preventDefault();
+    $('#takenusername').html('');
+    $('.fallbackForm').fadeOut(100, 'linear');
+    $('#registrationForm').fadeIn(100, 'linear');  
+  });
 });
-function initialize(a) {
+function initialize(somevar) {
+  window.username = localStorage.getItem('username') || null;
 	window.rush = 1;
 	window.lastTime = Date.now();
 	window.iframHasLoaded = false;
@@ -154,15 +262,31 @@ function initialize(a) {
 	window.scoreAdditionCoeff = 1;
 	window.prevScore = 0;
 	window.numHighScores = 3;
-
-	highscores = [];
-	if (localStorage.getItem('highscores')) {
-		try {
-			highscores = JSON.parse(localStorage.getItem('highscores'));
-		} catch (e) {
-			highscores = [];
-		}
-	}
+  if (username === null) {
+    $('#registration').fadeIn(300);
+    if (localStorage.getItem('highscores')) {
+      try {
+        window.highscores = JSON.parse(localStorage.getItem('highscores'));
+      } catch (e) {
+        window.highscores = [];
+      }
+    }
+  } else {
+    $('#registration').fadeOut(100);
+    loadHighScores()
+      .then( (userEntry) => {
+        window.highscores = userEntry.highscores;
+        localStorage.setItem('highscores', JSON.stringify(highscores));
+        if (highscores.length === 0) {
+          $("#currentHighScore").text(0);
+          $("#currentHighScoreMainScreen").text(0);
+        } else {
+          $("#currentHighScore").text((highscores[0])[0])
+          $("#currentHighScoreMainScreen").text((highscores[0])[0])
+        }
+        console.log('High scores loaded successfully...')
+      });
+  }
 	window.blocks = [];
 	window.MainHex;
 	window.gdx = 0;
@@ -176,8 +300,10 @@ function initialize(a) {
 	window.importedHistory = undefined;
 	window.startTime = undefined;
 	window.gameState;
-	setStartScreen();
-	if (a != 1) {
+
+  setStartScreen();
+	
+  if (somevar != 1) {
 		window.canRestart = 1;
 		window.onblur = function(e) {
 			if (gameState == 1) {
@@ -205,18 +331,6 @@ function initialize(a) {
 		});
 
 		addKeyListeners();
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-		ga('create', 'UA-51272720-1', 'teamsnowman.github.io');
-		ga('send', 'pageview');
 
 		document.addEventListener("pause", handlePause, false);
 		document.addEventListener("backbutton", handlePause, false);
@@ -327,3 +441,26 @@ function hexColorToHmlId(hexColor) {
   const house = colorHouses.find(({ color }) => color === hexColor);
   return house.htmlId;
 }
+
+async function loadHighScores() {
+  const searchUserLambda = '/.netlify/functions/search-user';
+  const fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify({
+      username: window.username,
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const fetchResponse = await fetch(searchUserLambda, fetchOptions)
+    const jsonResponse = await fetchResponse.json();
+    const userEntry = jsonResponse.data;
+    return userEntry
+  } catch (e) {
+    console.log('oh No!, something happened!')
+    console.log(e);
+  }
+} 
