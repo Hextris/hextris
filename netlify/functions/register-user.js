@@ -1,5 +1,6 @@
 require('dotenv').config();
 const io = require('../io');
+const helpers = require('../helpers');
 
 const {
 	SUPABASE_URL,
@@ -52,7 +53,7 @@ exports.handler = async event => {
     }
 
     userEntry.username = userFound.username;
-    userEntry.highscores = Object.entries(userFound.highScores);
+    userEntry.highscores = Object.entries(userFound.highScores).sort(helpers.orderScoreFunction);;
     
 
   } else {

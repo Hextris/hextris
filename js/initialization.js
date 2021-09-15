@@ -5,11 +5,21 @@ $(document).ready(function() {
     event.preventDefault();
     const usernameInput = $('#username').val();
     if (usernameInput === '') {
-      $('.registrationError').fadeIn();
-      $('.registrationError').removeClass('inputErrorMessage');
-      requestAnimationFrame(() => $('.registrationError').addClass('inputErrorMessage'));
+      $('.inputCharsError').fadeOut();
+      $('.inputError').fadeIn();
+      $('.inputError').removeClass('inputErrorMessage');
+      requestAnimationFrame(() => $('.inputError').addClass('inputErrorMessage'));
       $('#login-button').blur();
     } else {
+      const lettersNumbersUnderscore = new RegExp('^[a-zA-Z0-9_]*$');
+      if (!lettersNumbersUnderscore.test(usernameInput)) {
+        $('.inputError').fadeOut();
+        $('.inputCharsError').fadeIn();
+        $('.inputCharsError').removeClass('inputErrorMessage');
+        requestAnimationFrame(() => $('.inputCharsError').addClass('inputErrorMessage'));
+        $('#login-button').blur();
+        return;
+      }
       const body =  { username: usernameInput };
       const searchUserLambda = '/.netlify/functions/search-user';
       const fetchOptions = {
@@ -269,8 +279,10 @@ function initialize(somevar) {
         localStorage.setItem('highscores', JSON.stringify(highscores));
         if (highscores.length === 0) {
           $("#currentHighScore").text(0);
+          $("#currentHighScoreMainScreen").text(0);
         } else {
           $("#currentHighScore").text((highscores[0])[0])
+          $("#currentHighScoreMainScreen").text((highscores[0])[0])
         }
         console.log('High scores loaded successfully...')
       });

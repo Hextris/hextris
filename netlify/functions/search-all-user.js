@@ -1,5 +1,6 @@
 require('dotenv').config();
 const io = require('../io');
+const helpers = require('../helpers');
 
 const {
 	SUPABASE_URL,
@@ -30,18 +31,6 @@ exports.handler = async event => {
 
   if (error) {
     return io.sendResponse({ statusCode: 500, body: { message: 'Something wrong happened' } });
-  }
-
-  const orderFunction = ([aScore, aTime],[bScore, bTime]) => {
-    aScore = parseInt(aScore, 10);
-    bScore = parseInt(bScore, 10);
-    if (aScore < bScore) {
-      return 1;
-    } else if (aScore > bScore) {
-      return -1;
-    } else {
-      return (aTime < bTime) ? 1: (aTime > bTime) ? -1 : 0;
-    }
   }
   
   return io.sendResponse({

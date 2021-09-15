@@ -59,7 +59,8 @@
       </aside>
       <article>
         <form id='registrationForm' class='form' autocomplete='off'>
-          <label class='registrationError'>Please register to proceed</label>
+          <label class='registrationErrorStyle inputError'>Please register to proceed</label>
+          <label class='registrationErrorStyle inputCharsError'>No special characters allowed</label>
           <label for="username">Create a connection</label>
           <input id='username' type='text' name='username' placeholder='Username' required>
           <button type='submit' id='login-button'>Access</button>
@@ -72,6 +73,12 @@
           </section>
         </form>
       </article>
+    </section>
+    <section id='highscoremainscreen'>
+      <aside id='highscoremainscreenoverlay'>
+        <div class='highScoreInGameTextHeader'>BEST TRY</div>
+        <div id='currentHighScoreMainScreen'>0</div>
+      </aside>
     </section>
 		<section id='pausesection'>
       <aside id='overlay' class='faded overlay'></aside>

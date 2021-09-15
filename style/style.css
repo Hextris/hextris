@@ -36,14 +36,13 @@
   align-items: center;
 }
 
-.registrationError {
+.registrationErrorStyle {
   display: none;
   position: absolute;
   top: 4%;
   left: 10%;
   color: #cc0000;
   text-shadow: 0 0 0.125rem hsl(0 0% 100% / 0.3), 0 0 0.45rem currentColor;
-
 }
 
 .inputErrorMessage {
@@ -79,6 +78,39 @@
 
 .fallbackForm > section > * {
   flex: 1 1 auto;
+}
+
+/*/////////////////////////////////////////////     HIG SCORE MAIN SCREEN     //////////////////////////////////////////////////////////////////////*/
+#highscoremainscreen {
+  display: block;
+  padding-top: 2rem;
+}
+
+#highscoremainscreenoverlay {
+  font-family: 'Open Sans';
+
+  /* Flex parent props */
+	display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#highscoremainscreenoverlay > * {
+  z-index: 1;
+}
+
+#highscoremainscreenoverlay.highScoreInGameTextHeader {
+  color: #FFFFFF;
+  font-weight: 200;
+}
+
+#highscoremainscreenoverlay :nth-child(2) {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: -0.7rem;
 }
 
 /*/////////////////////////////////////////////     GAMEOVER SCREEN     //////////////////////////////////////////////////////////////////////*/
@@ -698,14 +730,14 @@
   } 
   
   #cScore {
-    font-size:3.78rem;
+    font-size: 3rem;
     font-weight: 500;
     margin-bottom:5px;
     margin-top:-10px;
   }
   
   #cTime {
-    font-size: 1.88rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom:5px;
     margin-top: -10px;

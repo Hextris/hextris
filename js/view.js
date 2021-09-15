@@ -151,13 +151,16 @@ function gameOverDisplay() {
   updateHouseCombinations();
 	if (highscores.length === 0 ){
 		$("#currentHighScore").text(0);
+		$("#currentHighScoreMainScreen").text(0);
 	}
 	else {
 		$("#currentHighScore").text((highscores[0])[0])
+		$("#currentHighScoreMainScreen").text((highscores[0])[0])
 	}
+  $('#highscoremainscreen').fadeOut(1000, 'linear');
   $("#pausesection").hide();
 	$("#xteamlogosvg").fadeOut(1000, 'linear');
-  $('#highscoredisplay').fadeIn(1000, 'linear');
+  // $('#highscoredisplay').fadeIn(1000, 'linear');
 	$("#gaveoverscreenlayout").fadeIn(1000, 'linear');
 	$("#restart").fadeIn(1000, 'linear');
 	$("#worldwide").fadeIn(1000, 'linear');

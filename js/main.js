@@ -41,7 +41,7 @@ function resumeGame() {
 	$("#pauseBtn").fadeIn(300, 'linear');
 	$('#restartBtn').hide();
 	$('#resumeBtn').hide();
-  $('#highscoredisplay').fadeOut(1000, 'linear');
+  $('#highscoremainscreen').fadeOut(1000, 'linear');
   
 	importing = 0;
 	startTime = moment();
@@ -54,7 +54,7 @@ function checkVisualElements(arg) {
 	$('#fork-ribbon').fadeOut(150);
 	if (!$('#restartBtn').is(':visible')) $('#restartBtn').fadeOut(150, "linear");
 	if (!$('#resumeBtn').is(':visible')) $('#resumeBtn').fadeOut(150, "linear");
-	if ($('#highscoredisplay').is(':visible')) $('#highscoredisplay').fadeOut(1000, "linear");
+	if ($('#highscoremainscreen').is(':visible')) $('#highscoremainscreen').fadeOut(1000, "linear");
 }
 
 function hideUIElements() {
@@ -73,12 +73,15 @@ function init(b) {
 	}
 	if (!window.highscores) {
 		$("#currentHighScore").text(0);
+		$("#currentHighScoreMainScreen").text(0);
 	}
 	else {
     if (highscores.length === 0) {
       $("#currentHighScore").text(0);
+      $("#currentHighScoreMainScreen").text(0);
     } else {
       $("#currentHighScore").text((highscores[0])[0])
+      $("#currentHighScoreMainScreen").text((highscores[0])[0])
     }
 	}
 	infobuttonfading = true;
