@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="-137.5 -137.5 275 275" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <rect x="-137.5" y="-137.5" width="275" height="275" fill="#2c3e50"/>
+	<!-- (100/2) * sqrt(3) = 86.6 -->
+    <!-- 86.6 * 0.8 = 69.3 -->
+	<polygon points="-100,0 -50,-86.6 0,0" fill="#2ecc71"/>
+	<polygon points="-50,-86.6 50,-86.6 0,0" fill="#3498db"/>
+	<polygon points="50,-86.6 100,0 0,0" fill="#2ecc71"/>
+	<polygon points="100,0 50,86.6 0,0" fill="#e74c3c"/>
+	<polygon points="50,86.6 -50,86.6 0,0" fill="#f1c40f"/>
+	<polygon points="-50,86.6 -100,0 0,0" fill="#e74c3c"/>
+	<polygon points="-80,0 -40,-69.3 40,-69.3 80,0 40,69.3 -40,69.3" fill="#2c3e50"/>
+</svg>
