@@ -99,6 +99,21 @@ button:focus {
 
 }
 
+#casualSwitch:checked + #casualToggle {
+    background-color: aqua;
+    box-shadow: 0 0 6px rgba(0, 204, 255, 1);
+}
+
+#casualSwitch{
+    visibility: hidden;
+}
+
+#casualToggle{
+    font-size: 8px;
+    padding: 0px 12px;
+    border-radius: 5px;
+    background-color: #ccc;
+}
 
 #pauseBtn {
 	display:none;
