@@ -66,7 +66,8 @@ function initialize(a) {
 			speedModifier: 0.73,
 			speedUpKeyHeld: false,
 			creationSpeedModifier: 0.73,
-			comboTime: 310
+			comboTime: 310,
+			casualMode: true
 		};
 	} else {
 		settings = {
