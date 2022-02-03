@@ -1,4 +1,9 @@
 function blockDestroyed() {
+	if (settings.casualMode === undefined){
+		settings.casualMode = false
+	} else if (settings.casualMode){
+		return;
+	}
 	if (waveone.nextGen > 1350) {
 		waveone.nextGen -= 30 * settings.creationSpeedModifier;
 	} else if (waveone.nextGen > 600) {
