@@ -134,12 +134,6 @@ function addKeyListeners() {
 		"#d35400": "rgb(210,180,222)"
 	};
 
-/* 	$("#helpScreen").on('touchstart mousedown', function() {
-		console.log("CausalMode triggered!")
-		//settings.casualMode = document.getElementById("casualSwitch").checked
-		
-	});
- */
 	window.rgbToHex = {
 		"rgb(142,68,173)": "#8e44ad",
 		"rgb(241,196,15)": "#f1c40f",

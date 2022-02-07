@@ -1,9 +1,11 @@
 function blockDestroyed() {
+	var maxDifficulty = 35;
 	if (settings.casualMode === undefined){
 		settings.casualMode = false
 	} else if (settings.casualMode){
-		return;
+		maxDifficulty = 8;
 	}
+
 	if (waveone.nextGen > 1350) {
 		waveone.nextGen -= 30 * settings.creationSpeedModifier;
 	} else if (waveone.nextGen > 600) {
@@ -12,10 +14,10 @@ function blockDestroyed() {
 		waveone.nextGen = 600;
 	}
 
-	if (waveone.difficulty < 35) {
+	if (waveone.difficulty < maxDifficulty) {
 		waveone.difficulty += 0.085 * settings.speedModifier;
 	} else {
-		waveone.difficulty = 35;
+		waveone.difficulty = maxDifficulty;
 	}
 }
 
