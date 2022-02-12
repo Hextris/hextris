@@ -80,6 +80,7 @@ function waveGen(hex) {
 	};
 
 	this.circleGeneration = function() {
+        var random_color = randInt(0, colors.length);
 		if (this.dt - this.lastGen > this.nextGen + 500) {
 			var numColors = randInt(1, 4);
 			if (numColors == 3) {
@@ -99,7 +100,7 @@ function waveGen(hex) {
 			}
 
 			for (var i = 0; i < MainHex.sides; i++) {
-				addNewBlock(i, colorList[i % numColors], 1.5 + (this.difficulty / 15) * 3);
+				addNewBlock(i, colorList[random_color], 1.5 + (this.difficulty / 15) * 3);
 			}
 
 			this.ct += 15;
@@ -113,10 +114,6 @@ function waveGen(hex) {
 			var numColors = randInt(1, 3);
 			var c = colors[randInt(0, colors.length)];
 			var colorList = [c, c, c];
-			if (numColors == 2) {
-				colorList = [c, colors[randInt(0, colors.length)], c];
-			}
-
 			var d = randInt(0, 6);
 			for (var i = 0; i < 3; i++) {
 				addNewBlock((d + i) % 6, colorList[i], 1.5 + (this.difficulty / 15) * 3);
@@ -129,11 +126,12 @@ function waveGen(hex) {
 	};
 
 	this.crosswiseGeneration = function() {
+        var random_color = randInt(0, colors.length);
 		if (this.dt - this.lastGen > this.nextGen) {
 			var ri = randInt(0, colors.length);
 			var i = randInt(0, colors.length);
-			addNewBlock(i, colors[ri], 0.6 + (this.difficulty / 15) * 3);
-			addNewBlock((i + 3) % MainHex.sides, colors[ri], 0.6 + (this.difficulty / 15) * 3);
+			addNewBlock(i, colors[random_color], 0.6 + (this.difficulty / 15) * 3);
+			addNewBlock((i + 3) % MainHex.sides, colors[random_color], 0.6 + (this.difficulty / 15) * 3);
 			this.ct += 1.5;
 			this.lastGen = this.dt;
 			this.shouldChangePattern();
@@ -141,12 +139,13 @@ function waveGen(hex) {
 	};
 
 	this.spiralGeneration = function() {
+        var random_color = randInt(0, colors.length);
 		var dir = randInt(0, 2);
 		if (this.dt - this.lastGen > this.nextGen * (2 / 3)) {
 			if (dir) {
-				addNewBlock(5 - (this.ct % MainHex.sides), colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+				addNewBlock(5 - (this.ct % MainHex.sides), colors[random_color], 1.5 + (this.difficulty / 15) * (3 / 2));
 			} else {
-				addNewBlock(this.ct % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+				addNewBlock(this.ct % MainHex.sides, colors[random_color], 1.5 + (this.difficulty / 15) * (3 / 2));
 			}
 			this.ct += 1;
 			this.lastGen = this.dt;
@@ -155,10 +154,11 @@ function waveGen(hex) {
 	};
 
 	this.doubleGeneration = function() {
+        var random_color = randInt(0, colors.length);
 		if (this.dt - this.lastGen > this.nextGen) {
 			var i = randInt(0, colors.length);
-			addNewBlock(i, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
-			addNewBlock((i + 1) % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
+			addNewBlock(i, colors[random_color], 1.5 + (this.difficulty / 15) * 3);
+			addNewBlock((i + 1) % MainHex.sides, colors[random_color], 1.5 + (this.difficulty / 15) * 3);
 			this.ct += 2;
 			this.lastGen = this.dt;
 			this.shouldChangePattern();
