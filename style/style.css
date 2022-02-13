@@ -29,7 +29,7 @@
 	-webkit-transform:translate(-50%, -50%);
 	-moz-transform:translate(-50%, -50%);
 	-ms-transform:translate(-50%, -50%);
-    display:none;
+	display:none;
 }
 .tweet {
 	font-size:2rem;
@@ -420,7 +420,7 @@ body {
 	-webkit-transform:translate(-50%, 0%);
 	-moz-transform:translate(-50%, 0%);
 	-ms-transform:translate(-50%, 0%);
-    padding-bottom: 2px;
+	padding-bottom: 2px;
 }
 
 .unselectable {
