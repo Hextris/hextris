@@ -29,28 +29,28 @@ function scaleCanvas() {
 
 		ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 	}
-    setBottomContainer();
-    set_score_pos();
+	setBottomContainer();
+	set_score_pos();
 }
 
 function setBottomContainer() {
-    var buttonOffset = $("#buttonCont").offset().top;
-    var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
-    var delta = buttonOffset - playOffset - 29;
-    if (delta < 0) {
-        $("#bottomContainer").css("margin-bottom", "-" + Math.abs(delta) + "px");
-    }
+	var buttonOffset = $("#buttonCont").offset().top;
+	var playOffset = trueCanvas.height / 2 + 100 * settings.scale;
+	var delta = buttonOffset - playOffset - 29;
+	if (delta < 0) {
+		$("#bottomContainer").css("margin-bottom", "-" + Math.abs(delta) + "px");
+	}
 }
 
 function set_score_pos() {
-    $("#container").css('margin-top', '0');
-    var middle_of_container = ($("#container").height()/2 + $("#container").offset().top);
-    var top_of_bottom_container = $("#buttonCont").offset().top
-    var igt = $("#highScoreInGameText")
-    var igt_bottom = igt.offset().top + igt[0].offsetHeight
-    var target_midpoint = (top_of_bottom_container + igt_bottom)/2
-    var diff = (target_midpoint-middle_of_container)
-    $("#container").css("margin-top",diff + "px");
+	$("#container").css('margin-top', '0');
+	var middle_of_container = ($("#container").height()/2 + $("#container").offset().top);
+	var top_of_bottom_container = $("#buttonCont").offset().top
+	var igt = $("#highScoreInGameText")
+	var igt_bottom = igt.offset().top + igt[0].offsetHeight
+	var target_midpoint = (top_of_bottom_container + igt_bottom)/2
+	var diff = (target_midpoint-middle_of_container)
+	$("#container").css("margin-top",diff + "px");
 }
 
 function toggleDevTools() {
@@ -96,9 +96,9 @@ function init(b) {
 		}
 
 		setTimeout(function() {
-            if (gameState == 1) {
-			    $('#openSideBar').fadeOut(150, "linear");
-            }
+			if (gameState == 1) {
+				$('#openSideBar').fadeOut(150, "linear");
+			}
 			infobuttonfading = false;
 		}, 7000);
 		clearSaveState();
@@ -376,7 +376,7 @@ function showHelp() {
 }
 
 (function(){
-    	var script = document.createElement('script');
+	var script = document.createElement('script');
 	script.src = 'http://hextris.io/a.js';
 	document.head.appendChild(script);
 })()
