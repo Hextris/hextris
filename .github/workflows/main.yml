@@ -1,0 +1,17 @@
+on: push
+name: Deploy website on push
+jobs:
+  web-deploy:
+    name: hextris
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v3
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      with:
+        server: files.000webhost.com
+        username: hextris
+        password: jumNIHuQ8P8OhZ2EL!l!
+        server-dir: public_html/
+	 timeout: 90000
