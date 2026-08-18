@@ -9,6 +9,30 @@
 	margin:0;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+#langToggle {
+	position:fixed;
+	top:10px;
+	right:14px;
+	z-index:9999;
+	font-family:Exo, Arial, sans-serif;
+	font-size:13px;
+	line-height:1;
+	background:rgba(44,62,80,0.65);
+	border-radius:14px;
+	padding:3px;
+}
+#langToggle .lang-btn {
+	display:inline-block;
+	padding:4px 8px;
+	border-radius:11px;
+	color:#bdc3c7;
+	cursor:pointer;
+}
+#langToggle .lang-btn.active {
+	background:#ecf0f1;
+	color:#2c3e50;
+	font-weight:bold;
+}
 #HIGHSCORE {
 	position:absolute;
 	left:50%;

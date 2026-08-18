@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
+		<meta charset="utf-8">
 		<title>Hextris</title>
 		<meta name="description" content="An addictive puzzle game inspired by Tetris.">
 		<link rel="manifest" href="manifest.webmanifest">
@@ -49,6 +50,7 @@
 		<script type='text/javascript' src="vendor/jsonfn.min.js"></script>
 		<script type='text/javascript' src="vendor/keypress.min.js"></script>
 		<script type='text/javascript' src="vendor/jquery.js"></script>
+		<script type='text/javascript' src="js/i18n.js"></script>
 		<script type='text/javascript' src="js/save-state.js"></script>
 		<script type='text/javascript' src="js/view.js"></script>
 		<script type='text/javascript' src="js/wavegen.js"></script>
@@ -79,6 +81,10 @@
 		<img id="pauseBtn" src="./images/btn_pause.svg"/>
 		<img id='restartBtn' src="./images/btn_restart.svg"/>
 		<div id='HIGHSCORE'>HIGH SCORE</div>
+		<div id="langToggle" class="unselectable" title="Language / 语言">
+			<span class="lang-btn" data-lang="en">EN</span>
+			<span class="lang-btn" data-lang="zh">中文</span>
+		</div>
 		<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-51272720-2', 'auto'); ga('send', 'pageview');
 		</script>
 		<div id='highScoreInGameText'>
@@ -89,9 +95,9 @@
 				<div id='gameOverBox' class='GOTitle'>GAME OVER</div>
 				<div id='cScore'>1843</div>
 				<div id='highScoresTitle' class='GOTitle'>HIGH SCORES</div>
-				<div class='score'><span class='scoreNum'>1.</span> <div id="1place" style="display:inline;">0</div></div>
-				<div class='score'><span class='scoreNum'>2.</span> <div id="2place" style="display:inline;">0</div></div>
-				<div class='score'><span class='scoreNum'>3.</span> <div id="3place" style="display:inline;">0</div></div>
+				<div class='score'><span class='scoreNum' id='rank1Label'>1st: </span><div id="1place" style="display:inline;">0</div></div>
+				<div class='score'><span class='scoreNum' id='rank2Label'>2nd: </span><div id="2place" style="display:inline;">0</div></div>
+				<div class='score'><span class='scoreNum' id='rank3Label'>3rd: </span><div id="3place" style="display:inline;">0</div></div>
 			</div>
 			<div id='bottomContainer'>
 				<img id='restart' src='./images/btn_restart.svg' height='57px'>
@@ -106,7 +112,7 @@
 								<g id="Share-button" sketch:type="MSLayerGroup" transform="translate(95.000000, 565.000000)">
 								<a style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" ><polygon  id="Score-hex-2" fill="#3498DB" sketch:type="MSShapeGroup" transform="translate(127.661316, 32.500000) rotate(-90.000000) translate(-127.661316, -32.500000) " points="127.661316 -94.814636 160.137269 -76.064636 160.137269 141.064636 127.661317 159.814636 95.185364 141.064636 95.1853635 -76.064636 "></polygon></a>
 									<text style="cursor:pointer;"class="popup" onclick="window.open('https://twitter.com/intent/tweet?text=Can you beat my score of '+ score +' points at&button_hashtag=hextris ? http://hextris.github.io/hextris @hextris','name','width=600,height=400')" id="SHARE-MY-SCORE!" sketch:type="MSTextLayer" font-family="Exo" font-size="16" font-weight="420" fill="#FFFFFF">
-										<tspan x="67" y="39">SHARE MY SCORE!</tspan>
+										<tspan id="shareMyScoreText" x="67" y="39">SHARE MY SCORE!</tspan>
 									</text>
 								</g>
 							</g>

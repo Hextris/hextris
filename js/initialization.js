@@ -264,10 +264,12 @@ function handlePause() {
 }
 
 function handleTap(e) {
+	if ($(e.target).closest('#langToggle').length) return;
 	handleClickTap(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
 }
 
 function handleClick(e) {
+	if ($(e.target).closest('#langToggle').length) return;
 	handleClickTap(e.clientX, e.clientY);
 }
 
